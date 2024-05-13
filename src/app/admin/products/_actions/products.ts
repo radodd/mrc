@@ -2,7 +2,8 @@
 import { z } from "zod";
 import fs from "fs/promises";
 import db from "@/app/db/db";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { Product } from "@prisma/client";
 
 const fileSchema = z.instanceof(File, { message: "Required" });
 const imageSchema = fileSchema.refine(
@@ -34,7 +35,7 @@ export async function addProduct(prevState: unknown, formData: FormData) {
     Buffer.from(await data.image.arrayBuffer())
   );
 
-  await db.product.create({
+  const createdProduct = await db.product.create({
     data: {
       name: data.name,
       description: data.description,
@@ -42,5 +43,53 @@ export async function addProduct(prevState: unknown, formData: FormData) {
       imagePath,
     },
   });
+  console.log("ID", createdProduct.id)
   redirect("/admin/products");
+}
+
+const editSchema = addSchema.extend({
+  image: imageSchema.optional()
+})
+
+export async function updateProduct(id: string, prevState: unknown, formData: FormData) {
+  const result = editSchema.safeParse(Object.fromEntries(formData.entries()));
+  if (result.success === false) {
+    return result.error.formErrors.fieldErrors;
+  }
+
+  const data = result.data;
+  const product: Product | null = await db.product.findUnique({where: {id}})
+
+  if (product === null) return notFound()
+
+  let imagePath = product.imagePath
+  if (data.image !== null && data.image !== undefined && data.image.size > 0) {
+    await fs.unlink(`public${product.imagePath}`)
+    const imagePath = `/products/${crypto.randomUUID()}-${data.image.name}`;
+    await fs.writeFile(
+      `public${imagePath}`,
+      Buffer.from(await data.image.arrayBuffer())
+    );
+  }
+
+ 
+
+  const createdProduct = await db.product.update({
+    where: {id},
+    data: {
+      name: data.name,
+      description: data.description,
+      // categories: data.categories,
+      imagePath,
+    },
+  });
+  console.log("ID", createdProduct.id)
+  redirect("/admin/products");
+}
+
+export async function deleteProduct(id: string) {
+  const product = await db.product.delete({ where: { id } });
+  if (product === null) return notFound();
+
+  await fs.unlink(`public${product.imagePath}`)
 }
