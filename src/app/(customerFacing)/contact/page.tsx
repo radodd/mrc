@@ -1,8 +1,11 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
 
 const page = () => {
+  const { register, handleSubmit } = useForm();
   return (
     <div>
       <h1 className="font-bold text-[64px] text-center mb-10">Get in Touch</h1>
