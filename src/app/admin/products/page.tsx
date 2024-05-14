@@ -1,6 +1,6 @@
-"use client";
+
 import { Button } from "@/components/ui/button";
-import { PageHeader } from "../_components/Pageheader";
+import { PageHeader } from "../_components/PageHeader";
 import Link from "next/link";
 import {
   Table,
@@ -11,15 +11,19 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import db from "@/app/db/db";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
+// import {
+//   DropdownMenu,
+//   DropdownMenuTrigger,
+// } from "@radix-ui/react-dropdown-menu";
 import { MoreVertical } from "lucide-react";
 import {
+  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { DeleteDropdownItem } from "./_components/ProductActions";
 
 export default function AdminProductsPage() {
   return (
@@ -65,9 +69,13 @@ async function ProductsTable() {
                   <MoreVertical />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem>
-                    <Link href={`/admin/products/${product.id}/edit`}></Link>
+                  <DropdownMenuItem asChild>
+                    <Link href={`/admin/products/${product.id}/edit`}>
+                      Edit
+                    </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DeleteDropdownItem id={product.id} />
                 </DropdownMenuContent>
               </DropdownMenu>
             </TableCell>
