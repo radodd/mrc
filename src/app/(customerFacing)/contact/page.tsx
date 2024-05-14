@@ -2,10 +2,25 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type FormValues = {
+  firstname: string;
+  lastname: string;
+  phonenumber: number;
+  email: string;
+  position: string;
+  company: string;
+  message: string;
+};
 
 const page = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<FormValues>();
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
+  };
+
   return (
     <div>
       <h1 className="font-bold text-[64px] text-center mb-10">Get in Touch</h1>
@@ -37,66 +52,66 @@ const page = () => {
         {/* form section */}
 
         <div className="w-[699px] h-[741px]">
-          <form action="" className="flex flex-col gap-5">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-10"
+          >
             <div className="flex gap-6">
               <div>
-                <label htmlFor="firstName">First name</label>
-                <br />
                 <input
+                  {...register("firstname")}
                   type="text"
-                  placeholder="Input"
+                  placeholder="First Name"
                   className="border border-black w-[322px] h-14"
                 />
               </div>
               <div>
-                <label htmlFor="lastName">Last Name</label>
-                <br />
                 <input
+                  {...register("lastname")}
+                  placeholder="Last Name"
                   type="text"
                   className="border border-black w-[322px] h-14"
                 />
               </div>
             </div>
             <div>
-              <label htmlFor="PhoenNumber">Phone Number</label>
-              <br />
               <input
+                {...register("phonenumber")}
+                placeholder="Phone Number"
                 type="number"
-                name=""
-                id=""
                 className="border border-black w-[699px] h-14"
               />
             </div>
             <div>
-              <label htmlFor="email">Email</label>
               <input
+                {...register("email")}
+                placeholder="Email"
                 type="email"
-                name=""
-                id=""
                 className="border border-black  w-[699px] h-14"
               />
             </div>
             <div>
-              <label htmlFor="position">Position</label>
               <select
-                name=""
-                id=""
+                {...register("position")}
                 className="border border-black w-[699px] h-14"
-              ></select>
+              >
+                <option value="option-1">Option 1</option>
+                <option value="option-2">Option 2</option>
+                <option value="option-3">Option 3</option>
+              </select>
             </div>
             <div>
-              <label htmlFor="company">Company</label>
-              <br />
               <input
+                {...register("company")}
+                placeholder="Company"
                 type="text"
                 className="border border-black w-[699px] h-14"
               />
             </div>
             <div>
-              <label htmlFor="message">Message</label>
               <textarea
-                name=""
-                id=""
+                {...register("message")}
+                placeholder="Message"
                 cols={93}
                 rows={7}
                 className="border border-black"
