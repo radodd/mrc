@@ -14,6 +14,7 @@ const imageSchema = fileSchema.refine(
 const addSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
+  company: z.string().min(1),
   // categories: z.string().min(1),
   image: imageSchema.refine((file) => file.size > 0, "Required"),
 });
@@ -39,6 +40,7 @@ export async function addProduct(prevState: unknown, formData: FormData) {
     data: {
       name: data.name,
       description: data.description,
+      company: data.company,
       // categories: data.categories,
       imagePath,
     },
@@ -79,6 +81,7 @@ export async function updateProduct(id: string, prevState: unknown, formData: Fo
     data: {
       name: data.name,
       description: data.description,
+      company: data.company,
       // categories: data.categories,
       imagePath,
     },

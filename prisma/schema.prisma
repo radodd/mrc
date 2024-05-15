@@ -15,6 +15,7 @@ model Product {
   name          String
   imagePath     String
   description   String
+  company       String
   categories    Category[]
 }
 
