@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { POST } from "@/app/api/send/route";
 
 type FormValues = {
   firstname: string;
@@ -15,10 +16,12 @@ type FormValues = {
 };
 
 const page = () => {
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit, reset } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
+    reset();
     console.log(data);
+    // POST(data);
   };
 
   return (
