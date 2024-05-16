@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+.hamburger .hamburger-inner,
+.hamburger .hamburger-inner::before,
+.hamburger .hamburger-inner::after {
+  background-color: #307084 !important;
+}
+/* color: #467ad4 !important; */
+
+.is-active .hamburger-inner,
+.is-active .hamburger-inner::before {
+  background-color: #307084 !important;
+}
+.hamburger:hover {
+  opacity: 1 !important;
+}
+
 @layer base {
   :root {
     --font-sans: "Inter", sans-serif;

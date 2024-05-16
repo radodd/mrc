@@ -1,0 +1,15 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.mobileCustomerFacingNav {
+  @include mid-break {
+    visibility: hidden;
+  }
+}
+
+.hamburger {
+  display: none;
+  @include mid-break {
+    display: contents;
+  }
+}

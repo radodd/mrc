@@ -14,15 +14,17 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isActive, setIsActive] = useState(false);
   return (
     <>
-      <CustomerFacingNav>
+      <CustomerFacingNav isActive={isActive} setIsActive={setIsActive}>
         <CustomerFacingNavLink href="/about">About</CustomerFacingNavLink>
         <NavigationMenu>
           <NavigationMenuList>
