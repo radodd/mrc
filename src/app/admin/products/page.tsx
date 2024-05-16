@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "../_components/PageHeader";
 import Link from "next/link";
@@ -41,7 +40,7 @@ export default function AdminProductsPage() {
 
 async function ProductsTable() {
   const products = await db.product.findMany({
-    select: { id: true, name: true, description: true },
+    select: { id: true, name: true, description: true, company: true },
     orderBy: { name: "asc" },
   });
 
@@ -61,6 +60,8 @@ async function ProductsTable() {
           <TableRow key={product.id}>
             <TableCell>{product.name}</TableCell>
             <TableCell>{product.description}</TableCell>
+            <TableCell>{product.company}</TableCell>
+
             {/* <TableCell>{product.category}</TableCell> */}
             {/* <TableCell>{product.imagePath}</TableCell> */}
             <TableCell>

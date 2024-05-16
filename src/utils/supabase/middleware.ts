@@ -51,7 +51,7 @@
 //           });
 //         },
 //       },
-//     }
+//     },
 //   );
 
 //   // refreshing the auth token
