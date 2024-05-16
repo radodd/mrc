@@ -1,6 +1,10 @@
 "use client";
+import {
+  CustomerFacingNav,
+  CustomerFacingNavLink,
+} from "@/components/CustomerFacingNav";
 import { Footer, FooterLink } from "@/components/Footer";
-import { Nav, NavLink } from "@/components/Nav";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,6 +13,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import Image from "next/image";
 
 export default function Layout({
   children,
@@ -17,28 +22,41 @@ export default function Layout({
 }>) {
   return (
     <>
-      <Nav>
-        <NavLink href="/about">About</NavLink>
+      <CustomerFacingNav>
+        <CustomerFacingNavLink href="/about">About</CustomerFacingNavLink>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>Products</NavigationMenuTrigger>
-              <NavigationMenuContent className="flex flex-col">
-                <NavigationMenuLink href="/materials">
+              <NavigationMenuContent className="">
+                <NavigationMenuLink
+                  className="hover:bg-tanbase "
+                  href="/materials"
+                >
                   Materials
                 </NavigationMenuLink>
-                <NavigationMenuLink href="/services">
+                <NavigationMenuLink
+                  className="hover:bg-tanbase "
+                  href="/services"
+                >
                   Services
                 </NavigationMenuLink>
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
-        </NavigationMenu>{" "}
-        <NavLink href="/projects">Projects</NavLink>
-        <NavLink href="/contact">Contact</NavLink>
-      </Nav>
-
-      <div className="container my-6">{children}</div>
+        </NavigationMenu>
+        <CustomerFacingNavLink href="/projects">Projects</CustomerFacingNavLink>
+        <CustomerFacingNavLink href="/contact">Contact</CustomerFacingNavLink>
+        <CustomerFacingNavLink href="/cart">
+          <Image
+            src="/shopping_cart.png"
+            alt="shopping cart"
+            width={33}
+            height={33}
+          />
+        </CustomerFacingNavLink>
+      </CustomerFacingNav>
+      <div className="">{children}</div>
 
       <Footer>
         <div className="flex flex-col pt-3">

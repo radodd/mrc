@@ -7,7 +7,6 @@ import { useTransition } from "react";
 import { deleteProduct } from "../_actions/products";
 import { useRouter } from "next/navigation";
 
-
 // export function ActiveToggleDropdownItem({id}: {id: string}) {
 //     const [isPending, startTransition] = useTransition()
 //     return <DropdownMenuItem onClick={() => {
@@ -19,15 +18,15 @@ import { useRouter } from "next/navigation";
 
 export function DeleteDropdownItem({ id }: { id: string }) {
   const [isPending, startTransition] = useTransition();
-  const router = useRouter()
+  const router = useRouter();
   return (
     <DropdownMenuItem
-    variant="destructive"
+      variant="destructive"
       disabled={isPending}
       onClick={() => {
         startTransition(async () => {
           await deleteProduct(id);
-          router.refresh()
+          router.refresh();
         });
       }}
     >
