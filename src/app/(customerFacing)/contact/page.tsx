@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { POST } from "@/app/api/send/route";
+// import { POST } from "@/app/api/send/route";
 
 type FormValues = {
   firstname: string;
@@ -18,10 +18,22 @@ type FormValues = {
 const page = () => {
   const { register, handleSubmit, reset } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = (formData) => {
+    fetch("/api/send/", {
+      method: "POST",
+      body: JSON.stringify({
+        firstname: formData.firstname,
+        lastname: formData.lastname,
+        phonenumber: formData.phonenumber,
+        email: formData.email,
+        position: formData.position,
+        company: formData.company,
+        message: formData.message,
+      }),
+    });
+    console.log(formData);
+    // POST(formData);
     reset();
-    console.log(data);
-    // POST(data);
   };
 
   return (
