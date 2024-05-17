@@ -18,10 +18,10 @@ const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   position,
   company,
   message,
-}) => (
+}: EmailTemplateProps) => (
   <div>
     <h1>
-      {firstname} {lastname} has sent a request.
+      {firstname} {lastname} wants to connect!
     </h1>
     <p>Phone Number: {phonenumber}</p>
     <p>Email: {email}</p>
