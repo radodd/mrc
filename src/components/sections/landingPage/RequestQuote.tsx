@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function RequestQuote() {
   return (
@@ -14,7 +15,9 @@ export default function RequestQuote() {
           how much each material costs.
         </p>
         <div className="justify-start">
-          <Button variant="outline">View Our Materials</Button>
+          <Button variant="outline" navigateTo="materials">
+            View Our Materials
+          </Button>
         </div>
       </div>
       <div className="section-image">

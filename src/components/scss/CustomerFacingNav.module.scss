@@ -1,7 +1,7 @@
 @use "../../../css/queries.scss";
 @import "../../../css/queries.scss";
 
-.mobileCustomerFacingNav {
+.hiddenMobile {
   @include mid-break {
     visibility: hidden;
   }
@@ -12,4 +12,11 @@
   @include mid-break {
     display: contents;
   }
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 24px;
 }

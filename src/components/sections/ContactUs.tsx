@@ -1,7 +1,9 @@
+"use client";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
-export default function ContactUs() {
+export default function ContactUs({ renderButton }: { renderButton: boolean }) {
   return (
     <div className="section-padding contact-section-padding bg-tanbase">
       <div className="section-image">
@@ -13,8 +15,22 @@ export default function ContactUs() {
           Lúthien i'elvathren, ithil arnath ar valinor. Aerlinn i'rína, hiril
           alda ar lúthalion."
         </p>
-        <div className="justify-start">
-          <Button variant="outline">Contact Us</Button>
+        <div className="flex justify-start gap-8">
+          {renderButton && (
+            <>
+              <Button variant="outline" navigateTo="/services">
+                View Services
+              </Button>
+
+              <Button variant="outline" navigateTo="/materials">
+                View Materials
+              </Button>
+            </>
+          )}
+
+          <Button variant="outline" navigateTo="/contact">
+            Contact Us
+          </Button>
         </div>
       </div>
     </div>

@@ -34,13 +34,13 @@ export function CustomerFacingNav({
         </Link>
       </div>
       <div
-        className={`${style.mobileCustomerFacingNav} flex justify-center gap-8 text-2xl`}
+        className={`${style.hiddenMobile} flex justify-center gap-8 text-2xl`}
       >
         {children}
       </div>
       <div className={`${style.hamburger}`}>
         <Sheet>
-          <SheetTrigger>
+          <SheetTrigger asChild>
             <div
               onClick={() => {
                 setIsActive(!isActive);
@@ -48,7 +48,7 @@ export function CustomerFacingNav({
             >
               <button
                 type="button"
-                className={`hamburger hamburger--collapse ${isActive ? "is-active" : ""} `}
+                className={`hamburger hamburger--collapse `}
               >
                 <span className="hamburger-box">
                   <span className="hamburger-inner"></span>
@@ -57,12 +57,14 @@ export function CustomerFacingNav({
             </div>
           </SheetTrigger>
           <SheetContent>
+            <div className={`${style.sheet}`}>{children}</div>
+
             <SheetHeader>
               <SheetTitle>Mobile Nav Here?</SheetTitle>
               <SheetDescription>Blah Blah</SheetDescription>
             </SheetHeader>
           </SheetContent>
-        </Sheet>{" "}
+        </Sheet>
       </div>
     </nav>
   );
