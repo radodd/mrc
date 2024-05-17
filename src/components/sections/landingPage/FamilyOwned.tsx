@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "../../ui/button";
+import Link from "next/link";
 
 export default function FamilyOwned() {
   return (
@@ -14,7 +15,7 @@ export default function FamilyOwned() {
           how much each material costs.
         </p>
         <div className="justify-start">
-          <Button variant="outline" size="default">
+          <Button variant="outline" size="default" navigateTo="/about">
             About Us
           </Button>
         </div>
