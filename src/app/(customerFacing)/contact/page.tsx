@@ -1,14 +1,14 @@
 "use client";
-import React from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
-// import { POST } from "@/app/api/send/route";
+import InputMasK from "react-input-mask";
 
 type FormValues = {
   firstname: string;
   lastname: string;
-  phonenumber: number;
+  phonenumber: string;
   email: string;
   position: string;
   company: string;
@@ -16,7 +16,17 @@ type FormValues = {
 };
 
 const page = () => {
-  const { register, handleSubmit, reset } = useForm<FormValues>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    resetField,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const phoneInputRef = useRef<HTMLInputElement>(null);
+
+  const [phoneNumberValue, setPhoneNumberValue] = useState("");
 
   const onSubmit: SubmitHandler<FormValues> = (formData) => {
     fetch("/api/send/", {
@@ -32,14 +42,20 @@ const page = () => {
       }),
     });
     console.log(formData);
-    // POST(formData);
     reset();
+    setPhoneNumberValue("");
+
+    // resetField("phonenumber");
+
+    if (phoneInputRef.current) {
+      phoneInputRef.current.value = "";
+    }
   };
 
   return (
     <div>
-      <h1 className="font-bold text-[64px] text-center mb-10">Get in Touch</h1>
-      <div className="flex justify-around">
+      <h1 className="font-bold text-[64px] text-center my-10">Get in Touch</h1>
+      <div className="flex justify-around my-28">
         {/* contact information */}
 
         <div className="bg-[#307084] flex flex-col max-w-[582px] h-[741px] gap-12 px-10 py-[62px] text-white rounded-3xl">
@@ -74,45 +90,86 @@ const page = () => {
             <div className="flex gap-6">
               <div>
                 <input
-                  {...register("firstname")}
+                  {...register("firstname", {
+                    required: "First Name is required",
+                  })}
                   type="text"
+                  // autoComplete="off"
                   placeholder="First Name"
                   className="border border-black w-[322px] h-14"
                 />
+                {errors.firstname?.message && (
+                  <p className="text-red-500 text-sm">
+                    {errors.firstname.message}
+                  </p>
+                )}
               </div>
               <div>
                 <input
-                  {...register("lastname")}
+                  {...register("lastname", {
+                    required: "Last Name is required",
+                  })}
                   placeholder="Last Name"
                   type="text"
                   className="border border-black w-[322px] h-14"
                 />
+                {errors.lastname?.message && (
+                  <p className="text-red-500 text-sm">
+                    {errors.lastname.message}
+                  </p>
+                )}
               </div>
             </div>
             <div>
-              <input
-                {...register("phonenumber")}
+              <InputMasK
+                mask="+1 (999) 999-9999"
+                value={phoneNumberValue}
+                // onChange={(e) => setPhoneNumberValue(e.target.value)}
+
+                // defaultValue=""
+                {...register("phonenumber", {
+                  required: "Phone Number is required",
+                  minLength: {
+                    value: 7,
+                    message: "Phone Number must have at least 7 Numbers",
+                  },
+                })}
                 placeholder="Phone Number"
-                type="number"
+                type="text"
+                // inputRef={phoneInputRef}
                 className="border border-black w-[699px] h-14"
               />
+              {errors.phonenumber?.message && (
+                <p className="text-red-500 text-sm">
+                  {errors.phonenumber.message}
+                </p>
+              )}
             </div>
             <div>
               <input
-                {...register("email")}
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "Invalid email address",
+                  },
+                })}
                 placeholder="Email"
                 type="email"
                 className="border border-black  w-[699px] h-14"
               />
+              {errors.email?.message && (
+                <p className="text-red-500 text-sm">{errors.email.message}</p>
+              )}
             </div>
             <div>
               <select
                 {...register("position")}
                 className="border border-black w-[699px] h-14"
               >
-                <option value="option-1">Option 1</option>
-                <option value="option-2">Option 2</option>
-                <option value="option-3">Option 3</option>
+                <option value="Landscape Architect">Landscape Architect</option>
+                <option value="Contractor">Contractor</option>
+                <option value="Homeowner">Homeowner</option>
               </select>
             </div>
             <div>
@@ -125,12 +182,15 @@ const page = () => {
             </div>
             <div>
               <textarea
-                {...register("message")}
+                {...register("message", { required: "Message is reuired" })}
                 placeholder="Message"
-                cols={93}
+                cols={79}
                 rows={7}
                 className="border border-black"
               ></textarea>
+              {errors.message?.message && (
+                <p className="text-red-500 text-sm">{errors.message.message}</p>
+              )}
             </div>
             <Button className="w-full">Submit</Button>
           </form>
