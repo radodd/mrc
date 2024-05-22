@@ -31,10 +31,11 @@ export default function LandingPageCarousel() {
               needs.{" "}
             </div>
             <div className="gap-6 inline-flex">
-              <Button variant="default" size="default">
+              <Button variant="default" size="default" navigateTo="/materials">
                 View Materials
               </Button>
-              <Button variant="outline" size="default">
+
+              <Button variant="outline" size="default" navigateTo="contact">
                 Contact Us
               </Button>
             </div>

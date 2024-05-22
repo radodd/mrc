@@ -14,15 +14,17 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isActive, setIsActive] = useState(false);
   return (
     <>
-      <CustomerFacingNav>
+      <CustomerFacingNav isActive={isActive} setIsActive={setIsActive}>
         <CustomerFacingNavLink href="/about">About</CustomerFacingNavLink>
         <NavigationMenu>
           <NavigationMenuList>
@@ -59,18 +61,22 @@ export default function Layout({
       <div className="">{children}</div>
 
       <Footer>
-        <div className="flex flex-col pt-3">
+        <div className="flex flex-col">
           <FooterLink href="/">Santa Paula Materials</FooterLink>
           <FooterLink href="/">MRC Rock and Sand</FooterLink>
           <FooterLink href="/">Stonyard</FooterLink>
         </div>
-        <div className="flex flex-col pt-3">
-          <FooterLink href="/">About</FooterLink>
-          <FooterLink href="/">FAQ</FooterLink>
-          <FooterLink href="/">Contact</FooterLink>
-          <FooterLink href="/">Materials</FooterLink>
-          <FooterLink href="/">Services</FooterLink>
-          <FooterLink href="/">Projects</FooterLink>
+        <div className="flex gap-[104px]">
+          <div className="flex flex-col">
+            <FooterLink href="/">About</FooterLink>
+            <FooterLink href="/">FAQ</FooterLink>
+            <FooterLink href="/">Contact</FooterLink>
+          </div>
+          <div className="flex flex-col">
+            <FooterLink href="/">Materials</FooterLink>
+            <FooterLink href="/">Services</FooterLink>
+            <FooterLink href="/">Projects</FooterLink>
+          </div>
         </div>
       </Footer>
     </>

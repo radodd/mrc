@@ -15,7 +15,7 @@ export default function HomePage() {
       <GovAgencies />
       <NewsArticles />
       <WeSpecialize />
-      <ContactUs />
+      <ContactUs renderButton={false} />
     </>
   );
 }

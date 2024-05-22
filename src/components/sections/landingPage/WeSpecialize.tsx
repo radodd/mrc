@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function WeSpecialize() {
   return (
@@ -11,8 +12,13 @@ export default function WeSpecialize() {
           alda ar lúthalion."
         </p>
         <div className="flex justify-start gap-6">
-          <Button variant="outline">View Description</Button>
-          <Button variant="default">View Project with Limestone</Button>
+          <Button variant="outline" navigateTo="">
+            View Description
+          </Button>
+
+          <Button variant="default" navigateTo="">
+            View Project with Limestone
+          </Button>
         </div>
       </div>
       <div className="section-image">
