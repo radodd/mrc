@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -20,13 +20,20 @@ const page = () => {
     register,
     handleSubmit,
     reset,
-    resetField,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({
+    defaultValues: {
+      firstname: "",
+      lastname: "",
+      phonenumber: "",
+      email: "",
+      position: "",
+      company: "",
+      message: "",
+    },
+  });
 
-  const phoneInputRef = useRef<HTMLInputElement>(null);
-
-  const [phoneNumberValue, setPhoneNumberValue] = useState("");
+  const phoneInputRef = useRef(null);
 
   const onSubmit: SubmitHandler<FormValues> = (formData) => {
     fetch("/api/send/", {
@@ -43,14 +50,11 @@ const page = () => {
     });
     console.log(formData);
     reset();
-    setPhoneNumberValue("");
-
-    // resetField("phonenumber");
-
-    if (phoneInputRef.current) {
-      phoneInputRef.current.value = "";
-    }
   };
+
+  useEffect(() => {
+    reset();
+  }, [reset]);
 
   return (
     <div>
@@ -123,20 +127,27 @@ const page = () => {
             <div>
               <InputMasK
                 mask="+1 (999) 999-9999"
-                value={phoneNumberValue}
+                // value={phoneNumberValue}
                 // onChange={(e) => setPhoneNumberValue(e.target.value)}
 
                 // defaultValue=""
                 {...register("phonenumber", {
                   required: "Phone Number is required",
-                  minLength: {
-                    value: 7,
-                    message: "Phone Number must have at least 7 Numbers",
+                  validate: (value) => {
+                    const unmaskedValue = value.replace(/\D/g, "");
+                    return (
+                      unmaskedValue.length >= 11 ||
+                      "Phone Number must have 10 Digits"
+                    );
                   },
+                  // minLength: {
+                  //   value: 7,
+                  //   message: "Phone Number must have at least 7 Numbers",
+                  // },
                 })}
                 placeholder="Phone Number"
                 type="text"
-                // inputRef={phoneInputRef}
+                inputRef={phoneInputRef}
                 className="border border-black w-[699px] h-14"
               />
               {errors.phonenumber?.message && (
