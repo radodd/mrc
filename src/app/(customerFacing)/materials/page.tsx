@@ -1,22 +1,45 @@
-import db from "@/app/db/db";
+"use client";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductFilters } from "@/components/ProductFilters";
-import { Button } from "@/components/ui/button";
 import { Product } from "@prisma/client";
-import Link from "next/link";
-
-function getAllProducts() {
-  return db.product.findMany();
-}
+import { useEffect, useState } from "react";
 
 export default function MaterialsPage() {
+  const [filterValueList, setFilterValueList] = useState<string[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:3030/products");
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const filteredProductList = products.filter((product) => {
+    if (filterValueList.length === 0) {
+      return true;
+    } else {
+      return filterValueList.includes(product.company);
+    }
+  });
+
+  function applyArrayFilter(filterValueList: string[]) {
+    setFilterValueList(filterValueList);
+  }
+
   return (
     <>
       <div>
-        <ProductFilters />
+        <ProductFilters arrayFilter={applyArrayFilter} />
         <ProductGridSection
           title="Materials"
-          productsFetcher={getAllProducts}
+          productsFetcher={filteredProductList}
         />
       </div>
     </>
@@ -24,11 +47,11 @@ export default function MaterialsPage() {
 }
 
 type ProductGridSectionProps = {
-  productsFetcher: () => Promise<Product[]>;
+  productsFetcher: Product[];
   title: string;
 };
 
-async function ProductGridSection({
+function ProductGridSection({
   productsFetcher,
   title,
 }: ProductGridSectionProps) {
@@ -39,10 +62,7 @@ async function ProductGridSection({
       </h2>
       <div className="flex space-y-3 justify-end items-end">
         <div className="flex flex-col gap-4">
-          {/* <Button asChild>
-          <Link href="/">View More</Link>
-        </Button> */}
-          {(await productsFetcher()).map((product) => (
+          {productsFetcher.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
         </div>
