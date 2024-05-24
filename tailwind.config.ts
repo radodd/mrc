@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        mobile: "390px",
+      },
       fontFamily: {
         sans: "var(--font-sans)",
         openSans: "var(--font-openSans)",

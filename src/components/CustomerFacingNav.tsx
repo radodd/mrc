@@ -39,7 +39,7 @@ export function CustomerFacingNav({
         {children}
       </div>
       <div className={`${style.hamburger}`}>
-        <Sheet>
+        {/* <Sheet>
           <SheetTrigger asChild>
             <div
               onClick={() => {
@@ -64,7 +64,7 @@ export function CustomerFacingNav({
               <SheetDescription>Blah Blah</SheetDescription>
             </SheetHeader>
           </SheetContent>
-        </Sheet>
+        </Sheet> */}
       </div>
     </nav>
   );
