@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
 import InputMasK from "react-input-mask";
+import { companyAdress } from "../../../..";
 
 type FormValues = {
   firstname: string;
@@ -35,21 +36,25 @@ const page = () => {
 
   const phoneInputRef = useRef(null);
 
-  const onSubmit: SubmitHandler<FormValues> = (formData) => {
-    fetch("/api/send/", {
-      method: "POST",
-      body: JSON.stringify({
-        firstname: formData.firstname,
-        lastname: formData.lastname,
-        phonenumber: formData.phonenumber,
-        email: formData.email,
-        position: formData.position,
-        company: formData.company,
-        message: formData.message,
-      }),
-    });
-    console.log(formData);
-    reset();
+  const onSubmit: SubmitHandler<FormValues> = async (formData) => {
+    try {
+      await fetch("/api/send/", {
+        method: "POST",
+        body: JSON.stringify({
+          firstname: formData.firstname,
+          lastname: formData.lastname,
+          phonenumber: formData.phonenumber,
+          email: formData.email,
+          position: formData.position,
+          company: formData.company,
+          message: formData.message,
+        }),
+      });
+      console.log(formData);
+      reset();
+    } catch (error) {
+      // how to handel the error
+    }
   };
 
   useEffect(() => {
@@ -206,6 +211,25 @@ const page = () => {
             <Button className="w-full">Submit</Button>
           </form>
         </div>
+      </div>
+      <div className="grid gap-5 grid-cols-3 my-20 px-16">
+        {companyAdress.map((company) => (
+          <div
+            key={company.id}
+            className="bg-tanbase w-[441px] px-8 py-8 flex flex-col rounded-3xl text-primary"
+          >
+            <div className="flex">
+              <Image
+                src="/location_on.svg"
+                alt="Location"
+                width={33}
+                height={33}
+              />
+              <h1 className="text-2xl">{company.name}</h1>
+            </div>
+            <p>{company.adress}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
