@@ -70,7 +70,7 @@ const config = {
           DEFAULT: "hsl(var(--tan-base))",
         },
         blackbase: {
-          DEFAULT: "hsl(var(--blackbase))",
+          DEFAULT: "hsl(var(--black-base))",
         },
       },
       borderRadius: {
