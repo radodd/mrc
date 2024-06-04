@@ -13,8 +13,8 @@ const page = () => {
 
       {/* hero for services  */}
 
-      <div className="flex flex-col mb-8">
-        <h1 className="font-bold text-5xl my-14 ml-[70px]">
+      <div className="flex flex-col mb-8 bg-primary">
+        <h1 className="font-bold text-5xl my-14 ml-[70px] ">
           Santa Paula Materials
         </h1>
         {santaPaulaMaterials.map((materials) => (
@@ -46,20 +46,22 @@ const page = () => {
 
       {/* Mr rock & Sand */}
 
-      <div className="flex flex-col mb-20">
+      <div className="flex flex-col mb-20  bg-primary">
         <h1 className="font-bold text-5xl my-14 ml-[70px]">MRC Rock & Sand</h1>
         {mrcRocknSand.map((service) => (
           <div
             key={service.id}
-            className="flex flex-row gap-[91px] bg-tanbase px-[70px] py-12"
+            className="flex flex-row gap-[91px] bg-tanbase px-[70px] py-12 md:flex-row md:gap-0"
           >
-            <div className="relative w-[100%] max-w-[695px] max-h-[375px] ">
+            <div className="relative max-w-[695px] max-h-[375px] ">
               <Image
                 alt="image"
                 src={service.image}
-                layout="fill"
-                objectFit="contain" // Use contain instead of cover
-                className="object-cover bg-tanbase"
+                // layout="responsive"
+                width={695}
+                height={375}
+                // objectFit="contain" // Use contain instead of cover
+                className="object-fill h-full w-full"
               />
             </div>
             <div className="flex-col flex gap-4  w-[606px]">
