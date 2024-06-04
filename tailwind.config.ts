@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      aspectRatio: {
+        "7/6": "7/6",
+      },
       screens: {
         mobile: "390px",
       },
