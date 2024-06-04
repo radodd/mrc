@@ -20,20 +20,25 @@ const page = () => {
         {santaPaulaMaterials.map((materials) => (
           <div
             key={materials.id}
-            className="flex flex-row gap-[91px] bg-tanbase px-[70px] py-12 max-[1030px]:flex-col"
+            className={`flex  bg-tanbase  max-[769px]:flex-col ${materials.id == 2 ? "flex-row-reverse " : null}`}
           >
-            <div className="relative w-[100%] max-w-[695px] max-h-[375px] ">
+            {/* <div className="max-w-[756px] max-h-[468px] relative"> */}
+            <div className="relative w-1/2 h-full  max-h-[468px] aspect-7/6">
               <Image
                 alt="image"
                 src={materials.image}
-                layout="fill"
-                objectFit="contain" // Use contain instead of cover
+                // layout="fill"
+                fill={true}
+                // sizes="100vw"
+                // width={756}
+                // height={468}
                 className="object-cover bg-tanbase"
               />
             </div>
-            <div className="flex-col flex gap-4  w-[606px]">
-              <h1 className="font-bold text-3xl">{materials.name}</h1>
-              <p className="text-wrap text-[20px] my-10">{materials.desc}</p>
+            {/* </div> */}
+            <div className="flex-col flex gap-10  w-[616px] h-[372px] my-12 mx-[70px]">
+              <h1 className="font-bold text-[32px]">{materials.name}</h1>
+              <p className="text- text-[20px] w-[616px]">{materials.desc}</p>
               <div className="flex gap-2 ">
                 <Button variant={"outline"}>Contact SPM</Button>
                 {/* {if {materials.id === 1 }} */}
@@ -51,7 +56,7 @@ const page = () => {
         {mrcRocknSand.map((service) => (
           <div
             key={service.id}
-            className="flex flex-row gap-[91px] bg-tanbase px-[70px] py-12 md:flex-row md:gap-0"
+            className={`flex flex-row gap-[91px] bg-tanbase px-[70px] py-12 ${service.id == 1 || service.id == 3 ? null : "flex-row-reverse"}`}
           >
             <div className="relative max-w-[695px] max-h-[375px] ">
               <Image

@@ -105,7 +105,7 @@ const page = () => {
                   type="text"
                   // autoComplete="off"
                   placeholder="First Name"
-                  className="border border-black w-[322px] h-14"
+                  className="border border-black w-[322px] h-14 pl-3"
                 />
                 {errors.firstname?.message && (
                   <p className="text-red-500 text-sm">
@@ -120,7 +120,7 @@ const page = () => {
                   })}
                   placeholder="Last Name"
                   type="text"
-                  className="border border-black w-[322px] h-14"
+                  className="border border-black w-[322px] h-14 pl-3"
                 />
                 {errors.lastname?.message && (
                   <p className="text-red-500 text-sm">
@@ -153,7 +153,7 @@ const page = () => {
                 placeholder="Phone Number"
                 type="text"
                 inputRef={phoneInputRef}
-                className="border border-black w-[699px] h-14"
+                className="border border-black w-[699px] h-14 pl-3"
               />
               {errors.phonenumber?.message && (
                 <p className="text-red-500 text-sm">
@@ -172,7 +172,7 @@ const page = () => {
                 })}
                 placeholder="Email"
                 type="email"
-                className="border border-black  w-[699px] h-14"
+                className="border border-black  w-[699px] h-14 pl-3"
               />
               {errors.email?.message && (
                 <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -181,7 +181,7 @@ const page = () => {
             <div>
               <select
                 {...register("position")}
-                className="border border-black w-[699px] h-14"
+                className="border border-black w-[699px] h-14 pl-3"
               >
                 <option value="Landscape Architect">Landscape Architect</option>
                 <option value="Contractor">Contractor</option>
@@ -193,7 +193,7 @@ const page = () => {
                 {...register("company")}
                 placeholder="Company"
                 type="text"
-                className="border border-black w-[699px] h-14"
+                className="border border-black w-[699px] h-14 pl-3"
               />
             </div>
             <div>
@@ -202,7 +202,7 @@ const page = () => {
                 placeholder="Message"
                 cols={79}
                 rows={7}
-                className="border border-black"
+                className="border border-black pl-3 pt-3"
               ></textarea>
               {errors.message?.message && (
                 <p className="text-red-500 text-sm">{errors.message.message}</p>
