@@ -20,13 +20,37 @@ const COMPANIES = [
   { name: "Stoneyard", selected: false, href: "#" },
 ];
 
-const COMPANIES_FILTERS = {
+const COMPANY_FILTERS = {
   id: "company",
   name: "Company",
   options: [
-    { value: "mrc", label: "MRC Rock & Sand" },
-    { value: "spm", label: "Santa Paula Materials" },
-    { value: "stoneyard", label: "Stoneyard" },
+    { value: "MRC Rock & Sand", label: "MRC Rock & Sand" },
+    { value: "Santa Paula Materials", label: "Santa Paula Materials" },
+    { value: "Stoneyard", label: "Stoneyard" },
+  ] as const,
+};
+
+const COLOR_FILTERS = {
+  id: "colors",
+  name: "Colors",
+  options: [
+    { value: "yellow", label: "Yellow" },
+    { value: "blue", label: "Blue" },
+    { value: "gray", label: "Gray" },
+  ] as const,
+};
+const CATEGORY_FILTERS = {
+  id: "category",
+  name: "Category",
+  options: [
+    { value: "aggregate", label: "aggregate" },
+    { value: "cobble & rubble", label: "cobble & rubble" },
+    { value: "boulders", label: "boulders" },
+    { value: "decomposed granite", label: "decomposed granite" },
+    { value: "base materials", label: "base materials" },
+    { value: "rip rap", label: "rip rap" },
+    { value: "drain rock", label: "drain rock" },
+    { value: "rock dust", label: "rock dust" },
   ] as const,
 };
 
@@ -37,7 +61,18 @@ type ProductFilterProps = {
 export const ProductFilters: React.FC<ProductFilterProps> = (props) => {
   const { arrayFilter } = props;
   const [filter, setFilter] = useState<ProductState>({
-    company: ["mrc", "spm", "stoneyard"],
+    company: ["MRC Rock & Sand", "Santa Paula Materials", "Stoneyard"],
+    colors: ["yellow", "blue", "gray"],
+    category: [
+      "aggregate",
+      "cobble & rubble",
+      "boulders",
+      "decomposed granite",
+      "base materials",
+      "rip rap",
+      "drain rock",
+      "rock dust",
+    ],
     sort: "none",
   });
 
@@ -70,7 +105,7 @@ export const ProductFilters: React.FC<ProductFilterProps> = (props) => {
 
   return (
     <>
-      <div className="hidden lg:block">
+      <div className="hidden lg:block max-w-[240px] min-w-[170px]">
         <ul className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
           {COMPANIES.map((category) => (
             <li key={category.name}>
@@ -92,7 +127,7 @@ export const ProductFilters: React.FC<ProductFilterProps> = (props) => {
 
             <AccordionContent className="pt-6">
               <ul className="space-y-4">
-                {COMPANIES_FILTERS.options.map((option, optionIdx) => (
+                {COMPANY_FILTERS.options.map((option, optionIdx) => (
                   <li key={option.value} className="flex items-center">
                     <input
                       type="checkbox"
@@ -108,6 +143,72 @@ export const ProductFilters: React.FC<ProductFilterProps> = (props) => {
                     />
                     <label
                       htmlFor={`company-${optionIdx}`}
+                      className="ml-3 text-sm text-gray-600"
+                    >
+                      {option.label}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="color">
+            <AccordionTrigger className="py-3 text-sm text-gray-400 hover:text-gray-500">
+              <span className="font-medium text-gray-900">Color</span>
+            </AccordionTrigger>
+
+            <AccordionContent className="pt-6">
+              <ul className="space-y-4">
+                {COLOR_FILTERS.options.map((option, optionIdx) => (
+                  <li key={option.value} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id={`color-${optionIdx}`}
+                      onChange={() => {
+                        applyArrayFilter({
+                          category: "colors",
+                          value: option.value,
+                        });
+                      }}
+                      checked={filter.colors.includes(option.value)}
+                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <label
+                      htmlFor={`color-${optionIdx}`}
+                      className="ml-3 text-sm text-gray-600"
+                    >
+                      {option.label}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="category">
+            <AccordionTrigger className="py-3 text-sm text-gray-400 hover:text-gray-500">
+              <span className="font-medium text-gray-900">Category</span>
+            </AccordionTrigger>
+
+            <AccordionContent className="pt-6">
+              <ul className="space-y-4">
+                {CATEGORY_FILTERS.options.map((option, optionIdx) => (
+                  <li key={option.value} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id={`category-${optionIdx}`}
+                      onChange={() => {
+                        applyArrayFilter({
+                          category: "category",
+                          value: option.value,
+                        });
+                      }}
+                      checked={filter.category.includes(option.value)}
+                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <label
+                      htmlFor={`category-${optionIdx}`}
                       className="ml-3 text-sm text-gray-600"
                     >
                       {option.label}

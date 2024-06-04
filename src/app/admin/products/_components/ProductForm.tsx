@@ -62,9 +62,9 @@ export function ProductForm({ product }: { product?: Product | null }) {
             defaultValue={product?.company || ""}
           >
             <option value="">Select Company</option>
-            <option value="mrc">MRC Rock & Sand</option>
-            <option value="spm">Santa Paula Materials</option>
-            <option value="stoneyard">Stoneyard</option>
+            <option value="MRC Rock & Sand">MRC Rock & Sand</option>
+            <option value="Santa Paula Materials">Santa Paula Materials</option>
+            <option value="Stoneyard">Stoneyard</option>
           </select>
           {error.company && (
             <div className="text-destructive">{error.company}</div>
