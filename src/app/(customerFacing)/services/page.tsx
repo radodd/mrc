@@ -20,10 +20,10 @@ const page = () => {
         {santaPaulaMaterials.map((materials) => (
           <div
             key={materials.id}
-            className={`flex  bg-tanbase  max-[769px]:flex-col ${materials.id == 2 ? "flex-row-reverse " : null}`}
+            className={`flex bg-tanbase max-mobile:flex-col ${materials.id == 2 ? "flex-row-reverse " : null}`}
           >
             {/* <div className="max-w-[756px] max-h-[468px] relative"> */}
-            <div className="relative w-1/2 h-full  max-h-[468px] aspect-7/6">
+            <div className="relative w-1/2 h-full  max-h-[468px] aspect-7/6 max-mobile:w-full">
               <Image
                 alt="image"
                 src={materials.image}
@@ -36,9 +36,9 @@ const page = () => {
               />
             </div>
             {/* </div> */}
-            <div className="flex-col flex gap-10  w-[616px] h-[372px] my-12 mx-[70px]">
+            <div className="flex-col flex gap-10 w-1/2 h-[372px] my-12 px-[72px] max-mobile:w-full">
               <h1 className="font-bold text-[32px]">{materials.name}</h1>
-              <p className="text- text-[20px] w-[616px]">{materials.desc}</p>
+              <p className="text-[20px] w-full ">{materials.desc}</p>
               <div className="flex gap-2 ">
                 <Button variant={"outline"}>Contact SPM</Button>
                 {/* {if {materials.id === 1 }} */}
@@ -56,29 +56,28 @@ const page = () => {
         {mrcRocknSand.map((service) => (
           <div
             key={service.id}
-            className={`flex flex-row gap-[91px] bg-tanbase px-[70px] py-12 ${service.id == 1 || service.id == 3 ? null : "flex-row-reverse"}`}
+            className={`flex bg-tanbase max-mobile:flex-col ${service.id == 1 || service.id == 3 ? null : "flex-row-reverse"}`}
           >
-            <div className="relative max-w-[695px] max-h-[375px] ">
+            <div className="relative w-1/2 h-full  max-h-[468px] aspect-7/6 max-mobile:w-full">
               <Image
                 alt="image"
                 src={service.image}
-                // layout="responsive"
-                width={695}
-                height={375}
+                fill
+                // width={695}
+                // height={375}
                 // objectFit="contain" // Use contain instead of cover
-                className="object-fill h-full w-full"
+                className="object-cover "
               />
             </div>
-            <div className="flex-col flex gap-4  w-[606px]">
-              <h1 className="font-bold text-3xl">{service.name}</h1>
-              <p className="text-wrap text-[20px] my-10">{service.desc}</p>
-
+            <div className="flex-col flex gap-10 w-1/2 h-[372px] my-12 px-[72px] max-mobile:w-full">
+              <h1 className="font-bold text-[32px]">{service.name}</h1>
+              <p className="text-[20px] w-full">{service.desc}</p>
               <Button variant={"outline"}>Contact MRC</Button>
             </div>
           </div>
         ))}
       </div>
-      <ContactUs renderButton={false} />
+      {/* <ContactUs renderButton={false} /> */}
     </div>
   );
 };

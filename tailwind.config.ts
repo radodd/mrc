@@ -22,7 +22,7 @@ const config = {
         "7/6": "7/6",
       },
       screens: {
-        mobile: "390px",
+        mobile: "1306px",
       },
       fontFamily: {
         sans: "var(--font-sans)",

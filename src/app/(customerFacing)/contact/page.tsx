@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -33,6 +33,7 @@ const page = () => {
       message: "",
     },
   });
+  const [selectedValue, setSelectedValue] = useState("");
 
   const phoneInputRef = useRef(null);
 
@@ -51,9 +52,12 @@ const page = () => {
         }),
       });
       console.log(formData);
+      console.log("after the await");
       reset();
     } catch (error) {
-      // how to handel the error
+      console.log(error);
+      console.log(formData);
+      console.log("(catch) error");
     }
   };
 
@@ -180,13 +184,29 @@ const page = () => {
             </div>
             <div>
               <select
-                {...register("position")}
-                className="border border-black w-[699px] h-14 pl-3"
+                {...register("position", { required: "Position is Required" })}
+                className={`border border-black w-[699px] h-14 pl-3 ${selectedValue ? "text-black" : "text-gray-500"}`}
+                value={selectedValue}
+                onChange={(e) => setSelectedValue(e.target.value)}
               >
-                <option value="Landscape Architect">Landscape Architect</option>
-                <option value="Contractor">Contractor</option>
-                <option value="Homeowner">Homeowner</option>
+                <option value="" disabled hidden>
+                  Position
+                </option>
+                <option value="Landscape Architect" className="text-black">
+                  Landscape Architect
+                </option>
+                <option value="Contractor" className="text-black">
+                  Contractor
+                </option>
+                <option value="Homeowner" className="text-black">
+                  Homeowner
+                </option>
               </select>
+              {errors.position?.message && (
+                <p className="text-red-500 text-sm">
+                  {errors.position.message}
+                </p>
+              )}
             </div>
             <div>
               <input
