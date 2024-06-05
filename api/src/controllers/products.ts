@@ -92,15 +92,29 @@ export const createProduct: RequestHandler<
   }
 };
 
-// export const getProducts = async () => {
-//   try {
-//     const response = await fetch("/products"); // Assuming your backend endpoint is '/api/products'
-//     if (!response.ok) {
-//       throw new Error("Failed to fetch products");
-//     }
-//     const { data, error } = await response.json();
-//     return data;
-//   } catch (error: any) {
-//     throw new Error("Failed to fetch products: " + error.message);
-//   }
-// };
+export const getProduct: RequestHandler = async (req, res, next) => {
+  const productId = req.params.productId;
+
+  try {
+    // Validate product ID
+    if (!productId) {
+      throw createHttpError(400, "Invalid product ID");
+    }
+
+    // Fetch product from Supabase
+    const { data: product, error } = await supabase
+      .from("Product")
+      .select("*")
+      .eq("id", productId)
+      .single();
+
+    if (error) {
+      throw createHttpError(404, "Product not found");
+    }
+
+    // Respond with the product data
+    res.status(200).json(product);
+  } catch (error) {
+    next(error);
+  }
+};
