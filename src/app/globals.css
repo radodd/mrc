@@ -108,7 +108,7 @@
     @apply bg-background text-foreground;
   }
   h1 {
-    color: hsl(var(--blackbase));
+    color: hsl(var(--black-base));
     font-family: var(--font-montserrat);
     font-size: 40px;
     font-style: normal;
@@ -117,7 +117,7 @@
     letter-spacing: -1.2px;
   }
   h2 {
-    color: hsl(var(--blackbase));
+    color: hsl(var(--black-base));
     font-family: var(--font-montserrat);
     font-size: 32px;
     font-style: normal;
@@ -132,7 +132,7 @@
     line-height: normal;
   }
   p {
-    color: hsl(var(--blackbase));
+    color: hsl(var(--black-base));
     font-family: var(--font-openSans);
     font-size: 20px;
     font-style: normal;
