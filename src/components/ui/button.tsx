@@ -23,6 +23,9 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground font-openSans hover:bg-secondary/80",
         ghost: "hover:bg-accent font-openSans hover:text-accent-foreground",
         link: "text-primary underline-offset-4 font-openSans hover:underline",
+
+        filter:
+          "text-primary font-openSans border border-primary font-[24px] hover:underline hover:scale-[1.05] transition-all duration-200",
         quantity:
           "border-2 border-primary bg-transparent hover:scale-[1.05] transition-all ",
       },
@@ -31,6 +34,7 @@ const buttonVariants = cva(
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        filter: "px-4 py-2 rounded-[4px]",
         quantity: "h-14 w-14 rounded-sm",
       },
     },
