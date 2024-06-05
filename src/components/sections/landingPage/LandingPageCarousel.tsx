@@ -9,13 +9,20 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
+import styles from "../../scss/HeroAnimation.module.scss";
+import SliderAnimation from "@/components/SliderAnimation";
+
 export default function LandingPageCarousel() {
   return (
     <Carousel className="section-padding bg-tanbase h-[605px] justify-center items-center">
       <CarouselContent className="">
         <CarouselItem className="flex bg-tanbase items-center justify-center">
-          <div className="flex flex-col justify-center items-center gap-10">
-            <div className="gap-10 inline-flex">
+          <div className="flex flex-col justify-start items-start gap-10">
+            <div className="flex ml-2">
+              <h1>Hello! We are </h1>
+              <SliderAnimation />
+            </div>
+            {/* <div className="gap-10 inline-flex">
               <Link href="/">
                 <Image src="/Nextjs.png" alt="" height={100} width={100} />
               </Link>
@@ -25,8 +32,8 @@ export default function LandingPageCarousel() {
               <Link href="/">
                 <Image src="/TailwindCss.png" alt="" height={100} width={100} />
               </Link>
-            </div>
-            <div className="self-stretch text-center text-secondary-foreground text-2xl font-normal max-w-[754px]">
+            </div> */}
+            <div className="self-stretch text-center text-secondary-foreground text-2xl font-normal max-w-[1200px]">
               We are a collection of companies here to service your construction
               needs.{" "}
             </div>
