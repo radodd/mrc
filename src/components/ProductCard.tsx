@@ -31,7 +31,7 @@ export function ProductCard({
       <Separator orientation="horizontal" decorative={true} />
       <Card className="flex w-[907px]">
         <div className="relative w-[325px] h-auto aspect-square">
-          <Image src={imagePath} alt={name} width={325} height={325} />
+          <Image src={imagePath[0]} alt={name} width={325} height={325} />
         </div>
         <CardHeader className="gap-4">
           <CardTitle className="underline">{name}</CardTitle>

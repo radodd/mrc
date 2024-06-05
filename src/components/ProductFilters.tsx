@@ -56,25 +56,37 @@ const CATEGORY_FILTERS = {
 
 type ProductFilterProps = {
   arrayFilter: (filterValueList: string[]) => void;
+  filterValueList: string[];
 };
 
 export const ProductFilters: React.FC<ProductFilterProps> = (props) => {
-  const { arrayFilter } = props;
+  const { arrayFilter, filterValueList } = props;
   const [filter, setFilter] = useState<ProductState>({
-    company: ["MRC Rock & Sand", "Santa Paula Materials", "Stoneyard"],
-    colors: ["yellow", "blue", "gray"],
-    category: [
-      "aggregate",
-      "cobble & rubble",
-      "boulders",
-      "decomposed granite",
-      "base materials",
-      "rip rap",
-      "drain rock",
-      "rock dust",
-    ],
+    company: [],
+    colors: [],
+    category: [],
     sort: "none",
   });
+
+  console.log("Array Filter", arrayFilter);
+  console.log("Filter Value List", filterValueList);
+
+  // console.log("HERERERE", filterValueList, filter);
+  // const initializeFilterState = () => {
+  //   const initialFilter: ProductState = {
+  //     company: COMPANY_FILTERS.options
+  //       .filter((option) => filterValueList.includes(option.value))
+  //       .map((option) => option.value),
+  //     colors: COLOR_FILTERS.options
+  //       .filter((option) => filterValueList.includes(option.value))
+  //       .map((option) => option.value),
+  //     category: CATEGORY_FILTERS.options
+  //       .filter((option) => filterValueList.includes(option.value))
+  //       .map((option) => option.value),
+  //     sort: "none",
+  //   };
+  //   setFilter(initialFilter);
+  // };
 
   const applyArrayFilter = ({
     category,
@@ -97,6 +109,14 @@ export const ProductFilters: React.FC<ProductFilterProps> = (props) => {
       }));
     }
   };
+
+  // useEffect(() => {
+  //   initializeFilterState();
+  // }, []);
+
+  // useEffect(() => {
+  //   initializeFilterState();
+  // }, [filterValueList]);
 
   useEffect(() => {
     const filterValues = Object.values(filter).flat();
