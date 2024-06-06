@@ -5,7 +5,13 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "jsx": "react-jsx"
   },
-  "include": ["src/server.ts", "routes/**/*.ts", "src/**/*.ts"]
+  "include": [
+    "src/server.ts",
+    "routes/**/*.ts",
+    "src/**/*.ts",
+    "src/controllers/resend.tsx"
+  ]
 }

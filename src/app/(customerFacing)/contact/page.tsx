@@ -39,7 +39,7 @@ const page = () => {
 
   const onSubmit: SubmitHandler<FormValues> = async (formData) => {
     try {
-      await fetch("/api/send/", {
+      await fetch("http://localhost:3030/resend", {
         method: "POST",
         body: JSON.stringify({
           firstname: formData.firstname,

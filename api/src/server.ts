@@ -2,6 +2,9 @@ import app from "./app";
 import "dotenv/config";
 import env from "./util/validateEnv";
 import { createClient } from "@supabase/supabase-js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const port = env.PORT;
 const supabaseUrl = env.DATABASE_URL;
