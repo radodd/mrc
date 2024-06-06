@@ -1,8 +1,10 @@
 // const express = require("express");
-import express from "express";
+import express, { Request, Response } from "express";
 import path from "path";
 import cors from "cors";
 import productsRoutes from "./routes/products";
+import { Resend } from "resend";
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -18,8 +20,10 @@ app.use(cors());
 // });
 
 const userRouter = require("./routes/users");
+const resendRouter = require("./routes/resend");
 
 app.use("/users", userRouter);
+app.use("/resend", resendRouter);
 app.use("/products", productsRoutes);
 
 function logger(req: any, res: any, next: any) {
