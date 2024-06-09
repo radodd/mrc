@@ -24,10 +24,8 @@ export default function ProductsPage() {
           height={749}
           className={styles.image}
         />
-        <div className="absolute flex inset-0">
-          <h1 className="flex justify-center items-center text-whitebase w-full">
-            About Us
-          </h1>
+        <div className="absolute flex justify-center inset-0">
+          <h1 className={`${styles.heroTitle} text-whitebase`}>About Us</h1>
         </div>
       </div>
 
@@ -46,7 +44,10 @@ export default function ProductsPage() {
       {/* HISTORY TIMELINE */}
 
       {HISTORY.map((item, index) => (
-        <div key={index} className="flex flex-col items-center">
+        <div
+          key={index}
+          className="flex flex-col items-center min-[1306px]:flex-row-reverse min-[1306px]:even:flex-row min-[1306px]:mx-[70px] gap-[64px]"
+        >
           <div className={styles.historyImageWrapper}>
             <Image
               src={item.image}
@@ -76,47 +77,55 @@ export default function ProductsPage() {
         <div className={styles.accordion}>
           <Accordion type="multiple" className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger>
+              <AccordionTrigger className={styles.AccordionTrigger}>
                 What are your delivery options?
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className={styles.AccordionContent}>
                 For any order 20tons or greater, we deliver anywhere in the
                 state of California. For deliveries out of state please contact
                 us.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>What do you sell?</AccordionTrigger>
-              <AccordionContent>We sell ROCKS duh</AccordionContent>
+              <AccordionTrigger className={styles.AccordionTrigger}>
+                What do you sell?
+              </AccordionTrigger>
+              <AccordionContent className={styles.AccordionContent}>
+                We sell ROCKS duh
+              </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger>
-                Can I "will call" materail or send in my own truck?
+              <AccordionTrigger className={styles.AccordionTrigger}>
+                Can I will call materail or send in my own truck?
               </AccordionTrigger>
-              <AccordionContent>IT depends...</AccordionContent>{" "}
+              <AccordionContent className={styles.AccordionContent}>
+                IT depends...
+              </AccordionContent>{" "}
             </AccordionItem>
             <AccordionItem value="item-4">
-              <AccordionTrigger>
+              <AccordionTrigger className={styles.AccordionTrigger}>
                 How is your material packaged? (bulk/loos or palletized)
               </AccordionTrigger>
-              <AccordionContent>All of the above</AccordionContent>
+              <AccordionContent className={styles.AccordionContent}>
+                All of the above
+              </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-5">
-              <AccordionTrigger>
+              <AccordionTrigger className={styles.AccordionTrigger}>
                 Do you have a minimum purchase requirement?
               </AccordionTrigger>
 
-              <AccordionContent>
+              <AccordionContent className={styles.AccordionContent}>
                 Yes. Minimum of 300,000 Visa award points or any amount of Khols
                 Cash.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-6">
-              <AccordionTrigger>
+              <AccordionTrigger className={styles.AccordionTrigger}>
                 What areas of United States do you serve?
               </AccordionTrigger>
 
-              <AccordionContent>
+              <AccordionContent className={styles.AccordionContent}>
                 Thank your for your serve-SIS!
               </AccordionContent>
             </AccordionItem>
