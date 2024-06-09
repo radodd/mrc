@@ -1,0 +1,103 @@
+@use "../../../../css/queries.scss";
+@import "../../../../css/queries.scss";
+
+.image {
+  @include small-break {
+    aspect-ratio: 215 / 127;
+    margin-bottom: 40px;
+  }
+  @include mid-break {
+    margin-bottom: 64px;
+  }
+}
+
+.familyOwned {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 906px;
+  @include small-break {
+    margin: 0 32px 40px;
+    gap: 32px;
+
+    h1 {
+      font-size: 32px;
+    }
+  }
+  @include mid-break {
+    margin: 0 72px 64px;
+    gap: 32px;
+  }
+}
+
+.history {
+  display: flex;
+  @include small-break {
+    flex-direction: column;
+    margin: 0 32px 40px;
+    h1 {
+      font-size: 32px;
+      margin-bottom: 32px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+  @include mid-break {
+    justify-content: center;
+    margin: 0 72px 64px;
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+}
+
+.historyImageWrapper {
+  position: relative;
+  margin: 0;
+
+  @include small-break {
+    width: 100%;
+    padding-top: calc(200 / 325 * 100%); /* Maintain aspect ratio */
+    margin-bottom: 32px; /* Margin between image and text */
+  }
+  @include mid-break {
+    width: 560px;
+    aspect-ratio: 560 / 345;
+    margin-bottom: 32px;
+  }
+}
+
+.faq {
+  display: flex;
+  flex-direction: column;
+
+  @include small-break {
+    margin: 40px 32px 40px;
+  }
+  @include mid-break {
+    margin: 64px 72px 64px;
+  }
+
+  h1 {
+    justify-content: start;
+    margin-bottom: 40px;
+  }
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include small-break {
+  }
+}

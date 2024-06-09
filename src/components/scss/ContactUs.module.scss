@@ -1,0 +1,61 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.contact {
+  width: auto;
+  @include small-break {
+    display: flex;
+    flex-direction: column;
+    padding: 48px 32px;
+
+    div {
+      &:first-child {
+        margin-bottom: 32px;
+        image {
+          aspect-ratio: 366 / 175;
+        }
+      }
+    }
+  }
+  @include mid-break {
+    display: flex;
+    flex-direction: column;
+    padding: 48px 72px;
+
+    div {
+      &:first-child {
+        margin-bottom: 32px;
+        image {
+          aspect-ratio: 366 / 175;
+        }
+      }
+    }
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  @include small-break {
+    gap: 32px;
+    h1 {
+      font-size: 32px;
+    }
+  }
+  @include mid-break {
+    gap: 32px;
+    h1 {
+      font-size: 32px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+}
+
+.button {
+  @include small-break {
+    display: none;
+  }
+}

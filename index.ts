@@ -61,3 +61,21 @@ export const companyAdress = [
     adress: "Fillmore, CA 93015",
   },
 ];
+
+export const HISTORY = [
+  {
+    title: "We started as MRC Rock & Sand",
+    body: "Ú-mel na ennas i-gwaith, síla lúmen na i-ost en. Tolo na hirillindor, ar ú-linnatha na i-estel. Man ennas le tenna, ar síla naarda sí alcar. Laita i eleni!",
+    image: "/about_us_timeline.png",
+  },
+  {
+    title: "We started as MRC Rock & Sand",
+    body: "Ú-mel na ennas i-gwaith, síla lúmen na i-ost en. Tolo na hirillindor, ar ú-linnatha na i-estel. Man ennas le tenna, ar síla naarda sí alcar. Laita i eleni!",
+    image: "/about_us_timeline.png",
+  },
+  {
+    title: "We started as MRC Rock & Sand",
+    body: "Ú-mel na ennas i-gwaith, síla lúmen na i-ost en. Tolo na hirillindor, ar ú-linnatha na i-estel. Man ennas le tenna, ar síla naarda sí alcar. Laita i eleni!",
+    image: "/about_us_timeline.png",
+  },
+];
