@@ -31,6 +31,22 @@
       }
     }
   }
+  @include large-break {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 48px 70px;
+    gap: 72px;
+
+    div {
+      &:first-child {
+        margin-bottom: 32px;
+        image {
+          aspect-ratio: 730 / 392;
+        }
+      }
+    }
+  }
 }
 
 .body {
@@ -50,6 +66,15 @@
     }
     p {
       font-size: 16px;
+    }
+  }
+  @include large-break {
+    gap: 40px;
+    h1 {
+      font-size: 40px;
+    }
+    p {
+      font-size: 20px;
     }
   }
 }

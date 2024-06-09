@@ -107,7 +107,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground text-pretty;
+  }
+  nav,
+  footer {
+    @apply !text-pretty;
   }
   h1 {
     color: hsl(var(--black-base));
