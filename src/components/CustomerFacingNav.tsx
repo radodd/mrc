@@ -38,8 +38,8 @@ export function CustomerFacingNav({
       >
         {children}
       </div>
-      <div className={`${style.hamburger}`}>
-        {/* <Sheet>
+      <div className={`${style.hamburger} ${isActive ? "" : "hidden"} `}>
+        <Sheet>
           <SheetTrigger asChild>
             <div
               onClick={() => {
@@ -60,11 +60,11 @@ export function CustomerFacingNav({
             <div className={`${style.sheet}`}>{children}</div>
 
             <SheetHeader>
-              <SheetTitle>Mobile Nav Here?</SheetTitle>
+              <SheetTitle></SheetTitle>
               <SheetDescription>Blah Blah</SheetDescription>
             </SheetHeader>
           </SheetContent>
-        </Sheet> */}
+        </Sheet>
       </div>
     </nav>
   );
@@ -78,7 +78,7 @@ export function CustomerFacingNavLink(
     <Link
       {...props}
       className={cn(
-        "p-4 hover:bg-tanbase hover:text-secondary-foreground focus-visible:bg-tanbase focus-visible:text-secondary-foreground",
+        "  m-0 p-0 w-[10px] hover:bg-tanbase hover:text-secondary-foreground focus-visible:bg-tanbase focus-visible:text-secondary-foreground",
         pathname === props.href && "bg-tanbase text-foreground",
       )}
     />

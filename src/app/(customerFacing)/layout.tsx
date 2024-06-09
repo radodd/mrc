@@ -61,12 +61,13 @@ export default function Layout({
       <div className="">{children}</div>
 
       <Footer>
-        <div className="flex flex-col">
+        <div className="flex flex-col max-[1305px]:items-center">
           <FooterLink href="/">Santa Paula Materials</FooterLink>
           <FooterLink href="/">MRC Rock and Sand</FooterLink>
           <FooterLink href="/">Stonyard</FooterLink>
         </div>
-        <div className="flex gap-[104px]">
+
+        <div className="flex justify-between w-full">
           <div className="flex flex-col">
             <FooterLink href="/">About</FooterLink>
             <FooterLink href="/">FAQ</FooterLink>

@@ -3,36 +3,48 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
+import styles from "../scss/ContactUs.module.scss";
+
 export default function ContactUs({ renderButton }: { renderButton: boolean }) {
   return (
-    <div className="section-padding contact-section-padding bg-tanbase">
-      <div className="section-image">
-        <Image src="/work_with_us.png" alt="" width={731} height={393} />
-      </div>
-      <div className="section-text p-0">
-        <h1>Interested in working with us?</h1>
-        <p>
-          Lúthien i'elvathren, ithil arnath ar valinor. Aerlinn i'rína, hiril
-          alda ar lúthalion."
-        </p>
-        <div className="flex justify-start gap-8">
-          {renderButton && (
+    <div className="flex justify-center w-full bg-tanbase ">
+      <div className={` ${styles.contact}`}>
+        <div className="">
+          <Image src="/work_with_us.png" alt="" width={1022} height={554} />
+        </div>
+        <div className={styles.body}>
+          <h1>Interested in working with us?</h1>
+          <p>
+            Lúthien i'elvathren, ithil arnath ar valinor. Aerlinn i'rína, hiril
+            alda ar lúthalion."
+          </p>
+          <div className="flex justify-start gap-8">
+            {/* {renderButton && (
             <>
-              <Button variant="outline" navigateTo="/services">
+              <Button
+                variant="outline"
+                navigateTo="/services"
+                className={styles.button}
+              >
                 View Services
               </Button>
 
-              <Button variant="outline" navigateTo="/materials">
+              <Button
+                variant="outline"
+                navigateTo="/materials"
+                className={styles.button}
+              >
                 View Materials
               </Button>
             </>
-          )}
+          )} */}
 
-          <Button variant="outline" navigateTo="/contact">
-            Contact Us
-          </Button>
+            <Button variant="outline" navigateTo="/contact">
+              Contact Us
+            </Button>
+          </div>
         </div>
-      </div>
+      </div>{" "}
     </div>
   );
 }

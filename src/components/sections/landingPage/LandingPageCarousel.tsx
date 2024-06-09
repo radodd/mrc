@@ -20,7 +20,7 @@ export default function LandingPageCarousel() {
           <div className="flex flex-col justify-start items-start gap-10">
             <div className="flex">
               <h1>Hello! We are </h1>
-              <SliderAnimation />
+              {/* <SliderAnimation /> */}
             </div>
             {/* <div className="gap-10 inline-flex">
               <Link href="/">

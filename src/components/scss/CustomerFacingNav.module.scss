@@ -4,6 +4,7 @@
 .hiddenMobile {
   @include mid-break {
     visibility: hidden;
+    width: 0px;
   }
 }
 
