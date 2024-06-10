@@ -3,8 +3,9 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
-import InputMasK from "react-input-mask";
+import InputMasK, { ReactInputMask } from "react-input-mask";
 import { companyAdress } from "../../../..";
+import InputMask, { Props as InputMaskProps } from "react-input-mask";
 
 type FormValues = {
   firstname: string;
@@ -16,7 +17,7 @@ type FormValues = {
   message: string;
 };
 
-const page = () => {
+const Page = () => {
   const {
     register,
     handleSubmit,
@@ -39,9 +40,15 @@ const page = () => {
 
   const onSubmit: SubmitHandler<FormValues> = async (formData) => {
     try {
-      await fetch("http://localhost:3030/resend", {
+      const response = await fetch("http://localhost:3030/resend", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
+          from: "Your Email <onboarding@resend.dev>", // static 'from' field
+          to: "delivered@resend.dev",
+          subject: "Contact Form Submission",
           firstname: formData.firstname,
           lastname: formData.lastname,
           phonenumber: formData.phonenumber,
@@ -51,13 +58,18 @@ const page = () => {
           message: formData.message,
         }),
       });
-      console.log(formData);
-      console.log("after the await");
+      const data = await response.json();
+      console.log("Server response:", data);
+
+      if (!response.ok) {
+        console.error("Error sending email:", data.error);
+      } else {
+        console.log("Email sent successfully:", data);
+      }
+
       reset();
     } catch (error) {
-      console.log(error);
-      console.log(formData);
-      console.log("(catch) error");
+      console.error("Error:", error);
     }
   };
 
@@ -74,8 +86,8 @@ const page = () => {
         <div className="bg-[#307084] flex flex-col max-w-[582px] h-[741px] gap-12 px-10 py-[62px] text-white rounded-3xl">
           <h1 className="font-bold text-[40px]">Contact Information:</h1>
           <p className="text-[24px]">
-            If you have questions or special inquiries, you're welcome to
-            contact us or fill out this form.
+            If you have questions or special inquiries, youre welcome to contact
+            us or fill out this form.
           </p>
           <div className="flex gap-2">
             <Image src="/call.png" alt="phone number" width={33} height={33} />
@@ -159,6 +171,7 @@ const page = () => {
                 inputRef={phoneInputRef}
                 className="border border-black w-[699px] h-14 pl-3"
               />
+
               {errors.phonenumber?.message && (
                 <p className="text-red-500 text-sm">
                   {errors.phonenumber.message}
@@ -233,9 +246,9 @@ const page = () => {
         </div>
       </div>
       <div className="grid gap-5 grid-cols-3 my-20 px-16">
-        {companyAdress.map((company) => (
+        {companyAdress.map((company, index) => (
           <div
-            key={company.id}
+            key={index}
             className="bg-tanbase w-[441px] px-8 py-8 flex flex-col rounded-3xl text-primary"
           >
             <div className="flex">
@@ -255,4 +268,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
