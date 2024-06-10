@@ -61,7 +61,7 @@ export default function Layout({
       <div className="">{children}</div>
 
       <Footer>
-        <div className="flex flex-col max-[1305px]:items-center w-auto">
+        <div className="flex flex-col max-[1305px]:items-center">
           <FooterLink href="/">Santa Paula Materials</FooterLink>
           <FooterLink href="/">MRC Rock and Sand</FooterLink>
           <FooterLink href="/">Stonyard</FooterLink>

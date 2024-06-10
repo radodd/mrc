@@ -17,6 +17,7 @@
     "envalid": "^8.0.0",
     "express": "^4.19.2",
     "pg-promise": "^11.6.0",
+    "resend": "^3.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },

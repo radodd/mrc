@@ -1,9 +1,8 @@
-// const express = require("express");
-import express, { Request, Response } from "express";
+import express from "express";
 import path from "path";
 import cors from "cors";
 import productsRoutes from "./routes/products";
-import { Resend } from "resend";
+import resendRouter from "./routes/resend";
 
 const app = express();
 
@@ -13,23 +12,23 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static("src/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" }));
 
 // app.get("/", logger, (req: any, res: any) => {
 //   res.send("Express on Vercel");
 // });
 
 const userRouter = require("./routes/users");
-const resendRouter = require("./routes/resend");
+// const resendRouter = require("./routes/resend");
 
 app.use("/users", userRouter);
 app.use("/resend", resendRouter);
 app.use("/products", productsRoutes);
 
-function logger(req: any, res: any, next: any) {
-  console.log(req.originalUrl);
-  next();
-}
+// function logger(req: any, res: any, next: any) {
+//   console.log(req.originalUrl);
+//   next();
+// }
 
 // app.listen(3030, () => console.log("Server ready on port 3030."));
 
