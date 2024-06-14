@@ -36,7 +36,7 @@ export function CustomerFacingNav({
 
       {/* DESKTOP */}
       <div
-        className={`${styles.hiddenMobile} border-2 border-red-200 flex flex-row items-center justify-around gap-16 text-2xl w-auto`}
+        className={`${styles.hiddenMobile} flex flex-row items-center justify-around gap-16 text-2xl w-auto`}
       >
         {children}
       </div>

@@ -1,21 +1,9 @@
 "use client";
-
 import {
   CustomerFacingNav,
   CustomerFacingNavLink,
 } from "@/components/CustomerFacingNav";
 import { Footer, FooterLink } from "@/components/Footer";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -25,12 +13,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-
-import { cn } from "@/lib/utils";
-
 import Image from "next/image";
-import Link from "next/link";
-import React, { useState } from "react";
 import Link from "next/link";
 import React, { useState } from "react";
 
