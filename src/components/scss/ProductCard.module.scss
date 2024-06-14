@@ -1,0 +1,83 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+// .separator {
+//   @include small-break {
+//     display: none;
+//   }
+// }
+
+.image {
+  @include small-break {
+    aspect-ratio: 1 / 1;
+  }
+  @include mid-break {
+    aspect-ratio: 1 / 1;
+    max-height: 325px;
+    display: flex;
+    align-items: center;
+  }
+  @include large-break {
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  border: 2px solid orange;
+  height: fit-content;
+  @include small-break {
+    width: 100%;
+    padding-top: 0;
+    margin-bottom: 21px;
+  }
+  @include mid-break {
+    min-width: 325px;
+    max-height: 325px;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  border: 2px solid red;
+  flex-direction: row;
+  justify-content: center;
+  height: auto;
+
+  @include small-break {
+    flex-direction: column;
+    margin: 0 32px;
+  }
+  @include mid-break {
+    flex-direction: row;
+    gap: 21px;
+  }
+}
+
+.cardHeader {
+  margin-top: 0;
+  @include small-break {
+    gap: 16px;
+  }
+  @include mid-break {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+  }
+}
+
+.cardTitle {
+  text-decoration: underline;
+  @include small-break {
+    font-size: 32px;
+  }
+}
+
+.cardDescription {
+  max-width: 542px;
+}

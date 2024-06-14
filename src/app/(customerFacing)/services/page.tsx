@@ -77,7 +77,7 @@ const page = () => {
           </div>
         ))}
       </div>
-      {/* <ContactUs renderButton={false} /> */}
+      <ContactUs renderButton={false} />
     </div>
   );
 };
