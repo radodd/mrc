@@ -91,7 +91,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
         //   filterValueList={filterValueList}
         //   clearFilter={clearFilter}
         />
-        <div className="border-2 border-red-300 flex flex-col space-y-6 min-[769px]:mx-[72px] min-[1306px]:mx-0 min-[1306px]:mx-[72px]">
+        <div className="border-2 border-red-300 flex flex-col space-y-6 min-[769px]:mx-[72px] min-[1305px]:mx-0 min-[1306px]:mx-[72px]">
           {filteredProductList.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}

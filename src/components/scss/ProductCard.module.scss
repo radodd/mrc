@@ -69,6 +69,10 @@
     align-items: start;
     justify-content: space-between;
   }
+  @include large-break {
+    max-width: 600px;
+    margin-left: 21px;
+  }
 }
 
 .cardTitle {
