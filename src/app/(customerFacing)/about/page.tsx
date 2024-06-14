@@ -52,8 +52,8 @@ export default function ProductsPage() {
             <Image
               src={item.image}
               alt=""
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
               className=""
             />
           </div>
