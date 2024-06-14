@@ -8,7 +8,7 @@ export default function Layout({
 }>) {
   return (
     <>
-      <div className="container my-6">{children}</div>
+      <div className="">{children}</div>
     </>
   );
 }

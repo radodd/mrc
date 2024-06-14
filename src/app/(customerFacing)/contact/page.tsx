@@ -80,40 +80,36 @@ const Page = () => {
   return (
     <div>
       <h1 className="font-bold text-[64px] text-center my-10">Get in Touch</h1>
-      <div className="flex justify-around my-28">
+      <div className="bg-whitebase flex justify-around my-28 max-mobile:gap-10 max-mobile:flex-col max-mobile:items-center">
         {/* contact information */}
 
-        <div className="bg-[#307084] flex flex-col max-w-[582px] h-[741px] gap-12 px-10 py-[62px] text-white rounded-3xl">
-          <h1 className="font-bold text-[40px]">Contact Information:</h1>
-          <p className="text-[24px]">
+        <div className="bg-[#307084] flex flex-col  h-[741px] gap-[53px] px-[72px] py-[32px] rounded-3xl max-mobile:w-full max-mobile:h-[355px] max-mobile:rounded-none">
+          <h1 className="font-bold text-[32px] text-white">
+            Contact Information:
+          </h1>
+          <p className="text-xl text-white">
             If you have questions or special inquiries, youre welcome to contact
             us or fill out this form.
           </p>
           <div className="flex gap-2">
-            <Image src="/call.png" alt="phone number" width={33} height={33} />
-            <p className="text-[24px]">(805)524 - 5569</p>
+            <Image src="/call.svg" alt="phone number" width={33} height={33} />
+            <p className="text-xl text-white">(805) 524 - 5569</p>
           </div>
           <div className="flex gap-2">
-            <Image src="/mail.png" alt="Email" width={33} height={33} />
-            <p className="text-[24px]">info@mrcrs.com</p>
-          </div>
-          <div className="flex gap-2">
-            <Image src="/map.png" alt="adress" width={33} height={33} />
-            <p className="text-[24px]">
-              1224 Santa Clara St, Santa Paula, CA 93060
-            </p>
+            <Image src="/mail.svg" alt="Email" width={33} height={33} />
+            <p className="text-xl text-white">info@mrcrs.com</p>
           </div>
         </div>
 
         {/* form section */}
 
-        <div className="w-[699px] h-[741px]">
+        <div className="flex w-[699px] h-[741px] max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-10"
+            className="flex flex-col gap-10 max-mobile:items-center "
           >
-            <div className="flex gap-6">
-              <div>
+            <div className="flex gap-6 max-mobile:w-full">
+              <div className=" max-mobile:w-1/2">
                 <input
                   {...register("firstname", {
                     required: "First Name is required",
@@ -121,7 +117,7 @@ const Page = () => {
                   type="text"
                   // autoComplete="off"
                   placeholder="First Name"
-                  className="border border-black w-[322px] h-14 pl-3"
+                  className="border border-black w-[322px] h-14 pl-3 max-mobile:w-full"
                 />
                 {errors.firstname?.message && (
                   <p className="text-red-500 text-sm">
@@ -129,14 +125,14 @@ const Page = () => {
                   </p>
                 )}
               </div>
-              <div>
+              <div className=" max-mobile:w-1/2">
                 <input
                   {...register("lastname", {
                     required: "Last Name is required",
                   })}
                   placeholder="Last Name"
                   type="text"
-                  className="border border-black w-[322px] h-14 pl-3"
+                  className="border border-black w-[322px] h-14 pl-3  max-mobile:w-full"
                 />
                 {errors.lastname?.message && (
                   <p className="text-red-500 text-sm">
@@ -145,7 +141,7 @@ const Page = () => {
                 )}
               </div>
             </div>
-            <div>
+            <div className="max-mobile:w-full">
               <InputMasK
                 mask="+1 (999) 999-9999"
                 // value={phoneNumberValue}
@@ -169,7 +165,7 @@ const Page = () => {
                 placeholder="Phone Number"
                 type="text"
                 inputRef={phoneInputRef}
-                className="border border-black w-[699px] h-14 pl-3"
+                className="border border-black w-[699px] h-14 pl-3 max-mobile:w-full"
               />
 
               {errors.phonenumber?.message && (
@@ -178,7 +174,7 @@ const Page = () => {
                 </p>
               )}
             </div>
-            <div>
+            <div className="max-mobile:w-full">
               <input
                 {...register("email", {
                   required: "Email is required",
@@ -189,16 +185,16 @@ const Page = () => {
                 })}
                 placeholder="Email"
                 type="email"
-                className="border border-black  w-[699px] h-14 pl-3"
+                className="border border-black  w-[699px] h-14 pl-3 max-mobile:w-full"
               />
               {errors.email?.message && (
                 <p className="text-red-500 text-sm">{errors.email.message}</p>
               )}
             </div>
-            <div>
+            <div className="max-mobile:w-full">
               <select
                 {...register("position", { required: "Position is Required" })}
-                className={`border border-black w-[699px] h-14 pl-3 ${selectedValue ? "text-black" : "text-gray-500"}`}
+                className={`border border-black w-[699px] h-14 pl-3 max-mobile:w-full ${selectedValue ? "text-black" : "text-gray-500"}`}
                 value={selectedValue}
                 onChange={(e) => setSelectedValue(e.target.value)}
               >
@@ -221,31 +217,31 @@ const Page = () => {
                 </p>
               )}
             </div>
-            <div>
+            <div className="max-mobile:w-full">
               <input
                 {...register("company")}
                 placeholder="Company"
                 type="text"
-                className="border border-black w-[699px] h-14 pl-3"
+                className="border border-black w-[699px] h-14 pl-3 max-mobile:w-full"
               />
             </div>
-            <div>
+            <div className="max-mobile:w-full">
               <textarea
                 {...register("message", { required: "Message is reuired" })}
                 placeholder="Message"
                 cols={79}
                 rows={7}
-                className="border border-black pl-3 pt-3"
+                className="border border-black pl-3 pt-3 max-mobile:w-full"
               ></textarea>
               {errors.message?.message && (
                 <p className="text-red-500 text-sm">{errors.message.message}</p>
               )}
             </div>
-            <Button className="w-full">Submit</Button>
           </form>
+          <Button className="w-full">Submit</Button>
         </div>
       </div>
-      <div className="grid gap-5 grid-cols-3 my-20 px-16">
+      <div className="grid gap-5 grid-cols-3 my-20 px-16 max-mobile:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
           <div
             key={index}

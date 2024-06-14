@@ -8,6 +8,8 @@ import {
 } from "./ui/card";
 import { Separator } from "./ui/separator";
 
+import styles from "../components/scss/ProductCard.module.scss";
+
 type ProductCardProps = {
   id: string;
   name: string;
@@ -28,14 +30,29 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <>
-      <Separator orientation="horizontal" decorative={true} />
-      <Card className="flex w-[907px]">
-        <div className="relative w-[325px] h-auto aspect-square">
-          <Image src={imagePath[0]} alt={name} width={325} height={325} />
+      <Separator
+        orientation="horizontal"
+        decorative={true}
+        className={styles.separator}
+      />
+      <Card className={styles.card}>
+        <div className={styles.imageWrapper}>
+          <Image
+            src={imagePath[0]}
+            alt={name}
+            // width={325}
+            // height={325}
+            layout="responsive"
+            // fill
+            width={325}
+            height={325}
+            style={{ objectFit: "cover" }}
+            className={styles.image}
+          />
         </div>
-        <CardHeader className="gap-4">
-          <CardTitle className="underline">{name}</CardTitle>
-          <CardDescription className="max-w-[542px]">
+        <CardHeader className={styles.cardHeader}>
+          <CardTitle className={styles.cardTitle}>{name}</CardTitle>
+          <CardDescription className={styles.CardDescription}>
             {description}
           </CardDescription>
           <CardContent className="flex flex-col gap-4">

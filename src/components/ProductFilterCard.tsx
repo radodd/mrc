@@ -1,11 +1,5 @@
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 
@@ -38,12 +32,6 @@ export function ProductFilterCard({
           className="mr-4 translate-y-[-6px]"
         />
       </div>
-
-      {/* <Card className="flex w-[907px]">
-        <CardHeader className="gap-4">
-          <CardTitle className="underline">{filter}</CardTitle>
-        </CardHeader>
-      </Card> */}
     </>
   );
 }
