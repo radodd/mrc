@@ -184,6 +184,7 @@ export default function Layout({
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        <CustomerFacingNavLink href="/services">Services</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/projects">Projects</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/contact">Contact</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/cart">
