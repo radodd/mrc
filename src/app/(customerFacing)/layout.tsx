@@ -34,7 +34,7 @@ export default function Layout({
   const [isMaterialsOpen, setIsMaterialsOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState<number | null>(null);
   const [isSubSubmenuOpen, setIsSubSubmenuOpen] = useState<number | null>(null);
-
+  console.log(isActive);
   return (
     <>
       <CustomerFacingNav isActive={isActive} setIsActive={setIsActive}>

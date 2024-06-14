@@ -23,7 +23,7 @@ export const ProductFilterValidator = z.object({
   company: z.array(z.enum(AVAILABLE_COMPANIES)),
   colors: z.array(z.enum(AVAILABLE_COLORS)),
   category: z.array(z.enum(AVAILABLE_CATEGORIES)),
-  sort: z.enum(AVAILABLE_SORT),
+  // sort: z.enum(AVAILABLE_SORT),
 });
 
 export type ProductState = z.infer<typeof ProductFilterValidator>;
