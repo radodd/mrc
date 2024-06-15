@@ -48,7 +48,7 @@
     "@types/react-input-mask": "^3.0.5",
     "dotenv": "^16.4.5",
     "eslint": "^8",
-    "eslint-config-next": "14.2.3",
+    "eslint-config-next": "^14.2.3",
     "mini-css-extract-plugin": "^2.9.0",
     "postcss": "^8",
     "prettier-plugin-prisma": "^5.0.0",
