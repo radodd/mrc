@@ -15,7 +15,7 @@ export default function NewsArticles() {
             <h2>Natural History Museum</h2>
             <p>
               Lúthien ar rochathol an-uir uir velithil ielvathren. Ithil ír
-              anlínath ar arthelon i'nórello. Eldalië valinor ar nai quendi, ar
+              anlínath ar arthelon inórello. Eldalië valinor ar nai quendi, ar
               thalion estel enwathiel arnanor. Aerlinn irína anweryn, hiril alda
               ristaer ar lúthalion úmenethel
             </p>
@@ -30,8 +30,8 @@ export default function NewsArticles() {
             <p>
               Lúthien ar rochathol an-uir uir velithil ielvathren. Ithil ír
               anlínath ar arthelon inórello. Eldalië valinor ar nai quendi, ar
-              thalion estel enwathiel arnanor. Aerlinn i'rína anweryn, hiril
-              alda ristaer ar lúthalion úmenethel
+              thalion estel enwathiel arnanor. Aerlinn irína anweryn, hiril alda
+              ristaer ar lúthalion úmenethel
             </p>
           </div>
         </div>
