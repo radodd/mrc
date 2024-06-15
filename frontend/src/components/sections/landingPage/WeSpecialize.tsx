@@ -8,7 +8,7 @@ export default function WeSpecialize() {
       <div className="section-text">
         <h1>We specialize in Croatian Limestone</h1>
         <p>
-          s Lúthien i'elvathren, ithil arnath ar valinor. Aerlinn i'rína, hiril
+          s Lúthien ielvathren, ithil arnath ar valinor. Aerlinn irína, hiril
           alda ar lúthalion."
         </p>
         <div className="flex justify-start gap-6">

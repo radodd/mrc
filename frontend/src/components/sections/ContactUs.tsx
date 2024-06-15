@@ -15,7 +15,7 @@ export default function ContactUs({ renderButton }: { renderButton: boolean }) {
         <div className={styles.body}>
           <h1>Interested in working with us?</h1>
           <p>
-            Lúthien i'elvathren, ithil arnath ar valinor. Aerlinn i'rína, hiril
+            Lúthien ielvathren, ithil arnath ar valinor. Aerlinn irína, hiril
             alda ar lúthalion."
           </p>
           <div className="flex justify-start gap-8">
