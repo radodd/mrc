@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Resend } from "resend";
-import EmailTemplate from "../../../src/components/EmailTemplate";
+import EmailTemplate from "../../../frontend/src/components/EmailTemplate";
 import ReactDOMServer from "react-dom/server";
 import dotenv from "dotenv";
 
