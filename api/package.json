@@ -25,6 +25,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/phoenix": "^1.6.4",
     "@types/react-dom": "^18.3.0",
     "nodemon": "^3.1.0"
   }
