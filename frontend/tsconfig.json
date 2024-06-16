@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "../api/src/EmailTemplate.tsx"  ],
   "exclude": [
     "node_modules",
     "frontend/node_modules"
