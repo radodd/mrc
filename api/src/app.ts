@@ -1,11 +1,11 @@
-// import express from "express";
+import express from "express";
 import path from "path";
-// import cors from "cors";
+import cors from "cors";
 import productsRoutes from "./routes/products";
 import resendRouter from "./routes/resend";
 
-const express  = require("express")
-const cors  = require("cors")
+// const express  = require("express")
+// const cors  = require("cors")
 const app = express();
 
 app.set("view engine", "ejs");
