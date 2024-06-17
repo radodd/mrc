@@ -10,10 +10,6 @@
     "rootDir": "./src",
     "jsx": "react-jsx"
   },
-  "include": [
-    "src/server.ts",
-    "routes/**/*.ts",
-    "src/**/*.ts",
-    "src/controllers/resend.tsx"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

@@ -1,7 +1,26 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/$1" }
+  "builds": [
+    {
+      "src": "api/src/server.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["api/dist/**"]
+      }
+    },
+    {
+      "src": "frontend/next.config.js",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "api/src/server.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
   ]
 }
