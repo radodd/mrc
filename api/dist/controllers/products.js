@@ -14,10 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProduct = exports.createProduct = exports.getProducts = void 0;
 const http_errors_1 = __importDefault(require("http-errors"));
-// Assuming you have a util file for Supabase interactions
 const server_1 = __importDefault(require("../server"));
-// import db from '../config/db';
-// type SchemaType = 'products'
+const express = require("express");
+const { Request, Response, NextFunction, RequestHandler } = express;
 const getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { data, error } = yield server_1.default.from("Product").select("*");

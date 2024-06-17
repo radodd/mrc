@@ -10,6 +10,9 @@ import createHttpError from "http-errors";
 import supabase from "../server";
 import { PostgrestResponse } from "@supabase/supabase-js";
 
+const express = require("express");
+const { Request, Response, NextFunction, RequestHandler } = express;
+
 export const getProducts: RequestHandler = async (
   req: Request,
   res: Response,
