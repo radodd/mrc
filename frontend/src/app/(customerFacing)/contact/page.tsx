@@ -80,10 +80,14 @@ const Page = () => {
   return (
     <div>
       <h1 className="font-bold text-[64px] text-center my-10">Get in Touch</h1>
+<<<<<<< HEAD:src/app/(customerFacing)/contact/page.tsx
+      <div className="bg-whitebase flex justify-around mx-[72px] gap-[88px] max-mobile:gap-10 max-mobile:flex-col max-mobile:items-center">
+=======
       <div className="bg-whitebase flex justify-around mx-[72px] gap-[88px] max-mobile:mx-0 max-mobile:gap-10 max-mobile:flex-col max-mobile:items-center">
+>>>>>>> main:frontend/src/app/(customerFacing)/contact/page.tsx
         {/* contact information */}
 
-        <div className="bg-[#307084] flex flex-col  h-[741px] gap-[53px] px-[72px] py-[32px] rounded-3xl max-mobile:w-full max-mobile:h-[355px] max-mobile:rounded-none">
+        <div className="bg-[#307084] flex flex-col h-[731px] w-1/2 gap-[53px] p-10 rounded-3xl max-mobile:w-full max-mobile:px-[72px] max-mobile:py-8 max-mobile:h-auto max-mobile:rounded-none">
           <h1 className="font-bold text-[32px] text-white">
             Contact Information:
           </h1>
@@ -103,13 +107,20 @@ const Page = () => {
 
         {/* form section */}
 
+<<<<<<< HEAD:src/app/(customerFacing)/contact/page.tsx
+        <div className="flex flex-col items-center w-1/2 h-auto max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-10 h-full max-mobile:items-center "
+=======
         <div className="flex flex-col items-center w-1/2  max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-10  max-mobile:items-center last:mb-0"
+>>>>>>> main:frontend/src/app/(customerFacing)/contact/page.tsx
           >
-            <div className="flex gap-6 max-mobile:w-full">
-              <div className=" max-mobile:w-1/2">
+            <div className="flex gap-6 w-full max-mobile:w-full">
+              <div className="w-1/2 max-mobile:w-1/2">
                 <input
                   {...register("firstname", {
                     required: "First Name is required",
@@ -117,7 +128,11 @@ const Page = () => {
                   type="text"
                   // autoComplete="off"
                   placeholder="First Name"
+<<<<<<< HEAD:src/app/(customerFacing)/contact/page.tsx
+                  className="border border-black w-full h-10 pl-4 max-mobile:w-full"
+=======
                   className="border border-black w-full h-14 pl-4 max-mobile:w-full"
+>>>>>>> main:frontend/src/app/(customerFacing)/contact/page.tsx
                 />
                 {errors.firstname?.message && (
                   <p className="text-red-500 text-sm">
@@ -125,14 +140,18 @@ const Page = () => {
                   </p>
                 )}
               </div>
-              <div className=" max-mobile:w-1/2">
+              <div className="w-1/2 max-mobile:w-1/2">
                 <input
                   {...register("lastname", {
                     required: "Last Name is required",
                   })}
                   placeholder="Last Name"
                   type="text"
+<<<<<<< HEAD:src/app/(customerFacing)/contact/page.tsx
+                  className="border border-black w-full h-10 pl-4  max-mobile:w-full"
+=======
                   className="border border-black w-full h-14 pl-4  max-mobile:w-full"
+>>>>>>> main:frontend/src/app/(customerFacing)/contact/page.tsx
                 />
                 {errors.lastname?.message && (
                   <p className="text-red-500 text-sm">
@@ -141,7 +160,7 @@ const Page = () => {
                 )}
               </div>
             </div>
-            <div className="max-mobile:w-full">
+            <div className="w-full max-mobile:w-full">
               <InputMasK
                 mask="+1 (999) 999-9999"
                 // value={phoneNumberValue}
@@ -164,7 +183,11 @@ const Page = () => {
                 placeholder="Phone Number"
                 type="text"
                 inputRef={phoneInputRef}
+<<<<<<< HEAD:src/app/(customerFacing)/contact/page.tsx
+                className="border border-black w-full h-10 pl-4 max-mobile:w-full"
+=======
                 className="border border-black w-full h-14 pl-4 max-mobile:w-full"
+>>>>>>> main:frontend/src/app/(customerFacing)/contact/page.tsx
               />
               {errors.phonenumber?.message && (
                 <p className="text-red-500 text-sm">
@@ -172,7 +195,7 @@ const Page = () => {
                 </p>
               )}
             </div>
-            <div className="max-mobile:w-full">
+            <div className="w-full max-mobile:w-full">
               <input
                 {...register("email", {
                   required: "Email is required",
@@ -183,16 +206,24 @@ const Page = () => {
                 })}
                 placeholder="Email"
                 type="email"
+<<<<<<< HEAD:src/app/(customerFacing)/contact/page.tsx
+                className="border border-black w-full h-10 pl-4 max-mobile:w-full"
+=======
                 className="border border-black w-full h-14 pl-4 max-mobile:w-full"
+>>>>>>> main:frontend/src/app/(customerFacing)/contact/page.tsx
               />
               {errors.email?.message && (
                 <p className="text-red-500 text-sm">{errors.email.message}</p>
               )}
             </div>
-            <div className="max-mobile:w-full">
+            <div className="w-full max-mobile:w-full">
               <select
                 {...register("position", { required: "Position is Required" })}
+<<<<<<< HEAD:src/app/(customerFacing)/contact/page.tsx
+                className={`border border-black w-full h-10 pl-4 max-mobile:w-full ${selectedValue ? "text-black" : "text-gray-500"}`}
+=======
                 className={`border border-black w-full h-14 pl-4 max-mobile:w-full ${selectedValue ? "text-black" : "text-gray-500"}`}
+>>>>>>> main:frontend/src/app/(customerFacing)/contact/page.tsx
                 value={selectedValue}
                 onChange={(e) => setSelectedValue(e.target.value)}
               >
@@ -215,12 +246,16 @@ const Page = () => {
                 </p>
               )}
             </div>
-            <div className="max-mobile:w-full">
+            <div className="w-full max-mobile:w-full">
               <input
                 {...register("company")}
                 placeholder="Company"
                 type="text"
+<<<<<<< HEAD:src/app/(customerFacing)/contact/page.tsx
+                className="border border-black w-full h-10 pl-4 max-mobile:w-full"
+=======
                 className="border border-black w-full h-14 pl-4 max-mobile:w-full"
+>>>>>>> main:frontend/src/app/(customerFacing)/contact/page.tsx
               />
             </div>
             <div className="max-mobile:w-full h-[157px]">
@@ -228,15 +263,19 @@ const Page = () => {
                 {...register("message", { required: "Message is reuired" })}
                 placeholder="Message"
                 cols={79}
+<<<<<<< HEAD:src/app/(customerFacing)/contact/page.tsx
+                rows={7}
+=======
                 rows={6}
+>>>>>>> main:frontend/src/app/(customerFacing)/contact/page.tsx
                 className="border border-black pl-4 pt-3 max-mobile:w-full"
               ></textarea>
               {errors.message?.message && (
                 <p className="text-red-500 text-sm">{errors.message.message}</p>
               )}
             </div>
+            <Button className="w-full">Submit</Button>
           </form>
-          <Button className="w-full">Submit</Button>
         </div>
       </div>
       <div className="grid gap-5 grid-cols-3 my-20 px-16 max-mobile:grid-cols-1 max-mobile:justify-items-center ">
@@ -254,7 +293,7 @@ const Page = () => {
               />
               <h1 className="text-2xl">{company.name}</h1>
             </div>
-            <p>{company.adress}</p>
+            <p className="text-wrap">{company.adress}</p>
           </div>
         ))}
       </div>
