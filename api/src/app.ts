@@ -4,6 +4,8 @@ import cors from "cors";
 import productsRoutes from "./routes/products";
 import resendRouter from "./routes/resend";
 
+// const express  = require("express")
+// const cors  = require("cors")
 const app = express();
 
 app.set("view engine", "ejs");
@@ -14,22 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({ origin: "http://localhost:3000" }));
 
-// app.get("/", logger, (req: any, res: any) => {
-//   res.send("Express on Vercel");
-// });
-
 const userRouter = require("./routes/users");
-// const resendRouter = require("./routes/resend");
 
 app.use("/users", userRouter);
 app.use("/resend", resendRouter);
 app.use("/products", productsRoutes);
-
-// function logger(req: any, res: any, next: any) {
-//   console.log(req.originalUrl);
-//   next();
-// }
-
-// app.listen(3030, () => console.log("Server ready on port 3030."));
 
 export default app;

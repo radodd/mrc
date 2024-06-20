@@ -1,12 +1,14 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
-import createHttpError from "http-errors";
-// Assuming you have a util file for Supabase interactions
-import supabase from "../server";
-// import { schema, Product } from "../models/products";
-import { PostgrestResponse } from "@supabase/supabase-js";
-// import db from '../config/db';
+// import {
+//   Request,
+//   Response,
+//   NextFunction,
+//   RequestHandler,
+// } from "express-serve-static-core";
 
-// type SchemaType = 'products'
+import createHttpError from "http-errors";
+import supabase from "../server";
+import { PostgrestResponse } from "@supabase/supabase-js";
 
 export const getProducts: RequestHandler = async (
   req: Request,

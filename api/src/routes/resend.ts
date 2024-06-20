@@ -1,8 +1,11 @@
 import express from "express";
 import * as ResendController from "../controllers/resend";
 import { Resend } from "resend";
+import { send } from "../controllers/resend"
 
 const router = express.Router();
+
+router.post("/send-email", send);
 
 router.post("/", ResendController.send);
 router.get("/test", async (req, res) => {
