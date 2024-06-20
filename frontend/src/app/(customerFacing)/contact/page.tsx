@@ -4,8 +4,13 @@ import Image from "next/image";
 import { Button } from "../../../components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
 import InputMasK, { ReactInputMask } from "react-input-mask";
+<<<<<<< HEAD:src/app/(customerFacing)/contact/page.tsx
+// import InputMasK, { ReactInputMask } from "react-input-mask";
+import { companyAdress } from "../../../..";
+=======
 import { companyAdress } from "../../../../..";
 import InputMask, { Props as InputMaskProps } from "react-input-mask";
+>>>>>>> main:frontend/src/app/(customerFacing)/contact/page.tsx
 
 type FormValues = {
   firstname: string;
@@ -239,11 +244,11 @@ const Page = () => {
           </form>
         </div>
       </div>
-      <div className="grid gap-5 grid-cols-3 my-20 px-16 max-mobile:grid-cols-1 max-mobile:justify-items-center ">
+      <div className="grid gap-5 grid-cols-6 my-20 px-16 max-mobile:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
           <div
             key={index}
-            className="bg-tanbase w-[441px] px-8 py-8 flex flex-col rounded-3xl text-primary"
+            className={`col-span-2 bg-tanbase  px-8 py-8 flex flex-col rounded-3xl text-primary ${company.id == 4 || company.id == 5 ? "col-span-3" : null}`}
           >
             <div className="flex w-full">
               <Image
