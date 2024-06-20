@@ -196,7 +196,7 @@ export default function Layout({
           />
         </CustomerFacingNavLink>
       </CustomerFacingNav>
-      <div className="hover:font-bold">{children}</div>
+      <div className="">{children}</div>
 
       <Footer>
         <div className="flex flex-col max-[1305px]:items-center">

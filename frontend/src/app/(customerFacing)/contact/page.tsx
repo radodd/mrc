@@ -80,7 +80,7 @@ const Page = () => {
   return (
     <div>
       <h1 className="font-bold text-[64px] text-center my-10">Get in Touch</h1>
-      <div className="bg-whitebase flex justify-around my-28 max-mobile:gap-10 max-mobile:flex-col max-mobile:items-center">
+      <div className="bg-whitebase flex justify-around mx-[72px] gap-[88px] max-mobile:mx-0 max-mobile:gap-10 max-mobile:flex-col max-mobile:items-center">
         {/* contact information */}
 
         <div className="bg-[#307084] flex flex-col  h-[741px] gap-[53px] px-[72px] py-[32px] rounded-3xl max-mobile:w-full max-mobile:h-[355px] max-mobile:rounded-none">
@@ -103,10 +103,10 @@ const Page = () => {
 
         {/* form section */}
 
-        <div className="flex w-[699px] h-[741px] max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
+        <div className="flex flex-col items-center w-1/2  max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-10 max-mobile:items-center "
+            className="flex flex-col gap-10  max-mobile:items-center last:mb-0"
           >
             <div className="flex gap-6 max-mobile:w-full">
               <div className=" max-mobile:w-1/2">
@@ -117,7 +117,7 @@ const Page = () => {
                   type="text"
                   // autoComplete="off"
                   placeholder="First Name"
-                  className="border border-black w-[322px] h-14 pl-3 max-mobile:w-full"
+                  className="border border-black w-full h-14 pl-4 max-mobile:w-full"
                 />
                 {errors.firstname?.message && (
                   <p className="text-red-500 text-sm">
@@ -132,7 +132,7 @@ const Page = () => {
                   })}
                   placeholder="Last Name"
                   type="text"
-                  className="border border-black w-[322px] h-14 pl-3  max-mobile:w-full"
+                  className="border border-black w-full h-14 pl-4  max-mobile:w-full"
                 />
                 {errors.lastname?.message && (
                   <p className="text-red-500 text-sm">
@@ -146,7 +146,6 @@ const Page = () => {
                 mask="+1 (999) 999-9999"
                 // value={phoneNumberValue}
                 // onChange={(e) => setPhoneNumberValue(e.target.value)}
-
                 // defaultValue=""
                 {...register("phonenumber", {
                   required: "Phone Number is required",
@@ -165,9 +164,8 @@ const Page = () => {
                 placeholder="Phone Number"
                 type="text"
                 inputRef={phoneInputRef}
-                className="border border-black w-[699px] h-14 pl-3 max-mobile:w-full"
+                className="border border-black w-full h-14 pl-4 max-mobile:w-full"
               />
-
               {errors.phonenumber?.message && (
                 <p className="text-red-500 text-sm">
                   {errors.phonenumber.message}
@@ -185,7 +183,7 @@ const Page = () => {
                 })}
                 placeholder="Email"
                 type="email"
-                className="border border-black  w-[699px] h-14 pl-3 max-mobile:w-full"
+                className="border border-black w-full h-14 pl-4 max-mobile:w-full"
               />
               {errors.email?.message && (
                 <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -194,7 +192,7 @@ const Page = () => {
             <div className="max-mobile:w-full">
               <select
                 {...register("position", { required: "Position is Required" })}
-                className={`border border-black w-[699px] h-14 pl-3 max-mobile:w-full ${selectedValue ? "text-black" : "text-gray-500"}`}
+                className={`border border-black w-full h-14 pl-4 max-mobile:w-full ${selectedValue ? "text-black" : "text-gray-500"}`}
                 value={selectedValue}
                 onChange={(e) => setSelectedValue(e.target.value)}
               >
@@ -222,16 +220,16 @@ const Page = () => {
                 {...register("company")}
                 placeholder="Company"
                 type="text"
-                className="border border-black w-[699px] h-14 pl-3 max-mobile:w-full"
+                className="border border-black w-full h-14 pl-4 max-mobile:w-full"
               />
             </div>
-            <div className="max-mobile:w-full">
+            <div className="max-mobile:w-full h-[157px]">
               <textarea
                 {...register("message", { required: "Message is reuired" })}
                 placeholder="Message"
                 cols={79}
-                rows={7}
-                className="border border-black pl-3 pt-3 max-mobile:w-full"
+                rows={6}
+                className="border border-black pl-4 pt-3 max-mobile:w-full"
               ></textarea>
               {errors.message?.message && (
                 <p className="text-red-500 text-sm">{errors.message.message}</p>
@@ -247,7 +245,7 @@ const Page = () => {
             key={index}
             className="bg-tanbase w-[441px] px-8 py-8 flex flex-col rounded-3xl text-primary"
           >
-            <div className="flex">
+            <div className="flex w-full">
               <Image
                 src="/location_on.svg"
                 alt="Location"

@@ -53,12 +53,12 @@ export const companyAdress = [
   {
     id: 4,
     name: "MRC Rock & Sand (Ojai)",
-    adress: "Ojai, CA 93023",
+    adress: "15558 Maricopa Hwy, Ojai, CA 93023",
   },
   {
     id: 5,
     name: "MRC Rock & Sand (Fillmore)",
-    adress: "Fillmore, CA 93015",
+    adress: "1565 Ventura St, Fillmore, CA 93015",
   },
 ];
 
