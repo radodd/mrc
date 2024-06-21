@@ -239,22 +239,25 @@ const Page = () => {
           </form>
         </div>
       </div>
-      <div className="grid gap-5 grid-cols-6 my-20 px-16 max-mobile:grid-cols-1 max-mobile:justify-items-center ">
+      <div className="grid gap-10 grid-cols-6 my-20 px-16 max-mobile:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
           <div
             key={index}
-            className={`col-span-2 bg-tanbase  px-8 py-8 flex flex-col rounded-3xl text-primary ${company.id == 4 || company.id == 5 ? "col-span-3" : null}`}
+            className={`bg-tanbase p-8 flex flex-row gap-2 h-min rounded-3xl text-primary max-mobile:max-w-[500px] ${company.id == 4 || company.id == 5 ? "col-span-3 max-mobile:col-span-2" : "col-span-2"}`}
           >
-            <div className="flex w-full">
-              <Image
-                src="/location_on.svg"
-                alt="Location"
-                width={33}
-                height={33}
-              />
-              <h1 className="text-2xl">{company.name}</h1>
+            <Image
+              src="/location_on.svg"
+              alt="Location"
+              width={33}
+              height={33}
+              className="self-start"
+            />
+            <div className="flex flex-col gap-2">
+              <h1 className="text-2xl break-words text-[#235E74]">
+                {company.name}
+              </h1>
+              <p className="break-words text-2xl">{company.adress}</p>
             </div>
-            <p className="text-wrap">{company.adress}</p>
           </div>
         ))}
       </div>
