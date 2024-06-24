@@ -1,4 +1,5 @@
-import express from "express";
+// import express from "express";
+var express = require('express');
 import path from "path";
 import cors from "cors";
 import productsRoutes from "./routes/products";
