@@ -1,8 +1,9 @@
 // import express from "express";
-var express = require('express');
+var express = require("express");
 import path from "path";
 import cors from "cors";
 import productsRoutes from "./routes/products";
+import projectsRoutes from "./routes/projects";
 import resendRouter from "./routes/resend";
 
 // const express  = require("express")
@@ -22,5 +23,6 @@ const userRouter = require("./routes/users");
 app.use("/users", userRouter);
 app.use("/resend", resendRouter);
 app.use("/products", productsRoutes);
+app.use("/projects", projectsRoutes);
 
 export default app;
