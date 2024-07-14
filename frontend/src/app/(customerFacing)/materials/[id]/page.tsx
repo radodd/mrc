@@ -3,7 +3,7 @@
 // import { ProductCardProps } from '@/types';
 // import PostLayout from "@/components/post-layout"; // Adjust if necessary
 import { useEffect, useState } from "react";
-import supabase from "../../../../../../api/src/server";
+// import supabase from "../../../../../../api/src/server";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useParams } from "next/navigation";

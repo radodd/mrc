@@ -1,5 +1,5 @@
 import { createClient, PostgrestResponse } from "@supabase/supabase-js";
-import supabase from "../server";
+// import supabase from "../server";
 
 const schema = "public";
 interface Product {

@@ -13,24 +13,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProduct = exports.createProduct = exports.getProducts = void 0;
+// import {
+//   Request,
+//   Response,
+//   NextFunction,
+//   RequestHandler,
+// } from "express-serve-static-core";
 const http_errors_1 = __importDefault(require("http-errors"));
-const server_1 = __importDefault(require("../server"));
-const express = require("express");
-const { Request, Response, NextFunction, RequestHandler } = express;
+// import supabase from "../server";
+// const { Request, Response, NextFunction } = require("express");
+// const RequestHandler = require("express").RequestHandler;
+// const createHttpError = require("http-errors");
+const supabase = require("../server");
+console.log("Supabase Client:", supabase);
 const getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { data, error } = yield server_1.default.from("Product").select("*");
+        console.log("getProducts called");
+        const { data, error } = yield supabase.from("Product").select("*");
+        console.log("THe Error", error);
         if (error) {
             throw (0, http_errors_1.default)(500, "Failed to fetch products");
         }
         if (!data) {
             throw (0, http_errors_1.default)(404, "No products found");
         }
-        console.log("DATA", data);
+        console.log("Products fetched", data);
         res.json(data);
     }
     catch (error) {
-        next();
+        console.error("Error in getProducts:", error);
+        next(error);
     }
 });
 exports.getProducts = getProducts;
@@ -46,7 +58,7 @@ const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
             throw (0, http_errors_1.default)(400, "All fields are required and must have at least one category and color");
         }
         // Insert the product
-        const { data, error: productError } = yield server_1.default
+        const { data, error: productError } = yield supabase
             .from("Product")
             .insert([{ name, description, imagePath, company, color, category }])
             .select("*")
@@ -76,7 +88,7 @@ const getProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             throw (0, http_errors_1.default)(400, "Invalid product ID");
         }
         // Fetch product from Supabase
-        const { data: product, error } = yield server_1.default
+        const { data: product, error } = yield supabase
             .from("Product")
             .select("*")
             .eq("id", productId)
