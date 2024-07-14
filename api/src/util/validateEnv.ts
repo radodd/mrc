@@ -1,10 +1,11 @@
-import { cleanEnv } from "envalid";
-import { port, str } from "envalid/dist/validators";
+// import { cleanEnv } from "envalid";
+import * as envalid from "envalid";
+import { port, str } from "envalid/dist/validators.js";
 
-export default cleanEnv(process.env, {
+const env = envalid.cleanEnv(process.env, {
   PORT: port(),
   DATABASE_URL: str(),
   SUPABASE_API_KEY: str(),
-
-  //   SESSION_SECRET: str(),
 });
+
+export default env;

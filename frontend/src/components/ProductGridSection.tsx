@@ -29,13 +29,15 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     const fetchProducts = async () => {
       try {
         const response = await fetch("http://localhost:3030/products");
+        // const response = await fetch("https://mrc-two.vercel.app/api/products");
+        // const response = await fetch("/api/products");
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+        }
         const data = await response.json();
         setProducts(data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching DATA:", error);
       }
     };
     fetchProducts();

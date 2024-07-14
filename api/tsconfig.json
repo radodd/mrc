@@ -1,15 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "lib": ["dom", "DOM.Iterable", "ESNext"],
+    "target": "ES6",
+
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "declaration": true,
     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "jsx": "react-jsx"
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
+// "moduleResolution": "NodeNext",
+// "allowImportingTsExtensions": true,
+// "noEmit": true,
+// "emitDeclarationOnly": false,  // "module": "commonjs",

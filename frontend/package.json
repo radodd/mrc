@@ -1,12 +1,14 @@
 {
-  "name": "mrc",
+  "name": "mrc-frontend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rimraf .next"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",

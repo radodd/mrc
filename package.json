@@ -1,0 +1,15 @@
+{
+  "name": "mrc",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:api && npm run build:frontend",
+    "build:api": "tsc --project api/tsconfig.json",
+    "build:frontend": "next build",
+    "start": "npm run start:api",
+    "start:api": "node api/dist/server.js",
+    "dev": "npm run dev:frontend",
+    "dev:frontend": "next dev"
+  },
+  "devDependencies": {}
+}

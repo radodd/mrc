@@ -1,16 +1,13 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
     "noEmit": true,
     "incremental": true,
     "module": "esnext",
+    "target": "esnext",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -26,11 +23,8 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/components/EmailTemplate.tsx"  ],
-  "exclude": [
-    "node_modules",
-    "frontend/node_modules"
-
-  ]
+    "**/*.tsx",
+    "src/components/EmailTemplate.tsx"
+  ],
+  "exclude": ["node_modules", "frontend/node_modules"]
 }
