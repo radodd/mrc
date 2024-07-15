@@ -30,7 +30,7 @@ export function CustomerFacingNav({
     <nav className={styles.nav}>
       <div className="">
         <Link href="/">
-          <Image src="/Node.png" alt="" height={50} width={50} />
+          <Image src="/logo_rocks.svg" alt="" height={64} width={207} />
         </Link>
       </div>
 
