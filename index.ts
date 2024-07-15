@@ -102,3 +102,54 @@ export const HOWTOUSE = [
       "MRC will review your request and contact you directly with a quote.",
   },
 ];
+
+export const ArtisanalStone = [
+  "Oklahoma Flagstone",
+  "Arizona Flagstone",
+  "Sonoran Gold",
+  "Hy Desert Flagstone",
+  "Santa Barbara Sandstone",
+  "Three Rivers Stone",
+  "Waterfall Sandstone",
+  "Eldorado Stone Veneer",
+  "Utah Sunrise",
+  "Beijing Green",
+  "Golden Ray Quartzite",
+  "Silver & Gold Quartzite",
+  "Pennsylvania Blue",
+  "Santa Maria Limestone",
+  "Castaic Brick",
+  "Madrid Apricot Slate",
+  "Silver Sesame Slate",
+  "Cortez Gold Stone",
+  "Belgard Pavers",
+  "Pebbles",
+];
+
+export const MRCMaterials = [
+  "Croatian Limestone",
+  "Mojave Red",
+  "Mojave Gold",
+  "Mojave Tropico",
+  "Sespe",
+  "Santa Paula/Malibu",
+  "Cucamonga",
+  "Topanga",
+  "Recycled Concrete",
+  "Santa Barbara",
+];
+
+export const SantaPaulaMaterials = [
+  "Cobble",
+  "Crushed Rock",
+  "Rip Rap",
+  "Fill Dirt",
+  "Fill Sand",
+  "Gravel",
+  "Pea Gravel",
+  "Class 2 Base",
+  "Class 2 Permeable Base",
+  "Crushed Aggregate Base",
+  "Crush Miscellaneous Base",
+  "Recycled Concrete Base",
+];

@@ -1,4 +1,6 @@
 "use client";
+import { ChevronDown } from "lucide-react";
+import { ArtisanalStone, MRCMaterials, SantaPaulaMaterials } from "../../../..";
 import {
   CustomerFacingNav,
   CustomerFacingNavLink,
@@ -15,7 +17,7 @@ import {
 import { cn } from "../../lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Layout({
   children,
@@ -26,11 +28,20 @@ export default function Layout({
   const [isMaterialsOpen, setIsMaterialsOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState<number | null>(null);
   const [isSubSubmenuOpen, setIsSubSubmenuOpen] = useState<number | null>(null);
+  const [isMenuHeight, setIsMenuHeight] = useState(`h-[405px]`);
 
+  useEffect(() => {
+    if (isSubSubmenuOpen === 1) {
+      setIsMenuHeight(`h-[750px]`);
+    } else if (isSubmenuOpen === 3) {
+      setIsMenuHeight(`h-[495px]`);
+    } else {
+      setIsMenuHeight(`h-[405px]`);
+    }
+  }, [isSubSubmenuOpen, isSubmenuOpen]);
   return (
     <>
       <CustomerFacingNav isActive={isActive} setIsActive={setIsActive}>
-        <CustomerFacingNavLink href="/about">About</CustomerFacingNavLink>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem
@@ -39,8 +50,10 @@ export default function Layout({
             >
               <NavigationMenuTrigger>Materials</NavigationMenuTrigger>
               {isMaterialsOpen && (
-                <NavigationMenuContent>
-                  <ul className="m-4">
+                <NavigationMenuContent
+                  className={`${isMenuHeight} flex justify-start`}
+                >
+                  <ul className="m-4 ">
                     <Link href="/materials">
                       <span className="font-[700] text-[20px] mx-4 hover:underline">
                         Shop All Materials
@@ -56,21 +69,31 @@ export default function Layout({
                     >
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 1 && (
-                        <ul className="absolute  left-full top-0 mt-0 ml-4 bg-white text-black shadow-lg translate-x-[25px] rounded-md ">
-                          <ul className="flex flex-row  gap-3 p-6 md:w-[400px] lg:w-[500px] ">
+                        <ul
+                          className={`absolute  left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-65px] rounded-r`}
+                        >
+                          <ul className="flex flex-row  gap-3 p-6 h-full md:w-[400px] lg:w-[500px] ">
                             <li className="w-[208px] ">
                               <NavigationMenuLink asChild className="py-4 px-6">
                                 <a
                                   className="flex h-full w-full select-none flex-col justify-end rounded-md bg-tanbase no-underline outline-none focus:shadow-md"
                                   href="/"
                                 >
-                                  <div className="mb-2 mt-4 text-lg font-medium">
-                                    STONEYARD
+                                  <div className="flex flex-col justify-end  mb-2 mt-4 h-full ">
+                                    <Image
+                                      src="/logo_rocks.svg"
+                                      alt="logo"
+                                      width={80}
+                                      height={30}
+                                    />
+                                    <span className="text-lg font-bold">
+                                      STONEYARD
+                                    </span>
+                                    <p className="text-sm leading-tight text-muted-foreground">
+                                      We are focused on artisanal stone and tile
+                                      for retailers.
+                                    </p>
                                   </div>
-                                  <p className="text-sm leading-tight text-muted-foreground">
-                                    We are focused on artisanal stone and tile
-                                    for retailers.
-                                  </p>
                                 </a>
                               </NavigationMenuLink>
                             </li>
@@ -82,35 +105,18 @@ export default function Layout({
                                 onMouseEnter={() => setIsSubSubmenuOpen(1)}
                                 onClick={() => setIsSubSubmenuOpen(null)}
                               >
-                                <Image
-                                  src="/chevron_down.svg"
-                                  alt=""
-                                  width={15}
-                                  height={15}
-                                  className="-rotate-90 ml-4 translate-y-[-2px]"
-                                />
                                 {isSubSubmenuOpen === 1 && (
-                                  <ul className="absolute rounded-md left-full p-4 top-0 w-[200px] mt-0 ml-4 bg-white text-black shadow-lg translate-x-[60px] translate-y-[0px]">
+                                  <ul
+                                    className={`absolute rounded-r left-full p-4 top-0 w-[290px] ${isMenuHeight} mt-0 ml-4 bg-white text-black shadow-none translate-x-[25px] translate-y-[-40px]`}
+                                  >
                                     <ul className="flex flex-col gap-2 p-0 ">
-                                      <li className="hover:font-bold">
-                                        Limestone
-                                      </li>
-                                      <li className="hover:font-bold">
-                                        Mojave Red
-                                      </li>
-                                      <li className="hover:font-bold">
-                                        Mojave Gold
-                                      </li>
-                                      <li className="hover:font-bold">
-                                        Mojave Tropico
-                                      </li>
-                                      <li className="hover:font-bold">Sespe</li>
-                                      <li className="hover:font-bold">
-                                        Santa Paula/Malibu
-                                      </li>
-                                      <li className="hover:font-bold">
-                                        Cucamonga
-                                      </li>
+                                      {ArtisanalStone.map((item, index) => (
+                                        <div key={index} className="flex gap-4">
+                                          <li className="text-xl hover:font-bold">
+                                            {item}
+                                          </li>
+                                        </div>
+                                      ))}
                                     </ul>
                                   </ul>
                                 )}
@@ -119,28 +125,12 @@ export default function Layout({
                                 href="/docs/installation"
                                 title="Tile"
                                 className=" flex p-0 font-[700] items-center justify-between"
-                              >
-                                <Image
-                                  src="/chevron_down.svg"
-                                  alt="hover:font-bold"
-                                  width={15}
-                                  height={15}
-                                  className="-rotate-90 ml-4 translate-y-[-2px]"
-                                />
-                              </ListItem>
+                              ></ListItem>
                               <ListItem
                                 href="/docs/primitives/typography"
                                 title="Fireplaces"
                                 className="flex p-0 font-[700] items-center justify-between"
-                              >
-                                <Image
-                                  src="/chevron_down.svg"
-                                  alt="hover:font-bold"
-                                  width={15}
-                                  height={15}
-                                  className="-rotate-90 ml-4 translate-y-[-2px]"
-                                />
-                              </ListItem>
+                              ></ListItem>
                             </div>
                           </ul>
                         </ul>
@@ -151,14 +141,50 @@ export default function Layout({
                       title="MRC Rock & Sand"
                       className="w-[298px]"
                       onMouseEnter={() => setIsSubmenuOpen(2)}
-                      onMouseLeave={() => setIsSubmenuOpen(null)}
+                      onClick={() => setIsSubmenuOpen(null)}
                     >
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 2 && (
-                        <ul className="absolute left-full top-0 mt-0 ml-4 bg-white text-black shadow-lg">
-                          <SubListItem href="#" title="Subitem 2-1" />
-                          <SubListItem href="#" title="Subitem 2-2" />
-                          <SubListItem href="#" title="Subitem 2-3" />
+                        <ul
+                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-177px] rounded-r`}
+                        >
+                          <ul className="flex flex-row gap-3 p-6 h-full md:w-[400px] lg:w-[500px] ">
+                            <li className="w-[208px] ">
+                              <NavigationMenuLink asChild className="py-4 px-6">
+                                <a
+                                  className="flex h-full w-full select-none flex-col justify-end rounded-md bg-tanbase no-underline outline-none focus:shadow-md"
+                                  href="/"
+                                >
+                                  <div className="flex flex-col justify-end  mb-2 mt-4 h-full ">
+                                    <Image
+                                      src="/logo_rocks.svg"
+                                      alt="logo"
+                                      width={80}
+                                      height={30}
+                                    />
+                                    <span className="text-lg font-bold">
+                                      MRC Rock & Sand
+                                    </span>
+                                    <p className="text-sm leading-tight text-muted-foreground">
+                                      MRC Rock & Sand demos and sells
+                                      recyclables.
+                                    </p>
+                                  </div>
+                                </a>
+                              </NavigationMenuLink>
+                            </li>
+                            <div>
+                              <ul className="flex flex-col gap-2 p-0 ">
+                                {MRCMaterials.map((item, index) => (
+                                  <div key={index} className="flex gap-4">
+                                    <li className="text-xl hover:font-bold">
+                                      {item}
+                                    </li>
+                                  </div>
+                                ))}
+                              </ul>
+                            </div>
+                          </ul>
                         </ul>
                       )}
                     </ListItem>
@@ -167,14 +193,51 @@ export default function Layout({
                       title="Santa Paula Materials"
                       className="w-[298px]"
                       onMouseEnter={() => setIsSubmenuOpen(3)}
-                      onMouseLeave={() => setIsSubmenuOpen(null)}
+                      onClick={() => setIsSubmenuOpen(null)}
                     >
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 3 && (
-                        <ul className="absolute left-full top-0 mt-0 ml-4 bg-white text-black shadow-lg">
-                          <SubListItem href="#" title="Subitem 3-1" />
-                          <SubListItem href="#" title="Subitem 3-2" />
-                          <SubListItem href="#" title="Subitem 3-3" />
+                        <ul
+                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-289px] rounded-r`}
+                        >
+                          <ul className="flex flex-row gap-3 p-6 h-full md:w-[400px] lg:w-[530px] ">
+                            <li className="w-[208px] ">
+                              <NavigationMenuLink asChild className="py-4 px-6">
+                                <a
+                                  className="flex h-full w-full select-none flex-col justify-end rounded-md bg-tanbase no-underline outline-none focus:shadow-md"
+                                  href="/"
+                                >
+                                  <div
+                                    className={`flex flex-col justify-end  mb-2 mt-4 ${isMenuHeight}`}
+                                  >
+                                    <Image
+                                      src="/logo_rocks.svg"
+                                      alt="logo"
+                                      width={80}
+                                      height={30}
+                                    />
+                                    <span className="text-lg font-bold">
+                                      Santa Paula Materials
+                                    </span>
+                                    <p className="text-sm leading-tight text-muted-foreground">
+                                      We demo and sell recyclable materials.
+                                    </p>
+                                  </div>
+                                </a>
+                              </NavigationMenuLink>
+                            </li>
+                            <div>
+                              <ul className="flex flex-col gap-2 p-0 ">
+                                {SantaPaulaMaterials.map((item, index) => (
+                                  <div key={index} className="flex gap-4">
+                                    <li className="text-xl hover:font-bold">
+                                      {item}
+                                    </li>
+                                  </div>
+                                ))}
+                              </ul>
+                            </div>
+                          </ul>
                         </ul>
                       )}
                     </ListItem>
@@ -184,6 +247,7 @@ export default function Layout({
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        <CustomerFacingNavLink href="/about">About</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/services">Services</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/projects">Projects</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/contact">Contact</CustomerFacingNavLink>
@@ -237,7 +301,10 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-[20px] font-medium leading-none ">{title}</div>
+          <div className="flex justify-between w-full text-[20px] font-medium leading-none ">
+            {title}
+            <ChevronDown className="-rotate-90" />
+          </div>
           <p className="text-[16px] leading-snug text-muted-foreground">
             {children}
           </p>
