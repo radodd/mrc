@@ -79,3 +79,26 @@ export const HISTORY = [
     image: "/about_us_timeline.png",
   },
 ];
+
+export const HOWTOUSE = [
+  {
+    title: "1. Add Material to Cart",
+    content:
+      "From Material Description, enter the quantity, and click on the  'Request to Quote.'",
+  },
+  {
+    title: "2. Review Cart",
+    content:
+      "Click on the cart icon at the navigation bar to review all materials in your cart.",
+  },
+  {
+    title: "3. Enter Contact Info",
+    content:
+      "Enter your contact info, and a message to MRC specifying the purpose for the materials.",
+  },
+  {
+    title: "4. Reviewed by MRC",
+    content:
+      "MRC will review your request and contact you directly with a quote.",
+  },
+];
