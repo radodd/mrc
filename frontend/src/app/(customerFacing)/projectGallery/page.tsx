@@ -17,24 +17,23 @@ const Page = () => {
         />
       </div>,
     );
-
-    useEffect(() => {
-      const fetchProjects = async () => {
-        try {
-          const response = await fetch("http://localhost:3030/projects");
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          const data = await response.json();
-          console.log(`this is the data: ${data}`);
-          setProjects(data);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
-      fetchProjects();
-    }, []);
   }
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch("http://localhost:3030/projects");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(`this is the data: ${data}`);
+        setProjects(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchProjects();
+  }, []);
   return (
     <div className="flex flex-col gap-20 mx-[72px] my-20">
       <h1 className="flex justify-center text-[64px]">Project Gallery</h1>
