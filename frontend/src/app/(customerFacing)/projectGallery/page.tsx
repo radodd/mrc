@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 // import { projects } from "../../../../..";
 import Image from "next/image";
 
-const page = () => {
+const Page = () => {
   const [projects, setProjects] = useState([]);
   const gridItems = [];
   for (let i = 0; i < 12; i++) {
@@ -62,4 +62,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
