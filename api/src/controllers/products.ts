@@ -7,26 +7,35 @@ import { Request, Response, NextFunction, RequestHandler } from "express";
 // } from "express-serve-static-core";
 
 import createHttpError from "http-errors";
-import supabase from "../server";
-import { PostgrestResponse } from "@supabase/supabase-js";
+// import supabase from "../server";
 
-export const getProducts: RequestHandler = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+// const { Request, Response, NextFunction } = require("express");
+// const RequestHandler = require("express").RequestHandler;
+// const createHttpError = require("http-errors");
+const { supabase } = require("../server");
+console.log("Supabase Client:", supabase);
+// @ts-ignore
+exports.getProducts = async (req, res, next) => {
+  // export const getProducts: RequestHandler = async (
+  //   req: Request,
+  //   res: Response,
+  //   next: NextFunction
+  // ) => {
   try {
+    console.log("getProducts called");
     const { data, error } = await supabase.from("Product").select("*");
+    console.log("THe Error", error);
     if (error) {
       throw createHttpError(500, "Failed to fetch products");
     }
     if (!data) {
       throw createHttpError(404, "No products found");
     }
-    console.log("DATA", data);
+    console.log("Products fetched", data);
     res.json(data);
   } catch (error) {
-    next();
+    console.error("Error in getProducts:", error);
+    next(error);
   }
 };
 

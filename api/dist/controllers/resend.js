@@ -1,4 +1,7 @@
 "use strict";
+// import { Request, Response } from "express";
+// import { Resend } from "resend";
+// import dotenv from "dotenv";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,19 +11,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.send = void 0;
-const resend_1 = require("resend");
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const resend = new resend_1.Resend(process.env.RESEND_API_KEY);
+const { Request, Response } = require("express");
+const { Resend } = require("resend");
+const dotenv = require("dotenv");
+// const ReactDOMServer = require("react-dom/server");
+dotenv.config();
+const resend = new Resend(process.env.RESEND_API_KEY);
 const send = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Incoming request body:", req.body);
+    // @ts-ignore.
     const { from, to, subject, html } = req.body;
     if (!from || !to || !subject || !html) {
+        // @ts-ignore
         return res.status(400).json({ error: "Missing required fields" });
     }
     try {
@@ -32,24 +36,97 @@ const send = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         if (error) {
             console.error("Error sending email:", error);
+            // @ts-ignore
             return res.status(400).json({ error });
         }
         console.log("Email sent successfully:", data);
+        // @ts-ignore
         res.status(200).json({ data });
     }
     catch (error) {
         console.error("Internal Server Error:", error);
+        // @ts-ignore
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
 exports.send = send;
+// @ts-ignore
+// const { Request, Response } = require("express");
+// const { Resend } = require("resend");
+// // @ts-ignore
+// const dotenv = require("dotenv");
+// const ReactDOMServer = require("react-dom/server"); // Only if you use ReactDOMServer
+// dotenv.config();
+// const resend = new Resend(process.env.RESEND_API_KEY);
+// module.exports.send = async function (req: Request, res: Response) {
+//   console.log("Incoming request body:", req.body);
+//   const {
+//     from,
+//     to,
+//     subject,
+//     html,
+//     firstname,
+//     lastname,
+//     phonenumber,
+//     email,
+//     position,
+//     company,
+//     message,
+//   } = req.body;
+//   if (!from || !to || !subject || !html) {
+//     return res.status(400).json({ error: "Missing required fields" });
+//   }
+//   try {
+//     let emailHtml = html; // Default to simple HTML
+//     // Optional: Render JSX to static HTML using ReactDOMServer
+//     if (
+//       firstname &&
+//       lastname &&
+//       phonenumber &&
+//       email &&
+//       position &&
+//       company &&
+//       message
+//     ) {
+//       // Example of rendering JSX to static HTML (requires React and ReactDOMServer)
+//       // const EmailTemplate = require("../../../frontend/src/components/EmailTemplate").default;
+//       // const emailHtml = ReactDOMServer.renderToStaticMarkup(
+//       //   <EmailTemplate
+//       //     firstname={firstname}
+//       //     lastname={lastname}
+//       //     phonenumber={phonenumber}
+//       //     email={email}
+//       //     position={position}
+//       //     company={company}
+//       //     message={message}
+//       //   />
+//       // );
+//     }
+//     console.log("HTML Email Content:", emailHtml);
+//     const { data, error } = await resend.emails.send({
+//       from,
+//       to,
+//       subject,
+//       html: emailHtml,
+//     });
+//     if (error) {
+//       console.error("Error sending email:", error);
+//       return res.status(400).json({ error });
+//     }
+//     console.log("Email sent successfully:", data);
+//     res.status(200).json({ data });
+//   } catch (error) {
+//     console.error("Internal Server Error:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
 // import { Request, Response } from "express";
 // import { Resend } from "resend";
 // // import EmailTemplate from "../../../frontend/src/components/EmailTemplate";
 // // import ReactDOMServer from "react-dom/server";
 // import dotenv from "dotenv";
 // dotenv.config();
-// const resend = new Resend(process.env.RESEND_API_KEY); 
+// const resend = new Resend(process.env.RESEND_API_KEY);
 // export const send = async (req: Request, res: Response) => {
 //   console.log("Incoming request body:", req.body);
 //   const {

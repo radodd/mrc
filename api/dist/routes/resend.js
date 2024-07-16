@@ -36,11 +36,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const ResendController = __importStar(require("../controllers/resend"));
+const ResendController = __importStar(require("../controllers/resend.js"));
 const resend_1 = require("resend");
-const resend_2 = require("../controllers/resend");
+const resend_js_1 = require("../controllers/resend.js");
 const router = express_1.default.Router();
-router.post("/send-email", resend_2.send);
+router.post("/send-email", resend_js_1.send);
 router.post("/", ResendController.send);
 router.get("/test", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const resend = new resend_1.Resend(process.env.RESEND_API_KEY);
