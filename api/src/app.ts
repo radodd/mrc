@@ -1,4 +1,5 @@
 // import express from "express";
+import projectsRoutes from "./routes/projects";
 // // var express = require('express');
 // import path from "path";
 // import cors from "cors";
@@ -48,6 +49,7 @@ const userRouter = require("./routes/users");
 app.use("/users", userRouter);
 app.use("/resend", resendRouter);
 app.use("/products", productsRoutes);
+app.use("/projects", projectsRoutes);
 
 // app.listen(port, () => {
 //   console.log("Supabase connected");
