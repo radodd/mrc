@@ -6,76 +6,77 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import InputMasK, { ReactInputMask } from "react-input-mask";
 import { companyAdress } from "../../../../..";
 import InputMask, { Props as InputMaskProps } from "react-input-mask";
+import ContactForm from "../../../components/ContactForm";
 
-type FormValues = {
-  firstname: string;
-  lastname: string;
-  phonenumber: string;
-  email: string;
-  position: string;
-  company: string;
-  message: string;
-};
+// type FormValues = {
+//   firstname: string;
+//   lastname: string;
+//   phonenumber: string;
+//   email: string;
+//   position: string;
+//   company: string;
+//   message: string;
+// };
 
 const Page = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormValues>({
-    defaultValues: {
-      firstname: "",
-      lastname: "",
-      phonenumber: "",
-      email: "",
-      position: "",
-      company: "",
-      message: "",
-    },
-  });
-  const [selectedValue, setSelectedValue] = useState("");
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   reset,
+  //   formState: { errors },
+  // } = useForm<FormValues>({
+  //   defaultValues: {
+  //     firstname: "",
+  //     lastname: "",
+  //     phonenumber: "",
+  //     email: "",
+  //     position: "",
+  //     company: "",
+  //     message: "",
+  //   },
+  // });
+  // const [selectedValue, setSelectedValue] = useState("");
 
-  const phoneInputRef = useRef(null);
+  // const phoneInputRef = useRef(null);
 
-  const onSubmit: SubmitHandler<FormValues> = async (formData) => {
-    try {
-      const response = await fetch("http://localhost:3030/resend", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: "Your Email <onboarding@resend.dev>", // static 'from' field
-          to: "delivered@resend.dev",
-          subject: "Contact Form Submission",
-          firstname: formData.firstname,
-          lastname: formData.lastname,
-          phonenumber: formData.phonenumber,
-          email: formData.email,
-          position: formData.position,
-          company: formData.company,
-          message: formData.message,
-        }),
-      });
-      const data = await response.json();
-      console.log("Server response:", data);
+  // const onSubmit: SubmitHandler<FormValues> = async (formData) => {
+  //   try {
+  //     const response = await fetch("http://localhost:3030/resend", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         from: "Your Email <onboarding@resend.dev>", // static 'from' field
+  //         to: "delivered@resend.dev",
+  //         subject: "Contact Form Submission",
+  //         firstname: formData.firstname,
+  //         lastname: formData.lastname,
+  //         phonenumber: formData.phonenumber,
+  //         email: formData.email,
+  //         position: formData.position,
+  //         company: formData.company,
+  //         message: formData.message,
+  //       }),
+  //     });
+  //     const data = await response.json();
+  //     console.log("Server response:", data);
 
-      if (!response.ok) {
-        console.error("Error sending email:", data.error);
-      } else {
-        console.log("Email sent successfully:", data);
-      }
+  //     if (!response.ok) {
+  //       console.error("Error sending email:", data.error);
+  //     } else {
+  //       console.log("Email sent successfully:", data);
+  //     }
 
-      reset();
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  //     reset();
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    reset();
-  }, [reset]);
+  // useEffect(() => {
+  //   reset();
+  // }, [reset]);
 
   return (
     <div>
@@ -102,8 +103,8 @@ const Page = () => {
         </div>
 
         {/* form section */}
-
-        <div className="flex flex-col items-center w-1/2  max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
+        <ContactForm />
+        {/* <div className="flex flex-col items-center w-1/2  max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-10  max-mobile:items-center last:mb-0"
@@ -112,7 +113,7 @@ const Page = () => {
               <div className="w-1/2 max-mobile:w-1/2">
                 <input
                   {...register("firstname", {
-                    required: "First Name is required",
+                    required: "Please enter your first name",
                   })}
                   type="text"
                   // autoComplete="off"
@@ -128,7 +129,7 @@ const Page = () => {
               <div className="w-1/2 max-mobile:w-1/2">
                 <input
                   {...register("lastname", {
-                    required: "Last Name is required",
+                    required: "Please enter your last name",
                   })}
                   placeholder="Last Name"
                   type="text"
@@ -148,7 +149,7 @@ const Page = () => {
                 // onChange={(e) => setPhoneNumberValue(e.target.value)}
                 // defaultValue=""
                 {...register("phonenumber", {
-                  required: "Phone Number is required",
+                  required: "Please enter your Phone Number",
                   validate: (value) => {
                     const unmaskedValue = value.replace(/\D/g, "");
                     return (
@@ -175,7 +176,7 @@ const Page = () => {
             <div className="w-full max-mobile:w-full">
               <input
                 {...register("email", {
-                  required: "Email is required",
+                  required: "Please enter your email",
                   pattern: {
                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                     message: "Invalid email address",
@@ -191,7 +192,9 @@ const Page = () => {
             </div>
             <div className="w-full max-mobile:w-full">
               <select
-                {...register("position", { required: "Position is Required" })}
+                {...register("position", {
+                  required: "Please choose a positon for Yourself",
+                })}
                 className={`border border-black w-full h-14 pl-4 max-mobile:w-full ${selectedValue ? "text-black" : "text-gray-500"}`}
                 value={selectedValue}
                 onChange={(e) => setSelectedValue(e.target.value)}
@@ -217,15 +220,21 @@ const Page = () => {
             </div>
             <div className="w-full max-mobile:w-full">
               <input
-                {...register("company")}
+                {...register("company", {
+                  required:
+                    'Please enter your company or "N/A" if not applicable',
+                })}
                 placeholder="Company"
                 type="text"
                 className="border border-black w-full h-14 pl-4 max-mobile:w-full"
               />
+              {errors.company?.message && (
+                <p className="text-red-500 text-sm">{errors.company.message}</p>
+              )}
             </div>
             <div className="max-mobile:w-full h-[157px]">
               <textarea
-                {...register("message", { required: "Message is reuired" })}
+                {...register("message")}
                 placeholder="Message"
                 cols={79}
                 rows={6}
@@ -237,7 +246,7 @@ const Page = () => {
             </div>
             <Button className="w-full">Submit</Button>
           </form>
-        </div>
+        </div> */}
       </div>
       <div className="grid gap-10 grid-cols-6 my-20 px-16 max-mobile:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
