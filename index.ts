@@ -103,6 +103,21 @@ export const HOWTOUSE = [
   },
 ];
 
+export const MaterialsMenu = [
+  {
+    company: "STONEYARD",
+    text: "We are focused on artisanal stone and tile.",
+  },
+  {
+    company: "MRC Rock & Sand",
+    text: "We are focused on artisanal stone and tile.",
+  },
+  {
+    company: "Santa Paula Materials",
+    text: "We are focused on artisanal stone and tile.",
+  },
+];
+
 export const ArtisanalStone = [
   "Oklahoma Flagstone",
   "Arizona Flagstone",
