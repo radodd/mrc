@@ -8,12 +8,12 @@ import { santaPaulaMaterials } from "../../../../..";
 
 const page = () => {
   return (
-    <div>
+    <div className="mb-20">
       <h1 className="font-bold text-6xl text-center m-10">Services</h1>
 
       {/* hero for services  */}
 
-      <div className="flex flex-col mb-8 bg-primary">
+      <div className="flex flex-col mb-20 bg-primary">
         <h1 className="font-bold text-5xl my-14 ml-[70px] ">
           Santa Paula Materials
         </h1>
@@ -40,9 +40,11 @@ const page = () => {
               <h1 className="font-bold text-[32px]">{materials.name}</h1>
               <p className="text-[20px] w-full ">{materials.desc}</p>
               <div className="flex gap-2 ">
-                <Button variant={"outline"}>Contact SPM</Button>
-                {/* {if {materials.id === 1 }} */}
-                <Button>View Materials</Button>
+                {materials.id == 1 ? (
+                  <Button variant="outline">View Materials</Button>
+                ) : (
+                  <Button variant={"outline"}>Contact SPM</Button>
+                )}
               </div>
             </div>
           </div>
@@ -72,7 +74,11 @@ const page = () => {
             <div className="flex-col flex gap-10 w-1/2 h-[372px] my-12 px-[72px] max-mobile:w-full">
               <h1 className="font-bold text-[32px]">{service.name}</h1>
               <p className="text-[20px] w-full">{service.desc}</p>
-              <Button variant={"outline"}>Contact MRC</Button>
+              <div className="flex">
+                {service.id == 3 ? (
+                  <Button variant={"outline"}>Contact MRC</Button>
+                ) : null}
+              </div>
             </div>
           </div>
         ))}
