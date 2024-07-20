@@ -103,7 +103,7 @@ const Page = () => {
         </div>
 
         {/* form section */}
-        <ContactForm />
+        <ContactForm buttonText="Submit Form" />
         {/* <div className="flex flex-col items-center w-1/2  max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
           <form
             onSubmit={handleSubmit(onSubmit)}
