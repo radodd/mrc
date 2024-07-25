@@ -14,7 +14,11 @@ type FormValues = {
   message: string;
 };
 
-const ContactForm = () => {
+type ContactFormProps = {
+  buttonText?: string;
+};
+
+const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
   const {
     register,
     handleSubmit,
@@ -199,7 +203,7 @@ const ContactForm = () => {
             <p className="text-red-500 text-sm">{errors.message.message}</p>
           )}
         </div>
-        <Button className="w-full">Request to Quote</Button>
+        <Button className="w-full">{buttonText}</Button>
       </form>
     </div>
   );
