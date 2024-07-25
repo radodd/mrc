@@ -54,8 +54,18 @@ export function CustomerFacingNav({
       </div>
 
       {/* MOBILE */}
+
+      <CustomerFacingNavLink href="/cart">
+        <Image
+          src="/shopping_cart.png"
+          alt="shopping cart"
+          width={33}
+          height={33}
+        />
+      </CustomerFacingNavLink>
+
       <div
-        className={`${styles.hamburger} ${isActive ? "" : "hidden"} bg-red-300`}
+        className={`${styles.hamburger} ${isActive ? "" : "hidden"}`}
         onClick={() => {
           setIsActive(false);
         }}
@@ -306,14 +316,6 @@ export function CustomerFacingNav({
               </CustomerFacingNavLink>
               <CustomerFacingNavLink href="/contact">
                 Contact
-              </CustomerFacingNavLink>
-              <CustomerFacingNavLink href="/cart">
-                <Image
-                  src="/shopping_cart.png"
-                  alt="shopping cart"
-                  width={33}
-                  height={33}
-                />
               </CustomerFacingNavLink>
             </div>
 

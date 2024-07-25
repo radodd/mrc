@@ -1,0 +1,72 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.carousel {
+  display: flex;
+  height: 605px;
+  justify-content: center;
+  align-items: center;
+  margin-inline: 70px;
+  @include small-break {
+    margin-inline: 32px;
+  }
+}
+
+.carouselItem {
+  //   border: 2px peru solid;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: start;
+}
+
+.carouselContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  max-width: 1417px;
+  gap: 40px;
+  @include small-break {
+    gap: 24px;
+  }
+}
+
+.carouselHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  h1,
+  span {
+    font-weight: 700;
+    font-size: 64px;
+    padding-right: 12px;
+    color: var(--blackbase);
+  }
+
+  @include mid-break {
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @include small-break {
+    flex-direction: column;
+    align-items: start;
+
+    h1,
+    span {
+      font-size: 40px;
+    }
+    div {
+      flex-direction: column;
+      padding-left: 0px;
+      width: max-content;
+    }
+    p {
+      text-align: left;
+      color: var(--secondary-text);
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+}

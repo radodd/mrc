@@ -1,0 +1,60 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.sliderContainer {
+  overflow: hidden;
+  height: 100px;
+  position: relative;
+  width: 70%;
+
+  @include large-break {
+    flex-direction: column;
+  }
+
+  @include mid-break {
+    width: max-content;
+    height: 80px;
+  }
+  @include small-break {
+    height: 60px;
+  }
+}
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  justify-content: start;
+  transition: transform 0.5s ease-in-out;
+  @include mid-break {
+    // height: 250px;
+    justify-content: center;
+    align-items: start;
+  }
+}
+
+.line {
+  height: 100px;
+  display: flex;
+  color: var(--Primary, #307084);
+  font-family: var(--montserrat);
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  @include large-break {
+    width: 1000px;
+    // justify-content: center;
+    align-items: center;
+    // height: ;
+  }
+
+  @include mid-break {
+    // height: 110px;
+    // justify-content: center;
+    align-items: center;
+  }
+  @include small-break {
+    font-size: 40px;
+  }
+}

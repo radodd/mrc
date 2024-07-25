@@ -9,54 +9,59 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from "../../scss/HeroAnimation.module.scss";
+// import styles from "../../scss/HeroAnimation.module.scss";
 import SliderAnimation from "../../SliderAnimation";
+import Slider from "../../SliderAnimation";
+
+import styles from "../../scss/LandingPageCarousel.module.scss";
 
 export default function LandingPageCarousel() {
   return (
-    <Carousel className="section-padding bg-tanbase h-[605px] justify-center items-center">
-      <CarouselContent className="">
-        <CarouselItem className="flex bg-tanbase items-center justify-center">
-          <div className="flex flex-col justify-start items-start gap-10">
-            <div className="flex">
-              <h1>Hello! We are </h1>
-              {/* <SliderAnimation /> */}
-            </div>
-            {/* <div className="gap-10 inline-flex">
-              <Link href="/">
-                <Image src="/Nextjs.png" alt="" height={100} width={100} />
-              </Link>
-              <Link href="/">
-                <Image src="/PostgreSQL.png" alt="" height={100} width={100} />
-              </Link>
-              <Link href="/">
-                <Image src="/TailwindCss.png" alt="" height={100} width={100} />
-              </Link>
-            </div> */}
-            <div className="self-stretch text-center text-secondary-foreground text-2xl font-normal max-w-[1200px]">
-              We are a collection of companies here to service your construction
-              needs.{" "}
-            </div>
-            <div className="gap-6 inline-flex">
-              <Button variant="default" size="default" navigateTo="/materials">
-                View Materials
-              </Button>
+    <div className="bg-tanbase">
+      <Carousel className={styles.carousel}>
+        <CarouselContent>
+          <CarouselItem className={styles.carouselItem}>
+            <div className={styles.carouselContainer}>
+              <div className={styles.carouselHeader}>
+                <h1>Hello!</h1>
+                <div className="flex flex-row">
+                  <div className="w-[230px]">
+                    <span className="block ">We are</span>
+                  </div>
+                  <div className="flex flex-col w-fit justify-start text-start">
+                    <Slider />
+                  </div>
+                </div>
 
-              <Button variant="outline" size="default" navigateTo="contact">
-                Contact Us
-              </Button>
+                {/* <SliderAnimation /> */}
+              </div>
+
+              <div>
+                <p className="">
+                  We are a collection of companies here to service your
+                  construction needs.
+                </p>
+              </div>
+              <div className="gap-6 inline-flex max-[768px]:flex-col">
+                <Button variant="outline" size="default" navigateTo="/about">
+                  About Us
+                </Button>
+                <Button variant="default" size="default" navigateTo="/contact">
+                  Contact Us
+                </Button>
+              </div>
             </div>
-          </div>
-        </CarouselItem>
-        <CarouselItem className="flex bg-slate-600 items-center justify-center">
-          SANTA PAULA MATERIALS
-        </CarouselItem>
-        <CarouselItem className="flex bg-slate-600 items-center justify-center">
-          SOME OTHER COMPANY
-        </CarouselItem>
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+          </CarouselItem>
+          <CarouselItem className="flex bg-slate-600 items-center justify-center">
+            SANTA PAULA MATERIALS
+          </CarouselItem>
+          <CarouselItem className="flex bg-slate-600 items-center justify-center">
+            SOME OTHER COMPANY
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
   );
 }
