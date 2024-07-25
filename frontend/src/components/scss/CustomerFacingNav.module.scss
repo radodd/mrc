@@ -7,6 +7,7 @@
   align-items: center;
   height: 96px;
   margin: 0 72px;
+  z-index: 10;
   @include small-break {
     margin: 0 32px;
   }
@@ -23,7 +24,6 @@
 }
 
 .hamburger {
-  display: none;
   @include small-break {
     display: contents;
   }
@@ -37,4 +37,15 @@
   flex-direction: column;
   gap: 8px;
   font-size: 24px;
+}
+
+.materialsMenu {
+  span {
+    font-family: var(--montserrat);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.48px;
+  }
 }

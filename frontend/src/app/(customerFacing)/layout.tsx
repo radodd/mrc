@@ -31,31 +31,36 @@ export default function Layout({
   const [isMenuHeight, setIsMenuHeight] = useState(`h-[405px]`);
 
   useEffect(() => {
-    if (isSubSubmenuOpen === 1) {
+    if (isMaterialsOpen === false) {
+      setIsSubmenuOpen(null);
+    } else if (isSubSubmenuOpen === 1) {
       setIsMenuHeight(`h-[750px]`);
     } else if (isSubmenuOpen === 3) {
       setIsMenuHeight(`h-[495px]`);
     } else {
       setIsMenuHeight(`h-[405px]`);
     }
-  }, [isSubSubmenuOpen, isSubmenuOpen]);
+  }, [isSubSubmenuOpen, isSubmenuOpen, isMaterialsOpen]);
+  console.log(isMenuHeight);
+  console.log("isMaterialsOpen:", isMaterialsOpen);
+
   return (
     <>
       <CustomerFacingNav isActive={isActive} setIsActive={setIsActive}>
         <NavigationMenu>
           <NavigationMenuList>
-            <NavigationMenuItem
-              onMouseEnter={() => setIsMaterialsOpen(true)}
-              onMouseLeave={() => setIsMaterialsOpen(true)}
-            >
-              <NavigationMenuTrigger>Materials</NavigationMenuTrigger>
+            <NavigationMenuItem onMouseEnter={() => setIsMaterialsOpen(true)}>
+              <NavigationMenuTrigger className="">
+                Materials
+              </NavigationMenuTrigger>
               {isMaterialsOpen && (
                 <NavigationMenuContent
+                  onMouseLeave={() => setIsMaterialsOpen(false)}
                   className={`${isMenuHeight} flex justify-start`}
                 >
                   <ul className="m-4 ">
                     <Link href="/materials">
-                      <span className="font-[700] text-[20px] mx-4 hover:underline">
+                      <span className="font-[700] font-openSans text-[20px] mx-6 hover:underline">
                         Shop All Materials
                       </span>
                     </Link>
@@ -108,6 +113,9 @@ export default function Layout({
                                 {isSubSubmenuOpen === 1 && (
                                   <ul
                                     className={`absolute rounded-r left-full p-4 top-0 w-[290px] ${isMenuHeight} mt-0 ml-4 bg-white text-black shadow-none translate-x-[25px] translate-y-[-40px]`}
+                                    onMouseLeave={() =>
+                                      setIsSubSubmenuOpen(null)
+                                    }
                                   >
                                     <ul className="flex flex-col gap-2 p-0 ">
                                       {ArtisanalStone.map((item, index) => (
@@ -301,7 +309,7 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="flex justify-between w-full text-[20px] font-medium leading-none ">
+          <div className="flex justify-between w-full text-[20px] font-medium font-openSans leading-none ">
             {title}
             <ChevronDown className="-rotate-90" />
           </div>

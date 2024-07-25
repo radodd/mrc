@@ -4,17 +4,13 @@
 
 .hamburger .hamburger-inner,
 .hamburger .hamburger-inner::before,
-.hamburger .hamburger-inner::after {
+.hamburger .hamburger-inner::after,
+.is-active .hamburger-inner::after,
+.is-active .hamburger-inner::before {
   background-color: #307084 !important;
 }
 /* color: #467ad4 !important; */
 
-.is-active .hamburger-inner,
-.is-active .hamburger-inner::before {
-  background-color: #307084 !important;
-  width: 10px;
-  height: 10px;
-}
 .hamburger:hover {
   opacity: 1 !important;
 }
