@@ -1,0 +1,56 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.quoteContainer {
+  background-color: hsl(var(--tan-base));
+  padding-top: 56px;
+  padding-bottom: 56px;
+  padding-inline: 144px;
+  gap: 40px;
+  display: flex;
+  flex-direction: column;
+
+  @include large-break {
+    padding-inline: 72px;
+  }
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+
+  @include small-break {
+    flex-direction: column;
+  }
+}
+.card {
+  background-color: hsl(var(--white-base));
+  border-radius: 25px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-inline: 32px;
+  gap: 16px;
+  max-width: 293px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  h2 {
+    font-family: var(--font-openSans);
+    color: hsl(var(--text-primary));
+    font-size: 24px;
+    font-weight: 700;
+  }
+  p {
+    color: hsl(var(--secondary-text));
+    font-size: 20px;
+    font-weight: 200;
+  }
+}

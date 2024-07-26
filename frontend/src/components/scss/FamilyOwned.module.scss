@@ -1,0 +1,66 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.sectionContainer {
+  display: flex;
+  margin-bottom: 104px;
+
+  justify-content: space-between;
+  @include large-break {
+    margin-top: 104px;
+  }
+  @include mid-break {
+    margin-top: 104px;
+  }
+  @include small-break {
+    margin-bottom: 40px;
+    margin-top: 40px;
+    flex-direction: column-reverse;
+  }
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 104px;
+  padding-bottom: 104px;
+  padding-left: 72px;
+  padding-right: 72px;
+  gap: 40px;
+  @include mid-break {
+    padding: 40px;
+  }
+  @include small-break {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  h1 {
+    @include small-break {
+      font-size: 32px;
+      font-weight: 700;
+    }
+  }
+  p {
+    max-width: 500px;
+    @include small-break {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--secondary-text);
+    }
+  }
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  @include mid-break {
+    min-height: 420px;
+    min-width: 512px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
