@@ -41,7 +41,7 @@ export default function NewsArticles() {
                   <h1>{article.title}</h1>
                   <p>{article.content}</p>
                 </div>
-              </div>{" "}
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>

@@ -1,22 +1,37 @@
+"use client";
+
 import { Button } from "../../ui/button";
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "../../ui/carousel";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
-// import styles from "../../scss/HeroAnimation.module.scss";
-import SliderAnimation from "../../SliderAnimation";
 import Slider from "../../SliderAnimation";
-
 import styles from "../../scss/LandingPageCarousel.module.scss";
 
 export default function LandingPageCarousel() {
+  const [current, setCurrent] = useState(-1);
+  const [api, setApi] = useState<CarouselApi | null>(null);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+    setCurrent(api.selectedScrollSnap() + 1);
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   return (
     <div className="bg-tanbase">
-      <Carousel className={styles.carousel}>
+      <Carousel setApi={setApi} className={styles.carousel}>
         <CarouselContent>
           <CarouselItem className={styles.carouselItem}>
             <div className={styles.carouselContainer}>
@@ -30,10 +45,7 @@ export default function LandingPageCarousel() {
                     <Slider />
                   </div>
                 </div>
-
-                {/* <SliderAnimation /> */}
               </div>
-
               <div>
                 <p className="">
                   We are a collection of companies here to service your
@@ -60,6 +72,19 @@ export default function LandingPageCarousel() {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
+      <div className={styles.indicatorContainer}>
+        {Array.from({ length: 3 }).map((item, index) => (
+          <div key={index} className="">
+            <Image
+              src="/indicator.svg"
+              alt=""
+              width={12}
+              height={12}
+              className={`${styles.indicator} ${current === index + 1 ? styles.active : ""}`}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

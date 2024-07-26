@@ -37,7 +37,7 @@ export function CustomerFacingNav({
   children: ReactNode;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(isActive);
   return (
     <nav className={styles.nav}>
       <div className="">
@@ -61,6 +61,7 @@ export function CustomerFacingNav({
           alt="shopping cart"
           width={33}
           height={33}
+          className={`${isActive ? "hidden" : ""}`}
         />
       </CustomerFacingNavLink>
 

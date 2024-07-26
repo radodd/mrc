@@ -70,3 +70,17 @@
     }
   }
 }
+
+.indicatorContainer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  transform: translateY(-40px);
+}
+
+.indicator {
+  opacity: 0.5;
+}
+.indicator.active {
+  opacity: 1;
+}

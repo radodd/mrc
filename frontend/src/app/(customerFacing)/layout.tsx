@@ -41,8 +41,6 @@ export default function Layout({
       setIsMenuHeight(`h-[405px]`);
     }
   }, [isSubSubmenuOpen, isSubmenuOpen, isMaterialsOpen]);
-  console.log(isMenuHeight);
-  console.log("isMaterialsOpen:", isMaterialsOpen);
 
   return (
     <>
