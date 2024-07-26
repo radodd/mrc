@@ -6,8 +6,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../../ui/carousel";
-import Image from "next/image";
-import Link from "next/link";
 
 // import styles from "../../scss/HeroAnimation.module.scss";
 import SliderAnimation from "../../SliderAnimation";

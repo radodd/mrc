@@ -1,28 +1,53 @@
+import { RequestQuoteCards } from "../../../../..";
 import { Button } from "../../ui/button";
 import Image from "next/image";
-import Link from "next/link";
+
+import styles from "../../scss/RequestQuote.module.scss";
 
 export default function RequestQuote() {
   return (
-    <div className="section-padding  bg-tanbase ">
-      <div className="section-text">
+    <div className={styles.quoteContainer}>
+      <div>
         <h1>Try out our Request to Quote</h1>
-        <p className="w-[600px]">
-          Our request to quote feature allows you to add materials you are
-          interested in buying from us into a cart. Once you have added all
-          materials you are interested in, submit your cart, and someone from
-          our companies will reach out to you within 48 hours to let you know
-          how much each material costs.
-        </p>
-        <div className="justify-start">
-          <Button variant="outline" navigateTo="materials">
-            View Our Materials
-          </Button>
-        </div>
       </div>
-      <div className="section-image">
-        <Image src="/request_quote.png" alt="" width={605} height={605} />
+
+      <div className={styles.cardContainer}>
+        {RequestQuoteCards.map((card, index) => (
+          <>
+            <Card
+              key={index}
+              image={card.image}
+              title={card.title}
+              description={card.text}
+            />
+            <Image
+              src="/dotted_arrow.svg"
+              alt=""
+              width={60}
+              height={108}
+              className={index % 2 !== 0 ? "last:hidden" : ""}
+            />
+          </>
+        ))}
       </div>
     </div>
   );
 }
+
+const Card = ({ image, title, description }) => {
+  return (
+    <div className={styles.card}>
+      <Image
+        src={image}
+        alt={title}
+        className="justify-center flex "
+        width={93}
+        height={99}
+      />
+      <div className={styles.cardContent}>
+        <h2>{title}</h2>
+        <p>{description}</p>
+      </div>
+    </div>
+  );
+};

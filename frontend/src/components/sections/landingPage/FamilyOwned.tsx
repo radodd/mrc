@@ -1,18 +1,17 @@
 import Image from "next/image";
 import { Button } from "../../ui/button";
-import Link from "next/link";
+
+import styles from "../../scss/FamilyOwned.module.scss";
 
 export default function FamilyOwned() {
   return (
-    <div className="section-padding bg-whitebase">
-      <div className="section-text w-auto">
+    <div className={styles.sectionContainer}>
+      <div className={styles.textContainer}>
         <h1>We are family-owned.</h1>
-        <p className="max-w-[500px]">
-          Our request to quote feature allows you to add materials you are
-          interested in buying from us into a cart. Once you have added all
-          materials you are interested in, submit your cart, and someone from
-          our companies will reach out to you within 48 hours to let you know
-          how much each material costs.
+        <p>
+          From the shores of Croatia, Santa Paula Materials is a family run
+          company committed to recycling and integrating natural materials
+          through function and design.
         </p>
         <div className="justify-start">
           <Button variant="outline" size="default" navigateTo="/about">
@@ -20,7 +19,7 @@ export default function FamilyOwned() {
           </Button>
         </div>
       </div>
-      <div className="section-image">
+      <div className={styles.imageContainer}>
         <Image src="/family_owned.png" alt="" width={822} height={529} />
       </div>
     </div>

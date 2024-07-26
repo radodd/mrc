@@ -168,3 +168,41 @@ export const SantaPaulaMaterials = [
   "Crush Miscellaneous Base",
   "Recycled Concrete Base",
 ];
+
+export const RequestQuoteCards = [
+  {
+    image: "/add_to_cart.svg",
+    title: "Add Material",
+    text: "From Material MaterialDetailForm, enter the quantity, and click on the 'request to Quote.'",
+  },
+  {
+    image: "/quote_cart.svg",
+    title: "Review Cart",
+    text: "Click on the cart icon at the navigation bar to review materials in your cart.",
+  },
+  {
+    image: "/enter_info.svg",
+    title: "Enter Info",
+    text: "Enter your contact info, and a message specifying your purpose.",
+  },
+  {
+    image: "/review.svg",
+    title: "We Review",
+    text: "We will review your request and contact you directly with a quote.",
+  },
+];
+
+export const Articles = [
+  {
+    image: "/moxi.png",
+    title: "Natural History Museum",
+    content:
+      "Lúthien ar rochathol an-uir uir velithil ielvathren. Ithil ír anlínath ar arthelon inórello. Eldalië valinor ar nai quendi, ar thalion estel enwathiel arnanor. Aerlinn irína anweryn, hiril alda ristaer ar lúthalion úmenethel",
+  },
+  {
+    image: "/moxi.png",
+    title: "Natural History Museum",
+    content:
+      "Lúthien ar rochathol an-uir uir velithil ielvathren. Ithil ír anlínath ar arthelon inórello. Eldalië valinor ar nai quendi, ar thalion estel enwathiel arnanor. Aerlinn irína anweryn, hiril alda ristaer ar lúthalion úmenethel",
+  },
+];

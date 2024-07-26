@@ -11,7 +11,7 @@ const Slider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentLine((prev) => (prev + 1) % lines.length);
-    }, 3000); // Change line every 3 seconds
+    }, 1000); // Change line every 3 seconds
 
     return () => clearInterval(interval);
   }, [lines.length]);

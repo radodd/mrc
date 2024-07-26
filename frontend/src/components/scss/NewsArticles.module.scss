@@ -1,0 +1,70 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 104px;
+  padding-bottom: 104px;
+  padding-inline: 144px;
+  gap: 40px;
+
+  @include large-break {
+    padding-inline: 70px;
+  }
+  @include mid-break {
+    padding-inline: 70px;
+  }
+  @include small-break {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-inline: 32px;
+  }
+}
+
+.articleContainer {
+  display: flex;
+  gap: 24px;
+  @include small-break {
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+  }
+  h1 {
+    font-size: 32px;
+    padding-bottom: 17px;
+    @include small-break {
+      padding: 0;
+    }
+  }
+
+  p {
+    font-size: 20px;
+    // max-width: 300px;
+  }
+}
+
+.imageContainer {
+  min-width: 325px;
+
+  @include large-break {
+    min-width: 300px;
+  }
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  max-height: 220px;
+  min-height: 225px;
+  overflow: hidden;
+}
+
+.prev {
+  transform: translateY(-16px);
+  @include small-break {
+    // transform: translateX(45px);
+    // transform: translateY(-30px);
+  }
+}

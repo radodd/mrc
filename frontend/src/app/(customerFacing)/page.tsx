@@ -12,9 +12,9 @@ export default function HomePage() {
       <LandingPageCarousel />
       <FamilyOwned />
       <RequestQuote />
-      <GovAgencies />
+      {/* <GovAgencies /> */}
       <NewsArticles />
-      <WeSpecialize />
+      {/* <WeSpecialize /> */}
       <ContactUs renderButton={false} />
     </>
   );
