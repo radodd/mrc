@@ -9,10 +9,16 @@
 .is-active .hamburger-inner::before {
   background-color: #307084 !important;
 }
-/* color: #467ad4 !important; */
 
 .hamburger:hover {
   opacity: 1 !important;
+}
+
+.hamburger {
+  padding: 0px !important;
+  padding-top: 5px !important;
+  justify-content: end !important;
+  align-items: center !important;
 }
 
 @layer base {
@@ -21,7 +27,8 @@
     --font-openSans: "Open Sans", sans-serif;
     --font-montserrat: "Montserrat", sans-serif;
 
-    --white-base: 56.54, 2.6091%, 96.28%;
+    /* --white-base: 56.54, 2.6091%, 96.28%; */
+    --white-base: 43, 64%, 98%, 1;
     --tan-base: 34, 67%, 88%;
     --black-base: 197, 57%, 11%;
 

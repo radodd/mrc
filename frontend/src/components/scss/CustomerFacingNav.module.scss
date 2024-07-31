@@ -1,34 +1,78 @@
 @use "./css/queries.scss";
 @import "./css/queries.scss";
 
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-inline: 72px;
+  @include small-break {
+    margin-inline: 32px;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 96px;
-  margin: 0 72px;
+  margin: 0px;
   z-index: 10;
+  @include large-break {
+  }
+
+  @include mid-break {
+    gap: 24px;
+  }
+
   @include small-break {
-    margin: 0 32px;
+    gap: 24px;
   }
 }
-.hiddenMobile {
+
+.mobileNavContainer {
+  display: flex;
+
+  @include large-break {
+    display: none;
+  }
   @include mid-break {
-    visibility: hidden;
-    width: 0px;
+    display: contents;
   }
   @include small-break {
-    visibility: hidden;
-    width: 0px;
+    display: contents;
+  }
+}
+
+.hiddenMobile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  gap: 60px;
+  font-size: 24px;
+  @include mid-break {
+    display: none;
+  }
+  @include small-break {
+    display: none;
   }
 }
 
 .hamburger {
+  display: none;
+
   @include small-break {
     display: contents;
   }
   @include mid-break {
     display: contents;
+    width: 32px;
+    height: 32px;
   }
 }
 

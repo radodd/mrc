@@ -24,7 +24,6 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isActive, setIsActive] = useState(false);
   const [isMaterialsOpen, setIsMaterialsOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState<number | null>(null);
   const [isSubSubmenuOpen, setIsSubSubmenuOpen] = useState<number | null>(null);
@@ -44,7 +43,7 @@ export default function Layout({
 
   return (
     <>
-      <CustomerFacingNav isActive={isActive} setIsActive={setIsActive}>
+      <CustomerFacingNav>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem onMouseEnter={() => setIsMaterialsOpen(true)}>
@@ -263,6 +262,7 @@ export default function Layout({
             alt="shopping cart"
             width={33}
             height={33}
+            className=""
           />
         </CustomerFacingNavLink>
       </CustomerFacingNav>

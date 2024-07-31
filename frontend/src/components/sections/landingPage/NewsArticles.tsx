@@ -32,8 +32,8 @@ export default function NewsArticles() {
       <Carousel className="min-[1305px]:hidden">
         <CarouselContent>
           {Articles.map((article, index) => (
-            <CarouselItem>
-              <div key={index} className={styles.articleContainer}>
+            <CarouselItem key={index}>
+              <div className={styles.articleContainer}>
                 <div className={styles.imageContainer}>
                   <Image src={article.image} alt="" width={325} height={230} />
                 </div>
