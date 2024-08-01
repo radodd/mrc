@@ -35,8 +35,8 @@ const env = require("./util/validateEnv");
 const { createClient } = require("@supabase/supabase-js");
 
 const port = process.env.PORT;
-const supabaseUrl = process.env.DATABASE_URL;
-const supabaseKey = process.env.SUPABASE_API_KEY;
+const supabaseUrl = process.env.DATABASE_URL as string;
+const supabaseKey = process.env.SUPABASE_API_KEY as string;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 app.listen(port, () => {
@@ -46,4 +46,4 @@ app.listen(port, () => {
 
 console.log("Supabase client created", supabase);
 
-module.exports = supabase;
+export { supabase };

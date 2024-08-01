@@ -4,6 +4,7 @@
 // @ts-ignore
 const express = require("express");
 const ProductsController = require("../controllers/products");
+// @ts-ignore
 const router = express.Router();
 router.get("/", ProductsController.getProducts);
 router.get("/:productId", ProductsController.getProduct);
