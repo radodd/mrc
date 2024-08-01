@@ -30,7 +30,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
       try {
         const response = await fetch("http://localhost:3030/products");
         // const response = await fetch(
-        // "https://mrc-two.vercel.app/api/products",
+        // "https://mrc-two.vercel.app/api/products");
         // { mode: "no-cors" },
 
         // const response = await fetch("/api/products");
@@ -67,12 +67,19 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   //     setFilterValueList(filterValueList);
   //   }
 
-  function handleRemoveFilter(filter: string) {
+  // function handleRemoveFilter(filter: string) {
+  //   setFilterValueList((prevFilters) =>
+  //     prevFilters.filter((f) => f !== filter),
+  //   );
+  //   clearFilter(filter);
+  // }
+
+  const handleRemoveFilter = (filter: string) => {
     setFilterValueList((prevFilters) =>
       prevFilters.filter((f) => f !== filter),
     );
     clearFilter(filter);
-  }
+  };
 
   return (
     <div>

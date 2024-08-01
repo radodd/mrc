@@ -1,4 +1,11 @@
 "use strict";
+// import { Request, Response, NextFunction, RequestHandler } from "express";
+// import {
+//   Request,
+//   Response,
+//   NextFunction,
+//   RequestHandler,
+// } from "express-serve-static-core";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,34 +15,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProduct = exports.createProduct = exports.getProducts = void 0;
-// import {
-//   Request,
-//   Response,
-//   NextFunction,
-//   RequestHandler,
-// } from "express-serve-static-core";
-const http_errors_1 = __importDefault(require("http-errors"));
-// import supabase from "../server";
+exports.getProduct = exports.createProduct = void 0;
+// import createHttpError from "http-errors";
+const server_1 = require("../server");
 // const { Request, Response, NextFunction } = require("express");
 // const RequestHandler = require("express").RequestHandler;
-// const createHttpError = require("http-errors");
-const supabase = require("../server");
-console.log("Supabase Client:", supabase);
-const getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const createHttpError = require("http-errors");
+// const { supabase } = require("../server.ts");
+console.log("Supabase Client in PRODUCTS:", server_1.supabase);
+// @ts-ignore
+exports.getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    // export const getProducts: RequestHandler = async (
+    //   req: Request,
+    //   res: Response,
+    //   next: NextFunction
+    // ) => {
     try {
         console.log("getProducts called");
-        const { data, error } = yield supabase.from("Product").select("*");
+        const { data, error } = yield server_1.supabase.from("Product").select("*");
         console.log("THe Error", error);
         if (error) {
-            throw (0, http_errors_1.default)(500, "Failed to fetch products");
+            throw createHttpError(500, "Failed to fetch products");
         }
         if (!data) {
-            throw (0, http_errors_1.default)(404, "No products found");
+            throw createHttpError(404, "No products found");
         }
         console.log("Products fetched", data);
         res.json(data);
@@ -45,7 +49,7 @@ const getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         next(error);
     }
 });
-exports.getProducts = getProducts;
+//@ts-ignore
 const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, description, imagePath, company, color, category } = req.body;
     try {
@@ -55,10 +59,10 @@ const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
             !company ||
             !color.length ||
             !category.length) {
-            throw (0, http_errors_1.default)(400, "All fields are required and must have at least one category and color");
+            throw createHttpError(400, "All fields are required and must have at least one category and color");
         }
         // Insert the product
-        const { data, error: productError } = yield supabase
+        const { data, error: productError } = yield server_1.supabase
             .from("Product")
             .insert([{ name, description, imagePath, company, color, category }])
             .select("*")
@@ -66,11 +70,11 @@ const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
         console.log("DATA", data);
         if (productError) {
             console.log(productError);
-            throw (0, http_errors_1.default)(500, "Failed to create product");
+            throw createHttpError(500, "Failed to create product");
         }
         if (!data) {
             console.log("The Product:", data);
-            throw (0, http_errors_1.default)(500, "Product data is missing");
+            throw createHttpError(500, "Product data is missing");
         }
         console.log("Product Data", data);
         res.status(201).json(data);
@@ -80,21 +84,22 @@ const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.createProduct = createProduct;
+//@ts-ignore
 const getProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const productId = req.params.productId;
     try {
         // Validate product ID
         if (!productId) {
-            throw (0, http_errors_1.default)(400, "Invalid product ID");
+            throw createHttpError(400, "Invalid product ID");
         }
         // Fetch product from Supabase
-        const { data: product, error } = yield supabase
+        const { data: product, error } = yield server_1.supabase
             .from("Product")
             .select("*")
             .eq("id", productId)
             .single();
         if (error) {
-            throw (0, http_errors_1.default)(404, "Product not found");
+            throw createHttpError(404, "Product not found");
         }
         // Respond with the product data
         res.status(200).json(product);

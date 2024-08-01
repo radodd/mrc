@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
+// import { Request, Response, NextFunction, RequestHandler } from "express";
 // import {
 //   Request,
 //   Response,
@@ -6,14 +6,19 @@ import { Request, Response, NextFunction, RequestHandler } from "express";
 //   RequestHandler,
 // } from "express-serve-static-core";
 
-import createHttpError from "http-errors";
+// import createHttpError from "http-errors";
 // import supabase from "../server";
 
 // const { Request, Response, NextFunction } = require("express");
 // const RequestHandler = require("express").RequestHandler;
-// const createHttpError = require("http-errors");
-const { supabase } = require("../server");
-console.log("Supabase Client:", supabase);
+const { createClient } = require("@supabase/supabase-js");
+const supabaseUrl = process.env.DATABASE_URL as string;
+const supabaseKey = process.env.SUPABASE_API_KEY as string;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const createHttpError = require("http-errors");
+// const supabase = require("../server.ts");
+console.log("Supabase Client in PRODUCTS:", supabase);
 // @ts-ignore
 exports.getProducts = async (req, res, next) => {
   // export const getProducts: RequestHandler = async (
@@ -55,13 +60,8 @@ interface Product {
   company: string;
   image: string;
 }
-
-export const createProduct: RequestHandler<
-  unknown,
-  unknown,
-  CreateProductBody,
-  unknown
-> = async (req, res, next) => {
+//@ts-ignore
+export const createProduct = async (req, res, next) => {
   const { name, description, imagePath, company, color, category } = req.body;
 
   try {
@@ -102,8 +102,8 @@ export const createProduct: RequestHandler<
     next(error);
   }
 };
-
-export const getProduct: RequestHandler = async (req, res, next) => {
+//@ts-ignore
+export const getProduct = async (req, res, next) => {
   const productId = req.params.productId;
 
   try {
