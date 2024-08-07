@@ -18,12 +18,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProduct = exports.createProduct = void 0;
 // import createHttpError from "http-errors";
-const server_1 = require("../server");
+// import supabase from "../server";
 // const { Request, Response, NextFunction } = require("express");
 // const RequestHandler = require("express").RequestHandler;
+const { createClient } = require("@supabase/supabase-js");
+const supabaseUrl = process.env.DATABASE_URL;
+const supabaseKey = process.env.SUPABASE_API_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 const createHttpError = require("http-errors");
-// const { supabase } = require("../server.ts");
-console.log("Supabase Client in PRODUCTS:", server_1.supabase);
+// const supabase = require("../server.ts");
+console.log("Supabase Client in PRODUCTS:", supabase);
 // @ts-ignore
 exports.getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     // export const getProducts: RequestHandler = async (
@@ -33,7 +37,7 @@ exports.getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     // ) => {
     try {
         console.log("getProducts called");
-        const { data, error } = yield server_1.supabase.from("Product").select("*");
+        const { data, error } = yield supabase.from("Product").select("*");
         console.log("THe Error", error);
         if (error) {
             throw createHttpError(500, "Failed to fetch products");
@@ -62,7 +66,7 @@ const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
             throw createHttpError(400, "All fields are required and must have at least one category and color");
         }
         // Insert the product
-        const { data, error: productError } = yield server_1.supabase
+        const { data, error: productError } = yield supabase
             .from("Product")
             .insert([{ name, description, imagePath, company, color, category }])
             .select("*")
@@ -93,7 +97,7 @@ const getProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             throw createHttpError(400, "Invalid product ID");
         }
         // Fetch product from Supabase
-        const { data: product, error } = yield server_1.supabase
+        const { data: product, error } = yield supabase
             .from("Product")
             .select("*")
             .eq("id", productId)

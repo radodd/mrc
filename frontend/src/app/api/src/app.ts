@@ -1,5 +1,5 @@
 // import express from "express";
-import projectsRoutes from "./routes/projects";
+// import projectsRoutes from "./routes/projects";
 // // var express = require('express');
 // import path from "path";
 // import cors from "cors";
@@ -30,6 +30,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const productsRoutes = require("./routes/products");
+const projectsRoutes = require("./routes/projects");
 const resendRouter = require("./routes/resend");
 // @ts-ignore
 const app = express();
@@ -40,13 +41,33 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static("src/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const allowedOrigins = ["http://localhost:3000", "https://mrc-two.vercel.app"];
-app.use(cors({ origin: allowedOrigins }));
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://mrc-two.vercel.app",
+  "https://mrc-*-radodds-projects.vercel.app",
+];
+
+const corsOptions = {
+  //@ts-ignore
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+
+    const isOriginAllowed = allowedOrigins.some((pattern) => {
+      const regex = new RegExp(`^${pattern.replace(/\*/g, ".*")}$`);
+      return regex.test(origin);
+    });
+
+    if (isOriginAllowed) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+app.use(cors(corsOptions));
 // app.use(cors({ origin: "https://mrc-two.vercel.app" }));
 
-const userRouter = require("./routes/users");
-
-app.use("/users", userRouter);
 app.use("/resend", resendRouter);
 app.use("/products", productsRoutes);
 app.use("/projects", projectsRoutes);
