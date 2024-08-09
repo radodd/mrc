@@ -6,18 +6,18 @@ import Image from "next/image";
 const Page = () => {
   const [projects, setProjects] = useState([]);
   const gridItems = [];
-  for (let i = 0; i < 12; i++) {
-    gridItems.push(
-      <div key={i} className="relative w-full h-48">
-        <Image
-          src="https://dzlauufqbyfqfivbiipg.supabase.co/storage/v1/object/sign/ProjectGalleryTest/image_145.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQcm9qZWN0R2FsbGVyeVRlc3QvaW1hZ2VfMTQ1LnBuZyIsImlhdCI6MTcxOTQ2NjIyMiwiZXhwIjozMzIyMzkzMDIyMn0.hxTasZqFZ87hmSGYUhG-eNOpIrI4BIW1pNfbkpS-ZJQ&t=2024-06-27T05%3A30%3A24.434Z"
-          layout="fill"
-          objectFit="cover"
-          alt={`Grid item ${i + 1}`}
-        />
-      </div>,
-    );
-  }
+  // for (let i = 0; i < 12; i++) {
+  //   gridItems.push(
+  //     <div key={i} className="relative w-full h-48">
+  //       <Image
+  //         src="https://dzlauufqbyfqfivbiipg.supabase.co/storage/v1/object/sign/ProjectGalleryTest/image_145.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQcm9qZWN0R2FsbGVyeVRlc3QvaW1hZ2VfMTQ1LnBuZyIsImlhdCI6MTcxOTQ2NjIyMiwiZXhwIjozMzIyMzkzMDIyMn0.hxTasZqFZ87hmSGYUhG-eNOpIrI4BIW1pNfbkpS-ZJQ&t=2024-06-27T05%3A30%3A24.434Z"
+  //         layout="fill"
+  //         objectFit="cover"
+  //         alt={`Grid item ${i + 1}`}
+  //       />
+  //     </div>,
+  //   );
+  // }
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -49,14 +49,9 @@ const Page = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <p className="text-primary text-2xl font-bold">Show more ^</p>
-      </div>
-      <p className="text-[40px] font-bold">Companies we have partnered with</p>
-      <div className="grid grid-cols-3 gap-6">{gridItems}</div>
-      <div className="flex justify-center">
-        <p className="text-primary text-2xl font-bold">Show more ^</p>
-      </div>
+      </div> */}
     </div>
   );
 };

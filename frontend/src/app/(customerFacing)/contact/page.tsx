@@ -79,26 +79,35 @@ const Page = () => {
   // }, [reset]);
 
   return (
-    <div>
+    <div className="bg-whitebase">
       <h1 className="font-bold text-[64px] text-center my-10">Get in Touch</h1>
       <div className="bg-whitebase flex justify-around mx-[72px] gap-[88px] max-mobile:mx-0 max-mobile:gap-10 max-mobile:flex-col max-mobile:items-center">
         {/* contact information */}
 
-        <div className="bg-[#307084] flex flex-col h-[731px] w-1/2 gap-[53px] p-10 rounded-3xl max-mobile:w-full max-mobile:px-[72px] max-mobile:py-8 max-mobile:h-auto max-mobile:rounded-none">
-          <h1 className="font-bold text-[32px] text-white">
-            Contact Information:
-          </h1>
-          <p className="text-xl text-white">
-            If you have questions or special inquiries, youre welcome to contact
-            us or fill out this form.
-          </p>
-          <div className="flex gap-2">
-            <Image src="/call.svg" alt="phone number" width={33} height={33} />
-            <p className="text-xl text-white">(805) 524 - 5569</p>
+        <div className="bg-[#307084] flex flex-col h-[731px] w-1/2 gap-10 max-mobile:gap-8 p-10 rounded-3xl max-mobile:w-full max-mobile:px-[72px] max-mobile:py-8 max-mobile:h-auto max-mobile:rounded-none">
+          <div className="flex flex-col gap-10 max-smMobie:gap-2">
+            <h1 className="font-bold text-[32px] text-white">
+              Contact Information:
+            </h1>
+            <p className="text-xl text-white">
+              If you have questions or special inquiries, youre welcome to
+              contact us or fill out this form.
+            </p>
           </div>
-          <div className="flex gap-2">
-            <Image src="/mail.svg" alt="Email" width={33} height={33} />
-            <p className="text-xl text-white">info@mrcrs.com</p>
+          <div className="flex flex-col gap-2">
+            <div className="flex gap-2">
+              <Image
+                src="/call.svg"
+                alt="phone number"
+                width={33}
+                height={33}
+              />
+              <p className="text-xl text-white">(805) 524 - 5569</p>
+            </div>
+            <div className="flex gap-2">
+              <Image src="/mail.svg" alt="Email" width={33} height={33} />
+              <p className="text-xl text-white">info@mrcrs.com</p>
+            </div>
           </div>
         </div>
 
@@ -248,11 +257,11 @@ const Page = () => {
           </form>
         </div> */}
       </div>
-      <div className="grid gap-10 grid-cols-6 my-20 px-16 max-mobile:grid-cols-1 max-mobile:justify-items-center ">
+      <div className="grid gap-10 grid-cols-3 my-20 px-16 max-[768px]:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
           <div
             key={index}
-            className={`bg-tanbase p-8 flex flex-row gap-2 h-min rounded-3xl text-primary max-mobile:max-w-[500px] ${company.id == 4 || company.id == 5 ? "col-span-3 max-mobile:col-span-2" : "col-span-2"}`}
+            className={`bg-tanbase p-8 flex flex-row gap-2 rounded-3xl text-primary max-mobile:max-w-[500px] `}
           >
             <Image
               src="/location_on.svg"
@@ -262,10 +271,8 @@ const Page = () => {
               className="self-start"
             />
             <div className="flex flex-col gap-2">
-              <h1 className="text-2xl break-words text-[#235E74]">
-                {company.name}
-              </h1>
-              <p className="break-words text-2xl">{company.adress}</p>
+              <h1 className="text-2xl  text-[#235E74]">{company.name}</h1>
+              <p className=" text-2xl">{company.adress}</p>
             </div>
           </div>
         ))}

@@ -254,7 +254,9 @@ export default function Layout({
         </NavigationMenu>
         <CustomerFacingNavLink href="/about">About</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/services">Services</CustomerFacingNavLink>
-        <CustomerFacingNavLink href="/projects">Projects</CustomerFacingNavLink>
+        <CustomerFacingNavLink href="/projectGallery">
+          Projects
+        </CustomerFacingNavLink>
         <CustomerFacingNavLink href="/contact">Contact</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/cart">
           <Image

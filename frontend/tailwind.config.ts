@@ -23,11 +23,13 @@ const config = {
       },
       screens: {
         mobile: "1306px",
+        smMobie: "769px",
       },
       fontFamily: {
         sans: "var(--font-sans)",
         openSans: "var(--font-openSans)",
         montserrat: "var(--font-montserrat)",
+        roboto: "var(--font-roboto)",
       },
       colors: {
         border: "hsl(var(--border))",
