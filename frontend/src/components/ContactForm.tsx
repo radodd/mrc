@@ -79,37 +79,41 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
     reset();
   }, [reset]);
   return (
-    <div className="flex flex-col items-center w-1/2  max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
+    <div className="bg-whitebase font-roboto flex flex-col items-center w-1/2 max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-10  max-mobile:items-center last:mb-0"
       >
-        <div className="flex gap-6 w-full max-mobile:w-full">
-          <div className="w-1/2 max-mobile:w-1/2">
+        <div className="flex gap-6 w-full max-smMobie:flex-col">
+          <div className="w-1/2 max-smMobie:w-full">
             <input
               {...register("firstname", {
-                required: "First Name is required",
+                required: "Please enter your first name",
               })}
               type="text"
               // autoComplete="off"
               placeholder="First Name"
-              className="border border-black w-full h-14 pl-4 max-mobile:w-full"
+              className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full font-roboto"
             />
             {errors.firstname?.message && (
-              <p className="text-red-500 text-sm">{errors.firstname.message}</p>
+              <p className="text-red-500 pl-4 pt-1 text-xs font-roboto">
+                {errors.firstname.message}
+              </p>
             )}
           </div>
-          <div className="w-1/2 max-mobile:w-1/2">
+          <div className="w-1/2 max-smMobie:w-full">
             <input
               {...register("lastname", {
-                required: "Last Name is required",
+                required: "Please enter your last name",
               })}
               placeholder="Last Name"
               type="text"
-              className="border border-black w-full h-14 pl-4  max-mobile:w-full"
+              className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
             />
             {errors.lastname?.message && (
-              <p className="text-red-500 text-sm">{errors.lastname.message}</p>
+              <p className="text-red-500 pl-4 pt-1 text-xs">
+                {errors.lastname.message}
+              </p>
             )}
           </div>
         </div>
@@ -120,7 +124,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             // onChange={(e) => setPhoneNumberValue(e.target.value)}
             // defaultValue=""
             {...register("phonenumber", {
-              required: "Phone Number is required",
+              required: "Please enter your phone number",
               validate: (value) => {
                 const unmaskedValue = value.replace(/\D/g, "");
                 return (
@@ -136,16 +140,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             placeholder="Phone Number"
             type="text"
             inputRef={phoneInputRef}
-            className="border border-black w-full h-14 pl-4 max-mobile:w-full"
+            className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
           />
           {errors.phonenumber?.message && (
-            <p className="text-red-500 text-sm">{errors.phonenumber.message}</p>
+            <p className="text-red-500 pl-4 pt-1 text-xs">
+              {errors.phonenumber.message}
+            </p>
           )}
         </div>
         <div className="w-full max-mobile:w-full">
           <input
             {...register("email", {
-              required: "Email is required",
+              required: "Please enter your email",
               pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                 message: "Invalid email address",
@@ -153,16 +159,20 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             })}
             placeholder="Email"
             type="email"
-            className="border border-black w-full h-14 pl-4 max-mobile:w-full"
+            className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
           />
           {errors.email?.message && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
+            <p className="text-red-500 pl-4 pt-1 text-xs">
+              {errors.email.message}
+            </p>
           )}
         </div>
         <div className="w-full max-mobile:w-full">
           <select
-            {...register("position", { required: "Position is Required" })}
-            className={`border border-black w-full h-14 pl-4 max-mobile:w-full ${selectedValue ? "text-black" : "text-gray-500"}`}
+            {...register("position", {
+              required: "Please choose a position for yourself",
+            })}
+            className={`border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full ${selectedValue ? "text-black" : "text-gray-500"}`}
             value={selectedValue}
             onChange={(e) => setSelectedValue(e.target.value)}
           >
@@ -180,28 +190,37 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             </option>
           </select>
           {errors.position?.message && (
-            <p className="text-red-500 text-sm">{errors.position.message}</p>
+            <p className="text-red-500 pl-4 pt-1 text-xs">
+              {errors.position.message}
+            </p>
           )}
         </div>
         <div className="w-full max-mobile:w-full">
           <input
-            {...register("company")}
+            {...register("company", {
+              required: "Please enter your company or “NA” if not applicable",
+            })}
             placeholder="Company"
             type="text"
-            className="border border-black w-full h-14 pl-4 max-mobile:w-full"
+            className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
           />
+          {errors.company?.message && (
+            <p className="text-red-500 pl-4 pt-1 text-xs">
+              {errors.company.message}
+            </p>
+          )}
         </div>
         <div className="max-mobile:w-full h-[157px]">
           <textarea
-            {...register("message", { required: "Message is reuired" })}
+            {...register("message")}
             placeholder="Message"
             cols={79}
             rows={6}
-            className="border border-black pl-4 pt-3 max-mobile:w-full"
+            className="border rounded-lg border-black pl-4 pt-3 max-mobile:w-full  "
           ></textarea>
-          {errors.message?.message && (
+          {/* {errors.message?.message && (
             <p className="text-red-500 text-sm">{errors.message.message}</p>
-          )}
+          )} */}
         </div>
         <Button className="w-full">{buttonText}</Button>
       </form>

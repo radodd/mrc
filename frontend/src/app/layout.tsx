@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Open_Sans, Montserrat } from "next/font/google";
+import { Inter, Open_Sans, Montserrat, Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "../lib/utils";
 import { Providers } from "../components/Providers";
@@ -9,6 +9,11 @@ const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-openSans" });
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
+});
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -29,6 +34,7 @@ export default function RootLayout({
           inter.variable,
           openSans.variable,
           montserrat.variable,
+          roboto.variable,
         )}
       >
         <Providers>{children}</Providers>
