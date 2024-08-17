@@ -1,0 +1,9 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.container {
+  padding-inline: 72px;
+  @include small-break {
+    padding-inline: 32px;
+  }
+}

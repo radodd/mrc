@@ -1,5 +1,6 @@
-import { Footer, FooterLink } from "../../../../components/Footer";
-import { Nav, NavLink } from "../../../../components/Nav";
+import ContactUs from "../../../../components/sections/ContactUs";
+
+import styles from "../../../../components/scss/Container.module.scss";
 
 export default function Layout({
   children,
@@ -8,7 +9,8 @@ export default function Layout({
 }>) {
   return (
     <>
-      <div className="container my-6">{children}</div>
+      <div className={styles.container}>{children}</div>
+      <ContactUs renderButton={false} />
     </>
   );
 }

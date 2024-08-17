@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 

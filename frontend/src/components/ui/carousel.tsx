@@ -190,7 +190,7 @@ const CarouselItem = React.forwardRef<
       aria-roledescription="slide"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" : "pt-4",
+        orientation === "horizontal" ? "pl-6" : "pt-6",
         className,
       )}
       {...props}
@@ -224,13 +224,29 @@ const CarouselPrevious = React.forwardRef<
       {...props}
     >
       {/* <ArrowLeft className="h-4 w-4" /> */}
-      <Image
+      {/* <Image
         src="/chevron_down.svg"
         alt=""
         width={32}
         height={32}
         className="rotate-90"
-      />
+      /> */}
+      <svg
+        width="20"
+        height="12"
+        viewBox="0 0 20 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="rotate-90 border-none"
+      >
+        <path
+          d="M2 2L9.5 10L18 2"
+          stroke="hsl(var(--icon))"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -260,13 +276,30 @@ const CarouselNext = React.forwardRef<
       {...props}
     >
       {/* <ArrowRight className="h-4 w-4 " /> */}
-      <Image
+      {/* <Image
         src="/chevron_down.svg"
         alt=""
         width={32}
         height={32}
         className="-rotate-90 border-none"
-      />
+      /> */}
+      <svg
+        width="20"
+        height="12"
+        viewBox="0 0 20 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="-rotate-90 border-none"
+      >
+        <path
+          d="M2 2L9.5 10L18 2"
+          stroke="hsl(var(--icon))"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+
       <span className="sr-only">Next slide</span>
     </Button>
   );

@@ -1,0 +1,236 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.headerContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 104px;
+  padding-bottom: 104px;
+  @include mid-break {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  @include small-break {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  h1 {
+    font-size: 64px;
+    @include small-break {
+      font-size: 40px;
+    }
+  }
+}
+
+.materialDetailsContainer {
+  display: flex;
+  justify-content: center;
+  @include mid-break {
+    flex-direction: column;
+  }
+  @include small-break {
+    flex-direction: column;
+  }
+}
+
+.materialImagesContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  padding-right: 60px;
+  gap: 24px;
+  justify-content: start;
+  @include mid-break {
+    flex-direction: row-reverse;
+    padding-right: 0px;
+    padding-bottom: 24px;
+    gap: 40px;
+  }
+  @include small-break {
+    padding-right: 0;
+    align-items: center;
+    border: 2px solid orange;
+    padding-bottom: 40px;
+  }
+}
+
+.carouselContainer {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  @include mid-break {
+    max-height: 556px;
+  }
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  @include large-break {
+    max-width: 700px;
+  }
+  @include mid-break {
+    height: 556px;
+  }
+}
+
+.prev {
+  width: 20px;
+  transform: translateX(-40px) translateY(-18px);
+
+  @include mid-break {
+    transform: translateX(-10px) translateY(45px) rotate(90deg);
+  }
+}
+
+.next {
+  width: 20px;
+  stroke: hsl(var(--icon));
+  transform: translateX(40px) translateY(-18px);
+  @include mid-break {
+    transform: translateX(-10px) translateY(-50px) rotate(90deg);
+  }
+}
+
+.carouselContent {
+  width: 480px;
+  @include mid-break {
+    width: fit-content;
+    height: 460px;
+  }
+  @include small-break {
+    width: 275px;
+  }
+}
+
+.carouselItem {
+  margin-left: 8px;
+
+  @include mid-break {
+    margin-left: 0;
+  }
+}
+
+.carouselImageContainer {
+  width: 93px;
+  height: 93px;
+  position: relative;
+  overflow: hidden;
+  @include small-break {
+    width: 63px;
+    height: 63px;
+  }
+}
+
+.carouselImage {
+  width: 93px;
+  height: 93px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  position: relative;
+}
+
+.selectedImage::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 5px solid hsl(var(--primary)); /* Superimposed border */
+  box-sizing: border-box; /* Ensures the border is inside the element */
+  pointer-events: none; /* Prevents interaction with the pseudo-element */
+}
+
+.imageContainer {
+  width: 601px;
+  height: 601px;
+  @include small-break {
+    width: 366px;
+    height: 366px;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.expandableContent {
+  background-color: hsl(var(--whitebase));
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.5s ease-in-out,
+    opacity 0.5 ease-in-out;
+  opacity: 0;
+}
+
+.expandableContent.expanded {
+  max-height: 150rem;
+  opacity: 1;
+}
+
+.materialInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: auto;
+  @include small-break {
+    gap: 24px;
+  }
+  h1 {
+    color: hsl(var(--primary));
+    font-size: 64px;
+    @include small-break {
+      font-size: 40px;
+    }
+  }
+}
+
+.seeMoreButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  Button {
+    font-style: italic;
+    text-underline-offset: 1;
+    color: hsl(var(--black-base));
+  }
+}
+
+.materialDescriptionContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 144px;
+  padding-bottom: 85px;
+  gap: 40px;
+  @include large-break {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  @include mid-break {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    gap: 24px;
+  }
+  @include small-break {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    gap: 24px;
+  }
+
+  h3 {
+    color: hsl(var(--black-base));
+  }
+  span {
+    color: hsl(var(--secondary-text));
+    font-weight: 400;
+    padding-left: 4px;
+  }
+}

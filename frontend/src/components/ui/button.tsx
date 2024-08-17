@@ -22,12 +22,12 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground font-openSans hover:bg-secondary/80",
         ghost: "hover:bg-accent font-openSans hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 font-openSans hover:underline",
+        link: "text-primary font-openSans underline",
 
         filter:
           "text-primary font-openSans border border-primary font-[24px] hover:underline hover:scale-[1.05] transition-all duration-200",
         quantity:
-          "border-2 border-primary bg-transparent hover:scale-[1.05] transition-all ",
+          "border-2 border-icon bg-transparent hover:scale-[1.05] transition-all ",
       },
       size: {
         default: "px-8 py-4",

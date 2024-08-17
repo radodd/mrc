@@ -30,7 +30,6 @@ import { ArtisanalStone, MaterialsMenu } from "../../..";
 export function CustomerFacingNav({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log("isOpen:", isOpen);
   return (
     <div className={styles.navContainer}>
       <div className={styles.logoContainer}>

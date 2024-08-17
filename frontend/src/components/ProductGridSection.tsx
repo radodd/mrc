@@ -1,4 +1,5 @@
 "use client";
+import { text } from "stream/consumers";
 // src/components/ProductGridSection.tsx
 import { useFilter } from "../context/FilterContext";
 import { ProductCard } from "./ProductCard";
@@ -11,10 +12,13 @@ interface Product {
   id: string;
   name: string;
   description: string;
+  image_primary: string;
   imagePath: string;
   company: string;
   color: string[];
   category: string[];
+  texture: string[];
+  size: string[];
 }
 
 type ProductGridSectionProps = {
@@ -46,6 +50,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log("Fetched data:", data);
         setProducts(data);
       } catch (error) {
         console.error("Error fetching DATA:", error);
@@ -67,21 +72,69 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
       const categoryFilter = filterValueList.some((filterValue) =>
         product.category.includes(filterValue),
       );
-      return colorFilter || companyFilter || categoryFilter;
+      const textureFilter = filterValueList.some((filterValue) =>
+        product.texture.includes(filterValue),
+      );
+      const sizeFilter = filterValueList.some((filterValue) =>
+        product.size.includes(filterValue),
+      );
+      return (
+        colorFilter ||
+        companyFilter ||
+        categoryFilter ||
+        textureFilter ||
+        sizeFilter
+      );
     }
   });
 
-  //   function applyArrayFilter(filterValueList: string[]) {
-  //     setFilterValueList(filterValueList);
-  //   }
+  const categoryCounts = filteredProductList.reduce(
+    (counts: Record<string, number>, product) => {
+      product.category.forEach((cat) => {
+        counts[cat] = (counts[cat] || 0) + 1;
+      });
+      return counts;
+    },
+    {},
+  );
 
-  // function handleRemoveFilter(filter: string) {
-  //   setFilterValueList((prevFilters) =>
-  //     prevFilters.filter((f) => f !== filter),
-  //   );
-  //   clearFilter(filter);
-  // }
+  const colorCounts = filteredProductList.reduce(
+    (counts: Record<string, number>, product) => {
+      product.color.forEach((col) => {
+        counts[col] = (counts[col] || 0) + 1;
+      });
+      return counts;
+    },
+    {},
+  );
 
+  const companyCounts = filteredProductList.reduce(
+    (counts: Record<string, number>, product) => {
+      counts[product.company] = (counts[product.company] || 0) + 1;
+      return counts;
+    },
+    {},
+  );
+
+  const textureCounts = filteredProductList.reduce(
+    (counts: Record<string, number>, product) => {
+      product.texture.forEach((tex) => {
+        counts[tex] = (counts[tex] || 0) + 1;
+      });
+      return counts;
+    },
+    {},
+  );
+
+  const sizeCounts = filteredProductList.reduce(
+    (counts: Record<string, number>, product) => {
+      product.size.forEach((size) => {
+        counts[size] = (counts[size] || 0) + 1;
+      });
+      return counts;
+    },
+    {},
+  );
   const handleRemoveFilter = (filter: string) => {
     setFilterValueList((prevFilters) =>
       prevFilters.filter((f) => f !== filter),
@@ -110,9 +163,11 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
       </div>
       <div className="flex">
         <ProductFilters
-        //   arrayFilter={applyArrayFilter}
-        //   filterValueList={filterValueList}
-        //   clearFilter={clearFilter}
+          categoryCounts={categoryCounts}
+          colorCounts={colorCounts}
+          companyCounts={companyCounts}
+          textureCounts={textureCounts}
+          sizeCounts={sizeCounts}
         />
         <div className="border-2 border-red-300 flex flex-col space-y-6 min-[769px]:mx-[72px] min-[1305px]:mx-0 min-[1306px]:mx-[72px]">
           {filteredProductList.map((product) => (
