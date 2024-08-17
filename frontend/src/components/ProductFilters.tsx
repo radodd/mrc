@@ -55,7 +55,21 @@ const CATEGORY_FILTERS = {
   ] as const,
 };
 
-export const ProductFilters: React.FC = () => {
+interface ProductFiltersProps {
+  categoryCounts: Record<string, number>;
+  colorCounts: Record<string, number>;
+  companyCounts: Record<string, number>;
+  textureCounts: Record<string, number>;
+  sizeCounts: Record<string, number>;
+}
+
+export const ProductFilters: React.FC<ProductFiltersProps> = ({
+  categoryCounts,
+  colorCounts,
+  companyCounts,
+  textureCounts,
+  sizeCounts,
+}) => {
   const { setFilterValueList, filterValueList, clearFilter } = useFilter();
 
   const handleCheckboxChange = (category: string, value: string) => {
@@ -66,6 +80,15 @@ export const ProductFilters: React.FC = () => {
       setFilterValueList((prev) => [...prev, value]);
     }
   };
+  console.log(filterValueList);
+
+  // const categoryCounts = products.reduce(
+  //   (counts: Record<string, number>, product) => {
+  //     counts[product.category] = (counts[product.category] || 0) + 1;
+  //     return counts;
+  //   },
+  //   {},
+  // );
 
   return (
     <>
@@ -91,59 +114,26 @@ export const ProductFilters: React.FC = () => {
 
             <AccordionContent className="pt-6">
               <ul className="space-y-4">
-                {COMPANY_FILTERS.options.map((option, optionIdx) => (
-                  <li key={option.value} className="flex items-center">
+                {Object.keys(companyCounts).map((company, index) => (
+                  <li key={company} className="flex items-center">
                     <input
                       type="checkbox"
-                      id={`company-${optionIdx}`}
-                      onChange={() =>
-                        handleCheckboxChange("company", option.value)
-                      }
-                      checked={filterValueList.includes(option.value)}
+                      id={company}
+                      onChange={() => handleCheckboxChange("company", company)}
+                      checked={filterValueList.includes(company)}
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
-                      htmlFor={`company-${optionIdx}`}
+                      htmlFor={company}
                       className="ml-3 text-sm text-gray-600"
                     >
-                      {option.label}
+                      {company} ({companyCounts[company]})
                     </label>
                   </li>
                 ))}
               </ul>
             </AccordionContent>
           </AccordionItem>
-
-          <AccordionItem value="color">
-            <AccordionTrigger className="py-3 text-sm text-gray-400 hover:text-gray-500">
-              <span className="font-medium text-gray-900">Color</span>
-            </AccordionTrigger>
-
-            <AccordionContent className="pt-6">
-              <ul className="space-y-4">
-                {COLOR_FILTERS.options.map((option, optionIdx) => (
-                  <li key={option.value} className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id={`color-${optionIdx}`}
-                      onChange={() =>
-                        handleCheckboxChange("colors", option.value)
-                      }
-                      checked={filterValueList.includes(option.value)}
-                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                    />
-                    <label
-                      htmlFor={`color-${optionIdx}`}
-                      className="ml-3 text-sm text-gray-600"
-                    >
-                      {option.label}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </AccordionContent>
-          </AccordionItem>
-
           <AccordionItem value="category">
             <AccordionTrigger className="py-3 text-sm text-gray-400 hover:text-gray-500">
               <span className="font-medium text-gray-900">Category</span>
@@ -151,22 +141,103 @@ export const ProductFilters: React.FC = () => {
 
             <AccordionContent className="pt-6">
               <ul className="space-y-4">
-                {CATEGORY_FILTERS.options.map((option, optionIdx) => (
-                  <li key={option.value} className="flex items-center">
+                {Object.keys(categoryCounts).map((category, index) => (
+                  <li key={index} className="flex items-center">
                     <input
                       type="checkbox"
-                      id={`category-${optionIdx}`}
+                      id={category}
                       onChange={() =>
-                        handleCheckboxChange("category", option.value)
+                        handleCheckboxChange("category", category)
                       }
-                      checked={filterValueList.includes(option.value)}
+                      checked={filterValueList.includes(category)}
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
-                      htmlFor={`category-${optionIdx}`}
+                      htmlFor={category}
                       className="ml-3 text-sm text-gray-600"
                     >
-                      {option.label}
+                      {category} ({categoryCounts[category]})
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="texture">
+            <AccordionTrigger className="py-3 text-sm text-gray-400 hover:text-gray-500">
+              <span className="font-medium text-gray-900">Texture</span>
+            </AccordionTrigger>
+
+            <AccordionContent className="pt-6">
+              <ul className="space-y-4">
+                {Object.keys(textureCounts).map((texture, index) => (
+                  <li key={index} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id={texture}
+                      onChange={() => handleCheckboxChange("category", texture)}
+                      checked={filterValueList.includes(texture)}
+                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <label
+                      htmlFor={texture}
+                      className="ml-3 text-sm text-gray-600"
+                    >
+                      {texture} ({textureCounts[texture]})
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="color">
+            <AccordionTrigger className="py-3 text-sm text-gray-400 hover:text-gray-500">
+              <span className="font-medium text-gray-900">Color</span>
+            </AccordionTrigger>
+
+            <AccordionContent className="pt-6">
+              <ul className="space-y-4">
+                {Object.keys(colorCounts).map((color, index) => (
+                  <li key={index} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id={color}
+                      onChange={() => handleCheckboxChange("colors", color)}
+                      checked={filterValueList.includes(color)}
+                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <label
+                      htmlFor={color}
+                      className="ml-3 text-sm text-gray-600"
+                    >
+                      {color} ({colorCounts[color]})
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="size">
+            <AccordionTrigger className="py-3 text-sm text-gray-400 hover:text-gray-500">
+              <span className="font-medium text-gray-900">Size</span>
+            </AccordionTrigger>
+
+            <AccordionContent className="pt-6">
+              <ul className="space-y-4">
+                {Object.keys(sizeCounts).map((size, index) => (
+                  <li key={index} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id={size}
+                      onChange={() => handleCheckboxChange("colors", size)}
+                      checked={filterValueList.includes(size)}
+                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <label
+                      htmlFor={size}
+                      className="ml-3 text-sm text-gray-600"
+                    >
+                      {size} ({sizeCounts[size]})
                     </label>
                   </li>
                 ))}

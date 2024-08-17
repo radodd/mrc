@@ -1,31 +1,13 @@
 "use client";
-// import { supabase } from '@/lib/supabaseClient';
-// import { ProductCardProps } from '@/types';
-// import PostLayout from "@/components/post-layout"; // Adjust if necessary
 import { useEffect, useState } from "react";
-// import supabase from "../../../../../../api/src/server";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useParams } from "next/navigation";
 import { Separator } from "../../../../components/ui/separator";
 import { Button } from "../../../../components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../../../components/ui/select";
-// import { useRouter } from "next/navigation";
-
-import styles from "../../../../components/scss/QuantityToggle.module.scss";
-import { Input } from "../../../../components/ui/input";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "../../../../components/ui/hover-card";
-import ContactUs from "../../../../components/sections/ContactUs";
 import {
   Carousel,
   CarouselContent,
@@ -33,45 +15,88 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../../../../components/ui/carousel";
-import Form from "../../../../components/sections/materialDetailPage/MaterialDetailForm";
 import MaterialDetailForm from "../../../../components/sections/materialDetailPage/MaterialDetailForm";
+
+import styles from "../../../../components/scss/MaterialDetail.module.scss";
 
 export type ProductCardProps = {
   id: string;
   name: string;
   description: string;
+  image_primary: string;
   imagePath: string[];
   company: string;
   color: string[];
   category: string[];
+  texture: string[];
+  size: string[];
 };
+
+type Orientation = "horizontal" | "vertical";
 
 const fetchProductById = async (
   id: string,
 ): Promise<ProductCardProps | null> => {
-  const res = await fetch(`http://localhost:3030/products/${id}`);
-  if (!res.ok) {
-    return null;
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product?id=eq.${id}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        apikey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY,
+      },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
   }
-  return await res.json();
+  const data = await response.json();
+
+  // Assuming the data is an array with a single product
+  return data.length > 0 ? data[0] : null;
 };
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const [product, setProduct] = useState<ProductCardProps | null>(null);
-  const [image, setImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState("");
+  const [orientation, setOrientation] = useState<Orientation>("horizontal");
+  const [expanded, setExpanded] = useState(false);
+  console.log(expanded);
+  useEffect(() => {
+    const handleResize = () => {
+      setOrientation(
+        window.innerWidth < 1305 && window.innerWidth > 768
+          ? "vertical"
+          : "horizontal",
+      );
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Set initial orientation
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
-    if (product && product.imagePath.length > 0) {
-      setImage(product.imagePath[0]);
+    if (product && product.imagePath?.length > 0) {
+      console.log("Fetched product:", product); // Logging the product data
+      setSelectedImage(product.imagePath[0]);
+    } else {
+      setSelectedImage("/gsa.png");
     }
   }, [product]);
 
   useEffect(() => {
     if (id) {
-      fetchProductById(id as string).then((data) => {
-        setProduct(data);
-      });
+      fetchProductById(id as string)
+        .then((data) => {
+          console.log("Fetched data:", data); // Logging the product data
+          setProduct(data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch product data:", error);
+        });
     }
   }, [id]);
 
@@ -79,105 +104,148 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     return <div>Loading...</div>;
   }
 
+  const numImages = product.imagePath.length;
+  const totalGapWidthPercentage = ((4 * 5) / 480) * 50;
+  const imageWidthPercentage = (100 - totalGapWidthPercentage) / numImages;
+  const basisPercentage = imageWidthPercentage.toFixed(2);
+  console.log(basisPercentage);
+
   return (
     <>
-      <div className="flex justify-center">
-        <h1 className="pb-[84px]">Material Details</h1>
+      <div className={styles.headerContainer}>
+        <h1>Material Details</h1>
       </div>
-      <div className="flex justify-center">
-        <div className="flex pr-[72px] gap-[48px]">
-          <div className="flex flex-col gap-6">
-            <Carousel orientation="vertical">
-              <CarouselContent className="h-[500px]">
+      <div className={styles.materialDetailsContainer}>
+        <div className={styles.materialImagesContainer}>
+          <div className={styles.carouselContainer}>
+            <Carousel
+              orientation={orientation}
+              opts={{
+                align: "center",
+              }}
+              className={styles.carousel}
+            >
+              <CarouselPrevious className={styles.prev} />
+              <CarouselContent className={styles.carouselContent}>
                 {product.imagePath.map((image, index) => (
-                  <CarouselItem key={index} className="basis-1/6">
-                    <Image
-                      src={image}
-                      alt=""
-                      width={93}
-                      height={93}
-                      onClick={() => setImage(image)}
-                    />
+                  <CarouselItem
+                    key={index}
+                    // className="basis-1/4 pl-[10px] pr-[0px]"
+                    // className={`basis-[calc((75% - ${product.imagePath.length - 1} * 5px) / ${product.imagePath.length})] ml-[25px]`}
+                    className={`basis-[${basisPercentage}%] ${styles.carouselItem}`}
+                  >
+                    <div
+                      className={`${selectedImage === image ? styles.selectedImage : ""} ${styles.carouselImageContainer}`}
+                    >
+                      <Image
+                        src={image}
+                        alt=""
+                        width={93}
+                        height={93}
+                        onClick={() => setSelectedImage(image)}
+                        className={styles.carouselImage}
+                      />
+                    </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+
+              <CarouselNext className={styles.next} />
             </Carousel>
           </div>
-          <div>
-            <Image src={image} alt={product.name} width={601} height={601} />
-            <h1 className="pt-6 text-[64px]">{product.name}</h1>
+          <div className={styles.imageContainer}>
+            <Image
+              src={selectedImage}
+              alt={product.name}
+              width={601}
+              height={601}
+              className={styles.image}
+            />
           </div>
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className={styles.materialInfo}>
+          <h1>{product.name}</h1>
           <h3>
             Categories:
-            <span className="text-blackbase font-normal pl-1">
-              {product.category.join(", ")}
+            <span className="text-secondary-text font-normal pl-1">
+              {product.category?.join(", ")}
             </span>
           </h3>
           <h3>
             Colors:
-            <span className="text-blackbase font-normal pl-1">
-              {product.color.join(", ")}
+            <span className="text-secondary-text font-normal pl-1">
+              {product.color?.join(", ")}
             </span>
           </h3>
           <h3>
             Textures:
-            <span className="text-blackbase font-normal pl-1">
-              {product.color.join(", ")}
+            <span className="text-secondary-text font-normal pl-1">
+              {product.texture?.join(", ")}
             </span>
           </h3>
           <div className="flex gap-6">
-            <Button>Spec Sheet</Button>
             <Button>Category Sizes</Button>
           </div>
 
           <MaterialDetailForm product={product} />
-          <div className="flex justify-center">
-            <HoverCard>
+          <div className={styles.seeMoreButton}>
+            <Button variant="link" onClick={() => setExpanded(!expanded)}>
+              What is Request to Quote?
+            </Button>
+            {expanded && (
+              <div
+                className={`${styles.expandableContent} ${expanded ? styles.expanded : ""}`}
+              >
+                <p className="text-[16px]">
+                  {" "}
+                  We strive to provide the best price for your materials,
+                  whether you're a wholesaler, retailer, or homeowner. To
+                  request a quote, simply select the category, size, and
+                  quantity of the material, then click the “Request to Quote”
+                  button to add the item to your cart. Afterward, fill out your
+                  contact information in the cart. Once submitted, we will
+                  promptly email you a detailed quote, allowing you to proceed
+                  with placing your order.
+                </p>
+              </div>
+            )}
+            {/* <HoverCard>
               <HoverCardTrigger>
-                <span className="italic underline">
+                <span className="italic underline text-secondary-text font-openSans cursor-pointer">
                   What is Request to Quote?
                 </span>
               </HoverCardTrigger>
               <HoverCardContent>
-                Hey dumbass! Dis faka dont know what shii bout quotes.
+                We strive to provide the best price for your materials, whether
+                you're a wholesaler, retailer, or homeowner. To request a quote,
+                simply select the category, size, and quantity of the material,
+                then click the “Request to Quote” button to add the item to your
+                cart. Afterward, fill out your contact information in the cart.
+                Once submitted, we will promptly email you a detailed quote,
+                allowing you to proceed with placing your order.
               </HoverCardContent>
-            </HoverCard>
+            </HoverCard> */}
           </div>
         </div>
       </div>
-      <div className="pt-[106px]">
-        <div className="flex flex-col gap-10 pb-[85px]">
-          <Separator />
-          <h1>Material Description</h1>
-          <p>{product.description}</p>
-          <h3>
-            Company:
-            <span className="text-blackbase font-normal pl-1">
-              {product.company}
-            </span>
-          </h3>
-          <h3>
-            Uses:
-            <span className="text-blackbase font-normal pl-1">
-              Pending more data from MRC
-            </span>
-          </h3>
-        </div>
 
-        <div>
-          <h1>Projects using this material</h1>
-          <div className="h-[280px] w-[280px] bg-slate-500"></div>
-        </div>
-        <div>
-          <h1>Similar Products</h1>
-          <div className="h-[280px] w-[280px] bg-slate-500"></div>
-        </div>
-        <ContactUs renderButton={false} />
+      <div className={styles.materialDescriptionContainer}>
+        <Separator className="bg-blackbase" />
+        <h1>Material Description</h1>
+        <p>{product.description}</p>
+        <h3 className="text-blackbase">
+          Company:
+          <span className="text-secondary-text font-normal pl-1">
+            {product.company}
+          </span>
+        </h3>
+        <h3 className="text-blackbase">
+          Uses:
+          <span className="text-secondary-text font-normal pl-1">
+            Pending more data from MRC
+          </span>
+        </h3>
       </div>
     </>
   );

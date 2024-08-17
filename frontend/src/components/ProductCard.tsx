@@ -14,6 +14,7 @@ type ProductCardProps = {
   id: string;
   name: string;
   description: string;
+  image_primary: string;
   imagePath: string;
   company: string;
   color: string[];
@@ -23,6 +24,7 @@ export function ProductCard({
   id,
   name,
   description,
+  image_primary,
   imagePath,
   company,
   color,
@@ -38,7 +40,7 @@ export function ProductCard({
       <Card className={styles.card}>
         <div className={styles.imageWrapper}>
           <Image
-            src={imagePath[0]}
+            src={image_primary}
             alt={name}
             // width={325}
             // height={325}

@@ -21,6 +21,18 @@
   align-items: center !important;
 }
 
+/* .long-text {
+  max-height: 0;
+  overflow: hidden;
+  display: block;
+  transition: max-height 0.3s;
+}
+
+.expanded {
+  max-height: 500px;
+  transition: max-height 2s;
+} */
+
 @layer base {
   :root {
     --font-sans: "Inter", sans-serif;
@@ -47,6 +59,7 @@
 
     --primary: 194, 47%, 35%;
     --primary-foreground: 55, 58%, 96%;
+    --primary-text: 228, 5%, 18%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -66,7 +79,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
-
+    --icon: 236, 8%, 39%;
     --radius: 0.5rem;
   }
 
@@ -118,7 +131,7 @@
     @apply !text-pretty;
   }
   h1 {
-    color: hsl(var(--black-base));
+    color: hsl(var(--primary-text));
     font-family: var(--font-montserrat);
     font-size: 40px;
     font-style: normal;
@@ -142,7 +155,7 @@
     line-height: normal;
   }
   p {
-    color: hsl(var(--black-base));
+    color: hsl(var(--secondary-text));
     font-family: var(--font-openSans);
     font-size: 20px;
     font-style: normal;

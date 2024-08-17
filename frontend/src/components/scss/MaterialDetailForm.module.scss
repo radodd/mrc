@@ -1,0 +1,48 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-family: var(--font-openSans);
+  @include mid-break {
+    gap: 24px;
+  }
+  @include small-break {
+    gap: 24px;
+  }
+
+  .FormItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .FormLabel {
+    font-size: 24px;
+    color: hsl(var(--primary-text));
+    @include small-break {
+      font-size: 20px;
+    }
+  }
+  .SelectTrigger {
+    width: 100%;
+    height: 56px;
+    border: 2px solid hsl(var(--black-base));
+    border-radius: 4px;
+    background-color: hsl(var(--whitebase));
+  }
+
+  .Input {
+    width: 84px;
+    height: 56px;
+    text-align: center;
+    border: 2px solid hsl(var(--icon));
+    background-color: hsl(var(--whitebase));
+  }
+
+  .quantityToggleContainer {
+    display: flex;
+    gap: 16px;
+  }
+}

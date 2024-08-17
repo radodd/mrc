@@ -20,20 +20,36 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-10 w-full m-0 my-0 mt-0 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      "flex h-10 w-full m-0 my-0 mt-0 items-center justify-between rounded-md border border-input bg-background px-3 py-6 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       className,
     )}
     {...props}
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <Image
+      <svg
+        width="16"
+        height="8"
+        viewBox="0 0 20 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2 2L9.5 10L18 2"
+          stroke="hsl(var(--icon))"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+
+      {/* <Image
         src="/chevron_down.svg"
         alt=""
         width={16}
         height={8}
-        className="h-4 w-4 opacity-100"
-      />
+        className="h-4 w-4 opacity-100 text-icon "
+      /> */}
       {/* <ChevronDown className="h-4 w-4 opacity-50" /> */}
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>

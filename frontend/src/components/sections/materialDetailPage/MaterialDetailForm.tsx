@@ -24,6 +24,8 @@ import * as z from "zod";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import styles from "../../scss/MaterialDetailForm.module.scss";
+
 // const fetchProductById = async (
 //   id: string,
 // ): Promise<ProductCardProps | null> => {
@@ -85,40 +87,35 @@ export default function MaterialDetailForm({ product }: FormProps) {
   return (
     <>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-8"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
           <FormField
             control={form.control}
             name="category"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-openSans text-[24px] m-0">
-                  Category:
-                </FormLabel>
+                <FormLabel className={styles.FormLabel}>Category:</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
-                  <FormControl className=" ">
-                    <SelectTrigger className="w-full h-[56px] border-2 border-primary rounded-sm mt-4">
+                  <FormControl>
+                    <SelectTrigger className={styles.SelectTrigger}>
                       <SelectValue placeholder="" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {product.category.map((category) => (
+                    {product.category?.map((category) => (
                       <SelectItem key={category} value={category}>
                         {category}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription
+                {/* <FormDescription
                   className={`${!errors.category ? "" : "hidden"} `}
                 >
                   Select one of the available categories.
-                </FormDescription>
+                </FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}
@@ -128,29 +125,27 @@ export default function MaterialDetailForm({ product }: FormProps) {
             name="size"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-openSans text-[24px]">
-                  Size:
-                </FormLabel>
+                <FormLabel className={styles.FormLabel}>Size:</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="w-full h-[56px]  border-2 border-primary rounded-sm">
+                    <SelectTrigger className={styles.SelectTrigger}>
                       <SelectValue placeholder="" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {product.category.map((category) => (
-                      <SelectItem key={category} value={category}>
-                        {category}
+                    {product.size?.map((size) => (
+                      <SelectItem key={size} value={size}>
+                        {size}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription className={`${!errors.size ? "" : "hidden"} `}>
+                {/* <FormDescription className={`${!errors.size ? "" : "hidden"} `}>
                   Select one of the available sizes.
-                </FormDescription>
+                </FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}
@@ -159,12 +154,12 @@ export default function MaterialDetailForm({ product }: FormProps) {
             control={form.control}
             name="quantity"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-openSans text-[24px]">
+              <FormItem className={styles.FormItem}>
+                <FormLabel className={styles.FormLabel}>
                   Quantity (Per Ton)
                 </FormLabel>
 
-                <div className="flex gap-4">
+                <div className={styles.quantityToggleContainer}>
                   <Button
                     type="button"
                     variant="quantity"
@@ -173,7 +168,23 @@ export default function MaterialDetailForm({ product }: FormProps) {
                       field.onChange(decrementQty());
                     }}
                   >
-                    <Image src="/minus.png" alt="" width={12} height={12} />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                    >
+                      <rect
+                        x="12"
+                        y="5"
+                        width="2"
+                        height="12"
+                        rx="1"
+                        transform="rotate(90 12 5)"
+                        fill="#5C5D6D"
+                      />
+                    </svg>
                   </Button>
                   <FormControl>
                     <Input
@@ -184,7 +195,7 @@ export default function MaterialDetailForm({ product }: FormProps) {
                         field.onChange(e);
                         enterQty(e);
                       }}
-                      className="w-[84px] h-14 text-center border-2 border-primary"
+                      className={styles.Input}
                     />
                   </FormControl>
                   <Button
@@ -195,15 +206,32 @@ export default function MaterialDetailForm({ product }: FormProps) {
                       field.onChange(incrementQty());
                     }}
                   >
-                    <Image src="/add.png" alt="" width={12} height={12} />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                    >
+                      <rect x="5" width="2" height="12" rx="1" fill="#5C5D6D" />
+                      <rect
+                        x="12"
+                        y="5"
+                        width="2"
+                        height="12"
+                        rx="1"
+                        transform="rotate(90 12 5)"
+                        fill="#5C5D6D"
+                      />
+                    </svg>
                   </Button>
                 </div>
 
-                <FormDescription
+                {/* <FormDescription
                   className={`${!errors.quantity ? "" : "hidden"} `}
                 >
                   Select one of the available sizes.
-                </FormDescription>
+                </FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}

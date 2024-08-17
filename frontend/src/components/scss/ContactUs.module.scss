@@ -1,51 +1,60 @@
 @use "../../../css/queries.scss";
 @import "../../../css/queries.scss";
 
+.contactContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: hsl(var(--tan-base));
+  margin-bottom: 104px;
+
+  @include small-break {
+    margin-bottom: 40px;
+  }
+}
 .contact {
   width: auto;
+  height: auto;
   @include small-break {
     display: flex;
     flex-direction: column;
-    padding: 48px 32px;
-
-    div {
-      &:first-child {
-        margin-bottom: 32px;
-        image {
-          aspect-ratio: 366 / 175;
-        }
-      }
-    }
   }
+
   @include mid-break {
     display: flex;
     flex-direction: column;
-    padding: 48px 72px;
-
-    div {
-      &:first-child {
-        margin-bottom: 32px;
-        image {
-          aspect-ratio: 366 / 175;
-        }
-      }
-    }
   }
+
+  @media (min-width: 1042px) and (max-width: 1305px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   @include large-break {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 48px 70px;
-    gap: 72px;
+  }
+}
 
-    div {
-      &:first-child {
-        margin-bottom: 32px;
-        image {
-          aspect-ratio: 730 / 392;
-        }
-      }
-    }
+.image {
+  @include small-break {
+  }
+  @include mid-break {
+    min-width: 100%;
+    height: 413px;
+    object-fit: cover;
+    object-position: center;
+  }
+  @include large-break {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-height: 430px;
+    object-fit: cover;
+    object-position: center;
+    // min-height: 421px;
   }
 }
 
@@ -53,14 +62,26 @@
   display: flex;
   flex-direction: column;
   text-align: left;
+  gap: 32px;
   @include small-break {
-    gap: 32px;
+    padding: 32px;
     h1 {
       font-size: 32px;
     }
   }
   @include mid-break {
-    gap: 32px;
+    padding: 72px;
+
+    h1 {
+      font-size: 32px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 1042px) and (max-width: 1305px) {
+    padding: 72px;
+
     h1 {
       font-size: 32px;
     }
@@ -69,7 +90,9 @@
     }
   }
   @include large-break {
-    gap: 40px;
+    padding: 72px;
+    min-width: 525px;
+
     h1 {
       font-size: 40px;
     }
