@@ -32,21 +32,19 @@ export default function LandingPageCarousel() {
   return (
     <div className="bg-tanbase">
       <Carousel setApi={setApi} className={styles.carousel}>
-        <CarouselContent>
+        <CarouselContent className={styles.carouselContent}>
           <CarouselItem className={styles.carouselItem}>
             <div className={styles.carouselContainer}>
               <div className={styles.carouselHeader}>
                 <h1>Hello!</h1>
                 <div className="flex flex-row">
-                  <div className="w-[230px]">
-                    <span className="block ">We are</span>
-                  </div>
-                  <div className="flex flex-col w-fit justify-start text-start">
+                  <span className="w-[230px]">We are</span>
+                  <div className={styles.sliderContainer}>
                     <Slider />
                   </div>
                 </div>
               </div>
-              <div>
+              <div className={styles.description}>
                 <p className="">
                   We are a collection of companies here to service your
                   construction needs.
@@ -62,26 +60,86 @@ export default function LandingPageCarousel() {
               </div>
             </div>
           </CarouselItem>
-          <CarouselItem className="flex bg-slate-600 items-center justify-center">
-            SANTA PAULA MATERIALS
+          {/* SLIDE 2 */}
+          <CarouselItem className={styles.carouselItem2}>
+            <div className={styles.subItem2}>
+              <div className={styles.carouselHeader2}>
+                <span>We are</span>
+                <span>Santa Paula Materials</span>
+              </div>
+              <p className={styles.body2}>
+                Our main business is to do demolition and recycling of building
+                materials. We can come get your dirt and then sell it. We sell
+                the material we recycle, like concrete and soil.
+              </p>
+              <div className="gap-6 inline-flex max-[768px]:flex-col">
+                <Button variant="outline" size="default" navigateTo="/about">
+                  About Us
+                </Button>
+                <Button variant="default" size="default" navigateTo="/contact">
+                  Contact Us
+                </Button>
+                <div className={styles.indicatorContainer}>
+                  {Array.from({ length: 3 }).map((item, index) => (
+                    <div key={index} className="">
+                      <Image
+                        src="/indicator.svg"
+                        alt=""
+                        width={12}
+                        height={12}
+                        className={`${styles.indicator} ${current === index + 1 ? styles.active : ""} ${current === 2 ? "hidden" : ""}`}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className={styles.imageContainer}>
+              <Image
+                src="/we_specialize.png"
+                alt=""
+                width={500}
+                height={600}
+                className={styles.image}
+              />
+            </div>
           </CarouselItem>
-          <CarouselItem className="flex bg-slate-600 items-center justify-center">
+          <CarouselItem className="flex max-h-[400px] bg-slate-600 items-center justify-center">
             SOME OTHER COMPANY
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className={styles.prev} />
+        <CarouselNext className={styles.next} />
       </Carousel>
       <div className={styles.indicatorContainer}>
         {Array.from({ length: 3 }).map((item, index) => (
           <div key={index} className="">
-            <Image
+            {/* <Image
               src="/indicator.svg"
               alt=""
               width={12}
               height={12}
-              className={`${styles.indicator} ${current === index + 1 ? styles.active : ""}`}
-            />
+              className={`${styles.indicator} ${current === index + 1 ? styles.active : ""} ${current === 2 ? "hidden" : ""}`}
+              style={{
+                fill: current === index + 1 ? "color-primary" : "",
+              }}
+            /> */}
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={`${styles.indicator}  ${current === 2 ? "hidden" : ""}`}
+            >
+              <rect
+                width="12"
+                height="12"
+                rx="6"
+                fill="#A9C8D3"
+                className={`${current === index + 1 ? "fill-[#307084]" : ""}`}
+              />
+            </svg>
           </div>
         ))}
       </div>
