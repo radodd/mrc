@@ -31,6 +31,13 @@
     justify-content: center;
     align-items: start;
   }
+  @include small-break {
+    max-width: 80%;
+  }
+  @include extra-small-break {
+    max-width: 45%;
+    overflow: hidden;
+  }
 }
 
 .line {
@@ -56,5 +63,6 @@
   }
   @include small-break {
     font-size: 40px;
+    max-width: 100%;
   }
 }
