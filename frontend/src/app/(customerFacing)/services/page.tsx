@@ -14,7 +14,7 @@ const page = () => {
       {/* hero for services  */}
 
       <div className="flex flex-col mb-20 bg-primary">
-        <h1 className="font-bold text-5xl my-14 ml-[70px] ">
+        <h1 className="font-bold text-5xl my-6 ml-[70px] ">
           Santa Paula Materials
         </h1>
         {santaPaulaMaterials.map((materials) => (
@@ -36,9 +36,13 @@ const page = () => {
               />
             </div>
             {/* </div> */}
-            <div className="flex-col flex gap-10 w-1/2 h-[372px] my-12 px-[72px] max-mobile:w-full">
-              <h1 className="font-bold text-[32px]">{materials.name}</h1>
-              <p className="text-[20px] w-full ">{materials.desc}</p>
+            <div className="flex-col flex gap-10 w-1/2 h-[372px] my-12 px-[70px] max-mobile:px-[72px] max-smMobie:px-8 max-mobile:w-full">
+              <h1 className="font-bold text-[32px] max-smMobie:text-2xl">
+                {materials.name}
+              </h1>
+              <p className="text-[20px] w-full max-smMobie:text-base">
+                {materials.desc}
+              </p>
               <div className="flex gap-2 ">
                 {materials.id == 1 ? (
                   <Button variant="outline">View Materials</Button>
@@ -54,7 +58,7 @@ const page = () => {
       {/* Mr rock & Sand */}
 
       <div className="flex flex-col mb-20  bg-primary">
-        <h1 className="font-bold text-5xl my-14 ml-[70px]">MRC Rock & Sand</h1>
+        <h1 className="font-bold text-5xl my-6 ml-[70px]">MRC Rock & Sand</h1>
         {mrcRocknSand.map((service) => (
           <div
             key={service.id}
@@ -71,14 +75,23 @@ const page = () => {
                 className="object-cover "
               />
             </div>
-            <div className="flex-col flex gap-10 w-1/2 h-[372px] my-12 px-[72px] max-mobile:w-full">
-              <h1 className="font-bold text-[32px]">{service.name}</h1>
-              <p className="text-[20px] w-full">{service.desc}</p>
-              <div className="flex">
+            <div className="flex-col flex gap-10 w-1/2 h-[372px] my-12 px-[70px] max-mobile:px-[72px] max-smMobie:px-[32px] max-mobile:w-full">
+              <h1 className="font-bold text-[32px] max-smMobie:text-2xl">
+                {service.name}
+              </h1>
+              <p className="text-[20px] w-full max-smMobie:text-base">
+                {service.desc}
+              </p>
+              {/* <div className="flex">
                 {service.id == 3 ? (
                   <Button variant={"outline"}>Contact MRC</Button>
                 ) : null}
-              </div>
+              </div> */}
+              {service.id == 3 && (
+                <div className="flex">
+                  <Button variant={"outline"}>Contact MRC</Button>
+                </div>
+              )}
             </div>
           </div>
         ))}
