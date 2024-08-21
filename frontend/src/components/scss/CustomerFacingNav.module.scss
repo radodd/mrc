@@ -13,6 +13,9 @@
 .logoContainer {
   display: flex;
   align-items: center;
+  @include small-break {
+    max-width: 104px;
+  }
 }
 
 .nav {
@@ -81,15 +84,34 @@
   flex-direction: column;
   gap: 8px;
   font-size: 24px;
+  color: hsl(var(--black-base));
 }
 
 .materialsMenu {
+  width: 300px;
   span {
-    font-family: var(--montserrat);
+    font-family: var(--font-montserrat);
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.48px;
+  }
+}
+
+.mobileSheet {
+  width: 300px;
+  h3 {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: hsl(var(--black-base));
+  }
+  span {
+    font-size: 20px;
+    font-family: var(--font-openSans);
+    font-weight: 400;
+    color: hsl(var(--black-base));
   }
 }

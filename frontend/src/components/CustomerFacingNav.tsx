@@ -5,9 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { ComponentProps, ReactNode, useState } from "react";
 import "hamburgers/dist/hamburgers.css";
-
-import styles from "./scss/CustomerFacingNav.module.scss";
-
 import {
   Sheet,
   SheetContent,
@@ -17,15 +14,11 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import { ChevronDown } from "lucide-react";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "./ui/navigation-menu";
+import { NavigationMenuLink } from "./ui/navigation-menu";
 import { Separator } from "./ui/separator";
-import { ArtisanalStone, MaterialsMenu } from "../../..";
+import { ArtisanalStone } from "../../..";
+
+import styles from "./scss/CustomerFacingNav.module.scss";
 
 export function CustomerFacingNav({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +42,7 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
               alt="shopping cart"
               width={33}
               height={33}
-              className="bg-whitebase flex"
+              className="bg-whitebase flex min-w-[33px]"
             />
           </CustomerFacingNavLink>
 
@@ -67,29 +60,31 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
                 </button>
               </div>
             </SheetTrigger>
-            <SheetContent hideChevron={true}>
+            <SheetContent hideChevron={true} className="w-[300px]">
               <div className={`${styles.sheet}`}>
                 <CustomerFacingNavLink href="/about">
                   About
                 </CustomerFacingNavLink>
-                <CustomerFacingNavLink href="/services">
-                  Services
-                </CustomerFacingNavLink>
-
                 <Sheet>
-                  <SheetTrigger className="text-left flex flex-row items-center ">
-                    Materials <ChevronDown className="-rotate-90 right-1" />
+                  <SheetTrigger className="text-left flex flex-row items-center font-montserrat">
+                    Materials
+                    <ChevronDown className="-rotate-90 translate-x-4" />
                   </SheetTrigger>
                   <SheetContent
                     className={`${styles.materialsMenu} `}
                     hideOverlay={true}
                   >
                     <div className="">
-                      <span className="flex text-[20px] font-normal justify-center">
+                      <h3 className="flex text-[24px] font-normal justify-center font-montserrat text-blackbase">
                         Materials
-                      </span>
+                      </h3>
                       <div className="py-6">
-                        <span>Shop all our materials</span>
+                        {/* <CustomerFacingNavLink href="/materials">
+                          <span className="-ml-1">Shop all our materials</span>
+                        </CustomerFacingNavLink> */}
+                        <Link href="/materials">
+                          <span className="">Shop all our materials</span>
+                        </Link>
                       </div>
 
                       <Separator />
@@ -117,11 +112,12 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
                             <Separator />
                           </div>
                         </SheetTrigger>
-                        <SheetContent hideOverlay={true}>
+                        <SheetContent
+                          hideOverlay={true}
+                          className={styles.mobileSheet}
+                        >
                           <div>
-                            <span className="flex text-[20px] font-[700] justify-center">
-                              STONEYARD
-                            </span>
+                            <h3 className="">STONEYARD</h3>
                             <div className="flex py-6 gap-4">
                               <Image
                                 src="/logo_rocks.svg"
@@ -137,7 +133,7 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
                             <Sheet>
                               <SheetTrigger className="w-full">
                                 <div className="flex justify-between py-4 px-2">
-                                  <span className="text-[20px], font-[400]">
+                                  <span className="text-[20px]  font-openSans font-[400]">
                                     Artisanal Stone
                                   </span>
                                   <Image
@@ -152,7 +148,10 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
                                   />
                                 </div>
                               </SheetTrigger>
-                              <SheetContent hideOverlay={true}>
+                              <SheetContent
+                                hideOverlay={true}
+                                className={styles.mobileSheet}
+                              >
                                 <div>
                                   <span className="flex text-[20px] font-[700] justify-center">
                                     Artisanal Stone
@@ -254,10 +253,17 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
                                   }}
                                 />
                               </div>
-                              <p>We are focused on artisanal stone and tile.</p>
+                              <p className="text-left">
+                                We are focused on artisanal stone and tile.
+                              </p>
                             </div>
                           </SheetTrigger>
-                          <SheetContent hideOverlay={true}>HELLO</SheetContent>
+                          <SheetContent
+                            hideOverlay={true}
+                            className={styles.mobileSheet}
+                          >
+                            Pending Content From Client
+                          </SheetContent>
                         </Sheet>
 
                         <Separator />
@@ -284,6 +290,9 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
                     </div>
                   </SheetContent>
                 </Sheet>
+                <CustomerFacingNavLink href="/services">
+                  Services
+                </CustomerFacingNavLink>
                 <CustomerFacingNavLink href="/projects">
                   Projects
                 </CustomerFacingNavLink>
@@ -294,7 +303,7 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
 
               <SheetHeader>
                 <SheetTitle></SheetTitle>
-                <SheetDescription>Blah Blah</SheetDescription>
+                <SheetDescription></SheetDescription>
               </SheetHeader>
             </SheetContent>
           </Sheet>
@@ -312,7 +321,7 @@ export function CustomerFacingNavLink(
     <Link
       {...props}
       className={cn(
-        "  m-0 px-1 w-fit rounded-lg bg-whitebase hover:bg-tanbase hover:text-secondary-foreground focus-visible:bg-tanbase focus-visible:text-secondary-foreground",
+        "  m-0 px-1 w-fit rounded-lg bg-whitebase hover:bg-tanbase hover:text-secondary-foreground focus-visible:bg-tanbase focus-visible:text-secondary-foreground font-montserrat",
         pathname === props.href && "bg-tanbase text-foreground",
       )}
     />

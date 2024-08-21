@@ -264,7 +264,7 @@ export default function Layout({
             alt="shopping cart"
             width={33}
             height={33}
-            className=""
+            className="min-w-[33px]"
           />
         </CustomerFacingNavLink>
       </CustomerFacingNav>
