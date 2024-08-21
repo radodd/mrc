@@ -111,7 +111,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
               className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
             />
             {errors.lastname?.message && (
-              <p className="text-red-500 pl-4 pt-1 text-xs">
+              <p className="text-red-500 pl-4 pt-1 text-xs font-roboto">
                 {errors.lastname.message}
               </p>
             )}
@@ -143,7 +143,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
           />
           {errors.phonenumber?.message && (
-            <p className="text-red-500 pl-4 pt-1 text-xs">
+            <p className="text-red-500 pl-4 pt-1 text-xs font-roboto">
               {errors.phonenumber.message}
             </p>
           )}

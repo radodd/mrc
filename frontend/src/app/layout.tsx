@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "bg-whitebase min-h-screen font-sans antialiased",
+          "bg-whitebase min-h-screen  antialiased",
           inter.variable,
           openSans.variable,
           montserrat.variable,
