@@ -94,7 +94,7 @@ export default function LandingPageCarousel() {
                 </div>
               </div>
             </div>
-            <div className={styles.imageContainer}>
+            {/* <div className={styles.imageContainer}>
               <Image
                 src="/we_specialize.png"
                 alt=""
@@ -102,7 +102,7 @@ export default function LandingPageCarousel() {
                 height={600}
                 className={styles.image}
               />
-            </div>
+            </div> */}
           </CarouselItem>
           <CarouselItem className="flex max-h-[400px] bg-slate-600 items-center justify-center">
             SOME OTHER COMPANY
