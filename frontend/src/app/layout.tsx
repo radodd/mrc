@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Open_Sans, Montserrat, Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "../lib/utils";
+
 import { Providers } from "../components/Providers";
+import { Toaster } from "../components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-openSans" });
@@ -38,6 +40,7 @@ export default function RootLayout({
         )}
       >
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   );

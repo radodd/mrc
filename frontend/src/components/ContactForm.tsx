@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ReactInputMask from "react-input-mask";
 import { Button } from "./ui/button";
+import { useToast } from "../components/ui/use-toast";
 
 type FormValues = {
   firstname: string;
@@ -19,6 +20,8 @@ type ContactFormProps = {
 };
 
 const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
+  const { toast } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -79,10 +82,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
     reset();
   }, [reset]);
   return (
-    <div className="bg-whitebase font-roboto flex flex-col items-center w-1/2 max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
+    <div className="bg-whitebase flex flex-col items-center w-1/2 max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-10  max-mobile:items-center last:mb-0"
+        className="flex flex-col gap-10 font-roboto max-mobile:items-center last:mb-0"
       >
         <div className="flex gap-6 w-full max-smMobie:flex-col">
           <div className="w-1/2 max-smMobie:w-full">
@@ -222,7 +225,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             <p className="text-red-500 text-sm">{errors.message.message}</p>
           )} */}
         </div>
-        <Button className="w-full">{buttonText}</Button>
+        <Button
+          className="w-full border-2 border-red-500"
+          onClick={() => {
+            toast({
+              title: "Submitted!",
+              description:
+                "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
+            });
+          }}
+        >
+          {buttonText}
+        </Button>
       </form>
     </div>
   );
