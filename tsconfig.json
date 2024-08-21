@@ -18,9 +18,16 @@
       }
     ],
     "paths": {
-      "@/*": ["/frontend/src/*"]
+      "@/*": ["/frontend/src/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/components/*": ["src/components/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "frontend/.next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "frontend/.next/types/**/*.ts"
+  ],
   "exclude": ["node_modules", "frontend/node_modules"]
 }

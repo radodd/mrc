@@ -24,6 +24,7 @@ const config = {
       screens: {
         mobile: "1306px",
         smMobie: "769px",
+        xlScreen: "1601px",
       },
       fontFamily: {
         sans: "var(--font-sans)",
