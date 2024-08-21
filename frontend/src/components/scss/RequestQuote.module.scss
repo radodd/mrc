@@ -3,15 +3,19 @@
 
 .quoteContainer {
   background-color: hsl(var(--tan-base));
-  padding-top: 56px;
-  padding-bottom: 56px;
-  padding-inline: 144px;
+  padding: 56px 114px;
   gap: 40px;
   display: flex;
   flex-direction: column;
 
   @include large-break {
-    padding-inline: 72px;
+    padding: 56px 72px;
+  }
+  @include mid-break {
+    padding: 56px 72px;
+  }
+  @include small-break {
+    padding: 56px 32px;
   }
 }
 
@@ -19,23 +23,65 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 16px;
 
+  @include mid-break {
+    gap: 40px;
+    padding-right: 40px;
+  }
   @include small-break {
-    flex-direction: column;
+    padding-inline: 24px;
+  }
+}
+
+.mediaQueryDesktop {
+  @include mid-break {
+    display: none;
+  }
+  @include small-break {
+    display: none;
+  }
+}
+
+.mediaQueryTablet {
+  @include large-break {
+    display: none;
+  }
+  @include small-break {
+    display: none;
+  }
+}
+
+.mediaQueryMobile {
+  @include large-break {
+    display: none;
+  }
+  @include mid-break {
+    display: none;
+  }
+
+  @include small-break {
   }
 }
 .card {
   background-color: hsl(var(--white-base));
   border-radius: 25px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-inline: 32px;
+  padding: 40px 32px;
   gap: 16px;
-  max-width: 293px;
+  max-width: 344px;
+  // min-width: 275px;
+  max-height: 358px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @include mid-break {
+    width: 395px;
+    height: 358px;
+  }
+  @include small-break {
+    padding: 32px 24px;
+  }
 }
 
 .cardContent {
@@ -47,10 +93,40 @@
     color: hsl(var(--text-primary));
     font-size: 24px;
     font-weight: 700;
+    letter-spacing: -0.72px;
+    @include small-break {
+      font-size: 20px;
+      letter-spacing: -0.8px;
+    }
   }
   p {
     color: hsl(var(--secondary-text));
     font-size: 20px;
     font-weight: 200;
+    min-width: 242px;
+    @include mid-break {
+      min-width: 210px;
+      font-size: 16px;
+    }
+    @include small-break {
+      font-size: 16px;
+      min-width: 140px;
+    }
   }
+}
+
+.next {
+  right: -10px;
+}
+.nextMobile {
+  // transform: translateX(5px);
+  right: -10px;
+}
+
+.prev {
+  left: -10px;
+}
+
+.prevMobile {
+  left: -10px;
 }

@@ -174,21 +174,29 @@ export const RequestQuoteCards = [
     image: "/add_to_cart.svg",
     title: "Add Material",
     text: "From Material MaterialDetailForm, enter the quantity, and click on the 'request to Quote.'",
+    width: 125,
+    height: 125,
   },
   {
     image: "/quote_cart.svg",
     title: "Review Cart",
     text: "Click on the cart icon at the navigation bar to review materials in your cart.",
+    width: 125,
+    height: 127,
   },
   {
     image: "/enter_info.svg",
     title: "Enter Info",
     text: "Enter your contact info, and a message specifying your purpose.",
+    width: 125,
+    height: 132,
   },
   {
     image: "/review.svg",
     title: "We Review",
     text: "We will review your request and contact you directly with a quote.",
+    width: 125,
+    height: 132,
   },
 ];
 
