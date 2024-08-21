@@ -68,6 +68,7 @@ const page = () => {
             key={service.id}
             className={`flex bg-tanbase max-mobile:flex-col ${service.id == 1 || service.id == 3 ? null : "flex-row-reverse"}`}
           >
+            {/* Why are the stylings in this div different than the SPM image div container above? */}
             <div className="relative w-1/2 max-mobile:h-max max-mobile:w-full">
               <Image
                 alt="image"
