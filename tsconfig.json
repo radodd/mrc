@@ -17,10 +17,11 @@
         "name": "next"
       }
     ],
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["/frontend/src/*"],
-      "@/lib/*": ["src/lib/*"],
-      "@/components/*": ["src/components/*"]
+      "@/*": ["*"],
+      "@/lib/*": ["lib/*"],
+      "@/components/*": ["components/*"]
     }
   },
   "include": [
