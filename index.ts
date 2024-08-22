@@ -17,7 +17,7 @@ export const mrcRocknSand = [
   {
     id: 1,
     image: "/image 135.svg",
-    name: "Rock Reclation",
+    name: "Rock Reclamation",
     desc: "Filler text (also placeholder text or dummy text) is text that shares some characteristics of a real written text, but is random or otherwise generated. It may be used to display a sample of fonts, generate text for testing, or to spoof an e-mail spam filter. The process of using filler text is sometimes called greeking, although the text itself may be nonsense, or largely Latin, as in Lorem ipsum.",
   },
   {
