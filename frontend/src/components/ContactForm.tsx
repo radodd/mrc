@@ -82,13 +82,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
     reset();
   }, [reset]);
   return (
-    <div className="bg-whitebase flex flex-col items-center w-1/2 max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
+    <div className="bg-whitebase flex flex-col items-center w-1/2 max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8 smMobie:gap-10">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-10 font-roboto max-mobile:items-center last:mb-0"
+        className="flex flex-col gap-10 font-roboto  "
       >
         <div className="flex gap-6 w-full max-smMobie:flex-col">
-          <div className="w-1/2 max-smMobie:w-full">
+          <div className="w-1/2 max-mobile:w-full">
             <input
               {...register("firstname", {
                 required: "Please enter your first name",
@@ -104,7 +104,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
               </p>
             )}
           </div>
-          <div className="w-1/2 max-smMobie:w-full">
+          <div className="w-1/2 max-mobile:w-full">
             <input
               {...register("lastname", {
                 required: "Please enter your last name",

@@ -58,7 +58,7 @@ const page = () => {
         {mrcRocknSand.map((service) => (
           <div
             key={service.id}
-            className={`flex bg-tanbase max-mobile:flex-col max-mobile:max-h-[720px] border-2 border-red-500 ${service.id == 1 || service.id == 3 ? null : "flex-row-reverse"}`}
+            className={`flex bg-tanbase max-mobile:flex-col max-mobile:max-h-[720px] ${service.id == 1 || service.id == 3 ? null : "flex-row-reverse"}`}
           >
             <div className="relative w-1/2 max-mobile:max-h-[468px] max-mobile:aspect-7/6  max-mobile:w-full">
               <Image
