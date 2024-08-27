@@ -79,12 +79,14 @@ const Page = () => {
   // }, [reset]);
 
   return (
-    <div className="bg-whitebase">
-      <h1 className="font-bold text-[64px] text-center my-10">Get in Touch</h1>
+    <div className="bg-whitebase flex flex-col gap-20 py-20 xlScreen:gap-[104px] xlScreen:py-[104px] max-mobile:gap-10 max-mobile:py-10">
+      <h1 className="font-bold text-[64px] max-smMobie:text-[40px] text-center">
+        Get in Touch
+      </h1>
       <div className="bg-whitebase flex justify-around mx-[72px] gap-[88px] max-mobile:mx-0 max-mobile:gap-10 max-mobile:flex-col max-mobile:items-center">
         {/* contact information */}
 
-        <div className="bg-[#307084] flex flex-col h-[731px] w-1/2 gap-10 max-mobile:gap-8 p-10 rounded-3xl max-mobile:w-full max-mobile:px-[72px] max-mobile:py-8 max-mobile:h-auto max-mobile:rounded-none">
+        <div className="bg-[#307084] flex flex-col h-[731px] w-1/2 gap-10 max-smMobie:gap-8 max-mobile:gap-8 p-10 rounded-3xl max-mobile:w-full max-mobile:px-[72px] max-smMobie:p-8 max-mobile:h-auto max-mobile:rounded-none">
           <div className="flex flex-col gap-10 max-smMobie:gap-2">
             <h1 className="font-bold text-[32px] text-white">
               Contact Information:
@@ -257,7 +259,7 @@ const Page = () => {
           </form>
         </div> */}
       </div>
-      <div className="grid gap-10 grid-cols-3 my-20 px-16 max-[768px]:grid-cols-1 max-mobile:justify-items-center ">
+      <div className="grid gap-10 grid-cols-3 px-16 max-[768px]:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
           <div
             key={index}
