@@ -12,11 +12,11 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 import { HISTORY } from "../../../../..";
 
-export default function ProductsPage() {
+export default function AboutPage() {
   return (
-    <>
+    <section>
       {/* HERO */}
-      <div className="relative">
+      <div className={styles.heroContainer}>
         <Image
           src="/about_us_hero.png"
           alt=""
@@ -24,15 +24,15 @@ export default function ProductsPage() {
           height={749}
           className={styles.image}
         />
-        <div className="absolute flex justify-center inset-0">
+        <div>
           <h1 className={`${styles.heroTitle} text-whitebase`}>About Us</h1>
         </div>
       </div>
 
       {/* Family Owned */}
-      <div className="w-full flex justify-center">
-        <div className={`${styles.familyOwned} `}>
-          <h1>We are a family owned company</h1>
+      <div className={styles.familyOwnedContainer}>
+        <div>
+          <h1>We are a family-owned company</h1>
           <p>
             Arda ennas ceninna le ar ámin ú-mel. Amin melda le, súla lle sina ná
             nehn le. Man ennas eithel annin, ar sílva lle sina na sinome. Á
@@ -42,30 +42,31 @@ export default function ProductsPage() {
       </div>
 
       {/* HISTORY TIMELINE */}
-
-      {HISTORY.map((item, index) => (
-        <div
-          key={index}
-          className="flex flex-col items-center min-[1306px]:flex-row-reverse min-[1306px]:even:flex-row min-[1306px]:mx-[70px] gap-[64px]"
-        >
-          <div className={styles.historyImageWrapper}>
-            <Image
-              src={item.image}
-              alt=""
-              fill
-              style={{ objectFit: "cover" }}
-              className=""
-            />
-          </div>
-          <div className={`${styles.history}`}>
-            <div className="">
+      <div className={styles.historyContainer}>
+        {HISTORY.map((item, index) => (
+          <div
+            key={index}
+            className={`${styles.historySubContainer} min-[1306px]:even:flex-row`}
+            // className="border-2 border-red-400 flex flex-col items-center min-[1306px]:flex-row-reverse min-[1306px]:even:flex-row min-[1306px]:mx-[70px] gap-[64px]"
+          >
+            <div className={styles.historyImageWrapper}>
+              <Image
+                src={item.image}
+                alt=""
+                width={560}
+                height={345}
+                // fill
+                // style={{ objectFit: "cover" }}
+                className={styles.historyImage}
+              />
+            </div>
+            <div>
               <h1>{item.title}</h1>
               <p>{item.body}</p>
             </div>
           </div>
-        </div>
-      ))}
-
+        ))}
+      </div>
       {/* CONTACT US */}
 
       <ContactUs renderButton={true} />
@@ -132,6 +133,6 @@ export default function ProductsPage() {
           </Accordion>
         </div>
       </div>
-    </>
+    </section>
   );
 }
