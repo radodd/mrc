@@ -75,7 +75,7 @@ export default function AboutPage() {
       <div className={styles.faq}>
         <h1 className="">FAQ</h1>
 
-        <div className={styles.accordion}>
+        <div className={styles.accordionContainer}>
           <Accordion type="multiple" className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className={styles.AccordionTrigger}>

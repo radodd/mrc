@@ -203,31 +203,30 @@
   @include mid-break {
     margin: 64px 72px 64px;
   }
-
-  h1 {
-    justify-content: start;
-    margin-bottom: 40px;
-  }
   @include large-break {
     margin: 104px 70px 104px;
   }
 
   h1 {
+    color: var(--Primary---Dark, #235e74);
     justify-content: start;
     margin-bottom: 40px;
+    @include small-break {
+      font-size: 32px;
+    }
   }
 }
 
-.accordion {
+.accordionContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  @include large-break {
-    .AccordionTrigger,
-    .AccordionContent {
-      font-size: 24px;
-    }
+.AccordionTrigger,
+.AccordionContent {
+  @include small-break {
+    font-size: 20px;
   }
 }
