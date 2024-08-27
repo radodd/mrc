@@ -82,33 +82,35 @@ export default function AboutPage() {
                 What are your delivery options?
               </AccordionTrigger>
               <AccordionContent className={styles.AccordionContent}>
-                For any order 20tons or greater, we deliver anywhere in the
-                state of California. For deliveries out of state please contact
-                us.
+                We offer delivery service from flat beds to semi end dumps all
+                over CA.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger className={styles.AccordionTrigger}>
-                What do you sell?
+                Who do you sell to?
               </AccordionTrigger>
               <AccordionContent className={styles.AccordionContent}>
-                We sell ROCKS duh
+                We sell to both commercial and residential clients.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
               <AccordionTrigger className={styles.AccordionTrigger}>
-                Can I will call materail or send in my own truck?
+                Can I "will call" material or send in my own truck?
               </AccordionTrigger>
               <AccordionContent className={styles.AccordionContent}>
-                IT depends...
-              </AccordionContent>{" "}
+                Yes, we allow for materials to be picked up at a number of our
+                yards. Please contact us so we may let you know which location
+                to visit.
+              </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-4">
               <AccordionTrigger className={styles.AccordionTrigger}>
-                How is your material packaged? (bulk/loos or palletized)
+                How is your material packaged? (bulk/loose or palletized)
               </AccordionTrigger>
               <AccordionContent className={styles.AccordionContent}>
-                All of the above
+                We mainly sell in bulk by the ton but we also have cobble that
+                has been palletized in various sizes.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-5">
@@ -117,8 +119,7 @@ export default function AboutPage() {
               </AccordionTrigger>
 
               <AccordionContent className={styles.AccordionContent}>
-                Yes. Minimum of 300,000 Visa award points or any amount of Khols
-                Cash.
+                Our minimum purchase for delivery is 10 tons.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-6">
@@ -127,7 +128,7 @@ export default function AboutPage() {
               </AccordionTrigger>
 
               <AccordionContent className={styles.AccordionContent}>
-                Thank your for your serve-SIS!
+                We currently only service California.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
