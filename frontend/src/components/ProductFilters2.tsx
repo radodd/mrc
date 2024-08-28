@@ -27,12 +27,12 @@ const FilterGroup: React.FC<FilterGroupProps> = ({
   filterValueList,
   handleCheckboxChange,
 }) => (
-  <AccordionItem value={filterKey}>
-    <AccordionTrigger className="py-3 text-sm text-gray-400 hover:text-gray-500">
-      <span className="font-medium text-gray-900">{title}</span>
+  <AccordionItem value={filterKey} className={styles.filterContainer}>
+    <AccordionTrigger className={styles.trigger}>
+      <span>{title}</span>
     </AccordionTrigger>
-    <AccordionContent className="pt-6">
-      <ul className="space-y-4">
+    <AccordionContent className={styles.accordionContent}>
+      <ul>
         {Object.keys(filterCounts).map((key) => (
           <FilterItem
             key={key}
@@ -60,14 +60,14 @@ const FilterItem: React.FC<FilterItemProps> = ({
   isChecked,
   onChange,
 }) => (
-  <li className="flex items-center">
+  <li className={styles.filterItem}>
     <input
       type="checkbox"
       checked={isChecked}
       onChange={onChange}
-      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+      className="border-2 border-red-300"
     />
-    <label className="ml-3 text-sm text-gray-700">
+    <label>
       {label} ({count})
     </label>
   </li>
@@ -75,7 +75,8 @@ const FilterItem: React.FC<FilterItemProps> = ({
 
 export const ProductFilters2: React.FC<{
   filterValueList: string[];
-  handleCheckboxChange: (filterKey: string, value: string) => void;
+  setFilterValueList: React.Dispatch<React.SetStateAction<string[]>>;
+  clearFilter: (value: string) => void;
   companyCounts: Record<string, number>;
   categoryCounts: Record<string, number>;
   textureCounts: Record<string, number>;
@@ -83,51 +84,61 @@ export const ProductFilters2: React.FC<{
   sizeCounts: Record<string, number>;
 }> = ({
   filterValueList,
-  handleCheckboxChange,
+  setFilterValueList,
+  clearFilter,
   companyCounts,
   categoryCounts,
   textureCounts,
   colorCounts,
   sizeCounts,
-}) => (
-  <Accordion type="multiple">
-    <FilterGroup
-      title="Company"
-      filterKey="company"
-      filterCounts={companyCounts}
-      filterValueList={filterValueList}
-      handleCheckboxChange={handleCheckboxChange}
-    />
-    <FilterGroup
-      title="Category"
-      filterKey="category"
-      filterCounts={categoryCounts}
-      filterValueList={filterValueList}
-      handleCheckboxChange={handleCheckboxChange}
-    />
-    <FilterGroup
-      title="Texture"
-      filterKey="texture"
-      filterCounts={textureCounts}
-      filterValueList={filterValueList}
-      handleCheckboxChange={handleCheckboxChange}
-    />
-    <FilterGroup
-      title="Color"
-      filterKey="color"
-      filterCounts={colorCounts}
-      filterValueList={filterValueList}
-      handleCheckboxChange={handleCheckboxChange}
-    />
-    <FilterGroup
-      title="Size"
-      filterKey="size"
-      filterCounts={sizeCounts}
-      filterValueList={filterValueList}
-      handleCheckboxChange={handleCheckboxChange}
-    />
-  </Accordion>
-);
-
+}) => {
+  const handleCheckboxChange = (category: string, value: string) => {
+    if (filterValueList.includes(value)) {
+      setFilterValueList((prev) => prev.filter((v) => v !== value));
+      clearFilter(value);
+    } else {
+      setFilterValueList((prev) => [...prev, value]);
+    }
+  };
+  return (
+    <Accordion type="multiple">
+      <FilterGroup
+        title="Company"
+        filterKey="company"
+        filterCounts={companyCounts}
+        filterValueList={filterValueList}
+        handleCheckboxChange={handleCheckboxChange}
+      />
+      <FilterGroup
+        title="Category"
+        filterKey="category"
+        filterCounts={categoryCounts}
+        filterValueList={filterValueList}
+        handleCheckboxChange={handleCheckboxChange}
+      />
+      <FilterGroup
+        title="Texture"
+        filterKey="texture"
+        filterCounts={textureCounts}
+        filterValueList={filterValueList}
+        handleCheckboxChange={handleCheckboxChange}
+      />
+      <FilterGroup
+        title="Color"
+        filterKey="color"
+        filterCounts={colorCounts}
+        filterValueList={filterValueList}
+        handleCheckboxChange={handleCheckboxChange}
+      />
+      <FilterGroup
+        title="Size"
+        filterKey="size"
+        filterCounts={sizeCounts}
+        filterValueList={filterValueList}
+        handleCheckboxChange={handleCheckboxChange}
+      />
+    </Accordion>
+  );
+};
 // The rest of your ProductFilters component
 // ...

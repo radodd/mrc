@@ -145,10 +145,10 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     clearFilter(filter);
   };
 
-  const handleCheckboxChange = (filterKey: string, value: string) => {
-    // Implement your logic here
-    console.log(`Filter key: ${filterKey}, Value: ${value}`);
-  };
+  // const handleCheckboxChange = (filterKey: string, value: string) => {
+  //   // Implement your logic here
+  //   console.log(`Filter key: ${filterKey}, Value: ${value}`);
+  // };
 
   return (
     <section className={styles.sectionContainer}>
@@ -166,7 +166,10 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
         <Button variant="outline">Sort & Filter</Button>
       </div>
       <div className="flex">
-        <ProductFilters
+        <ProductFilters2
+          filterValueList={filterValueList}
+          setFilterValueList={setFilterValueList}
+          clearFilter={clearFilter}
           categoryCounts={categoryCounts}
           colorCounts={colorCounts}
           companyCounts={companyCounts}

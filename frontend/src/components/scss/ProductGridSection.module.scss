@@ -17,6 +17,9 @@
     @include mid-break {
       display: none;
     }
+    @include small-break {
+      display: none;
+    }
   }
 }
 

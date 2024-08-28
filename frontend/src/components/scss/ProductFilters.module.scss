@@ -5,10 +5,54 @@
   margin-left: 144px;
   max-width: 240px;
   min-width: 170px;
+  @include large-break {
+    margin-left: 72px;
+  }
   @include mid-break {
     display: none;
   }
   @include small-break {
     display: none;
+  }
+}
+
+.trigger {
+  padding: 24px 0 0;
+  span {
+    color: var(--Primary, #307084);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    padding: none;
+  }
+}
+
+.accordionContent {
+  padding: 16px 0 24px;
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.filterItem {
+  display: flex;
+  align-items: center;
+  input {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--Text-Primary, #2c2d31);
+  }
+  label {
+    color: var(--Text-Primary, #2c2d31);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 12px;
   }
 }
