@@ -8,6 +8,9 @@ import { ProductFilters } from "./ProductFilters";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 
+import styles from "./scss/ProductGridSection.module.scss";
+import { ProductFilters2 } from "./ProductFilters2";
+
 interface Product {
   id: string;
   name: string;
@@ -142,12 +145,15 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     clearFilter(filter);
   };
 
+  const handleCheckboxChange = (filterKey: string, value: string) => {
+    // Implement your logic here
+    console.log(`Filter key: ${filterKey}, Value: ${value}`);
+  };
+
   return (
-    <div>
-      <h1 className="flex flex-col justify-center items-center text-[64px] my-[80px] max-[1305px]:hidden">
-        {title}
-      </h1>
-      <div className="ml-[250px] flex max-[1305px]:hidden">
+    <section className={styles.sectionContainer}>
+      <h1>{title}</h1>
+      <div className={styles.productFilterCardContainer}>
         {filterValueList.map((filter, index) => (
           <ProductFilterCard
             key={index}
@@ -156,10 +162,8 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           />
         ))}
       </div>
-      <div className="min-[1305px]:hidden flex justify-center">
-        <Button variant="outline" className="w-full mx-8 my-10">
-          Sort & Filter
-        </Button>
+      <div className={styles.buttonContainer}>
+        <Button variant="outline">Sort & Filter</Button>
       </div>
       <div className="flex">
         <ProductFilters
@@ -169,12 +173,12 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           textureCounts={textureCounts}
           sizeCounts={sizeCounts}
         />
-        <div className="border-2 border-red-300 flex flex-col space-y-6 min-[769px]:mx-[72px] min-[1305px]:mx-0 min-[1306px]:mx-[72px]">
+        <div className={styles.productCardContainer}>
           {filteredProductList.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

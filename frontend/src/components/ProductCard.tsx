@@ -42,43 +42,37 @@ export function ProductCard({
           <Image
             src={image_primary}
             alt={name}
-            // width={325}
-            // height={325}
-            layout="responsive"
-            // fill
             width={325}
             height={325}
-            style={{ objectFit: "cover" }}
             className={styles.image}
           />
         </div>
         <CardHeader className={styles.cardHeader}>
           <CardTitle className={styles.cardTitle}>{name}</CardTitle>
-          <CardDescription className={styles.CardDescription}>
+          <CardDescription className={styles.cardDescription}>
             {description}
           </CardDescription>
-          <CardContent className="flex flex-col gap-4">
-            <div className="items-center gap-1">
-              <p className="">
-                <h3 className="inline-flex mr-2"> Categories:</h3>
-                {category.join(", ")}
-              </p>
-            </div>
-            <div className="items-center gap-1">
-              <p className="">
-                <h3 className="inline-flex mr-2"> Colors:</h3>
-                {color.join(", ")}
-              </p>
-            </div>
-            <div className="items-center gap-1">
-              <p className="">
-                <h3 className="inline-flex mr-2"> Company:</h3>
-                {company}
-              </p>
-            </div>
+          <CardContent className={styles.cardContent}>
+            <CardInfoRow label="Categories" value={category.join(", ")} />
+            <CardInfoRow label="Color" value={color.join(", ")} />
+            <CardInfoRow label="Company" value={company} />
           </CardContent>
         </CardHeader>
       </Card>
     </>
   );
 }
+
+type CardInfoRowProps = {
+  label: string;
+  value: string;
+};
+
+const CardInfoRow: React.FC<CardInfoRowProps> = ({ label, value }) => {
+  return (
+    <div className={styles.infoContainer}>
+      <h3>{label}:</h3>
+      <span>{value}</span>
+    </div>
+  );
+};

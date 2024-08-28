@@ -1,15 +1,22 @@
 @use "../../../css/queries.scss";
 @import "../../../css/queries.scss";
 
-// .separator {
-//   @include small-break {
-//     display: none;
-//   }
-// }
+@mixin custom-breakpoint($max-width) {
+  @media (max-width: $max-width) {
+    @content;
+  }
+}
+
+.separator {
+  color: var(--Border-Gray, #bec0c9);
+}
 
 .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   @include small-break {
-    aspect-ratio: 1 / 1;
   }
   @include mid-break {
     aspect-ratio: 1 / 1;
@@ -22,13 +29,11 @@
 }
 
 .imageWrapper {
-  position: relative;
-  border: 2px solid orange;
-  height: fit-content;
-  @include small-break {
-    width: 100%;
-    padding-top: 0;
-    margin-bottom: 21px;
+  width: 325px;
+  height: 325px;
+
+  @include custom-breakpoint(900px) {
+    width: 366px;
   }
   @include mid-break {
     min-width: 325px;
@@ -43,24 +48,26 @@
 
 .card {
   display: flex;
-  align-items: center;
-  border: 2px solid red;
   flex-direction: row;
   justify-content: center;
-  height: auto;
+  align-items: center;
+  gap: 40px;
 
-  @include small-break {
+  @include custom-breakpoint(900px) {
     flex-direction: column;
     margin: 0 32px;
+    gap: 32px;
   }
   @include mid-break {
-    flex-direction: row;
+    justify-content: start;
     gap: 21px;
   }
 }
 
 .cardHeader {
-  margin-top: 0;
+  display: flex;
+  align-self: self-start;
+  gap: 16px;
   @include small-break {
     gap: 16px;
   }
@@ -71,17 +78,61 @@
   }
   @include large-break {
     max-width: 600px;
-    margin-left: 21px;
   }
 }
 
 .cardTitle {
-  text-decoration: underline;
-  @include small-break {
-    font-size: 32px;
-  }
+  color: var(--Primary, #307084);
+  font-size: 32px;
+  font-weight: 700;
 }
 
 .cardDescription {
-  max-width: 542px;
+  align-self: stretch;
+  max-width: 600px;
+  color: var(--Text-Secondary, #5c5d6d);
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+  @include custom-breakpoint(900px) {
+    font-size: 16px;
+    letter-spacing: -0.32px;
+  }
+  @include mid-break {
+    max-width: 100%;
+  }
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.infoContainer {
+  h3 {
+    display: inline-flex;
+    padding-right: 8px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    @include custom-breakpoint(900px) {
+      font-size: 16px;
+      letter-spacing: -0.32px;
+    }
+  }
+  span {
+    color: var(--Text-Secondary, #5c5d6d);
+    font-family: var(--font-openSans);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    @include custom-breakpoint(900px) {
+      font-size: 16px;
+      letter-spacing: -0.32px;
+    }
+  }
 }

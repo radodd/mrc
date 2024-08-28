@@ -1,0 +1,14 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.filterContainer {
+  margin-left: 144px;
+  max-width: 240px;
+  min-width: 170px;
+  @include mid-break {
+    display: none;
+  }
+  @include small-break {
+    display: none;
+  }
+}

@@ -9,6 +9,8 @@ import {
 import { ProductState } from "../lib/product-validator";
 import { useFilter } from "../context/FilterContext";
 
+import styles from "./scss/ProductFilters.module.scss";
+
 const SORT_OPTIONS = [
   { name: "None", value: "none" },
   { name: "Name: Ascending", value: "name-asc" },
@@ -80,20 +82,11 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
       setFilterValueList((prev) => [...prev, value]);
     }
   };
-  console.log(filterValueList);
-
-  // const categoryCounts = products.reduce(
-  //   (counts: Record<string, number>, product) => {
-  //     counts[product.category] = (counts[product.category] || 0) + 1;
-  //     return counts;
-  //   },
-  //   {},
-  // );
 
   return (
     <>
-      <div className="ml-[72px] max-[1305px]:hidden max-w-[240px] min-w-[170px]">
-        <ul className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
+      <div className={styles.filterContainer}>
+        {/* <ul className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
           {COMPANIES.map((category) => (
             <li key={category.name}>
               <button
@@ -104,7 +97,7 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
               </button>
             </li>
           ))}
-        </ul>
+        </ul> */}
 
         <Accordion type="multiple" className="">
           <AccordionItem value="company">

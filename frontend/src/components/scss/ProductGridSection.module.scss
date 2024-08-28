@@ -1,0 +1,60 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+@mixin custom-breakpoint($max-width) {
+  @media (max-width: $max-width) {
+    @content;
+  }
+}
+
+.sectionContainer {
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+    padding: 80px;
+    @include mid-break {
+      display: none;
+    }
+  }
+}
+
+.productFilterCardContainer {
+  padding-left: 250px;
+  display: flex;
+  @include mid-break {
+    display: none;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  @include large-break {
+    display: none;
+  }
+  Button {
+    width: 100%;
+    margin: 64px 72px;
+    @include custom-breakpoint(900px) {
+      margin: 40px 35px;
+    }
+  }
+}
+
+.productCardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 0 144px 0 72px;
+  @include large-break {
+    margin: 0 72px 72px;
+  }
+  @include mid-break {
+    margin: 0 72px 64px;
+  }
+  @include custom-breakpoint(900px) {
+    margin: 0 32px 40px;
+  }
+}
