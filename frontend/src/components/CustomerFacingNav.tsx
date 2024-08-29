@@ -66,7 +66,7 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
                   About
                 </CustomerFacingNavLink>
                 <Sheet>
-                  <SheetTrigger className="text-left flex flex-row items-center font-montserrat">
+                  <SheetTrigger className="text-left flex flex-row items-center ">
                     Materials
                     <ChevronDown className="-rotate-90 translate-x-4" />
                   </SheetTrigger>
@@ -75,7 +75,7 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
                     hideOverlay={true}
                   >
                     <div className="">
-                      <h3 className="flex text-[24px] font-normal justify-center font-montserrat text-blackbase">
+                      <h3 className="flex text-[24px] font-normal justify-center  text-blackbase">
                         Materials
                       </h3>
                       <div className="py-6">
@@ -321,7 +321,7 @@ export function CustomerFacingNavLink(
     <Link
       {...props}
       className={cn(
-        "  m-0 px-1 w-fit rounded-lg bg-whitebase hover:bg-tanbase hover:text-secondary-foreground focus-visible:bg-tanbase focus-visible:text-secondary-foreground font-montserrat",
+        "font-openSans m-0 px-1 w-fit rounded-lg bg-whitebase hover:bg-tanbase hover:text-secondary-foreground focus-visible:bg-tanbase focus-visible:text-secondary-foreground",
         pathname === props.href && "bg-tanbase text-foreground",
       )}
     />

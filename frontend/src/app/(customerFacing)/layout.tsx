@@ -47,7 +47,7 @@ export default function Layout({
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem onMouseEnter={() => setIsMaterialsOpen(true)}>
-              <NavigationMenuTrigger className="">
+              <NavigationMenuTrigger className="font-openSans">
                 Materials
               </NavigationMenuTrigger>
               {isMaterialsOpen && (
