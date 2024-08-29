@@ -24,7 +24,9 @@ export function ProductFilterCard({
           className="flex items-center justify-center gap-4"
         >
           {filter}
-          <Image src="/close.svg" alt="" width={12} height={12} />
+          {filter !== "All Materials" && (
+            <Image src="/close.svg" alt="" width={12} height={12} />
+          )}
         </Button>
         <Separator
           orientation="vertical"

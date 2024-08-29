@@ -18,6 +18,7 @@ import { cn } from "../../lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { useFilter } from "../../context/FilterContext";
 
 export default function Layout({
   children,
@@ -28,6 +29,7 @@ export default function Layout({
   const [isSubmenuOpen, setIsSubmenuOpen] = useState<number | null>(null);
   const [isSubSubmenuOpen, setIsSubSubmenuOpen] = useState<number | null>(null);
   const [isMenuHeight, setIsMenuHeight] = useState(`h-[405px]`);
+  const { setFilterValueList, filterValueList } = useFilter();
 
   useEffect(() => {
     if (isMaterialsOpen === false) {
@@ -39,7 +41,17 @@ export default function Layout({
     } else {
       setIsMenuHeight(`h-[405px]`);
     }
-  }, [isSubSubmenuOpen, isSubmenuOpen, isMaterialsOpen]);
+  }, [isSubSubmenuOpen, isSubmenuOpen, isMaterialsOpen, filterValueList]);
+
+  const handleClick = (filterValue) => {
+    const updatedFilterValueList = [filterValue];
+    setFilterValueList(updatedFilterValueList);
+    localStorage.setItem(
+      "filterValueList",
+      JSON.stringify(updatedFilterValueList),
+    );
+    console.log("FILTER VALUE", filterValue);
+  };
 
   return (
     <>
@@ -63,11 +75,14 @@ export default function Layout({
                     </Link>
 
                     <ListItem
-                      href="/"
+                      href="/materials"
                       title="STONEYARD"
-                      className="w-[298px]"
+                      className="w-[298px] border border-red-200"
                       onMouseEnter={() => setIsSubmenuOpen(1)}
-                      onClick={() => setIsSubmenuOpen(null)}
+                      onClick={() => {
+                        setIsSubmenuOpen(null);
+                        handleClick("Stoneyard");
+                      }}
                     >
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 1 && (
@@ -81,7 +96,7 @@ export default function Layout({
                                   className="flex h-full w-full select-none flex-col justify-end rounded-md bg-tanbase no-underline outline-none focus:shadow-md"
                                   href="/"
                                 >
-                                  <div className="flex flex-col justify-end  mb-2 mt-4 h-full ">
+                                  <div className="flex flex-col justify-end  mb-2 mt-4 h-full">
                                     <Image
                                       src="/logo_rocks.svg"
                                       alt="logo"
@@ -142,11 +157,13 @@ export default function Layout({
                       )}
                     </ListItem>
                     <ListItem
-                      href="/"
+                      href="/materials"
                       title="MRC Rock & Sand"
                       className="w-[298px]"
                       onMouseEnter={() => setIsSubmenuOpen(2)}
-                      onClick={() => setIsSubmenuOpen(null)}
+                      onClick={() => {
+                        setIsSubmenuOpen(null), handleClick("MRC Rock & Sand");
+                      }}
                     >
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 2 && (
@@ -194,11 +211,14 @@ export default function Layout({
                       )}
                     </ListItem>
                     <ListItem
-                      href="/"
+                      href="/materials"
                       title="Santa Paula Materials"
                       className="w-[298px]"
                       onMouseEnter={() => setIsSubmenuOpen(3)}
-                      onClick={() => setIsSubmenuOpen(null)}
+                      onClick={() => {
+                        setIsSubmenuOpen(null),
+                          handleClick("Santa Paula Materials");
+                      }}
                     >
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 3 && (

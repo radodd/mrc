@@ -73,7 +73,7 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
   sizeCounts,
 }) => {
   const { setFilterValueList, filterValueList, clearFilter } = useFilter();
-
+  console.log("FILTER", filterValueList);
   const handleCheckboxChange = (category: string, value: string) => {
     if (filterValueList.includes(value)) {
       setFilterValueList((prev) => prev.filter((v) => v !== value));

@@ -5,6 +5,7 @@ import { cn } from "../lib/utils";
 
 import { Providers } from "../components/Providers";
 import { Toaster } from "../components/ui/toaster";
+import { FilterProvider } from "../context/FilterContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-openSans" });
@@ -39,7 +40,9 @@ export default function RootLayout({
           roboto.variable,
         )}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <FilterProvider>{children}</FilterProvider>
+        </Providers>
         <Toaster />
       </body>
     </html>

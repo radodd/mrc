@@ -169,73 +169,102 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
 
     setProducts(sortedList);
   };
-  // const handleCheckboxChange = (filterKey: string, value: string) => {
-  //   // Implement your logic here
-  //   console.log(`Filter key: ${filterKey}, Value: ${value}`);
-  // };
 
   return (
     <section className={styles.sectionContainer}>
       <h1>{title}</h1>
-      <div className="flex justify-between h-[44px] mb-6 min-[1306px]:mx-[72px] max-[1306px]:hidden">
-        <Button variant="filter" size="filter" onClick={clearAllFilters}>
-          <Image
-            src="/filter.svg"
-            alt=""
-            width={25}
-            height={25}
-            className="pr-2"
-          />
-          Filter
-        </Button>
-
-        <div className={styles.productFilterCardContainer}>
-          {filterValueList.map((filter, index) => (
-            <ProductFilterCard
-              key={index}
-              filter={filter}
-              onRemove={handleRemoveFilter}
-            />
-          ))}
-        </div>
-        <div>
-          <Button
-            variant="filter"
-            size="filter"
-            onClick={() => setAlphabetFilter(!alphabetFilter)}
-          >
-            Sort by: A-Z
-          </Button>
-          {alphabetFilter && (
-            <div className="z-50 absolute">
-              <Button variant="filter" size="filter" onClick={alphabetizeByA}>
-                A-Z
-              </Button>
-              <Button variant="filter" size="filter" onClick={alphabetizeByZ}>
-                Z-A
-              </Button>
-            </div>
-          )}
-        </div>
-      </div>
       <div className={styles.buttonContainer}>
         <Button variant="outline">Sort & Filter</Button>
       </div>
-      <div className="flex justify-center">
-        <ProductFilters2
-          filterValueList={filterValueList}
-          setFilterValueList={setFilterValueList}
-          clearFilter={clearFilter}
-          categoryCounts={categoryCounts}
-          colorCounts={colorCounts}
-          companyCounts={companyCounts}
-          textureCounts={textureCounts}
-          sizeCounts={sizeCounts}
-        />
-        <div className={styles.productCardContainer}>
-          {filteredProductList.map((product) => (
-            <ProductCard key={product.id} {...product} />
-          ))}
+      <div className="flex">
+        <div className="flex flex-col max-[1306px]:hidden">
+          {filterValueList.length === 0 ? (
+            <Button
+              variant="filter"
+              size="filter"
+              className=" mb-6 min-[1306px]:ml-[72px]"
+              onClick={clearAllFilters}
+            >
+              <Image
+                src="/filter.svg"
+                alt=""
+                width={25}
+                height={25}
+                className="pr-2"
+              />
+              Filter
+            </Button>
+          ) : (
+            <Button
+              variant="filter"
+              size="filter"
+              className="mb-6 min-[1306px]:ml-[72px]"
+              onClick={clearAllFilters}
+            >
+              Clear All Filters
+            </Button>
+          )}
+          <ProductFilters2
+            filterValueList={filterValueList}
+            setFilterValueList={setFilterValueList}
+            clearFilter={clearFilter}
+            categoryCounts={categoryCounts}
+            colorCounts={colorCounts}
+            companyCounts={companyCounts}
+            textureCounts={textureCounts}
+            sizeCounts={sizeCounts}
+          />{" "}
+        </div>
+        <div>
+          <div className="flex justify-between min-[1306px]:mx-[72px] max-[1306px]:hidden">
+            <div className={styles.productFilterCardContainer}>
+              {filterValueList.map((filter, index) => (
+                <ProductFilterCard
+                  key={index}
+                  filter={filter}
+                  onRemove={handleRemoveFilter}
+                />
+              ))}
+              {filterValueList.length === 0 && (
+                <ProductFilterCard
+                  filter="All Materials"
+                  onRemove={handleRemoveFilter}
+                />
+              )}
+            </div>
+            <div>
+              <Button
+                variant="filter"
+                size="filter"
+                onClick={() => setAlphabetFilter(!alphabetFilter)}
+              >
+                Sort by: A-Z
+              </Button>
+              {alphabetFilter && (
+                <div className="z-50 absolute">
+                  <Button
+                    variant="filter"
+                    size="filter"
+                    onClick={alphabetizeByA}
+                  >
+                    A-Z
+                  </Button>
+                  <Button
+                    variant="filter"
+                    size="filter"
+                    onClick={alphabetizeByZ}
+                  >
+                    Z-A
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className={styles.productCardContainer}>
+            {filteredProductList.map((product) => (
+              <ProductCard key={product.id} {...product} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
