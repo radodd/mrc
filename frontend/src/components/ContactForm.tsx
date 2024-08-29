@@ -232,6 +232,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
               title: "Submitted!",
               description:
                 "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
+              src: "/Group 271.svg",
             });
           }}
         >

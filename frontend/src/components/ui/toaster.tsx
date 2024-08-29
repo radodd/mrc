@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   Toast,
   ToastClose,
@@ -15,10 +16,11 @@ export function Toaster() {
 
   return (
     <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
+      {toasts.map(function ({ id, title, description, action, src, ...props }) {
         return (
           <Toast key={id} {...props}>
-            <div className="grid gap-1">
+            <div className="flex flex-col items-center gap-10">
+              <Image alt="" src={src} width={88} height={88} className="" />
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (
                 <ToastDescription>{description}</ToastDescription>
