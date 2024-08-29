@@ -1,5 +1,6 @@
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
+import Image from "next/image";
 
 type ProductFilterCardProps = {
   filter: string;
@@ -20,9 +21,10 @@ export function ProductFilterCard({
           variant="filter"
           size="filter"
           onClick={handleClick}
-          className=""
+          className="flex items-center justify-center gap-4"
         >
-          {filter} X
+          {filter}
+          <Image src="/close.svg" alt="" width={12} height={12} />
         </Button>
         <Separator
           orientation="vertical"

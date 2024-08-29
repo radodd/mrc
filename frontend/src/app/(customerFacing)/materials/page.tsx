@@ -5,13 +5,13 @@ import ProductGridSection from "../../../components/ProductGridSection";
 export default function MaterialsPage() {
   return (
     <FilterProvider>
-      <div className="flex gap-[6vw]">
+      <div className="flex justify-center">
         <ProductGridSection title="Materials" />
       </div>
     </FilterProvider>
   );
 }
-
+// gap-[6vw]
 // "use client";
 // import { ProductCard } from "@/components/ProductCard";
 // import { ProductFilterCard } from "@/components/ProductFilterCard";

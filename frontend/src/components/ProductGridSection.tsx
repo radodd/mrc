@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 
 import styles from "./scss/ProductGridSection.module.scss";
 import { ProductFilters2 } from "./ProductFilters2";
+import Image from "next/image";
 
 interface Product {
   id: string;
@@ -31,6 +32,7 @@ type ProductGridSectionProps = {
 export default function ProductGridSection({ title }: ProductGridSectionProps) {
   const { filterValueList, setFilterValueList, clearFilter } = useFilter();
   const [products, setProducts] = useState<Product[]>([]);
+  const [alphabetFilter, setAlphabetFilter] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -145,6 +147,28 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     clearFilter(filter);
   };
 
+  const clearAllFilters = () => {
+    setFilterValueList([]);
+  };
+  console.log(products);
+  const alphabetizeByA = () => {
+    const sortedList = [...products].sort((a, b) => {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+      if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+      return 0;
+    });
+
+    setProducts(sortedList);
+  };
+  const alphabetizeByZ = () => {
+    const sortedList = [...products].sort((a, b) => {
+      if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+      if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+      return 0;
+    });
+
+    setProducts(sortedList);
+  };
   // const handleCheckboxChange = (filterKey: string, value: string) => {
   //   // Implement your logic here
   //   console.log(`Filter key: ${filterKey}, Value: ${value}`);
@@ -153,19 +177,51 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   return (
     <section className={styles.sectionContainer}>
       <h1>{title}</h1>
-      <div className={styles.productFilterCardContainer}>
-        {filterValueList.map((filter, index) => (
-          <ProductFilterCard
-            key={index}
-            filter={filter}
-            onRemove={handleRemoveFilter}
+      <div className="flex justify-between h-[44px] mb-6 min-[1306px]:mx-[72px]">
+        <Button variant="filter" size="filter" onClick={clearAllFilters}>
+          <Image
+            src="/filter.svg"
+            alt=""
+            width={25}
+            height={25}
+            className="pr-2"
           />
-        ))}
+          Filter
+        </Button>
+
+        <div className={styles.productFilterCardContainer}>
+          {filterValueList.map((filter, index) => (
+            <ProductFilterCard
+              key={index}
+              filter={filter}
+              onRemove={handleRemoveFilter}
+            />
+          ))}
+        </div>
+        <div>
+          <Button
+            variant="filter"
+            size="filter"
+            onClick={() => setAlphabetFilter(!alphabetFilter)}
+          >
+            Sort by: A-Z
+          </Button>
+          {alphabetFilter && (
+            <div className="z-50 absolute">
+              <Button variant="filter" size="filter" onClick={alphabetizeByA}>
+                A-Z
+              </Button>
+              <Button variant="filter" size="filter" onClick={alphabetizeByZ}>
+                Z-A
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
       <div className={styles.buttonContainer}>
         <Button variant="outline">Sort & Filter</Button>
       </div>
-      <div className="flex">
+      <div className="flex justify-center">
         <ProductFilters2
           filterValueList={filterValueList}
           setFilterValueList={setFilterValueList}

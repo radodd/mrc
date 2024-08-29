@@ -25,7 +25,7 @@ const buttonVariants = cva(
         link: "text-primary font-openSans underline",
 
         filter:
-          "text-primary font-openSans border border-primary font-[24px] hover:underline hover:scale-[1.05] transition-all duration-200",
+          "text-primary font-openSans border-2 border-primary font-[24px] hover:underline hover:scale-[1.05] transition-all duration-200 bg-whitebase",
         quantity:
           "border-2 border-icon bg-transparent hover:scale-[1.05] transition-all ",
       },

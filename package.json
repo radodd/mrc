@@ -11,5 +11,7 @@
     "dev": "npm run dev:frontend",
     "dev:frontend": "next dev"
   },
-  "devDependencies": {}
+  "dependencies": {
+    "@radix-ui/react-checkbox": "^1.1.1"
+  }
 }

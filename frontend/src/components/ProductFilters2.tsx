@@ -10,6 +10,7 @@ import { ProductState } from "../lib/product-validator";
 import { useFilter } from "../context/FilterContext";
 
 import styles from "./scss/ProductFilters.module.scss";
+import { Checkbox } from "./ui/checkbox";
 
 // Define FilterGroup before using it
 type FilterGroupProps = {
@@ -61,12 +62,13 @@ const FilterItem: React.FC<FilterItemProps> = ({
   onChange,
 }) => (
   <li className={styles.filterItem}>
-    <input
+    {/* <input
       type="checkbox"
       checked={isChecked}
       onChange={onChange}
       className="border-2 border-red-300"
-    />
+    /> */}
+    <Checkbox checked={isChecked} onCheckedChange={onChange} />
     <label>
       {label} ({count})
     </label>
