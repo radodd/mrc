@@ -5,6 +5,7 @@
   margin-left: 144px;
   max-width: 275px;
   min-width: 275px;
+  padding-bottom: 24px;
   @include large-break {
     margin-left: 72px;
   }
@@ -30,7 +31,7 @@
 }
 
 .accordionContent {
-  padding: 16px 0 24px;
+  padding: 16px 0 0;
   ul {
     display: flex;
     flex-direction: column;
