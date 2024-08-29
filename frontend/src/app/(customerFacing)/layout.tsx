@@ -72,7 +72,7 @@ export default function Layout({
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 1 && (
                         <ul
-                          className={`absolute  left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-65px] rounded-r`}
+                          className={`absolute  left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-68px] rounded-r`}
                         >
                           <ul className="flex flex-row  gap-3 p-6 h-full md:w-[400px] lg:w-[500px] ">
                             <li className="w-[208px] ">
@@ -151,7 +151,7 @@ export default function Layout({
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 2 && (
                         <ul
-                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-177px] rounded-r`}
+                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-180px] rounded-r`}
                         >
                           <ul className="flex flex-row gap-3 p-6 h-full md:w-[400px] lg:w-[500px] ">
                             <li className="w-[208px] ">
@@ -179,7 +179,7 @@ export default function Layout({
                               </NavigationMenuLink>
                             </li>
                             <div>
-                              <ul className="flex flex-col gap-2 p-0 ">
+                              <ul>
                                 {MRCMaterials.map((item, index) => (
                                   <div key={index} className="flex gap-4">
                                     <li className="text-xl hover:font-bold">
@@ -203,7 +203,7 @@ export default function Layout({
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 3 && (
                         <ul
-                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-289px] rounded-r`}
+                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-292px] rounded-r`}
                         >
                           <ul className="flex flex-row gap-3 p-6 h-full md:w-[400px] lg:w-[530px] ">
                             <li className="w-[208px] ">
