@@ -177,7 +177,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   return (
     <section className={styles.sectionContainer}>
       <h1>{title}</h1>
-      <div className="flex justify-between h-[44px] mb-6 min-[1306px]:mx-[72px]">
+      <div className="flex justify-between h-[44px] mb-6 min-[1306px]:mx-[72px] max-[1306px]:hidden">
         <Button variant="filter" size="filter" onClick={clearAllFilters}>
           <Image
             src="/filter.svg"
