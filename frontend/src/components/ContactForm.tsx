@@ -226,7 +226,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
           )} */}
         </div>
         <Button
-          className="w-full border-2 border-red-500"
+          className="w-full"
           onClick={() => {
             toast({
               title: "Submitted!",
