@@ -2,7 +2,10 @@
 @import "../../../css/queries.scss";
 
 .container {
-  padding-inline: 72px;
+  padding-inline: 144px;
+  @include large-break {
+    padding-inline: 72px;
+  }
   @include small-break {
     padding-inline: 32px;
   }

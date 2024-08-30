@@ -16,15 +16,25 @@ interface FilterContextProps {
 
 const FilterContext = createContext<FilterContextProps | undefined>(undefined);
 
+// export const FilterProvider = ({ children }: { children: ReactNode }) => {
+//   const [filterValueList, setFilterValueList] = useState<string[]>(() => {
+//     const savedFilterValueList = localStorage.getItem("filterValueList");
+//     return savedFilterValueList ? JSON.parse(savedFilterValueList) : [];
+//   });
+
 export const FilterProvider = ({ children }: { children: ReactNode }) => {
-  const [filterValueList, setFilterValueList] = useState<string[]>(() => {
-    const savedFilterValueList = localStorage.getItem("filterValueList");
-    return savedFilterValueList ? JSON.parse(savedFilterValueList) : [];
-  });
+  const [filterValueList, setFilterValueList] = useState<string[]>([]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("filterValueList", JSON.stringify(filterValueList));
+  // }, [filterValueList]);
 
   useEffect(() => {
-    localStorage.setItem("filterValueList", JSON.stringify(filterValueList));
-  }, [filterValueList]);
+    const savedFilterValueList = localStorage.getItem("filterValueList");
+    if (savedFilterValueList) {
+      setFilterValueList(JSON.parse(savedFilterValueList));
+    }
+  }, []);
 
   const clearFilter = (filter: string) => {
     setFilterValueList((prevFilters) =>

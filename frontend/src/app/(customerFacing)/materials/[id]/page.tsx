@@ -62,7 +62,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   const [selectedImage, setSelectedImage] = useState("");
   const [orientation, setOrientation] = useState<Orientation>("horizontal");
   const [expanded, setExpanded] = useState(false);
-  console.log(expanded);
+
   useEffect(() => {
     const handleResize = () => {
       setOrientation(
@@ -108,7 +108,6 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   const totalGapWidthPercentage = ((4 * 5) / 480) * 50;
   const imageWidthPercentage = (100 - totalGapWidthPercentage) / numImages;
   const basisPercentage = imageWidthPercentage.toFixed(2);
-  console.log(basisPercentage);
 
   return (
     <>

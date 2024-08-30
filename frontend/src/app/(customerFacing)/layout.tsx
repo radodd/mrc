@@ -46,10 +46,14 @@ export default function Layout({
   const handleClick = (filterValue) => {
     const updatedFilterValueList = [filterValue];
     setFilterValueList(updatedFilterValueList);
-    localStorage.setItem(
-      "filterValueList",
-      JSON.stringify(updatedFilterValueList),
-    );
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem(
+        "filterValueList",
+        JSON.stringify(updatedFilterValueList),
+      );
+    }
+
     console.log("FILTER VALUE", filterValue);
   };
 

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import styles from "./scss/ProductGridSection.module.scss";
 import { ProductFilters2 } from "./ProductFilters2";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Product {
   id: string;
@@ -262,7 +263,9 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           </div>
           <div className={styles.productCardContainer}>
             {filteredProductList.map((product) => (
-              <ProductCard key={product.id} {...product} />
+              <Link href={`/materials/${product.id}`} key={product.id}>
+                <ProductCard {...product} />{" "}
+              </Link>
             ))}
           </div>
         </div>

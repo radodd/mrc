@@ -33,10 +33,27 @@
 .buttonContainer {
   display: flex;
   justify-content: center;
-  @include large-break {
-    display: none;
+  width: 100%;
+  display: none;
+
+  @include mid-break {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    display: contents;
+  }
+  @include small-break {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    display: contents;
   }
   Button {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     width: 100%;
     margin: 64px 72px;
     @include custom-breakpoint(900px) {

@@ -4,7 +4,7 @@ $breakpoint-m-min-width: 769px;
 $breakpoint-m-width: 1305px;
 $breakpoint-l-min-width: 1306px;
 $breakpoint-l-width: 1600px;
-$breakpoint-l-width: 2500px;
+$breakpoint-xl-width: 2500px;
 
 @mixin extra-small-break {
   @media (max-width: #{$breakpoint-xs-width}) {
