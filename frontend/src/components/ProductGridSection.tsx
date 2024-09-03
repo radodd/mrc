@@ -171,6 +171,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     setProducts(sortedList);
   };
 
+  console.log("FilteredProductList in Grid Section:", filteredProductList);
   return (
     <section className={styles.sectionContainer}>
       <h1>{title}</h1>
@@ -262,11 +263,14 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             </div>
           </div>
           <div className={styles.productCardContainer}>
-            {filteredProductList.map((product) => (
-              <Link href={`/materials/${product.id}`} key={product.id}>
-                <ProductCard {...product} />{" "}
-              </Link>
-            ))}
+            {filteredProductList.map((product) => {
+              console.log("Product in map:", product.id); // Log each product object
+              return (
+                <Link href={`/materials/${product.id}`} key={product.id}>
+                  <ProductCard {...product} />{" "}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
