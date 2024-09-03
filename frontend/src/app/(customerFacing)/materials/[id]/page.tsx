@@ -80,7 +80,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (product && product.imagePath?.length > 0) {
-      console.log("Fetched product:", product); // Logging the product data
+      console.log("Fetched product IN DETAIL:", product); // Logging the product data
       setSelectedImage(product.imagePath[0]);
     } else {
       setSelectedImage("/gsa.png");
@@ -91,7 +91,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     if (id) {
       fetchProductById(id as string)
         .then((data) => {
-          console.log("Fetched data:", data); // Logging the product data
+          console.log("Fetched data IN DETAILS:", data); // Logging the product data
           setProduct(data);
         })
         .catch((error) => {

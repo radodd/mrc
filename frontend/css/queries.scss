@@ -25,7 +25,7 @@ $breakpoint-xl-width: 2500px;
 }
 
 @mixin large-break {
-  @media (max-width: #{$breakpoint-l-width}) and (min-width: #{$breakpoint-l-min-width}) {
+  @media (min-width: #{$breakpoint-l-min-width}) {
     @content;
   }
 }
