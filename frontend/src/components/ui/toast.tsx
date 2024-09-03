@@ -6,6 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
 
 import { cn } from "../../lib/utils";
+import Image from "next/image";
 
 const ToastProvider = ToastPrimitives.Provider;
 
@@ -30,7 +31,7 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-background text-foreground",
+        default: "bg-whitebase rounded-[25px] text-foreground",
         destructive:
           "destructive group border-destructive bg-destructive text-destructive-foreground",
       },
@@ -51,7 +52,7 @@ const Toast = React.forwardRef<
       ref={ref}
       className={cn(
         toastVariants({ variant }),
-        "w-[616px] h-[432px]",
+        "w-[616px] h-[492px]",
         className,
       )}
       {...props}
@@ -82,13 +83,20 @@ const ToastClose = React.forwardRef<
   <ToastPrimitives.Close
     ref={ref}
     className={cn(
-      "absolute right-2 top-2 rounded-md text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
+      "absolute right-8 top-8 rounded-md text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
       className,
     )}
     toast-close=""
     {...props}
   >
-    <X className="h-8 w-8" />
+    <Image
+      alt="close"
+      src="/CloseX.svg"
+      height={32}
+      width={32}
+      className="text-black"
+    />
+    {/* <X className="h-8 w-8" /> */}
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;
@@ -99,7 +107,10 @@ const ToastTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Title
     ref={ref}
-    className={cn("text-4xl font-montserrat font-bold", className)}
+    className={cn(
+      "text-4xl font-montserrat font-bold tracking-[-1.2px]",
+      className,
+    )}
     {...props}
   />
 ));
@@ -111,7 +122,7 @@ const ToastDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Description
     ref={ref}
-    className={cn("text-2xl ", className)}
+    className={cn("text-2xl text-secondary-text tracking-[-.8px]", className)}
     {...props}
   />
 ));

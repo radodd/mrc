@@ -259,11 +259,11 @@ const Page = () => {
           </form>
         </div> */}
       </div>
-      <div className="grid gap-10 grid-cols-3 px-16 max-[768px]:grid-cols-1 max-mobile:justify-items-center ">
+      <div className="grid gap-6 grid-cols-3 px-[72px] xlScreen:px-36 max-smMobie:px-8 max-smMobie:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
           <div
             key={index}
-            className={`bg-tanbase p-8 flex flex-row gap-2 rounded-3xl text-primary max-mobile:max-w-[500px] `}
+            className={`bg-tanbase py-8 px-6 max-mobile:px-8 flex flex-row gap-2 rounded-3xl max-smMobie:w-full`}
           >
             <Image
               src="/location_on.svg"
@@ -273,8 +273,8 @@ const Page = () => {
               className="self-start"
             />
             <div className="flex flex-col gap-2">
-              <h1 className="text-2xl  text-[#235E74]">{company.name}</h1>
-              <p className=" text-2xl">{company.adress}</p>
+              <h1 className="text-2xl  text-primary">{company.name}</h1>
+              <p className=" text-2xl text-secondary-text">{company.adress}</p>
             </div>
           </div>
         ))}
