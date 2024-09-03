@@ -44,6 +44,7 @@ app.use(express.json());
 const allowedOrigins = [
   "http://localhost:3000",
   "https://mrc-two.vercel.app",
+  "https://mrc-two.vercel.app/materials/*",
   "https://mrc-*-radodds-projects.vercel.app",
 ];
 
