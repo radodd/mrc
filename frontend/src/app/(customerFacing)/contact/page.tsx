@@ -259,11 +259,11 @@ const Page = () => {
           </form>
         </div> */}
       </div>
-      <div className="grid gap-6 grid-cols-3 px-[72px] xlScreen:px-36 max-smMobie:px-8 max-smMobie:grid-cols-1 max-mobile:justify-items-center ">
+      <div className="grid gap-6 grid-cols-3 px-[72px] xlScreen:px-36 max-smMobie:px-8 max-[915px]:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
           <div
             key={index}
-            className={`bg-tanbase py-8 px-6 max-mobile:px-8 flex flex-row gap-2 rounded-3xl max-smMobie:w-full`}
+            className={`bg-tanbase py-8 px-6 max-mobile:px-8 flex flex-row gap-2 rounded-3xl max-[915px]:w-full`}
           >
             <Image
               src="/location_on.svg"

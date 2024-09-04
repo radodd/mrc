@@ -85,10 +85,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
     <div className="bg-whitebase flex flex-col items-center w-1/2 max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8 smMobie:gap-10">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-10 font-roboto  "
+        className="w-full flex flex-col gap-10 font-roboto  "
       >
         <div className="flex gap-6 w-full max-smMobie:flex-col">
-          <div className="w-1/2 max-mobile:w-full">
+          <div className="w-1/2 max-mobile:w-full relative">
             <input
               {...register("firstname", {
                 required: "Please enter your first name",
@@ -99,12 +99,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
               className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full font-roboto"
             />
             {errors.firstname?.message && (
-              <p className="text-red-500 pl-4 pt-1 text-xs font-roboto">
+              <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs font-roboto">
                 {errors.firstname.message}
               </p>
             )}
           </div>
-          <div className="w-1/2 max-mobile:w-full">
+          <div className="w-1/2 max-mobile:w-full relative">
             <input
               {...register("lastname", {
                 required: "Please enter your last name",
@@ -114,13 +114,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
               className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
             />
             {errors.lastname?.message && (
-              <p className="text-red-500 pl-4 pt-1 text-xs font-roboto">
+              <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs font-roboto">
                 {errors.lastname.message}
               </p>
             )}
           </div>
         </div>
-        <div className="w-full max-mobile:w-full">
+        <div className="w-full max-mobile:w-full relative">
           <ReactInputMask
             mask="+1 (999) 999-9999"
             // value={phoneNumberValue}
@@ -146,12 +146,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
           />
           {errors.phonenumber?.message && (
-            <p className="text-red-500 pl-4 pt-1 text-xs font-roboto">
+            <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs font-roboto">
               {errors.phonenumber.message}
             </p>
           )}
         </div>
-        <div className="w-full max-mobile:w-full">
+        <div className="w-full max-mobile:w-full relative">
           <input
             {...register("email", {
               required: "Please enter your email",
@@ -165,12 +165,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
           />
           {errors.email?.message && (
-            <p className="text-red-500 pl-4 pt-1 text-xs">
+            <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs">
               {errors.email.message}
             </p>
           )}
         </div>
-        <div className="w-full max-mobile:w-full">
+        <div className="w-full max-mobile:w-full relative">
           <select
             {...register("position", {
               required: "Please choose a position for yourself",
@@ -193,12 +193,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             </option>
           </select>
           {errors.position?.message && (
-            <p className="text-red-500 pl-4 pt-1 text-xs">
+            <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs">
               {errors.position.message}
             </p>
           )}
         </div>
-        <div className="w-full max-mobile:w-full">
+        <div className="w-full max-mobile:w-full relative">
           <input
             {...register("company", {
               required: "Please enter your company or “NA” if not applicable",
@@ -208,18 +208,17 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
           />
           {errors.company?.message && (
-            <p className="text-red-500 pl-4 pt-1 text-xs">
+            <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs">
               {errors.company.message}
             </p>
           )}
         </div>
-        <div className="max-mobile:w-full h-[157px]">
+        <div className="w-full h-[157px]">
           <textarea
             {...register("message")}
             placeholder="Message"
-            cols={79}
             rows={6}
-            className="border rounded-lg border-black pl-4 pt-3 max-mobile:w-full  "
+            className="border rounded-lg border-black w-full h-full pl-4 pt-3 max-mobile:w-full  "
           ></textarea>
           {/* {errors.message?.message && (
             <p className="text-red-500 text-sm">{errors.message.message}</p>
