@@ -150,7 +150,7 @@
   max-height: 100%;
   @include small-break {
     flex-direction: column;
-    height: 927px;
+    // height: 927px;
   }
   @include extra-small-break {
     min-height: 580px;

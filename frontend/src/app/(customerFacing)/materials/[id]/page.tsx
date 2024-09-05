@@ -51,7 +51,7 @@ const fetchProductById = async (
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
   const data = await response.json();
-
+  console.log("Fetched data IN DETAILS PAGE:", data);
   // Assuming the data is an array with a single product
   return data.length > 0 ? data[0] : null;
 };
