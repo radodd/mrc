@@ -40,7 +40,7 @@ export default function LandingPageCarousel() {
                 <div className="flex flex-row">
                   <span className="w-[230px]">We are</span>
                   <div className={styles.sliderContainer}>
-                    <Slider />
+                    {/* <Slider /> */}
                   </div>
                 </div>
               </div>
