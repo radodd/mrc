@@ -52,6 +52,7 @@
 }
 
 .carouselContainer {
+  border: solid lightcoral 2px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -163,8 +164,11 @@
 }
 
 .subItem2 {
-  padding: 96px 72px;
+  border: 2px lightblue solid;
+  // padding: 96px 72px;
   max-width: 600px;
+  width: 100%;
+  max-height: 100%;
   @include mid-break {
     max-width: 552px;
   }
