@@ -40,7 +40,7 @@ export default function LandingPageCarousel() {
                 <div className="flex flex-row">
                   <span className="w-[230px]">We are</span>
                   <div className={styles.sliderContainer}>
-                    {/* <Slider /> */}
+                    <Slider />
                   </div>
                 </div>
               </div>
@@ -61,7 +61,7 @@ export default function LandingPageCarousel() {
             </div>
           </CarouselItem>
           {/* SLIDE 2 */}
-          <CarouselItem className={styles.carouselItem2}>
+          {/* <CarouselItem className={styles.carouselItem2}>
             <div className={styles.subItem2}>
               <div className={styles.carouselHeader2}>
                 <span>We are</span>
@@ -103,7 +103,7 @@ export default function LandingPageCarousel() {
                 className={styles.image}
               />
             </div> */}
-          </CarouselItem>
+
           <CarouselItem className="flex max-h-[400px] bg-slate-600 items-center justify-center">
             SOME OTHER COMPANY
           </CarouselItem>
