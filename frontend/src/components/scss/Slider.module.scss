@@ -16,7 +16,7 @@
     height: 80px;
   }
   @include small-break {
-    height: 60px;
+    height: 80px;
   }
 }
 
@@ -33,9 +33,11 @@
   }
   @include small-break {
     max-width: 80%;
+    display: flex;
+    flex-wrap: wrap;
   }
   @include extra-small-break {
-    max-width: 45%;
+    max-width: 100%;
     overflow: hidden;
   }
 }
@@ -62,7 +64,11 @@
     align-items: center;
   }
   @include small-break {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 40px;
-    max-width: 100%;
+    max-width: 340px;
   }
 }

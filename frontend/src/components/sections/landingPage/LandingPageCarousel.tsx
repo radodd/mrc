@@ -30,7 +30,7 @@ export default function LandingPageCarousel() {
   }, [api]);
 
   return (
-    <div className="bg-tanbase">
+    <>
       <Carousel setApi={setApi} className={styles.carousel}>
         <CarouselContent className={styles.carouselContent}>
           <CarouselItem className={styles.carouselItem}>
@@ -79,7 +79,7 @@ export default function LandingPageCarousel() {
                 <Button variant="default" size="default" navigateTo="/contact">
                   Contact Us
                 </Button>
-                <div className={styles.indicatorContainer}>
+                {/* <div className={styles.indicatorContainer}>
                   {Array.from({ length: 3 }).map((item, index) => (
                     <div key={index} className="">
                       <Image
@@ -87,11 +87,11 @@ export default function LandingPageCarousel() {
                         alt=""
                         width={12}
                         height={12}
-                        className={`${styles.indicator} ${current === index + 1 ? styles.active : ""} ${current === 2 ? "hidden" : ""}`}
+                        className={`${styles.indicator} ${current === index + 1 ? styles.active : ""}`}
                       />
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
             </div>
             {/* <div className={styles.imageContainer}>
@@ -130,7 +130,7 @@ export default function LandingPageCarousel() {
               viewBox="0 0 12 12"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className={`${styles.indicator}  ${current === 2 ? "hidden" : ""}`}
+              className={`${styles.indicator}`}
             >
               <rect
                 width="12"
@@ -143,6 +143,6 @@ export default function LandingPageCarousel() {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }

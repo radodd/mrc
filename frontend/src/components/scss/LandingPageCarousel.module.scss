@@ -4,11 +4,14 @@
 .carousel {
   display: flex;
   height: 605px;
+  // height: max-content;
   max-width: 100%;
   justify-content: center;
   align-items: center;
-
+  // transform: translateX(4px);
+  background-color: hsl(var(--tan-base));
   @include small-break {
+    height: 552px;
     // margin-left: 32px;
     // margin-right: 32px;
 
@@ -21,7 +24,7 @@
 
 .carouselContent {
   max-height: 100%;
-
+  margin-left: 0;
   //   @include small-break {
   //     height: 450px;
   //   }
@@ -33,7 +36,6 @@
 .carouselItem {
   // max-height: 100%;
   // width: 100%;
-  border: 2px red solid;
   max-height: fit-content;
   display: flex;
   justify-content: center;
@@ -52,7 +54,6 @@
 }
 
 .carouselContainer {
-  border: solid lightcoral 2px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,15 +124,15 @@
 
 .next {
   // padding-right: 15px;
-  transform: translateX(-60px) translateY(-16px);
-  @include extra-small-break {
-    transform: translateX(-5px) translateY(-20px);
+  // transform: translateX(-60px) translateY(-16px);
+  @include small-break {
+    right: 21px;
   }
 }
 .prev {
-  transform: translateX(-10px) translateY(-15px);
-  @include extra-small-break {
-    // transform:;
+  // transform: translateX(-10px) translateY(-15px);
+  @include small-break {
+    left: 20px;
   }
 }
 
@@ -145,7 +146,6 @@
 // Slide 2
 
 .carouselItem2 {
-  border: 2px solid blue;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,9 +154,9 @@
   @include small-break {
     flex-direction: column;
     // height: 927px;
+    min-height: 552px;
   }
   @include extra-small-break {
-    min-height: 580px;
     // min-height: 100%;
     justify-content: center;
     padding: 32px 32px;
@@ -164,13 +164,15 @@
 }
 
 .subItem2 {
-  border: 2px lightblue solid;
   // padding: 96px 72px;
   max-width: 600px;
   width: 100%;
   max-height: 100%;
   @include mid-break {
     max-width: 552px;
+  }
+  @include small-break {
+    padding: 0 34px;
   }
 }
 
@@ -223,9 +225,10 @@
     font-size: 16px;
     padding-top: 16px;
     padding-bottom: 16px;
+    padding-right: 0;
   }
   @include extra-small-break {
-    width: 188px;
+    // width: 188px;
   }
 }
 
