@@ -321,8 +321,8 @@ export function CustomerFacingNavLink(
     <Link
       {...props}
       className={cn(
-        "font-openSans m-0 px-1 w-fit rounded-lg bg-whitebase hover:bg-tanbase hover:text-secondary-foreground focus-visible:bg-tanbase focus-visible:text-secondary-foreground",
-        pathname === props.href && "bg-tanbase text-foreground",
+        "font-openSans m-0 px-1 w-fit rounded-lg bg-whitebase hover:font-bold ",
+        pathname === "/cart" && "",
       )}
     />
   );

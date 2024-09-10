@@ -19,6 +19,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useFilter } from "../../context/FilterContext";
+import { usePathname } from "next/navigation";
+import ShoppingCart from "../../../public/shopping_cart.svg";
 
 export default function Layout({
   children,
@@ -30,6 +32,7 @@ export default function Layout({
   const [isSubSubmenuOpen, setIsSubSubmenuOpen] = useState<number | null>(null);
   const [isMenuHeight, setIsMenuHeight] = useState(`h-[405px]`);
   const { setFilterValueList, filterValueList } = useFilter();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (isMaterialsOpen === false) {
@@ -69,7 +72,7 @@ export default function Layout({
               {isMaterialsOpen && (
                 <NavigationMenuContent
                   onMouseLeave={() => setIsMaterialsOpen(false)}
-                  className={`${isMenuHeight} flex justify-start`}
+                  className={`${isMenuHeight} flex justify-start bg-whitebase rounded-[10px]`}
                 >
                   <ul className="m-4 ">
                     <Link href="/materials">
@@ -81,7 +84,7 @@ export default function Layout({
                     <ListItem
                       href="/materials"
                       title="STONEYARD"
-                      className="w-[298px] border border-red-200"
+                      className="w-[298px]"
                       onMouseEnter={() => setIsSubmenuOpen(1)}
                       onClick={() => {
                         setIsSubmenuOpen(null);
@@ -91,7 +94,7 @@ export default function Layout({
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 1 && (
                         <ul
-                          className={`absolute  left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-68px] rounded-r`}
+                          className={`absolute  left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-whitebase text-black shadow-none translate-x-[11px] translate-y-[-68px] rounded-r`}
                         >
                           <ul className="flex flex-row  gap-3 p-6 h-full md:w-[400px] lg:w-[500px] ">
                             <li className="w-[208px] ">
@@ -128,7 +131,7 @@ export default function Layout({
                               >
                                 {isSubSubmenuOpen === 1 && (
                                   <ul
-                                    className={`absolute rounded-r left-full p-4 top-0 w-[290px] ${isMenuHeight} mt-0 ml-4 bg-white text-black shadow-none translate-x-[25px] translate-y-[-40px]`}
+                                    className={`absolute rounded-r left-full p-4 top-0 w-[290px] ${isMenuHeight} mt-0 ml-4 bg-whitebase text-black shadow-none translate-x-[23px] translate-y-[-40px]`}
                                     onMouseLeave={() =>
                                       setIsSubSubmenuOpen(null)
                                     }
@@ -145,16 +148,6 @@ export default function Layout({
                                   </ul>
                                 )}
                               </ListItem>
-                              <ListItem
-                                href="/docs/installation"
-                                title="Tile"
-                                className=" flex p-0 font-[700] items-center justify-between"
-                              ></ListItem>
-                              <ListItem
-                                href="/docs/primitives/typography"
-                                title="Fireplaces"
-                                className="flex p-0 font-[700] items-center justify-between"
-                              ></ListItem>
                             </div>
                           </ul>
                         </ul>
@@ -172,7 +165,7 @@ export default function Layout({
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 2 && (
                         <ul
-                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-180px] rounded-r`}
+                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-whitebase text-black shadow-none translate-x-[11px] translate-y-[-180px] rounded-r`}
                         >
                           <ul className="flex flex-row gap-3 p-6 h-full md:w-[400px] lg:w-[500px] ">
                             <li className="w-[208px] ">
@@ -227,7 +220,7 @@ export default function Layout({
                       We demo and sell recyclable materials.
                       {isSubmenuOpen === 3 && (
                         <ul
-                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-white text-black shadow-none translate-x-[13px] translate-y-[-292px] rounded-r`}
+                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-whitebase text-black shadow-none translate-x-[11px] translate-y-[-292px] rounded-r`}
                         >
                           <ul className="flex flex-row gap-3 p-6 h-full md:w-[400px] lg:w-[530px] ">
                             <li className="w-[208px] ">
@@ -283,12 +276,8 @@ export default function Layout({
         </CustomerFacingNavLink>
         <CustomerFacingNavLink href="/contact">Contact</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/cart">
-          <Image
-            src="/shopping_cart.png"
-            alt="shopping cart"
-            width={33}
-            height={33}
-            className="min-w-[33px]"
+          <ShoppingCart
+            className={`${pathname === "/cart" && "fill-primary-dark"} min-w-[33px] hover:fill-primary-dark`}
           />
         </CustomerFacingNavLink>
       </CustomerFacingNav>
@@ -298,7 +287,7 @@ export default function Layout({
         <div className="flex flex-col max-[1305px]:items-center">
           <FooterLink href="/">Santa Paula Materials</FooterLink>
           <FooterLink href="/">MRC Rock and Sand</FooterLink>
-          <FooterLink href="/">Stonyard</FooterLink>
+          <FooterLink href="/">Stoneyard</FooterLink>
         </div>
 
         <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">

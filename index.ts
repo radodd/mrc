@@ -207,10 +207,10 @@ export const Articles = [
     content:
       "Lúthien ar rochathol an-uir uir velithil ielvathren. Ithil ír anlínath ar arthelon inórello. Eldalië valinor ar nai quendi, ar thalion estel enwathiel arnanor. Aerlinn irína anweryn, hiril alda ristaer ar lúthalion úmenethel",
   },
-  {
-    image: "/moxi.png",
-    title: "Natural History Museum",
-    content:
-      "Lúthien ar rochathol an-uir uir velithil ielvathren. Ithil ír anlínath ar arthelon inórello. Eldalië valinor ar nai quendi, ar thalion estel enwathiel arnanor. Aerlinn irína anweryn, hiril alda ristaer ar lúthalion úmenethel",
-  },
+  // {
+  //   image: "/moxi.png",
+  //   title: "Natural History Museum",
+  //   content:
+  //     "Lúthien ar rochathol an-uir uir velithil ielvathren. Ithil ír anlínath ar arthelon inórello. Eldalië valinor ar nai quendi, ar thalion estel enwathiel arnanor. Aerlinn irína anweryn, hiril alda ristaer ar lúthalion úmenethel",
+  // },
 ];

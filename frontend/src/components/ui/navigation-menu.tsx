@@ -12,7 +12,7 @@ const CustomNavigationMenuContent = React.forwardRef<
   <NavigationMenuPrimitive.Content
     ref={ref}
     className={cn(
-      "custom-class flex flex-col items-center justify-center data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in  data-[motion=from-end]:slide-in-from-left-52 data-[motion=from-start]:slide-in-from-right-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto",
+      "custom-class flex flex-col items-center justify-center bg-whitebase data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in  data-[motion=from-end]:slide-in-from-left-52 data-[motion=from-start]:slide-in-from-right-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto",
       className,
     )}
     {...props}
@@ -57,7 +57,7 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-10 w-max items-center justify-center rounded-md px-1 py-0 text-2xl font-normal transition-colors text-accent-foreground hover:bg-tanbase focus:bg-tanbase focus:outline-none  disabled:opacity-50 data-[active]:bg-tanbase data-[state=open]:bg-tanbase",
+  "group inline-flex h-10 w-max items-center justify-center rounded-md px-1 py-0 text-2xl font-normal transition-colors text-accent-foreground hover:font-bold focus:font-bold focus:outline-none  disabled:opacity-50 data-[active]:bg-tanbase data-[state=open]:font-bold",
 );
 
 const NavigationMenuTrigger = React.forwardRef<
@@ -70,10 +70,26 @@ const NavigationMenuTrigger = React.forwardRef<
     {...props}
   >
     {children}{" "}
-    <ChevronDown
+    {/* <ChevronDown
       className="relative top-[1px] ml-1 h-8 w-8 transition duration-200 group-data-[state=open]:rotate-180"
       aria-hidden="true"
-    />
+    /> */}
+    <svg
+      width="12"
+      height="7"
+      viewBox="0 0 12 7"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="relative top-[1px] ml-2 h-[6px] w-[10px] transition duration-200 group-data-[state=open]:rotate-180"
+    >
+      <path
+        d="M1 6L6 1L11 6"
+        stroke="#2C2D31"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   </NavigationMenuPrimitive.Trigger>
 ));
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
@@ -102,7 +118,7 @@ const NavigationMenuViewport = React.forwardRef<
   <div className={cn("absolute left-0 top-full flex justify-center")}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        "translate-x-[-200px] translate-y-[45px] relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full rounded-md border-none bg-popover text-popover-foreground shadow-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
+        "translate-x-[-200px] translate-y-[35px] relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full rounded-md border-none bg-popover text-popover-foreground shadow-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
         className,
       )}
       ref={ref}

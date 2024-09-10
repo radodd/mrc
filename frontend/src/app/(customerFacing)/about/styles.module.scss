@@ -79,6 +79,13 @@
       font-size: 24px;
       font-weight: 400;
       letter-spacing: -0.96px;
+      text-align: center;
+      @include large-break {
+        text-align: left;
+      }
+      @include mid-break {
+        text-align: left;
+      }
       @include small-break {
         font-size: 20px;
         letter-spacing: -0.8px;

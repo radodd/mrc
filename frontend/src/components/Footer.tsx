@@ -20,7 +20,7 @@ export function FooterLink(
     <Link
       {...props}
       className={cn(
-        "p-2 hover:bg-secondary hover:text-secondary-foreground w-auto focus-visible:bg-secondary focus-visible:text-secondary-foreground text-nowrap",
+        "p-2 text-whitebase font-openSans hover:font-bold hover:text-whitebase w-auto focus-visible:bg-secondary focus-visible:text-secondary-foreground text-nowrap",
         // pathname === props.href && "bg-background text-foreground",
       )}
     />

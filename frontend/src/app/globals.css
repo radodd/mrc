@@ -42,7 +42,7 @@
 
     /* --white-base: 56.54, 2.6091%, 96.28%; */
     --white-base: 43, 64%, 98%, 1;
-    --tan-base: 34, 67%, 88%;
+    --tan-base: 38, 80%, 93%, 1;
     --black-base: 197, 57%, 11%;
 
     --background: 0 0% 100%;
@@ -58,13 +58,15 @@
     /* --primary-foreground: 210 40% 98%; */
     /* --primary-foreground: 197, 44%, 11%; */
 
-    --primary: 194, 47%, 35%;
+    --primary: 194, 47%, 35%, 1;
     --primary-foreground: 55, 58%, 96%;
-    --primary-text: 228, 5%, 18%;
+    --primary-text: 228, 5%, 18%, 1;
+    --primary-dark: 196, 54%, 30%, 1;
+    --primary-light: 196, 32%, 75%, 1;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 210, 40%, 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-    --secondary-text: 236.5 8.5% 39.4%;
+    --secondary-text: 236, 8%, 39%, 1;
 
     /* --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%; */
@@ -80,7 +82,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
-    --icon: 236, 8%, 39%;
+    --icon: 236, 8%, 39%, 1;
     --radius: 0.5rem;
   }
 
