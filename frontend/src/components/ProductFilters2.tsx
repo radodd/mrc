@@ -1,17 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
-import { ProductState } from "../lib/product-validator";
-import { useFilter } from "../context/FilterContext";
+import { Checkbox } from "./ui/checkbox";
+import {
+  AllCategories,
+  AllColors,
+  AllCompanies,
+  AllSizes,
+  AllTextures,
+} from "../../..";
 
 import styles from "./scss/ProductFilters.module.scss";
-import { Checkbox } from "./ui/checkbox";
-
 // Define FilterGroup before using it
 type FilterGroupProps = {
   title: string;
@@ -19,6 +22,7 @@ type FilterGroupProps = {
   filterCounts: Record<string, number>;
   filterValueList: string[];
   handleCheckboxChange: (filterKey: string, value: string) => void;
+  allFilters?: string[];
 };
 
 const FilterGroup: React.FC<FilterGroupProps> = ({
@@ -27,6 +31,7 @@ const FilterGroup: React.FC<FilterGroupProps> = ({
   filterCounts,
   filterValueList,
   handleCheckboxChange,
+  allFilters,
 }) => (
   <AccordionItem value={filterKey} className={styles.filterContainer}>
     <AccordionTrigger className={styles.trigger}>
@@ -34,11 +39,12 @@ const FilterGroup: React.FC<FilterGroupProps> = ({
     </AccordionTrigger>
     <AccordionContent className={styles.accordionContent}>
       <ul>
-        {Object.keys(filterCounts).map((key) => (
+        {allFilters.map((key) => (
+          // {Object.keys(filterCounts).map((key) => (
           <FilterItem
             key={key}
             label={key}
-            count={filterCounts[key]}
+            count={filterCounts[key] || 0}
             isChecked={filterValueList.includes(key)}
             onChange={() => handleCheckboxChange(filterKey, key)}
           />
@@ -62,12 +68,6 @@ const FilterItem: React.FC<FilterItemProps> = ({
   onChange,
 }) => (
   <li className={styles.filterItem}>
-    {/* <input
-      type="checkbox"
-      checked={isChecked}
-      onChange={onChange}
-      className="border-2 border-red-300"
-    /> */}
     <Checkbox checked={isChecked} onCheckedChange={onChange} />
     <label>
       {label} ({count})
@@ -84,6 +84,7 @@ export const ProductFilters2: React.FC<{
   textureCounts: Record<string, number>;
   colorCounts: Record<string, number>;
   sizeCounts: Record<string, number>;
+  allFilters: string[];
 }> = ({
   filterValueList,
   setFilterValueList,
@@ -93,6 +94,7 @@ export const ProductFilters2: React.FC<{
   textureCounts,
   colorCounts,
   sizeCounts,
+  allFilters,
 }) => {
   const handleCheckboxChange = (category: string, value: string) => {
     if (filterValueList.includes(value)) {
@@ -112,6 +114,7 @@ export const ProductFilters2: React.FC<{
         filterCounts={companyCounts}
         filterValueList={filterValueList}
         handleCheckboxChange={handleCheckboxChange}
+        allFilters={AllCompanies}
       />
       <FilterGroup
         title="Category"
@@ -119,6 +122,7 @@ export const ProductFilters2: React.FC<{
         filterCounts={categoryCounts}
         filterValueList={filterValueList}
         handleCheckboxChange={handleCheckboxChange}
+        allFilters={AllCategories}
       />
       <FilterGroup
         title="Texture"
@@ -126,6 +130,7 @@ export const ProductFilters2: React.FC<{
         filterCounts={textureCounts}
         filterValueList={filterValueList}
         handleCheckboxChange={handleCheckboxChange}
+        allFilters={AllTextures}
       />
       <FilterGroup
         title="Color"
@@ -133,6 +138,7 @@ export const ProductFilters2: React.FC<{
         filterCounts={colorCounts}
         filterValueList={filterValueList}
         handleCheckboxChange={handleCheckboxChange}
+        allFilters={AllColors}
       />
       <FilterGroup
         title="Size"
@@ -140,6 +146,7 @@ export const ProductFilters2: React.FC<{
         filterCounts={sizeCounts}
         filterValueList={filterValueList}
         handleCheckboxChange={handleCheckboxChange}
+        allFilters={AllSizes}
       />
     </Accordion>
   );

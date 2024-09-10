@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.1",
+    "@radix-ui/react-radio-group": "^1.2.0"
+  },
+  "devDependencies": {
     "@svgr/webpack": "^8.1.0"
   }
 }

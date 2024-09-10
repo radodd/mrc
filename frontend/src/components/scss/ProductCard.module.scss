@@ -9,6 +9,10 @@
 
 .separator {
   color: var(--Border-Gray, #bec0c9);
+  margin-bottom: 40px;
+  @include small-break {
+    margin-bottom: 32px;
+  }
 }
 
 .imageWrapper {

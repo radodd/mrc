@@ -1,17 +1,18 @@
 "use client";
-import { text } from "stream/consumers";
-// src/components/ProductGridSection.tsx
 import { useFilter } from "../context/FilterContext";
 import { ProductCard } from "./ProductCard";
 import { ProductFilterCard } from "./ProductFilterCard";
-import { ProductFilters } from "./ProductFilters";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
-
-import styles from "./scss/ProductGridSection.module.scss";
 import { ProductFilters2 } from "./ProductFilters2";
 import Image from "next/image";
 import Link from "next/link";
+
+import styles from "./scss/ProductGridSection.module.scss";
+import FilterDropDown from "./FilterDropDown";
+import Alphabetize from "./AlphabetizeButtons";
+import AlphabetizeButtons from "./AlphabetizeButtons";
+import AlphabetizeRadio from "./AlphabetizeRadio";
 
 interface Product {
   id: string;
@@ -34,6 +35,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   const { filterValueList, setFilterValueList, clearFilter } = useFilter();
   const [products, setProducts] = useState<Product[]>([]);
   const [alphabetFilter, setAlphabetFilter] = useState(false);
+  const [filterDropDown, setFilterDropdown] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -49,9 +51,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             },
           },
         );
-        // { mode: "no-cors" },
 
-        // const response = await fetch("/api/products");
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -69,28 +69,21 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     if (filterValueList.length === 0) {
       return true;
     } else {
-      const colorFilter = filterValueList.some((filterValue) =>
-        product.color.includes(filterValue),
-      );
-      const companyFilter = filterValueList.some((filterValue) =>
-        product.company.includes(filterValue),
-      );
-      const categoryFilter = filterValueList.some((filterValue) =>
-        product.category.includes(filterValue),
-      );
-      const textureFilter = filterValueList.some((filterValue) =>
-        product.texture.includes(filterValue),
-      );
-      const sizeFilter = filterValueList.some((filterValue) =>
-        product.size.includes(filterValue),
-      );
-      return (
-        colorFilter ||
-        companyFilter ||
-        categoryFilter ||
-        textureFilter ||
-        sizeFilter
-      );
+      return filterValueList.every((filterValue) => {
+        const colorFilter = product.color.includes(filterValue);
+        const companyFilter = product.company.includes(filterValue);
+        const categoryFilter = product.category.includes(filterValue);
+        const textureFilter = product.texture.includes(filterValue);
+        const sizeFilter = product.size.includes(filterValue);
+
+        return (
+          colorFilter ||
+          companyFilter ||
+          categoryFilter ||
+          textureFilter ||
+          sizeFilter
+        );
+      });
     }
   });
 
@@ -151,33 +144,37 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   const clearAllFilters = () => {
     setFilterValueList([]);
   };
-  console.log(products);
-  const alphabetizeByA = () => {
-    const sortedList = [...products].sort((a, b) => {
-      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-      if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-      return 0;
-    });
 
-    setProducts(sortedList);
-  };
-  const alphabetizeByZ = () => {
-    const sortedList = [...products].sort((a, b) => {
-      if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-      if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-      return 0;
-    });
-
-    setProducts(sortedList);
-  };
-
-  console.log("FilteredProductList in Grid Section:", filteredProductList);
   return (
     <section className={styles.sectionContainer}>
       <h1>{title}</h1>
       <div className={styles.buttonContainer}>
-        <Button variant="outline">Sort & Filter</Button>
+        <Button
+          variant="outline"
+          onClick={() => setFilterDropdown(!filterDropDown)}
+          className="relative"
+        >
+          Sort & Filter
+        </Button>
       </div>
+      {filterDropDown && (
+        <>
+          <AlphabetizeRadio products={products} setProducts={setProducts} />
+          <FilterDropDown
+            filterValueList={filterValueList}
+            setFilterValueList={setFilterValueList}
+            clearFilter={clearFilter}
+            categoryCounts={categoryCounts}
+            colorCounts={colorCounts}
+            companyCounts={companyCounts}
+            textureCounts={textureCounts}
+            sizeCounts={sizeCounts}
+            allFilters={[]}
+            filterDropDown={filterDropDown}
+            setFilterDropDown={setFilterDropdown}
+          ></FilterDropDown>{" "}
+        </>
+      )}
       <div className="flex">
         <div className="flex flex-col max-[1306px]:hidden">
           {filterValueList.length === 0 ? (
@@ -215,7 +212,8 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             companyCounts={companyCounts}
             textureCounts={textureCounts}
             sizeCounts={sizeCounts}
-          />{" "}
+            allFilters={[]}
+          />
         </div>
         <div>
           <div className="flex justify-between min-[1306px]:mx-[72px] max-[1306px]:hidden">
@@ -234,40 +232,29 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
                 />
               )}
             </div>
-            <div>
-              <Button
-                variant="filter"
-                size="filter"
-                onClick={() => setAlphabetFilter(!alphabetFilter)}
-              >
-                Sort by: A-Z
-              </Button>
-              {alphabetFilter && (
-                <div className="z-50 absolute">
-                  <Button
-                    variant="filter"
-                    size="filter"
-                    onClick={alphabetizeByA}
-                  >
-                    A-Z
-                  </Button>
-                  <Button
-                    variant="filter"
-                    size="filter"
-                    onClick={alphabetizeByZ}
-                  >
-                    Z-A
-                  </Button>
-                </div>
-              )}
-            </div>
+            <AlphabetizeButtons
+              products={products}
+              setProducts={setProducts}
+              alphabetFilter={alphabetFilter}
+              setAlphabetFilter={setAlphabetFilter}
+            />
           </div>
+          {filteredProductList.length === 0 && (
+            <div className={styles.noItemsMatchContainer}>
+              <Image
+                src="/no_items_match.svg"
+                alt=""
+                width={777}
+                height={405}
+              />
+            </div>
+          )}
           <div className={styles.productCardContainer}>
             {filteredProductList.map((product) => {
               console.log("Product in map:", product.id); // Log each product object
               return (
                 <Link href={`/materials/${product.id}`} key={product.id}>
-                  <ProductCard {...product} />{" "}
+                  <ProductCard {...product} />
                 </Link>
               );
             })}

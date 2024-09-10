@@ -214,3 +214,54 @@ export const Articles = [
   //     "Lúthien ar rochathol an-uir uir velithil ielvathren. Ithil ír anlínath ar arthelon inórello. Eldalië valinor ar nai quendi, ar thalion estel enwathiel arnanor. Aerlinn irína anweryn, hiril alda ristaer ar lúthalion úmenethel",
   // },
 ];
+
+export const AllCompanies = [
+  "MRC Rock & Sand",
+  "Stoneyard",
+  "Santa Paula Materials",
+];
+
+export const AllCategories = [
+  "Aggregate",
+  "Cobble & Rubble",
+  "Boulders",
+  "Decomposed Granite",
+  "Base Materials",
+  "Rip Rap",
+  "Drain Rock",
+  "Rock Dust",
+];
+
+export const AllTextures = ["Angular", "Round"];
+
+export const AllColors = [
+  "Gold",
+  "Red/Pink",
+  "Green",
+  "Blue",
+  "White/Cool Neutral",
+  "Light Earth-tones",
+  "Dark Earth-tones",
+  "Gray/Black",
+];
+
+export const AllSizes = [
+  "1/4 in. chipped",
+  "1/4 in. fine",
+  "3/8 - 1/2 in.",
+  "3/4 - 1 in.",
+  "1 - 2 in.",
+  "1 - 3 in.",
+  "2 - 4 in.",
+  "4 - 6 in.",
+  "4 - 8 in.",
+  "6 - 9 in.",
+  "9 - 12 in.",
+  "2 - 18 in.",
+  "12 - 18 in.",
+  "1 - 2 ft.",
+  "2 - 3 ft.",
+  "3 - 4 ft.",
+  "4 - 6 ft.",
+  "+ 6 ft.",
+];

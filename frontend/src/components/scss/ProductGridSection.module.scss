@@ -14,6 +14,7 @@
     align-items: center;
     font-size: 64px;
     padding: 80px;
+    border: blue 2px dotted;
     @include mid-break {
       display: none;
     }
@@ -25,6 +26,7 @@
 
 .productFilterCardContainer {
   display: flex;
+  margin-bottom: 24px;
   @include mid-break {
     display: none;
   }
@@ -33,32 +35,16 @@
 .buttonContainer {
   display: flex;
   justify-content: center;
-  width: 100%;
-  display: none;
 
-  @include mid-break {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    display: contents;
+  margin: 64px 72px;
+  @include large-break {
+    display: none;
   }
-  @include small-break {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    display: contents;
+  @include custom-breakpoint(900px) {
+    margin: 40px 35px;
   }
   Button {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    width: 100%;
-    margin: 64px 72px;
-    @include custom-breakpoint(900px) {
-      margin: 40px 35px;
-    }
+    min-width: 100%;
   }
 }
 
@@ -75,5 +61,14 @@
   }
   @include custom-breakpoint(900px) {
     margin: 0 32px 40px;
+  }
+}
+
+.noItemsMatchContainer {
+  display: flex;
+  max-width: 100%;
+  margin-inline: 86px;
+  @include mid-break {
+    margin-inline: 52px;
   }
 }
