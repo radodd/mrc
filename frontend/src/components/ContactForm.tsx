@@ -4,6 +4,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import ReactInputMask from "react-input-mask";
 import { Button } from "./ui/button";
 import { useToast } from "../components/ui/use-toast";
+import EmailTemplate from "./EmailTemplate";
+import ReactDOMServer from "react-dom/server";
 
 type FormValues = {
   firstname: string;
@@ -45,6 +47,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
 
   const onSubmit: SubmitHandler<FormValues> = async (formData) => {
     try {
+      const emailHtml = ReactDOMServer.renderToString(
+        <EmailTemplate
+          firstname={formData.firstname}
+          lastname={formData.lastname}
+          phonenumber={formData.phonenumber}
+          email={formData.email}
+          position={formData.position}
+          company={formData.company}
+          message={formData.message}
+        />,
+      );
+
       const response = await fetch("http://localhost:3030/resend", {
         method: "POST",
         headers: {
@@ -54,6 +68,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
           from: "Your Email <onboarding@resend.dev>", // static 'from' field
           to: "delivered@resend.dev",
           subject: "Contact Form Submission",
+          html: emailHtml,
           firstname: formData.firstname,
           lastname: formData.lastname,
           phonenumber: formData.phonenumber,

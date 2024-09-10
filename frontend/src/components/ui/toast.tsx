@@ -52,7 +52,7 @@ const Toast = React.forwardRef<
       ref={ref}
       className={cn(
         toastVariants({ variant }),
-        "w-[616px] h-[492px]",
+        "w-[616px] h-[432px]",
         className,
       )}
       {...props}
@@ -122,7 +122,7 @@ const ToastDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Description
     ref={ref}
-    className={cn("text-2xl text-secondary-text tracking-[-.8px]", className)}
+    className={cn("text-xl text-secondary-text tracking-[-.8px]", className)}
     {...props}
   />
 ));
