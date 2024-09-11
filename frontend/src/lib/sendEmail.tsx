@@ -9,7 +9,7 @@ interface EmailData {
   subject: string;
   firstname: string;
   lastname: string;
-  phonenumber: number;
+  phonenumber: string;
   email: string;
   position: string;
   company: string;
