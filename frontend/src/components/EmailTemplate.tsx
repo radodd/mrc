@@ -3,7 +3,7 @@ import React from "react";
 interface EmailTemplateProps {
   firstname: string;
   lastname: string;
-  phonenumber: number;
+  phonenumber: string;
   email: string;
   position: string;
   company: string;

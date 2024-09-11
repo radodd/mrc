@@ -40,6 +40,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
   });
 
   const [selectedValue, setSelectedValue] = useState("");
+  // const [showToast, setShowToast] = useState(false);
 
   const phoneInputRef = useRef(null);
 
@@ -69,6 +70,15 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
       if (!response.ok) {
         console.error("Error sending email:", data.error);
       } else {
+        toast({
+          title: "Submitted",
+          description:
+            "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
+          src: "/Group 271.svg",
+        });
+        // console.log(showToast);
+        // setShowToast(!showToast);
+        // console.log(`tis shooudl be true ${showToast}`);
         console.log("Email sent successfully:", data);
       }
 
@@ -85,7 +95,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
     <div className="bg-whitebase flex flex-col items-center w-1/2 max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8 smMobie:gap-10">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full flex flex-col gap-10 font-roboto  "
+        className="w-full flex flex-col gap-10 font-roboto bg-whitebase "
       >
         <div className="flex gap-6 w-full max-smMobie:flex-col">
           <div className="w-1/2 max-mobile:w-full relative">
@@ -96,8 +106,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
               type="text"
               // autoComplete="off"
               placeholder="First Name"
-              className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full font-roboto"
+              className="relative border border-secondary-text rounded w-full h-14 pl-4 py-2 max-mobile:w-full font-roboto bg-whitebase"
             />
+            <label
+              htmlFor="firstname"
+              className="absolute left-3 -top-2 bg-whitebase px-1 text-xs tracking-[.4px] text-primary-text"
+            >
+              First Name
+            </label>
             {errors.firstname?.message && (
               <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs font-roboto">
                 {errors.firstname.message}
@@ -111,8 +127,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
               })}
               placeholder="Last Name"
               type="text"
-              className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
+              className="relative border border-secondary-text rounded w-full h-14 pl-4 py-2 max-mobile:w-full font-roboto bg-whitebase"
             />
+            <label
+              htmlFor="lastname"
+              className="absolute left-3 -top-2 bg-whitebase px-1 text-xs tracking-[.4px] text-primary-text"
+            >
+              Last Name
+            </label>
             {errors.lastname?.message && (
               <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs font-roboto">
                 {errors.lastname.message}
@@ -143,8 +165,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             placeholder="Phone Number"
             type="text"
             inputRef={phoneInputRef}
-            className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
+            className="relative border border-secondary-text rounded w-full h-14 pl-4 py-2 max-mobile:w-full font-roboto bg-whitebase"
           />
+          <label
+            htmlFor="phonenumber"
+            className="absolute left-3 -top-2 bg-whitebase px-1 text-xs tracking-[.4px] text-primary-text"
+          >
+            Phone Number
+          </label>
           {errors.phonenumber?.message && (
             <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs font-roboto">
               {errors.phonenumber.message}
@@ -162,8 +190,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             })}
             placeholder="Email"
             type="email"
-            className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
+            className="relative border border-secondary-text rounded w-full h-14 pl-4 py-2 max-mobile:w-full font-roboto bg-whitebase"
           />
+          <label
+            htmlFor="email"
+            className="absolute left-3 -top-2 bg-whitebase px-1 text-xs tracking-[.4px] text-primary-text"
+          >
+            Email
+          </label>
           {errors.email?.message && (
             <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs">
               {errors.email.message}
@@ -175,7 +209,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             {...register("position", {
               required: "Please choose a position for yourself",
             })}
-            className={`border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full ${selectedValue ? "text-black" : "text-gray-500"}`}
+            className={`relative border border-secondary-text rounded w-full h-14 pl-3 py-2 max-mobile:w-full font-roboto bg-whitebase ${selectedValue ? "text-black" : "text-gray-500"}`}
             value={selectedValue}
             onChange={(e) => setSelectedValue(e.target.value)}
           >
@@ -192,6 +226,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
               Homeowner
             </option>
           </select>
+          <label
+            htmlFor="position"
+            className="absolute left-3 -top-2 bg-whitebase px-1 text-xs tracking-[.4px] text-primary-text"
+          >
+            Position
+          </label>
           {errors.position?.message && (
             <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs">
               {errors.position.message}
@@ -205,35 +245,57 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             })}
             placeholder="Company"
             type="text"
-            className="border rounded-lg border-black w-full h-14 pl-4 max-mobile:w-full"
+            className="relative border border-secondary-text rounded w-full h-14 pl-4 py-2 max-mobile:w-full font-roboto bg-whitebase"
           />
+          <label
+            htmlFor="company"
+            className="absolute left-3 -top-2 bg-whitebase px-1 text-xs tracking-[.4px] text-primary-text"
+          >
+            Company
+          </label>
           {errors.company?.message && (
             <p className="absolute left-0 top-full mt-1 text-red-500 pl-4 pt-1 text-xs">
               {errors.company.message}
             </p>
           )}
         </div>
-        <div className="w-full h-[157px]">
+        <div className="w-full h-[157px] relative">
           <textarea
             {...register("message")}
             placeholder="Message"
             rows={6}
-            className="border rounded-lg border-black w-full h-full pl-4 pt-3 max-mobile:w-full  "
+            className="relative border border-secondary-text rounded w-full h-full pl-4 pt-3 font-roboto bg-whitebase"
           ></textarea>
+          <label
+            htmlFor="message"
+            className="absolute left-3 -top-2 bg-whitebase px-1 text-xs tracking-[.4px] text-primary-text"
+          >
+            Massage
+          </label>
           {/* {errors.message?.message && (
             <p className="text-red-500 text-sm">{errors.message.message}</p>
           )} */}
         </div>
         <Button
           className="w-full"
-          onClick={() => {
-            toast({
-              title: "Submitted!",
-              description:
-                "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
-              src: "/Group 271.svg",
-            });
-          }}
+          // onClick={() => {
+          //   {
+          //     showToast == true
+          //       ? toast({
+          //           title: "Submitted",
+          //           description:
+          //             "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
+          //           src: "/Group 271.svg",
+          //         })
+          //       : null;
+          //   }
+          //   // toast({
+          //   //   title: "Submitted!",
+          //   //   description:
+          //   //     "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
+          //   //   src: "/Group 271.svg",
+          //   // });
+          // }}
         >
           {buttonText}
         </Button>
