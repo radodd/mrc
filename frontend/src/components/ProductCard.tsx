@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Separator } from "./ui/separator";
-
 import styles from "../components/scss/ProductCard.module.scss";
 
 type ProductCardProps = {

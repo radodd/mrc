@@ -26,7 +26,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 // @ts-ignore
-const express = require("express");
+// const express = require("express");
 // @ts-ignore
 const app = require("./app");
 
