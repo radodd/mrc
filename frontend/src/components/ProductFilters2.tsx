@@ -98,14 +98,12 @@ export const ProductFilters2: React.FC<{
 }) => {
   const handleCheckboxChange = (category: string, value: string) => {
     if (filterValueList.includes(value)) {
-      console.log(filterValueList);
       setFilterValueList((prev) => prev.filter((v) => v !== value));
       clearFilter(value);
     } else {
       setFilterValueList((prev) => [...prev, value]);
     }
   };
-  console.log("FILTER", filterValueList);
   return (
     <Accordion type="multiple">
       <FilterGroup

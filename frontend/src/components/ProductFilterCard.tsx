@@ -12,7 +12,6 @@ export function ProductFilterCard({
 }: ProductFilterCardProps) {
   const handleClick = () => {
     onRemove(filter);
-    console.log("onRemove", filter);
   };
   return (
     <>

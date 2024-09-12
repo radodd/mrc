@@ -2,6 +2,7 @@
 @import "../../../css/queries.scss";
 
 .filterContainer {
+  background-color: hsl(var(--white-base));
   min-width: 100vw;
   padding: 24px 32px;
   @include large-break {

@@ -56,8 +56,6 @@ export default function Layout({
         JSON.stringify(updatedFilterValueList),
       );
     }
-
-    console.log("FILTER VALUE", filterValue);
   };
 
   return (

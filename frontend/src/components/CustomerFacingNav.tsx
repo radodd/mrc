@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "../lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,302 +18,243 @@ import { ChevronDown } from "lucide-react";
 import { NavigationMenuLink } from "./ui/navigation-menu";
 import { Separator } from "./ui/separator";
 import { ArtisanalStone } from "../../..";
+import ChevronNavSharp from "../../public/chevron_nav_sharp.svg";
 
 import styles from "./scss/CustomerFacingNav.module.scss";
 
+/** A reusable component for the site logo */
+const Logo = () => (
+  <Link href="/">
+    <Image src="/logo_rocks.svg" alt="Company Logo" height={64} width={207} />
+  </Link>
+);
+
+/** Mobile Nav Menu with Sheet */
+const MobileNavMenu = ({
+  isOpen,
+  setIsOpen,
+}: {
+  isOpen: boolean;
+  setIsOpen: (state: boolean) => void;
+}) => {
+  return (
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger asChild>
+        <div>
+          <button
+            type="button"
+            className={`hamburger hamburger--collapse ${isOpen ? "is-active" : ""}`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <span className="hamburger-box">
+              <span className="hamburger-inner"></span>
+            </span>
+          </button>
+        </div>
+      </SheetTrigger>
+
+      <SheetContent hideChevron={true} className="w-[300px]">
+        <nav className={styles.sheet}>
+          <NavLink href="/about">About</NavLink>
+          <MaterialsDropdown />
+          <NavLink href="/services">Services</NavLink>
+          <NavLink href="/projects">Projects</NavLink>
+          <NavLink href="/contact">Contact</NavLink>
+        </nav>
+
+        <SheetHeader>
+          <SheetTitle></SheetTitle>
+          <SheetDescription></SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  );
+};
+
+/** Materials Dropdown inside the Mobile Nav */
+const MaterialsDropdown = () => {
+  return (
+    <Sheet>
+      <SheetTrigger className="relative text-left flex flex-row items-center py-[16px] px-[24px] hover:font-bold">
+        Materials
+        <ChevronDown className="absolute -rotate-90 right-6 top-15" />
+      </SheetTrigger>
+      <SheetContent className="w-[300px]" hideOverlay={true}>
+        {/* <Separator className="bg-[#919EA6]" /> */}
+        <span className="relative text-[24px] font-[400] flex justify-center items-center px-[8px] py-[16px] text-blackbase border-2 border-primary focus:bg-tanbase">
+          Materials
+        </span>
+        {/* <Separator className="bg-[#919EA6]" /> */}
+        <div className="active:bg-tanbase w-full px-[8px] py-[24px]">
+          <Link href="/materials">
+            <span className="text-[24px] font-[700] leading-[-0.48px]">
+              Shop all our materials
+            </span>
+          </Link>
+        </div>
+
+        <MaterialSections />
+      </SheetContent>
+    </Sheet>
+  );
+};
+
+/** Artisanal Stone and other material sections */
+const MaterialSections = () => (
+  <>
+    <Separator className="bg-[#919EA6]" />
+    <MaterialSection
+      title="STONEYARD"
+      description="We are focused on artisanal stone and tile."
+      items={ArtisanalStone}
+    />
+    <Separator className="bg-[#919EA6]" />
+    <MaterialSection
+      title="MRC Rock & Sand"
+      description="We are focused on artisanal stone and tile."
+    />
+    <Separator className="bg-[#919EA6]" />
+    <MaterialSection
+      title="Santa Paula Materials"
+      description="We are focused on artisanal stone and tile."
+    />
+    <Separator className="bg-[#919EA6]" />
+  </>
+);
+
+const MaterialSection = ({
+  title,
+  description,
+  items,
+}: {
+  title: string;
+  description: string;
+  items?: string[];
+}) => (
+  <Sheet>
+    <SheetTrigger className={styles.materialsMenu}>
+      <div className=" ">
+        <div className="flex justify-between mb-2 ">
+          <span>{title}</span>
+          <ChevronNavSharp />
+        </div>
+        <p>{description}</p>
+      </div>
+    </SheetTrigger>
+    {title === "STONEYARD" ? (
+      <SheetContent
+        hideOverlay={true}
+        className={styles.stoneyardMaterialCategorySheet}
+      >
+        {/* Stoneyard content */}
+        <span className="relative text-[24px] font-[700] flex justify-center items-center text-blackbase border-2 border-primary active:bg-tanbase">
+          STONEYARD
+        </span>
+        <div className="flex flex-row px-[8px] py-[24px] gap-[16px]">
+          <Logo />
+          <p className="text-[16px]">
+            We are focused on artisanal stone and tile.
+          </p>
+        </div>
+
+        <Sheet>
+          <SheetTrigger className="w-full">
+            <Separator className="bg-[#919EA6]" />
+            <div className="relative flex">
+              <span className="flex  font-[400]">Artisanal Stone</span>
+              <ChevronNavSharp className="absolute right-0 top-4" />
+            </div>
+            <Separator className="bg-[#919EA6]" />
+          </SheetTrigger>
+          <SheetContent className="w-[300px]">
+            {/* Now render the items for Stoneyard */}
+            {items && (
+              <>
+                <span className="relative text-[24px] font-[700] flex justify-center items-center px-[8px] py-[16px] text-blackbase border-2 border-primary focus:bg-tanbase">
+                  Artisanal Stone
+                </span>
+                <div className="flex flex-row px-[8px] py-[24px] gap-[16px] point">
+                  <Logo />
+                  <p className="text-[16px]">
+                    We are focused on artisanal stone and tile.
+                  </p>
+                </div>
+                <ul className="flex flex-col">
+                  {items.map((item, index) => (
+                    <>
+                      <Separator key={index} />
+                      <li className={styles.listMaterials}>{item}</li>
+                    </>
+                  ))}
+                </ul>
+              </>
+            )}
+          </SheetContent>
+        </Sheet>
+      </SheetContent>
+    ) : (
+      <SheetContent hideOverlay={true} className={styles.otherMaterialSheet}>
+        {/* Render items for other sections directly */}
+        {items && (
+          <ul className="flex flex-col bg-red-300">
+            {items.map((item, index) => (
+              <li
+                key={index}
+                className="w-full text-[16px] hover:font-bold px-2 py-4"
+              >
+                {item}
+                <Separator />
+              </li>
+            ))}
+          </ul>
+        )}
+      </SheetContent>
+    )}
+  </Sheet>
+);
+
+/** A reusable link component for navigation items */
+const NavLink = ({ href, children }: { href: string; children: ReactNode }) => (
+  <Link
+    href={href}
+    className="font-montserrat hover:font-bold py-[16px] px-[24px]"
+  >
+    {children}
+  </Link>
+);
+
+/** The main CustomerFacingNav component */
 export function CustomerFacingNav({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className={styles.navContainer}>
       <div className={styles.logoContainer}>
-        <Link href="/">
-          <Image src="/logo_rocks.svg" alt="" height={64} width={207} />
-        </Link>
+        <Logo />
       </div>
       <nav className={styles.nav}>
-        {/* DESKTOP */}
+        {/* Desktop Navigation */}
         <div className={styles.hiddenMobile}>{children}</div>
 
-        {/* MOBILE */}
+        {/* Mobile Navigation */}
         <div className={styles.mobileNavContainer}>
           <CustomerFacingNavLink href="/cart">
             <Image
-              src="/shopping_cart.png"
+              src="/shopping_cart.svg"
               alt="shopping cart"
               width={33}
               height={33}
               className="bg-whitebase flex min-w-[33px]"
             />
           </CustomerFacingNavLink>
-
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <div>
-                <button
-                  type="button"
-                  className={`hamburger hamburger--collapse ${isOpen ? "is-active" : ""} `}
-                  onClick={() => setIsOpen(!isOpen)}
-                >
-                  <span className="hamburger-box">
-                    <span className="hamburger-inner "></span>
-                  </span>
-                </button>
-              </div>
-            </SheetTrigger>
-            <SheetContent hideChevron={true} className="w-[300px]">
-              <div className={`${styles.sheet}`}>
-                <CustomerFacingNavLink href="/about">
-                  About
-                </CustomerFacingNavLink>
-                <Sheet>
-                  <SheetTrigger className="text-left flex flex-row items-center ">
-                    Materials
-                    <ChevronDown className="-rotate-90 translate-x-4" />
-                  </SheetTrigger>
-                  <SheetContent
-                    className={`${styles.materialsMenu} `}
-                    hideOverlay={true}
-                  >
-                    <div className="">
-                      <h3 className="flex text-[24px] font-normal justify-center  text-blackbase">
-                        Materials
-                      </h3>
-                      <div className="py-6">
-                        {/* <CustomerFacingNavLink href="/materials">
-                          <span className="-ml-1">Shop all our materials</span>
-                        </CustomerFacingNavLink> */}
-                        <Link href="/materials">
-                          <span className="">Shop all our materials</span>
-                        </Link>
-                      </div>
-
-                      <Separator />
-                      <Sheet>
-                        <SheetTrigger>
-                          <div>
-                            <div className="my-4">
-                              <div className="flex justify-between mb-2">
-                                <span>STONEYARD</span>
-                                <Image
-                                  src="/chevron_down.svg"
-                                  alt=""
-                                  width={17}
-                                  height={17}
-                                  className="-rotate-90"
-                                  style={{
-                                    filter: "brightness(0%)",
-                                  }}
-                                />
-                              </div>
-                              <p className="text-left">
-                                We are focused on artisanal stone and tile.
-                              </p>
-                            </div>
-                            <Separator />
-                          </div>
-                        </SheetTrigger>
-                        <SheetContent
-                          hideOverlay={true}
-                          className={styles.mobileSheet}
-                        >
-                          <div>
-                            <h3 className="">STONEYARD</h3>
-                            <div className="flex py-6 gap-4">
-                              <Image
-                                src="/logo_rocks.svg"
-                                alt=""
-                                width={50}
-                                height={50}
-                              />
-                              <p className="text-[16px]">
-                                We are focused on artisanal stone and tile.
-                              </p>
-                            </div>
-                            <Separator />
-                            <Sheet>
-                              <SheetTrigger className="w-full">
-                                <div className="flex justify-between py-4 px-2">
-                                  <span className="text-[20px]  font-openSans font-[400]">
-                                    Artisanal Stone
-                                  </span>
-                                  <Image
-                                    src="/chevron_down.svg"
-                                    alt=""
-                                    width={17}
-                                    height={17}
-                                    className="-rotate-90"
-                                    style={{
-                                      filter: "brightness(0%)",
-                                    }}
-                                  />
-                                </div>
-                              </SheetTrigger>
-                              <SheetContent
-                                hideOverlay={true}
-                                className={styles.mobileSheet}
-                              >
-                                <div>
-                                  <span className="flex text-[20px] font-[700] justify-center">
-                                    Artisanal Stone
-                                  </span>
-                                  <div className="flex py-6 gap-4">
-                                    <Image
-                                      src="/logo_rocks.svg"
-                                      alt=""
-                                      width={50}
-                                      height={50}
-                                    />
-                                    <p className="text-[16px]">
-                                      We are focused on artisanal stone and
-                                      tile.
-                                    </p>
-                                  </div>
-                                  <Separator />
-                                </div>
-                                <ul className="flex flex-col">
-                                  {ArtisanalStone.map((item, index) => (
-                                    <div key={index} className="flex flex-col">
-                                      <li className="w-full text-[16px] hover:font-bold px-2 py-4">
-                                        {item}
-                                      </li>
-                                      <Separator />
-                                    </div>
-                                  ))}
-                                </ul>
-                              </SheetContent>
-                            </Sheet>
-
-                            <Separator />
-                            <div className="flex justify-between py-4 px-2">
-                              <span className="text-[20px], font-[400]">
-                                Tile
-                              </span>
-                              <Image
-                                src="/chevron_down.svg"
-                                alt=""
-                                width={17}
-                                height={17}
-                                className="-rotate-90"
-                                style={{
-                                  filter: "brightness(0%)",
-                                }}
-                              />
-                            </div>
-                            <Separator />
-                            <div className="flex justify-between py-4 px-2">
-                              <span className="text-[20px], font-[400]">
-                                Fireplaces
-                              </span>
-                              <Image
-                                src="/chevron_down.svg"
-                                alt=""
-                                width={17}
-                                height={17}
-                                className="-rotate-90"
-                                style={{
-                                  filter: "brightness(0%)",
-                                }}
-                              />
-                            </div>
-                            <Separator />
-                            <div className="flex justify-between py-4 px-2">
-                              <span className="text-[20px], font-[400]">
-                                Carved Stone
-                              </span>
-                              <Image
-                                src="/chevron_down.svg"
-                                alt=""
-                                width={17}
-                                height={17}
-                                className="-rotate-90"
-                                style={{
-                                  filter: "brightness(0%)",
-                                }}
-                              />
-                            </div>
-                            <Separator />
-                          </div>
-                        </SheetContent>
-                      </Sheet>
-
-                      <div>
-                        <Sheet>
-                          <SheetTrigger>
-                            <div className="my-4">
-                              <div className="flex justify-between mb-2">
-                                <span>MRC Rock & Sand</span>
-                                <Image
-                                  src="/chevron_down.svg"
-                                  alt=""
-                                  width={17}
-                                  height={17}
-                                  className="-rotate-90"
-                                  style={{
-                                    filter: "brightness(0%)",
-                                  }}
-                                />
-                              </div>
-                              <p className="text-left">
-                                We are focused on artisanal stone and tile.
-                              </p>
-                            </div>
-                          </SheetTrigger>
-                          <SheetContent
-                            hideOverlay={true}
-                            className={styles.mobileSheet}
-                          >
-                            Pending Content From Client
-                          </SheetContent>
-                        </Sheet>
-
-                        <Separator />
-                      </div>
-                      <div>
-                        <div className="my-4">
-                          <div className="flex justify-between mb-2">
-                            <span>Santa Paula Materials</span>
-                            <Image
-                              src="/chevron_down.svg"
-                              alt=""
-                              width={17}
-                              height={17}
-                              className="-rotate-90"
-                              style={{
-                                filter: "brightness(0%)",
-                              }}
-                            />
-                          </div>
-                          <p>We are focused on artisanal stone and tile.</p>
-                        </div>
-                        <Separator />
-                      </div>
-                    </div>
-                  </SheetContent>
-                </Sheet>
-                <CustomerFacingNavLink href="/services">
-                  Services
-                </CustomerFacingNavLink>
-                <CustomerFacingNavLink href="/projects">
-                  Projects
-                </CustomerFacingNavLink>
-                <CustomerFacingNavLink href="/contact">
-                  Contact
-                </CustomerFacingNavLink>
-              </div>
-
-              <SheetHeader>
-                <SheetTitle></SheetTitle>
-                <SheetDescription></SheetDescription>
-              </SheetHeader>
-            </SheetContent>
-          </Sheet>
+          <MobileNavMenu isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
       </nav>
     </div>
   );
 }
 
+/** A reusable customer-facing nav link component */
 export function CustomerFacingNavLink(
   props: Omit<ComponentProps<typeof Link>, "className">,
 ) {
@@ -321,38 +263,35 @@ export function CustomerFacingNavLink(
     <Link
       {...props}
       className={cn(
-        "font-openSans m-0 px-1 w-fit rounded-lg bg-whitebase hover:font-bold ",
-        pathname === "/cart" && "",
+        "font-openSans m-0 px-1 w-fit rounded-lg bg-whitebase hover:font-bold",
+        pathname === "/cart" && "font-bold",
       )}
     />
   );
 }
 
+/** List item component inside dropdowns or sheets */
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li className="m-4 relative">
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-tanbase hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground ",
-            className,
-          )}
-          {...props}
-        >
-          <div className="flex justify-between w-full text-[20px] font-medium font-openSans leading-none ">
-            {title}
-            <ChevronDown className="-rotate-90" />
-          </div>
-          <p className="text-[16px] leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
+>(({ className, title, children, ...props }, ref) => (
+  <li className="m-4 relative">
+    <NavigationMenuLink asChild>
+      <a
+        ref={ref}
+        className={cn(
+          "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-tanbase hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+          className,
+        )}
+        {...props}
+      >
+        <div className="flex justify-between w-full text-[20px] font-medium font-openSans">
+          {title}
+          <ChevronDown className="-rotate-90" />
+        </div>
+        <p className="text-[16px] text-muted-foreground">{children}</p>
+      </a>
+    </NavigationMenuLink>
+  </li>
+));
 ListItem.displayName = "ListItem";

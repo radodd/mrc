@@ -13,6 +13,7 @@ import FilterDropDown from "./FilterDropDown";
 import Alphabetize from "./AlphabetizeButtons";
 import AlphabetizeButtons from "./AlphabetizeButtons";
 import AlphabetizeRadio from "./AlphabetizeRadio";
+import { Separator } from "./ui/separator";
 
 interface Product {
   id: string;
@@ -158,7 +159,8 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
         </Button>
       </div>
       {filterDropDown && (
-        <>
+        <div className="absolute top-[225px]">
+          <Separator />
           <AlphabetizeRadio products={products} setProducts={setProducts} />
           <FilterDropDown
             filterValueList={filterValueList}
@@ -172,8 +174,8 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             allFilters={[]}
             filterDropDown={filterDropDown}
             setFilterDropDown={setFilterDropdown}
-          ></FilterDropDown>{" "}
-        </>
+          />
+        </div>
       )}
       <div className="flex">
         <div className="flex flex-col max-[1306px]:hidden">

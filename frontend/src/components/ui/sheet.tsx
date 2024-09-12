@@ -4,6 +4,7 @@ import * as React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cva, type VariantProps } from "class-variance-authority";
 import { ChevronDown, X } from "lucide-react";
+import ChevronNavSharp from "../../../public/chevron_nav_sharp.svg";
 
 import { cn } from "../../lib/utils";
 
@@ -41,7 +42,7 @@ const SheetOverlay = React.forwardRef<
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 
 const sheetVariants = cva(
-  "fixed z-50 gap-4 bg-whitebase px-2 py-4 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
+  "fixed z-50 gap-4 bg-whitebase  shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
   {
     variants: {
       side: {
@@ -91,20 +92,11 @@ const SheetContent = React.forwardRef<
         {children}
         <SheetPrimitive.Close
           className={cn(
-            "absolute left-2 top-[18px] rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary",
+            "absolute left-2 top-[20px] rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none  disabled:pointer-events-none data-[state=open]:bg-secondary w-[299px]",
             { hidden: hideChevron },
           )}
         >
-          {/* <X className="h-4 w-4" /> */}
-          {/* <button
-          type="button"
-          className={` hamburger hamburger--collapse is-active `}
-        >
-          <span className="hamburger-box">
-            <span className="hamburger-inner"></span>
-          </span>
-        </button> */}
-          <ChevronDown className="rotate-90 items-center flex" />
+          <ChevronNavSharp className="rotate-180" />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>

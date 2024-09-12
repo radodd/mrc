@@ -102,7 +102,6 @@ const FilterDropDown: React.FC<{
 }) => {
   const handleCheckboxChange = (category: string, value: string) => {
     if (filterValueList.includes(value)) {
-      console.log(filterValueList);
       setFilterValueList((prev) => prev.filter((v) => v !== value));
       clearFilter(value);
     } else {
@@ -122,7 +121,7 @@ const FilterDropDown: React.FC<{
     return count > acc ? count : acc;
   }, 0);
   return (
-    <div className="absolute flex justify-center items-center flex-col border-green-300 bg-whitebase">
+    <div className="absolute flex justify-center items-center flex-col bg-whitebase">
       <Accordion type="multiple">
         <FilterGroup
           title="Company"
