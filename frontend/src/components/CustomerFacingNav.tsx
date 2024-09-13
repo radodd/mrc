@@ -161,12 +161,15 @@ const MaterialSection = ({
           <SheetTrigger className="w-full">
             <Separator className="bg-[#919EA6]" />
             <div className="relative flex">
-              <span className="flex  font-[400]">Artisanal Stone</span>
+              <span className="flex font-[400]">Artisanal Stone</span>
               <ChevronNavSharp className="absolute right-0 top-4" />
             </div>
             <Separator className="bg-[#919EA6]" />
           </SheetTrigger>
-          <SheetContent className="w-[300px]">
+          <SheetContent
+            className={`w-[300px] max-h-[90vh] overflow-y-auto overflow-x-hidden ${styles.scrollbarHide}`}
+            hideOverlay={true}
+          >
             {/* Now render the items for Stoneyard */}
             {items && (
               <>
@@ -196,7 +199,7 @@ const MaterialSection = ({
       <SheetContent hideOverlay={true} className={styles.otherMaterialSheet}>
         {/* Render items for other sections directly */}
         {items && (
-          <ul className="flex flex-col bg-red-300">
+          <ul className="flex flex-col">
             {items.map((item, index) => (
               <li
                 key={index}

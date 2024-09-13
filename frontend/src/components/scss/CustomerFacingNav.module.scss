@@ -164,3 +164,13 @@
 // .listMaterials:active {
 //   background-color: hsl(var(--tanbase));
 // }
+
+/* Hide scrollbar for all browsers */
+.scrollbarHide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbarHide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
