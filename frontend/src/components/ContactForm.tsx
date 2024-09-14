@@ -42,7 +42,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
   });
 
   const [selectedValue, setSelectedValue] = useState("");
-  // const [showToast, setShowToast] = useState(false);
 
   const phoneInputRef = useRef(null);
 
@@ -91,9 +90,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
           src: "/Group 271.svg",
         });
-        // console.log(showToast);
-        // setShowToast(!showToast);
-        // console.log(`tis shooudl be true ${showToast}`);
+        setSelectedValue("");
         console.log("Email sent successfully:", data);
       }
 
@@ -287,33 +284,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
           >
             Massage
           </label>
-          {/* {errors.message?.message && (
-            <p className="text-red-500 text-sm">{errors.message.message}</p>
-          )} */}
         </div>
-        <Button
-          className="w-full"
-          // onClick={() => {
-          //   {
-          //     showToast == true
-          //       ? toast({
-          //           title: "Submitted",
-          //           description:
-          //             "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
-          //           src: "/Group 271.svg",
-          //         })
-          //       : null;
-          //   }
-          //   // toast({
-          //   //   title: "Submitted!",
-          //   //   description:
-          //   //     "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
-          //   //   src: "/Group 271.svg",
-          //   // });
-          // }}
-        >
-          {buttonText}
-        </Button>
+        <Button className="w-full">{buttonText}</Button>
       </form>
     </div>
   );
