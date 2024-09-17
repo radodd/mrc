@@ -7,13 +7,12 @@ import { useEffect, useState } from "react";
 import { ProductFilters2 } from "./ProductFilters2";
 import Image from "next/image";
 import Link from "next/link";
-
-import styles from "./scss/ProductGridSection.module.scss";
 import FilterDropDown from "./FilterDropDown";
-import Alphabetize from "./AlphabetizeButtons";
 import AlphabetizeButtons from "./AlphabetizeButtons";
 import AlphabetizeRadio from "./AlphabetizeRadio";
 import { Separator } from "./ui/separator";
+
+import styles from "./scss/ProductGridSection.module.scss";
 
 interface Product {
   id: string;
@@ -37,6 +36,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [alphabetFilter, setAlphabetFilter] = useState(false);
   const [filterDropDown, setFilterDropdown] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -61,6 +61,8 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
         setProducts(data);
       } catch (error) {
         console.error("Error fetching DATA:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchProducts();
@@ -217,6 +219,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             allFilters={[]}
           />
         </div>
+
         <div>
           <div className="flex justify-between min-[1306px]:mx-[72px] max-[1306px]:hidden">
             <div className={styles.productFilterCardContainer}>
@@ -241,25 +244,37 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
               setAlphabetFilter={setAlphabetFilter}
             />
           </div>
-          {filteredProductList.length === 0 && (
-            <div className={styles.noItemsMatchContainer}>
-              <Image
-                src="/no_items_match.svg"
-                alt=""
-                width={777}
-                height={405}
-              />
-            </div>
-          )}
-          <div className={styles.productCardContainer}>
-            {filteredProductList.map((product) => {
-              console.log("Product in map:", product.id); // Log each product object
-              return (
-                <Link href={`/materials/${product.id}`} key={product.id}>
-                  <ProductCard {...product} />
-                </Link>
-              );
-            })}
+          <div>
+            {loading ? ( // Display loading icon while fetching data
+              <div className={styles.loadingContainer}>
+                <Image
+                  src="/loading.svg"
+                  alt="Loading..."
+                  width={800}
+                  height={400}
+                />
+              </div>
+            ) : (
+              <>
+                {filteredProductList.length === 0 && (
+                  <div className={styles.noItemsMatchContainer}>
+                    <Image
+                      src="/no_items_match.svg"
+                      alt="No items match your filters"
+                      width={777}
+                      height={405}
+                    />
+                  </div>
+                )}
+                <div className={styles.productCardContainer}>
+                  {filteredProductList.map((product) => (
+                    <Link href={`/materials/${product.id}`} key={product.id}>
+                      <ProductCard {...product} />
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
