@@ -1,0 +1,40 @@
+.subMenuContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  height: 100%;
+  left: 100%;
+  top: -4px;
+  margin-left: -4px;
+  color: hsl(var(--primary-text));
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.subListHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  min-height: 100%;
+  width: 257px;
+  font-family: var(--font-openSans);
+  background-color: hsl(var(--tan-base));
+  border-radius: 10px;
+  padding: 24px 16px;
+  gap: 8px;
+  span {
+    color: var(--Text-Primary, #2c2d31);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  p {
+    color: var(--Text-Secondary, #5c5d6d);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}

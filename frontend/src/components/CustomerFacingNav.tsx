@@ -21,6 +21,7 @@ import { ArtisanalStone } from "../../..";
 import ChevronNavSharp from "../../public/chevron_nav_sharp.svg";
 
 import styles from "./scss/CustomerFacingNav.module.scss";
+import { useFilter } from "../context/FilterContext";
 
 /** A reusable component for the site logo */
 const Logo = () => (
@@ -100,121 +101,151 @@ const MaterialsDropdown = () => {
 };
 
 /** Artisanal Stone and other material sections */
-const MaterialSections = () => (
-  <>
-    <Separator className="bg-[#919EA6]" />
-    <MaterialSection
-      title="STONEYARD"
-      description="We are focused on artisanal stone and tile."
-      items={ArtisanalStone}
-    />
-    <Separator className="bg-[#919EA6]" />
-    <MaterialSection
-      title="MRC Rock & Sand"
-      description="We are focused on artisanal stone and tile."
-    />
-    <Separator className="bg-[#919EA6]" />
-    <MaterialSection
-      title="Santa Paula Materials"
-      description="We are focused on artisanal stone and tile."
-    />
-    <Separator className="bg-[#919EA6]" />
-  </>
-);
+const MaterialSections = () => {
+  const { setFilterValueList, filterValueList } = useFilter();
+  console.log("FilterValue", filterValueList);
+  return (
+    <>
+      <Separator className="bg-[#919EA6]" />
+      <MaterialSection
+        title="STONEYARD"
+        description="We are focused on artisanal stone and tile."
+        items={ArtisanalStone}
+        setFilterValueList={setFilterValueList}
+      />
+      <Separator className="bg-[#919EA6]" />
+      <MaterialSection
+        title="MRC Rock & Sand"
+        description="We are focused on artisanal stone and tile."
+        setFilterValueList={setFilterValueList}
+      />
+      <Separator className="bg-[#919EA6]" />
+      <MaterialSection
+        title="Santa Paula Materials"
+        description="We are focused on artisanal stone and tile."
+        setFilterValueList={setFilterValueList}
+      />
+      <Separator className="bg-[#919EA6]" />
+    </>
+  );
+};
 
 const MaterialSection = ({
   title,
   description,
   items,
+  setFilterValueList,
 }: {
   title: string;
   description: string;
   items?: string[];
-}) => (
-  <Sheet>
-    <SheetTrigger className={styles.materialsMenu}>
-      <div className=" ">
-        <div className="flex justify-between mb-2 ">
-          <span>{title}</span>
-          <ChevronNavSharp />
-        </div>
-        <p>{description}</p>
-      </div>
-    </SheetTrigger>
-    {title === "STONEYARD" ? (
-      <SheetContent
-        hideOverlay={true}
-        className={styles.stoneyardMaterialCategorySheet}
-      >
-        {/* Stoneyard content */}
-        <span className="relative text-[24px] font-[700] flex justify-center items-center text-blackbase border-2 border-primary active:bg-tanbase">
-          STONEYARD
-        </span>
-        <div className="flex flex-row px-[8px] py-[24px] gap-[16px]">
-          <Logo />
-          <p className="text-[16px]">
-            We are focused on artisanal stone and tile.
-          </p>
-        </div>
+  setFilterValueList: (value: string[]) => void;
+}) => {
+  const handleClick = (filterValue) => {
+    const updatedFilterValueList = [filterValue];
+    setFilterValueList(updatedFilterValueList);
 
-        <Sheet>
-          <SheetTrigger className="w-full">
-            <Separator className="bg-[#919EA6]" />
-            <div className="relative flex">
-              <span className="flex font-[400]">Artisanal Stone</span>
-              <ChevronNavSharp className="absolute right-0 top-4" />
-            </div>
-            <Separator className="bg-[#919EA6]" />
-          </SheetTrigger>
-          <SheetContent
-            className={`w-[300px] max-h-[90vh] overflow-y-auto overflow-x-hidden ${styles.scrollbarHide}`}
-            hideOverlay={true}
-          >
-            {/* Now render the items for Stoneyard */}
-            {items && (
-              <>
-                <span className="relative text-[24px] font-[700] flex justify-center items-center px-[8px] py-[16px] text-blackbase border-2 border-primary focus:bg-tanbase">
-                  Artisanal Stone
-                </span>
-                <div className="flex flex-row px-[8px] py-[24px] gap-[16px] point">
-                  <Logo />
-                  <p className="text-[16px]">
-                    We are focused on artisanal stone and tile.
-                  </p>
-                </div>
-                <ul className="flex flex-col">
-                  {items.map((item, index) => (
-                    <>
-                      <Separator key={index} />
-                      <li className={styles.listMaterials}>{item}</li>
-                    </>
-                  ))}
-                </ul>
-              </>
-            )}
-          </SheetContent>
-        </Sheet>
-      </SheetContent>
-    ) : (
-      <SheetContent hideOverlay={true} className={styles.otherMaterialSheet}>
-        {/* Render items for other sections directly */}
-        {items && (
-          <ul className="flex flex-col">
-            {items.map((item, index) => (
-              <li
-                key={index}
-                className="w-full text-[16px] hover:font-bold px-2 py-4"
-              >
-                {item}
-                <Separator />
-              </li>
-            ))}
-          </ul>
-        )}
-      </SheetContent>
-    )}
-  </Sheet>
-);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(
+        "filterValueList",
+        JSON.stringify(updatedFilterValueList),
+      );
+    }
+  };
+
+  return (
+    <Sheet>
+      <SheetTrigger className={styles.materialsMenu}>
+        <div className=" ">
+          <div className="flex justify-between mb-2 ">
+            <span>{title}</span>
+            <ChevronNavSharp />
+          </div>
+          <p>{description}</p>
+        </div>
+      </SheetTrigger>
+      {title === "STONEYARD" ? (
+        <SheetContent
+          hideOverlay={true}
+          className={styles.stoneyardMaterialCategorySheet}
+        >
+          {/* Stoneyard content */}
+          <span className="relative text-[24px] font-[700] flex justify-center items-center text-blackbase border-2 border-primary active:bg-tanbase">
+            STONEYARD
+          </span>
+          <div className="flex flex-row px-[8px] py-[24px] gap-[16px]">
+            <Logo />
+            <p className="text-[16px]">
+              We are focused on artisanal stone and tile.
+            </p>
+          </div>
+
+          <Sheet>
+            <SheetTrigger className="w-full">
+              <Separator className="bg-[#919EA6]" />
+              <div className="relative flex">
+                <span className="flex font-[400]">Artisanal Stone</span>
+                <ChevronNavSharp className="absolute right-0 top-4" />
+              </div>
+              <Separator className="bg-[#919EA6]" />
+            </SheetTrigger>
+            <SheetContent
+              className={`w-[300px] max-h-[90vh] overflow-y-auto overflow-x-hidden ${styles.scrollbarHide}`}
+              hideOverlay={true}
+            >
+              {/* Now render the items for Stoneyard */}
+              {items && (
+                <>
+                  <span className="relative text-[24px] font-[700] flex justify-center items-center px-[8px] py-[16px] text-blackbase border-2 border-primary focus:bg-tanbase">
+                    Artisanal Stone
+                  </span>
+                  <div className="flex flex-row px-[8px] py-[24px] gap-[16px] point">
+                    <Logo />
+                    <p className="text-[16px]">
+                      We are focused on artisanal stone and tile.
+                    </p>
+                  </div>
+                  <ul className="flex flex-col">
+                    {items.map((item, index) => (
+                      <>
+                        <Separator key={index} />
+                        <Link href="/materials">
+                          <li
+                            className={styles.listMaterials}
+                            onClick={() => handleClick(item)}
+                          >
+                            {item}
+                          </li>
+                        </Link>
+                      </>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </SheetContent>
+          </Sheet>
+        </SheetContent>
+      ) : (
+        <SheetContent hideOverlay={true} className={styles.otherMaterialSheet}>
+          {/* Render items for other sections directly */}
+          {items && (
+            <ul className="flex flex-col">
+              {items.map((item, index) => (
+                <li
+                  key={index}
+                  className="w-full text-[16px] hover:font-bold px-2 py-4"
+                >
+                  {item}
+                  <Separator />
+                </li>
+              ))}
+            </ul>
+          )}
+        </SheetContent>
+      )}
+    </Sheet>
+  );
+};
 
 /** A reusable link component for navigation items */
 const NavLink = ({ href, children }: { href: string; children: ReactNode }) => (

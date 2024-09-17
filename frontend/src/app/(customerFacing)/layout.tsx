@@ -1,6 +1,16 @@
 "use client";
-import { ChevronDown } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import ChevronNavSharp from "../../../public/chevron_nav_sharp.svg";
+import ShoppingCart from "../../../public/shopping_cart.svg";
+
 import { ArtisanalStone, MRCMaterials, SantaPaulaMaterials } from "../../../..";
+import { useFilter } from "../../context/FilterContext";
+import { cn } from "../../lib/utils";
+
 import {
   CustomerFacingNav,
   CustomerFacingNavLink,
@@ -14,42 +24,60 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "../../components/ui/navigation-menu";
-import { cn } from "../../lib/utils";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { useFilter } from "../../context/FilterContext";
-import { usePathname } from "next/navigation";
-import ShoppingCart from "../../../public/shopping_cart.svg";
+
+import styles from "./index.module.scss";
+
+const MENU_HEIGHT = {
+  default: "min-h-[416px]",
+
+  MRC: "h-[456px]",
+
+  SPM: "h-[544px]",
+};
 
 export default function Layout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   const [isMaterialsOpen, setIsMaterialsOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState<number | null>(null);
   const [isSubSubmenuOpen, setIsSubSubmenuOpen] = useState<number | null>(null);
-  const [isMenuHeight, setIsMenuHeight] = useState(`h-[405px]`);
+  const [menuHeight, setMenuHeight] = useState(MENU_HEIGHT.default);
   const { setFilterValueList, filterValueList } = useFilter();
   const pathname = usePathname();
 
   useEffect(() => {
-    if (isMaterialsOpen === false) {
+    console.log("isMaterialsOpen:", isMaterialsOpen);
+    console.log("isSubmenuOpen:", isSubmenuOpen);
+    console.log("isSubSubmenuOpen:", isSubSubmenuOpen);
+    // console.log("menuHeight:", menu);
+    console.log("filterValueList:", filterValueList);
+  }, [
+    isMaterialsOpen,
+    isSubmenuOpen,
+    isSubSubmenuOpen,
+    menuHeight,
+    filterValueList,
+  ]);
+
+  useEffect(() => {
+    if (!isMaterialsOpen) {
       setIsSubmenuOpen(null);
-    } else if (isSubSubmenuOpen === 1) {
-      setIsMenuHeight(`h-[750px]`);
-    } else if (isSubmenuOpen === 3) {
-      setIsMenuHeight(`h-[495px]`);
-    } else {
-      setIsMenuHeight(`h-[405px]`);
     }
+    setMenuHeight(getMenuHeight());
   }, [isSubSubmenuOpen, isSubmenuOpen, isMaterialsOpen, filterValueList]);
 
-  const handleClick = (filterValue) => {
+  const getMenuHeight = () => {
+    if (isSubmenuOpen === 2) return MENU_HEIGHT.MRC;
+    if (isSubmenuOpen === 3) return MENU_HEIGHT.SPM;
+    return MENU_HEIGHT.default;
+  };
+  // const getMenuWidth = () => {
+  //   if (isSubmenuOpen === 2) return MENU_WIDTH.MRC;
+  // };
+
+  const handleFilterClick = (filterValue: string) => {
     const updatedFilterValueList = [filterValue];
     setFilterValueList(updatedFilterValueList);
-
     if (typeof window !== "undefined") {
       localStorage.setItem(
         "filterValueList",
@@ -68,201 +96,15 @@ export default function Layout({
                 Materials
               </NavigationMenuTrigger>
               {isMaterialsOpen && (
-                <NavigationMenuContent
+                <MaterialMenuContent
                   onMouseLeave={() => setIsMaterialsOpen(false)}
-                  className={`${isMenuHeight} flex justify-start bg-whitebase rounded-[10px]`}
-                >
-                  <ul className="m-4 ">
-                    <Link href="/materials">
-                      <span className="font-[700] font-openSans text-[20px] mx-6 hover:underline">
-                        Shop All Materials
-                      </span>
-                    </Link>
-
-                    <ListItem
-                      href="/materials"
-                      title="STONEYARD"
-                      className="w-[298px]"
-                      onMouseEnter={() => setIsSubmenuOpen(1)}
-                      onClick={() => {
-                        setIsSubmenuOpen(null);
-                        handleClick("Stoneyard");
-                      }}
-                    >
-                      We demo and sell recyclable materials.
-                      {isSubmenuOpen === 1 && (
-                        <ul
-                          className={`absolute  left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-whitebase text-black shadow-none translate-x-[11px] translate-y-[-68px] rounded-r`}
-                        >
-                          <ul className="flex flex-row  gap-3 p-6 h-full md:w-[400px] lg:w-[500px] ">
-                            <li className="w-[208px] ">
-                              <NavigationMenuLink asChild className="py-4 px-6">
-                                <a
-                                  className="flex h-full w-full select-none flex-col justify-end rounded-md bg-tanbase no-underline outline-none focus:shadow-md"
-                                  href="/"
-                                >
-                                  <div className="flex flex-col justify-end  mb-2 mt-4 h-full">
-                                    <Image
-                                      src="/logo_rocks.svg"
-                                      alt="logo"
-                                      width={80}
-                                      height={30}
-                                    />
-                                    <span className="text-lg font-bold">
-                                      STONEYARD
-                                    </span>
-                                    <p className="text-sm leading-tight text-muted-foreground">
-                                      We are focused on artisanal stone and tile
-                                      for retailers.
-                                    </p>
-                                  </div>
-                                </a>
-                              </NavigationMenuLink>
-                            </li>
-                            <div>
-                              <ListItem
-                                href="/docs"
-                                title="Artisanal Stone"
-                                className="flex p-0 font-[700] items-center justify-between hover:bg-tanbase "
-                                onMouseEnter={() => setIsSubSubmenuOpen(1)}
-                                onClick={() => setIsSubSubmenuOpen(null)}
-                              >
-                                {isSubSubmenuOpen === 1 && (
-                                  <ul
-                                    className={`absolute rounded-r left-full p-4 top-0 w-[290px] ${isMenuHeight} mt-0 ml-4 bg-whitebase text-black shadow-none translate-x-[23px] translate-y-[-40px]`}
-                                    onMouseLeave={() =>
-                                      setIsSubSubmenuOpen(null)
-                                    }
-                                  >
-                                    <ul className="flex flex-col gap-2 p-0 ">
-                                      {ArtisanalStone.map((item, index) => (
-                                        <div key={index} className="flex gap-4">
-                                          <li className="text-xl hover:font-bold">
-                                            {item}
-                                          </li>
-                                        </div>
-                                      ))}
-                                    </ul>
-                                  </ul>
-                                )}
-                              </ListItem>
-                            </div>
-                          </ul>
-                        </ul>
-                      )}
-                    </ListItem>
-                    <ListItem
-                      href="/materials"
-                      title="MRC Rock & Sand"
-                      className="w-[298px]"
-                      onMouseEnter={() => setIsSubmenuOpen(2)}
-                      onClick={() => {
-                        setIsSubmenuOpen(null), handleClick("MRC Rock & Sand");
-                      }}
-                    >
-                      We demo and sell recyclable materials.
-                      {isSubmenuOpen === 2 && (
-                        <ul
-                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-whitebase text-black shadow-none translate-x-[11px] translate-y-[-180px] rounded-r`}
-                        >
-                          <ul className="flex flex-row gap-3 p-6 h-full md:w-[400px] lg:w-[500px] ">
-                            <li className="w-[208px] ">
-                              <NavigationMenuLink asChild className="py-4 px-6">
-                                <a
-                                  className="flex h-full w-full select-none flex-col justify-end rounded-md bg-tanbase no-underline outline-none focus:shadow-md"
-                                  href="/"
-                                >
-                                  <div className="flex flex-col justify-end  mb-2 mt-4 h-full ">
-                                    <Image
-                                      src="/logo_rocks.svg"
-                                      alt="logo"
-                                      width={80}
-                                      height={30}
-                                    />
-                                    <span className="text-lg font-bold">
-                                      MRC Rock & Sand
-                                    </span>
-                                    <p className="text-sm leading-tight text-muted-foreground">
-                                      MRC Rock & Sand demos and sells
-                                      recyclables.
-                                    </p>
-                                  </div>
-                                </a>
-                              </NavigationMenuLink>
-                            </li>
-                            <div>
-                              <ul>
-                                {MRCMaterials.map((item, index) => (
-                                  <div key={index} className="flex gap-4">
-                                    <li className="text-xl hover:font-bold">
-                                      {item}
-                                    </li>
-                                  </div>
-                                ))}
-                              </ul>
-                            </div>
-                          </ul>
-                        </ul>
-                      )}
-                    </ListItem>
-                    <ListItem
-                      href="/materials"
-                      title="Santa Paula Materials"
-                      className="w-[298px]"
-                      onMouseEnter={() => setIsSubmenuOpen(3)}
-                      onClick={() => {
-                        setIsSubmenuOpen(null),
-                          handleClick("Santa Paula Materials");
-                      }}
-                    >
-                      We demo and sell recyclable materials.
-                      {isSubmenuOpen === 3 && (
-                        <ul
-                          className={`absolute left-full ${isMenuHeight} top-0 mt-0 ml-4 bg-whitebase text-black shadow-none translate-x-[11px] translate-y-[-292px] rounded-r`}
-                        >
-                          <ul className="flex flex-row gap-3 p-6 h-full md:w-[400px] lg:w-[530px] ">
-                            <li className="w-[208px] ">
-                              <NavigationMenuLink asChild className="py-4 px-6">
-                                <a
-                                  className="flex h-full w-full select-none flex-col justify-end rounded-md bg-tanbase no-underline outline-none focus:shadow-md"
-                                  href="/"
-                                >
-                                  <div
-                                    className={`flex flex-col justify-end  mb-2 mt-4 ${isMenuHeight}`}
-                                  >
-                                    <Image
-                                      src="/logo_rocks.svg"
-                                      alt="logo"
-                                      width={80}
-                                      height={30}
-                                    />
-                                    <span className="text-lg font-bold">
-                                      Santa Paula Materials
-                                    </span>
-                                    <p className="text-sm leading-tight text-muted-foreground">
-                                      We demo and sell recyclable materials.
-                                    </p>
-                                  </div>
-                                </a>
-                              </NavigationMenuLink>
-                            </li>
-                            <div>
-                              <ul className="flex flex-col gap-2 p-0 ">
-                                {SantaPaulaMaterials.map((item, index) => (
-                                  <div key={index} className="flex gap-4">
-                                    <li className="text-xl hover:font-bold">
-                                      {item}
-                                    </li>
-                                  </div>
-                                ))}
-                              </ul>
-                            </div>
-                          </ul>
-                        </ul>
-                      )}
-                    </ListItem>
-                  </ul>
-                </NavigationMenuContent>
+                  menuHeight={menuHeight}
+                  isSubmenuOpen={isSubmenuOpen}
+                  isSubSubmenuOpen={isSubSubmenuOpen}
+                  setIsSubmenuOpen={setIsSubmenuOpen}
+                  setIsSubSubmenuOpen={setIsSubSubmenuOpen}
+                  handleFilterClick={handleFilterClick}
+                />
               )}
             </NavigationMenuItem>
           </NavigationMenuList>
@@ -279,80 +121,281 @@ export default function Layout({
           />
         </CustomerFacingNavLink>
       </CustomerFacingNav>
-      <div className="">{children}</div>
-
+      <div>{children}</div>
       <Footer>
-        <div className="flex flex-col max-[1305px]:items-center">
-          <FooterLink href="/">Santa Paula Materials</FooterLink>
-          <FooterLink href="/">MRC Rock and Sand</FooterLink>
-          <FooterLink href="/">Stoneyard</FooterLink>
-        </div>
-
-        <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
-          <div className="flex flex-col">
-            <FooterLink href="/">About</FooterLink>
-            <FooterLink href="/">FAQ</FooterLink>
-            <FooterLink href="/">Contact</FooterLink>
-          </div>
-          <div className="flex flex-col">
-            <FooterLink href="/">Materials</FooterLink>
-            <FooterLink href="/">Services</FooterLink>
-            <FooterLink href="/">Projects</FooterLink>
-          </div>
-        </div>
+        <FooterLinks />
       </Footer>
     </>
   );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li className="m-4 relative">
+const MaterialMenuContent = ({
+  onMouseLeave,
+  menuHeight,
+  isSubmenuOpen,
+  isSubSubmenuOpen,
+  setIsSubmenuOpen,
+  setIsSubSubmenuOpen,
+  handleFilterClick,
+}) => (
+  <NavigationMenuContent
+    onMouseLeave={onMouseLeave}
+    className={`${menuHeight} flex justify-start bg-whitebase rounded-[10px] p-[16px]`}
+  >
+    <Link
+      href="/materials"
+      className="font-[700] font-openSans text-[20px] pb-[8px]"
+    >
+      Shop All Materials
+    </Link>
+
+    <ul className="flex flex-col gap-[8px] w-[257px]">
+      <MenuItem
+        href="/materials"
+        title="STONEYARD"
+        description="We are focused on artisanal stone and tile"
+        isSubmenuOpen={isSubmenuOpen === 1}
+        onMouseEnter={() => setIsSubmenuOpen(1)}
+        onClick={() => {
+          setIsSubmenuOpen(null);
+          handleFilterClick("Stoneyard");
+        }}
+        submenuItems={ArtisanalStone}
+        isSubSubmenuOpen={isSubSubmenuOpen === 1}
+        setIsSubSubmenuOpen={setIsSubSubmenuOpen}
+        menuHeight={menuHeight}
+      />
+      <MenuItem
+        href="/materials"
+        title="MRC Rock & Sand"
+        description="We are focused on artisanal stone and tile"
+        isSubmenuOpen={isSubmenuOpen === 2}
+        onMouseEnter={() => setIsSubmenuOpen(2)}
+        onClick={() => {
+          setIsSubmenuOpen(null);
+          handleFilterClick("MRC Rock & Sand");
+        }}
+        submenuItems={MRCMaterials}
+        menuHeight={menuHeight}
+      />
+      <MenuItem
+        href="/materials"
+        title="Santa Paula Mate..."
+        description="We are focused on artisanal stone and tile"
+        isSubmenuOpen={isSubmenuOpen === 3}
+        onMouseEnter={() => setIsSubmenuOpen(3)}
+        onClick={() => {
+          setIsSubmenuOpen(null);
+          handleFilterClick("Santa Paula Materials");
+        }}
+        submenuItems={SantaPaulaMaterials}
+        menuHeight={menuHeight}
+      />
+    </ul>
+  </NavigationMenuContent>
+);
+
+interface MenuItemProps {
+  href: string;
+  title: string;
+  description: string;
+  onMouseEnter: () => void;
+  onMouseLeave?: () => void;
+  onClick: () => void;
+  isSubmenuOpen: boolean;
+  submenuItems?: string[];
+  isSubSubmenuOpen?: boolean;
+  setIsSubSubmenuOpen?: React.Dispatch<React.SetStateAction<number | null>>;
+  menuHeight: string;
+  handleFilterClick?: () => void;
+}
+
+const MenuItem: React.FC<MenuItemProps> = ({
+  href,
+  title,
+  description,
+  onMouseEnter,
+  onClick,
+  isSubmenuOpen,
+  submenuItems,
+  isSubSubmenuOpen,
+  setIsSubSubmenuOpen,
+  menuHeight,
+  handleFilterClick,
+}) => (
+  <ListItem
+    href={href}
+    title={title}
+    description={description}
+    onMouseEnter={onMouseEnter}
+    onClick={onClick}
+  >
+    {isSubmenuOpen && (
+      <ul className={styles.subMenuContainer}>
+        <li className="w-[208px]">
+          <SubList
+            title={title}
+            description={description}
+            menuHeight={menuHeight}
+          />
+        </li>
+
+        {title === "STONEYARD" ? (
+          <StoneyardCategories
+            items={["Artisanal Stone"]}
+            submenuItems={ArtisanalStone}
+          />
+        ) : isSubSubmenuOpen ? (
+          <SubList
+            items={submenuItems}
+            onMouseLeave={() => setIsSubSubmenuOpen(null)}
+          />
+        ) : (
+          submenuItems && (
+            <div className="absolute bg-whitebase left-[260px]  p-[16px] flex flex-col gap-[16px] rounded-r-[10px]">
+              {submenuItems.map((item, index) => (
+                <li
+                  key={index}
+                  className={`${title === "Santa Paula Mate..." ? "w-[242px]" : ""} text-xl hover:text-primary w-[182px]`}
+                  onClick={() => handleFilterClick()}
+                >
+                  {item}
+                </li>
+              ))}
+            </div>
+          )
+        )}
+      </ul>
+    )}
+  </ListItem>
+);
+
+const FooterLinks = () => (
+  <div className="flex flex-col max-[1305px]:items-center">
+    <FooterLink href="/">Santa Paula Materials</FooterLink>
+    <FooterLink href="/">MRC Rock and Sand</FooterLink>
+    <FooterLink href="/">Stoneyard</FooterLink>
+    <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
+      <div className="flex flex-col">
+        <FooterLink href="/">About</FooterLink>
+        <FooterLink href="/">FAQ</FooterLink>
+        <FooterLink href="/">Contact</FooterLink>
+      </div>
+      <div className="flex flex-col">
+        <FooterLink href="/">Materials</FooterLink>
+        <FooterLink href="/">Services</FooterLink>
+        <FooterLink href="/">Projects</FooterLink>
+      </div>
+    </div>
+  </div>
+);
+
+interface ListItemProps extends React.ComponentPropsWithoutRef<"a"> {
+  title: string;
+  children?: React.ReactNode;
+  description: string;
+}
+
+const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
+  ({ className, title, description, children, ...props }, ref) => (
+    <li className="p-4 hover:bg-tanbase active:bg-[#E2D8C8] rounded-md">
       <NavigationMenuLink asChild>
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-tanbase hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground ",
+            "block select-none space-y-1 leading-none no-underline outline-none transition-colors hover:text-accent-foreground",
             className,
           )}
           {...props}
         >
-          <div className="flex justify-between w-full text-[20px] font-medium font-openSans leading-none ">
+          <div className="flex justify-between items-center w-full text-[20px] font-[700] font-openSans leading-none ">
             {title}
-            <ChevronDown className="-rotate-90" />
+            <ChevronNavSharp className="" />
           </div>
-          <p className="text-[16px] leading-snug text-muted-foreground">
-            {children}
+          <p className="text-[16px] leading-snug text-secondary-text">
+            {description}
           </p>
+          {children}
         </a>
       </NavigationMenuLink>
     </li>
-  );
-});
+  ),
+);
+
 ListItem.displayName = "ListItem";
 
-const SubListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+interface SubListProps {
+  title?: string;
+  description?: string;
+  items?: string[];
+  onMouseLeave?: () => void;
+  menuHeight?: string;
+}
+
+const SubList: React.FC<SubListProps> = ({
+  title,
+  description,
+  items,
+  menuHeight,
+}) => (
+  <>
+    <div className={`${menuHeight} bg-whitebase w-[260px] py-[16px]`}>
+      <div className={styles.subListHeaderContainer}>
+        <Image src="/logo_rocks.svg" alt="" width={80} height={60} />
+        <span className="font-openSans font-semibold text-[25px]">{title}</span>
+        <p>{description}</p>
+      </div>
+    </div>
+
+    <ul>
+      {items?.map((item, index) => (
+        <li key={index} className="text-xl hover:font-bold">
+          {item}
+        </li>
+      ))}
+    </ul>
+  </>
+);
+
+const StoneyardCategories = ({ items, submenuItems }) => {
+  const [isArtisanalStoneHovered, setIsArtisanalStoneHovered] = useState(false);
+
+  const handleMouseEnter = () => setIsArtisanalStoneHovered(true);
+  const handleMouseLeave = () => setIsArtisanalStoneHovered(false);
+
   return (
-    <li className="m-4 relative">
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-tanbase hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground ",
-            className,
-          )}
-          {...props}
-        >
-          <div className="text-[18px] font-medium leading-none">{title}</div>
-        </a>
-      </NavigationMenuLink>
-    </li>
+    <div className="relative bg-whitebase left-[37px] w-fit">
+      <div
+        className="flex justify-start items-center h-fit p-[16px] min-w-[232px]"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <ul>
+          {items?.map((item, index) => (
+            <li
+              key={index}
+              className="text-[20px] text-primary-text font-openSans"
+            >
+              {item}
+              {item === "Artisanal Stone" && isArtisanalStoneHovered && (
+                <div className="absolute left-full top-0 bg-whitebase p-4 rounded-r-[10px] w-[253px]">
+                  <div>
+                    {submenuItems.map((item, index) => (
+                      <li
+                        key={index}
+                        className="text-xl hover:text-primary  bg-whitebase"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+        <ChevronNavSharp className="ml-[16px]" />
+      </div>
+    </div>
   );
-});
-SubListItem.displayName = "SubListItem";
+};
