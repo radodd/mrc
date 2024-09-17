@@ -48,17 +48,17 @@ export const companyAdress = [
   {
     id: 3,
     name: "MRC Rock & Sand (Mojave)",
-    adress: "10618 Mojave-Tropico Rd, Mojave, CA 93501",
+    adress: "Mojave, CA 93501",
   },
   {
     id: 4,
     name: "MRC Rock & Sand (Ojai)",
-    adress: "15558 Maricopa Hwy, Ojai, CA 93023",
+    adress: "Ojai, CA 93023",
   },
   {
     id: 5,
     name: "MRC Rock & Sand (Fillmore)",
-    adress: "1565 Ventura St, Fillmore, CA 93015",
+    adress: "Fillmore, CA 93015",
   },
 ];
 
