@@ -104,17 +104,17 @@ const Page = () => {
                 width={33}
                 height={33}
               />
-              <p className="text-xl text-white">(805) 524 - 5569</p>
+              <p className="text-xl text-white font-bold">(805) 524 - 5569</p>
             </div>
             <div className="flex gap-2">
               <Image src="/mail.svg" alt="Email" width={33} height={33} />
-              <p className="text-xl text-white">info@mrcrs.com</p>
+              <p className="text-xl text-white font-bold">info@mrcrs.com</p>
             </div>
           </div>
         </div>
 
         {/* form section */}
-        <ContactForm buttonText="Submit Form" />
+        <ContactForm buttonText="Contact SPM" />
         {/* <div className="flex flex-col items-center w-1/2  max-mobile:flex-col max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8">
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -259,7 +259,7 @@ const Page = () => {
           </form>
         </div> */}
       </div>
-      <div className="grid gap-6 grid-cols-3 px-[72px] xlScreen:px-36 max-smMobie:px-8 max-[1292px]:grid-cols-2 max-[902px]:grid-cols-1 max-mobile:justify-items-center ">
+      <div className="grid gap-6 grid-cols-3 px-[72px] smMobie:gap-10 xlScreen:px-36 max-smMobie:px-8 max-[1292px]:grid-cols-2 max-[902px]:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
           <div
             key={index}
@@ -273,8 +273,12 @@ const Page = () => {
               className="self-start"
             />
             <div className="flex flex-col gap-2">
-              <h1 className="text-2xl  text-primary">{company.name}</h1>
-              <p className=" text-2xl text-secondary-text">{company.adress}</p>
+              <h1 className="text-2xl  text-primary tracking-[-0.72px]">
+                {company.name}
+              </h1>
+              <p className=" text-2xl text-secondary-text tracking-[-0.96px]">
+                {company.adress}
+              </p>
             </div>
           </div>
         ))}

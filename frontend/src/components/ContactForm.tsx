@@ -109,7 +109,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-10 font-roboto bg-whitebase "
       >
-        <div className="flex gap-6 w-full max-smMobie:flex-col">
+        <div className="flex gap-6 w-full max-smMobie:flex-col max-smMobie:gap-10">
           <div className="w-1/2 max-mobile:w-full relative">
             <input
               {...register("firstname", {
