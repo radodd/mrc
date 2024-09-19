@@ -3,14 +3,11 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 import ChevronNavSharp from "../../../public/chevron_nav_sharp.svg";
 import ShoppingCart from "../../../public/shopping_cart.svg";
-
 import { ArtisanalStone, MRCMaterials, SantaPaulaMaterials } from "../../../..";
 import { useFilter } from "../../context/FilterContext";
 import { cn } from "../../lib/utils";
-
 import {
   CustomerFacingNav,
   CustomerFacingNavLink,
@@ -29,6 +26,8 @@ import styles from "./index.module.scss";
 
 const MENU_HEIGHT = {
   default: "min-h-[416px]",
+
+  STONEYARD: "h-[896px]",
 
   MRC: "h-[456px]",
 
@@ -67,6 +66,7 @@ export default function Layout({
   }, [isSubSubmenuOpen, isSubmenuOpen, isMaterialsOpen, filterValueList]);
 
   const getMenuHeight = () => {
+    if (isSubmenuOpen === 1) return MENU_HEIGHT.STONEYARD;
     if (isSubmenuOpen === 2) return MENU_HEIGHT.MRC;
     if (isSubmenuOpen === 3) return MENU_HEIGHT.SPM;
     return MENU_HEIGHT.default;
@@ -92,7 +92,7 @@ export default function Layout({
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem onMouseEnter={() => setIsMaterialsOpen(true)}>
-              <NavigationMenuTrigger className="font-openSans">
+              <NavigationMenuTrigger className="font-openSans hover:text-primary">
                 Materials
               </NavigationMenuTrigger>
               {isMaterialsOpen && (
@@ -242,8 +242,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
             menuHeight={menuHeight}
           />
         </li>
-
-        {title === "STONEYARD" ? (
+        {/* {title === "STONEYARD" ? (
           <StoneyardCategories
             items={["Artisanal Stone"]}
             submenuItems={ArtisanalStone}
@@ -252,21 +251,20 @@ const MenuItem: React.FC<MenuItemProps> = ({
           <SubList
             items={submenuItems}
             onMouseLeave={() => setIsSubSubmenuOpen(null)}
-          />
-        ) : (
-          submenuItems && (
-            <div className="absolute bg-whitebase left-[260px]  p-[16px] flex flex-col gap-[16px] rounded-r-[10px]">
-              {submenuItems.map((item, index) => (
-                <li
-                  key={index}
-                  className={`${title === "Santa Paula Mate..." ? "w-[242px]" : ""} text-xl hover:text-primary w-[182px]`}
-                  onClick={() => handleFilterClick()}
-                >
-                  {item}
-                </li>
-              ))}
-            </div>
-          )
+          /> */}
+
+        {submenuItems && (
+          <div className="absolute bg-whitebase left-[260px] p-[16px] flex flex-col gap-[16px] rounded-r-[10px]">
+            {submenuItems.map((item, index) => (
+              <li
+                key={index}
+                className={`${title === "Santa Paula Mate..." || title === "STONEYARD" ? "w-[242px]" : ""} text-xl hover:text-primary w-[182px]`}
+                onClick={() => handleFilterClick()}
+              >
+                {item}
+              </li>
+            ))}
+          </div>
         )}
       </ul>
     )}
@@ -274,10 +272,12 @@ const MenuItem: React.FC<MenuItemProps> = ({
 );
 
 const FooterLinks = () => (
-  <div className="flex flex-col max-[1305px]:items-center">
-    <FooterLink href="/">Santa Paula Materials</FooterLink>
-    <FooterLink href="/">MRC Rock and Sand</FooterLink>
-    <FooterLink href="/">Stoneyard</FooterLink>
+  <div className="flex flex-col min-[1306px]:flex-row min-[1306]:justify-between max-[1305px]:items-center w-full">
+    <div className="flex flex-col">
+      <FooterLink href="/">Santa Paula Materials</FooterLink>
+      <FooterLink href="/">MRC Rock and Sand</FooterLink>
+      <FooterLink href="/">Stoneyard</FooterLink>
+    </div>
     <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
       <div className="flex flex-col">
         <FooterLink href="/">About</FooterLink>
