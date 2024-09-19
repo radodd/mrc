@@ -1,7 +1,8 @@
 import ContactUs from "../../components/sections/ContactUs";
 import FamilyOwned from "../../components/sections/landingPage/FamilyOwned";
 import GovAgencies from "../../components/sections/landingPage/GovAgencies";
-import LandingPageCarousel from "../../components/sections/landingPage/LandingPageCarousel";
+// import LandingPageCarousel from "../../components/sections/landingPage/LandingPageCarousel";
+import LandingPageCarousel2 from "../../components/sections/landingPage/LandingPageCarousel2";
 import NewsArticles from "../../components/sections/landingPage/NewsArticles";
 import RequestQuote from "../../components/sections/landingPage/RequestQuote";
 import WeSpecialize from "../../components/sections/landingPage/WeSpecialize";
@@ -9,7 +10,7 @@ import WeSpecialize from "../../components/sections/landingPage/WeSpecialize";
 export default function HomePage() {
   return (
     <>
-      <LandingPageCarousel />
+      <LandingPageCarousel2 />
       <FamilyOwned />
       <RequestQuote />
       {/* <GovAgencies /> */}

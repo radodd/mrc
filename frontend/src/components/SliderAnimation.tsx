@@ -1,6 +1,6 @@
 "use client";
-// components/Slider.js
 import { useEffect, useRef, useState } from "react";
+
 import styles from "../components/scss/Slider.module.scss";
 
 const Slider = () => {
@@ -21,15 +21,13 @@ const Slider = () => {
   }, [currentLine]);
 
   return (
-    <div>
-      <div className={styles.sliderContainer}>
-        <div className={styles.slider} ref={sliderRef}>
-          {lines.map((line, index) => (
-            <div key={index} className={styles.line}>
-              {line}
-            </div>
-          ))}
-        </div>
+    <div className={styles.sliderContainer}>
+      <div className={styles.slider} ref={sliderRef}>
+        {lines.map((line, index) => (
+          <div key={index} className={styles.line}>
+            {line}
+          </div>
+        ))}
       </div>
     </div>
   );

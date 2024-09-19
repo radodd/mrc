@@ -10,9 +10,8 @@ import {
   CarouselPrevious,
 } from "../../ui/carousel";
 import { useEffect, useState } from "react";
-import Image from "next/image";
-
 import Slider from "../../SliderAnimation";
+
 import styles from "../../scss/LandingPageCarousel.module.scss";
 
 export default function LandingPageCarousel() {
@@ -79,34 +78,12 @@ export default function LandingPageCarousel() {
                 <Button variant="default" size="default" navigateTo="/contact">
                   Contact Us
                 </Button>
-                {/* <div className={styles.indicatorContainer}>
-                  {Array.from({ length: 3 }).map((item, index) => (
-                    <div key={index} className="">
-                      <Image
-                        src="/indicator.svg"
-                        alt=""
-                        width={12}
-                        height={12}
-                        className={`${styles.indicator} ${current === index + 1 ? styles.active : ""}`}
-                      />
-                    </div>
-                  ))}
-                </div> */}
               </div>
             </div>
-            {/* <div className={styles.imageContainer}>
-              <Image
-                src="/we_specialize.png"
-                alt=""
-                width={500}
-                height={600}
-                className={styles.image}
-              />
-            </div> */}
           </CarouselItem>
-          {/* <CarouselItem className="flex max-h-[400px] bg-slate-600 items-center justify-center">
+          <CarouselItem className="flex max-h-[400px] bg-slate-600 items-center justify-center">
             SOME OTHER COMPANY
-          </CarouselItem> */}
+          </CarouselItem>
         </CarouselContent>
         <CarouselPrevious className={styles.prev} />
         <CarouselNext className={styles.next} />
@@ -114,16 +91,6 @@ export default function LandingPageCarousel() {
       <div className={styles.indicatorContainer}>
         {Array.from({ length: 3 }).map((item, index) => (
           <div key={index} className="">
-            {/* <Image
-              src="/indicator.svg"
-              alt=""
-              width={12}
-              height={12}
-              className={`${styles.indicator} ${current === index + 1 ? styles.active : ""} ${current === 2 ? "hidden" : ""}`}
-              style={{
-                fill: current === index + 1 ? "color-primary" : "",
-              }}
-            /> */}
             <svg
               width="12"
               height="12"
