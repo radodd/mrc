@@ -6,7 +6,7 @@
   max-width: 100%;
   height: 605px;
   @include small-break {
-    height: 488px;
+    height: 552px;
   }
 }
 
@@ -16,8 +16,8 @@
   max-height: 605px;
   padding: 40px 0;
   @include small-break {
-    min-height: 488px;
-    max-height: 488px;
+    min-height: 552px;
+    max-height: 552px;
     // flex-direction: column;
     // padding: 32px 0;
   }
@@ -100,6 +100,17 @@
   }
 }
 
+.uniqueButtonContainer {
+  display: inline-flex;
+  gap: 24px;
+  @include queries.custom-break-900 {
+    gap: 8px;
+  }
+  @include small-break {
+    flex-direction: column;
+  }
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -129,6 +140,9 @@
     padding: 32px 100px 32px 90px;
     gap: 16px;
     max-width: 100%;
+  }
+  @include small-break {
+    padding: 32px 60px 32px 90px;
   }
 
   span {

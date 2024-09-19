@@ -105,7 +105,7 @@ export default function LandingPageCarousel2() {
                     <p className={styles.uniqueDescription}>
                       {slide.description}
                     </p>
-                    <div className="gap-6 inline-flex max-[768px]:flex-col">
+                    <div className={styles.uniqueButtonContainer}>
                       {slide.buttons.map((button, btnIndex) => (
                         <Button
                           key={btnIndex}
