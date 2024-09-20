@@ -1,4 +1,4 @@
-import { ProductCardProps } from "../../../app/materials/[id]/page";
+import { ProductCardProps } from "../../../app/(customerFacing)/materials/[id]/page";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import {

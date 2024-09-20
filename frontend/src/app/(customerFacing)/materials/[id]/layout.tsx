@@ -1,4 +1,4 @@
-import ContactUs from "../../../components/sections/ContactUs";
+import ContactUs from "../../../../components/sections/ContactUs";
 
 import styles from "../../../components/scss/Container.module.scss";
 
