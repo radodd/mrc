@@ -1,6 +1,6 @@
 import ContactUs from "../../../../components/sections/ContactUs";
 
-import styles from "../../../components/scss/Container.module.scss";
+import styles from "../../../../components/scss/Container.module.scss";
 
 export default function Layout({
   children,
