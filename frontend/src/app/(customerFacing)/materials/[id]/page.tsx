@@ -37,24 +37,75 @@ type Orientation = "horizontal" | "vertical";
 const fetchProductById = async (
   id: string,
 ): Promise<ProductCardProps | null> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product?id=eq.${id}`,
-    {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product?id=eq.${id}`;
+    console.log("Fetching product by ID. URL:", url);
+
+    const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
         apikey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY,
       },
-    },
-  );
+    });
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    // Check for any network or HTTP errors
+    if (!response.ok) {
+      const errorText = await response.text(); // Detailed error message from the response
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Message: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+    console.log("Fetched data IN DETAILS PAGE:", data);
+
+    // Check if data format is correct
+    if (!Array.isArray(data)) {
+      throw new Error("Unexpected response format: data is not an array.");
+    }
+
+    // Return the first product if available, else null
+    return data.length > 0 ? data[0] : null;
+  } catch (error) {
+    // Log different types of errors separately
+    if (error instanceof TypeError) {
+      console.error("Network error or invalid URL:", error);
+    } else if (error instanceof SyntaxError) {
+      console.error("Failed to parse JSON response:", error);
+    } else {
+      console.error("Error fetching product by ID:", error);
+    }
+
+    return null;
   }
-  const data = await response.json();
-  console.log("Fetched data IN DETAILS PAGE:", data);
-  // Assuming the data is an array with a single product
-  return data.length > 0 ? data[0] : null;
 };
+
+// const fetchProductById = async (
+//   id: string,
+// ): Promise<ProductCardProps | null> => {
+//   try {
+//     const response = await fetch(
+//       `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product?id=eq.${id}`,
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//           apikey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY,
+//         },
+//       },
+//     );
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+//     const data = await response.json();
+//     console.log("Fetched data IN DETAILS PAGE:", data);
+//     // Assuming the data is an array with a single product
+//     return data.length > 0 ? data[0] : null;
+//   } catch (error) {
+//     console.error("Error fetching product by ID:", error);
+//     return null;
+//   }
+// };
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const { id } = params;
