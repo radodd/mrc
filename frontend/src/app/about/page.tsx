@@ -1,16 +1,16 @@
 "use client";
-import ContactUs from "../../../components/sections/ContactUs";
+import ContactUs from "../../components/sections/ContactUs";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "../../../components/ui/accordion";
-import { Button } from "../../../components/ui/button";
+} from "../../components/ui/accordion";
+import { Button } from "../../components/ui/button";
 import Image from "next/image";
 
 import styles from "./styles.module.scss";
-import { HISTORY } from "../../../../..";
+import { HISTORY } from "../../../..";
 
 export default function AboutPage() {
   return (

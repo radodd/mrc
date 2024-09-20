@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../../components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
 import InputMasK, { ReactInputMask } from "react-input-mask";
-import { companyAdress } from "../../../../..";
+import { companyAdress } from "../../../..";
 import InputMask, { Props as InputMaskProps } from "react-input-mask";
-import ContactForm from "../../../components/ContactForm";
+import ContactForm from "../../components/ContactForm";
 
 // type FormValues = {
 //   firstname: string;

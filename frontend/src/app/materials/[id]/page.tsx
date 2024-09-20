@@ -1,23 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Separator } from "../../../../components/ui/separator";
-import { Button } from "../../../../components/ui/button";
+import { Separator } from "../../../components/ui/separator";
+import { Button } from "../../../components/ui/button";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "../../../../components/ui/hover-card";
+} from "../../../components/ui/hover-card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../../../../components/ui/carousel";
-import MaterialDetailForm from "../../../../components/sections/materialDetailPage/MaterialDetailForm";
+} from "../../../components/ui/carousel";
+import MaterialDetailForm from "../../../components/sections/materialDetailPage/MaterialDetailForm";
 
-import styles from "../../../../components/scss/MaterialDetail.module.scss";
+import styles from "../../../components/scss/MaterialDetail.module.scss";
 
 export type ProductCardProps = {
   id: string;
