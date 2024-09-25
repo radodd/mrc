@@ -7,6 +7,7 @@ import InputMasK, { ReactInputMask } from "react-input-mask";
 import { companyAdress } from "../../../../..";
 import InputMask, { Props as InputMaskProps } from "react-input-mask";
 import ContactForm from "../../../components/ContactForm";
+import Link from "next/link";
 
 // type FormValues = {
 //   firstname: string;
@@ -86,7 +87,7 @@ const Page = () => {
       <div className="bg-whitebase flex justify-around mx-[72px] gap-[88px] max-mobile:mx-0 max-mobile:gap-10 max-mobile:flex-col max-mobile:items-center">
         {/* contact information */}
 
-        <div className="bg-[#307084] flex flex-col h-[731px] w-1/2 gap-10 max-smMobie:gap-8 max-mobile:gap-8 p-10 rounded-3xl max-mobile:w-full max-mobile:px-[72px] max-smMobie:p-8 max-mobile:h-auto max-mobile:rounded-none">
+        <div className="bg-[#307084] flex flex-col h-[731px] w-[612px] gap-10 max-smMobie:gap-8 max-mobile:gap-8 p-10 rounded-3xl max-mobile:w-full max-mobile:px-[72px] max-smMobie:p-8 max-mobile:h-auto max-mobile:rounded-none">
           <div className="flex flex-col gap-10 max-smMobie:gap-2">
             <h1 className="font-bold text-[32px] text-white">
               Contact Information:
@@ -261,26 +262,33 @@ const Page = () => {
       </div>
       <div className="grid gap-6 grid-cols-3 px-[72px] smMobie:gap-10 xlScreen:px-36 max-smMobie:px-8 max-[1292px]:grid-cols-2 max-[902px]:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
-          <div
-            key={index}
-            className={`bg-tanbase py-8 px-6 max-mobile:px-8 flex flex-row gap-2 rounded-3xl max-[1292px]:w-full`}
+          <Link
+            href={company.maps}
+            target="_blank"
+            rel="noopener"
+            className="w-full "
           >
-            <Image
-              src="/location_on.svg"
-              alt="Location"
-              width={33}
-              height={33}
-              className="self-start"
-            />
-            <div className="flex flex-col gap-2">
-              <h1 className="text-2xl  text-primary tracking-[-0.72px]">
-                {company.name}
-              </h1>
-              <p className=" text-2xl text-secondary-text tracking-[-0.96px]">
-                {company.adress}
-              </p>
+            <div
+              key={index}
+              className={`bg-tanbase py-8 px-6 h-full max-mobile:px-8 flex flex-row gap-2 rounded-3xl`}
+            >
+              <Image
+                src="/location_on.svg"
+                alt="Location"
+                width={33}
+                height={33}
+                className="self-start"
+              />
+              <div className="flex flex-col gap-2">
+                <h1 className="text-2xl  text-primary tracking-[-0.72px]">
+                  {company.name}
+                </h1>
+                <p className=" text-2xl text-secondary-text tracking-[-0.96px]">
+                  {company.adress}
+                </p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
