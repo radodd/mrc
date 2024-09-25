@@ -263,13 +263,13 @@ const Page = () => {
       <div className="grid gap-6 grid-cols-3 px-[72px] smMobie:gap-10 xlScreen:px-36 max-smMobie:px-8 max-[1292px]:grid-cols-2 max-[902px]:grid-cols-1 max-mobile:justify-items-center ">
         {companyAdress.map((company, index) => (
           <Link
+            key={index}
             href={company.maps}
             target="_blank"
             rel="noopener"
             className="w-full "
           >
             <div
-              key={index}
               className={`bg-tanbase py-8 px-6 h-full max-mobile:px-8 flex flex-row gap-2 rounded-3xl`}
             >
               <Image
