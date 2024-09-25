@@ -6,6 +6,8 @@ import { Button } from "./ui/button";
 import { useToast } from "../components/ui/use-toast";
 import EmailTemplate from "./EmailTemplate";
 import ReactDOMServer from "react-dom/server";
+import Image from "next/image";
+import ToastModal from "./ToastModal";
 
 type FormValues = {
   firstname: string;
@@ -41,9 +43,25 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
     },
   });
 
+  const [isScreenSmall, setIsScreenSmall] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
 
   const phoneInputRef = useRef(null);
+
+  // Check screen size and update state
+  const checkScreenSize = () => {
+    setIsScreenSmall(window.innerWidth <= 430);
+  };
+
+  useEffect(() => {
+    // Set initial screen size
+    checkScreenSize();
+
+    // Update screen size when window is resized
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   const onSubmit: SubmitHandler<FormValues> = async (formData) => {
     try {
@@ -84,14 +102,33 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
       if (!response.ok) {
         console.error("Error sending email:", data.error);
       } else {
-        toast({
-          title: "Submitted",
-          description:
-            "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
-          src: "/Group 271.svg",
-        });
+        // Conditionally show toast or modal based on screen size
+        if (isScreenSmall) {
+          // Show Modal
+          return <ToastModal />;
+        } else {
+          // Show Toast
+          toast({
+            title: "Submitted",
+            description:
+              "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
+            src: "/Group 271.svg",
+          });
+        }
+
+        // Reset the form after submission
         setSelectedValue("");
         console.log("Email sent successfully:", data);
+
+        // <ToastModal />;
+        // toast({
+        //   title: "Submitted",
+        //   description:
+        //     "Thank you for your inquiry! We have received your message and will respond within 24 hours to ensure you receive the most accurate and thorough response. If you need a quicker response, please call us at the phone number below.",
+        //   src: "/Group 271.svg",
+        // });
+        // setSelectedValue("");
+        // console.log("Email sent successfully:", data);
       }
 
       reset();
@@ -104,10 +141,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
     reset();
   }, [reset]);
   return (
-    <div className="bg-whitebase flex flex-col items-center w-1/2 max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8 smMobie:gap-10">
+    <div className="bg-whitebase flex flex-col items-center w-[612px] max-mobile:w-full max-mobile:h-auto max-mobile:px-[72px] max-mobile:gap-8 smMobie:gap-10 max-smMobie:px-8">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full flex flex-col gap-10 font-roboto bg-whitebase "
+        className="w-full flex flex-col gap-10 font-roboto bg-whitebase"
       >
         <div className="flex gap-6 w-full max-smMobie:flex-col max-smMobie:gap-10">
           <div className="w-1/2 max-mobile:w-full relative">
@@ -221,7 +258,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
             {...register("position", {
               required: "Please choose a position for yourself",
             })}
-            className={`relative border border-secondary-text rounded w-full h-14 pl-3 py-2 max-mobile:w-full font-roboto bg-whitebase ${selectedValue ? "text-black" : "text-gray-500"}`}
+            className={`appearance-none relative border border-secondary-text rounded w-full h-14 px-4 py-1 max-mobile:w-full font-roboto bg-whitebase ${selectedValue ? "text-black" : "text-gray-400"}`}
             value={selectedValue}
             onChange={(e) => setSelectedValue(e.target.value)}
           >
@@ -238,6 +275,22 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
               Homeowner
             </option>
           </select>
+          <div className="pointer-events-none absolute inset-y-0 right-5 flex items-center ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 19 10"
+              fill="none"
+              className="w-[10px] h-[6px] smMobie:w-4 smMobie:h-2"
+            >
+              <path
+                d="M17.5 1L9.5 9L1.5 1"
+                stroke="#5C5D6D"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
           <label
             htmlFor="position"
             className="absolute left-3 -top-2 bg-whitebase px-1 text-xs tracking-[.4px] text-primary-text"
@@ -292,3 +345,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
 };
 
 export default ContactForm;
+
+// // Function to handle the resize event
+// function handleResize() {
+//   // Get the current width of the window
+//   const width = window.innerWidth;
+
+//   // Do something with the width
+//   console.log('Window width:', width);
+// }
+
+// // Add an event listener for the resize event
+// window.addEventListener('resize', handleResize);
+
+// // Optionally, call the handler once to get the initial width
+// handleResize();
