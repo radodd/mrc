@@ -1,6 +1,6 @@
 // src/pages/MaterialsPage.tsx
-import { FilterProvider } from "../../../context/FilterContext";
-import ProductGridSection from "../../../components/ProductGridSection";
+import { FilterProvider } from "../../context/FilterContext";
+import ProductGridSection from "../../components/ProductGridSection";
 
 export default function MaterialsPage() {
   return (

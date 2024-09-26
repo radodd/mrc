@@ -1,23 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Separator } from "../../../../components/ui/separator";
-import { Button } from "../../../../components/ui/button";
+import { Separator } from "../../../components/ui/separator";
+import { Button } from "../../../components/ui/button";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "../../../../components/ui/hover-card";
+} from "../../../components/ui/hover-card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../../../../components/ui/carousel";
-import MaterialDetailForm from "../../../../components/sections/materialDetailPage/MaterialDetailForm";
+} from "../../../components/ui/carousel";
+import MaterialDetailForm from "../../../components/sections/materialDetailPage/MaterialDetailForm";
 
-import styles from "../../../../components/scss/MaterialDetail.module.scss";
+import styles from "../../../components/scss/MaterialDetail.module.scss";
 
 export type ProductCardProps = {
   id: string;
@@ -33,11 +33,14 @@ export type ProductCardProps = {
 };
 
 type Orientation = "horizontal" | "vertical";
+console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+console.log("Supabase API Key:", process.env.NEXT_PUBLIC_SUPABASE_API_KEY);
 
 const fetchProductById = async (
   id: string,
 ): Promise<ProductCardProps | null> => {
   try {
+    console.log(id);
     const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product?id=eq.${id}`;
     console.log("Fetching product by ID. URL:", url);
 

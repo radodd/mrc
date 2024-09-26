@@ -27,9 +27,7 @@ const ToastModal = () => {
           </div>
         </div>
       </div>
-      {/* <Footer> */}
-      {/* <FooterLink /> */}
-      {/* </Footer> */}
+      <Footer children={""} />
     </div>
   );
 };
