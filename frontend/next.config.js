@@ -18,7 +18,7 @@ const nextConfig = {
     });
     return config;
   },
-  experimental: { appDir: true },
+  // experimental: { appDir: true },
 };
 
 export default nextConfig;

@@ -1,4 +1,4 @@
-import { ProductCardProps } from "../../../app/(customerFacing)/materials/[id]/page";
+// import { ProductCardProps } from "../../../app/(customerFacing)/materials/[id]/page";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import {
@@ -25,6 +25,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import styles from "../../scss/MaterialDetailForm.module.scss";
+import { ProductCardProps } from "../../../app/materials/[id]/page";
 
 // const fetchProductById = async (
 //   id: string,
