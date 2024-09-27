@@ -17,6 +17,9 @@ const { Request, Response } = require("express");
 const { Resend } = require("resend");
 const dotenv = require("dotenv");
 // const ReactDOMServer = require("react-dom/server");
+// const ReactDOMServer = require("react-dom/server");
+// import EmailTemplate from "../../../../components/EmailTemplate"
+// const EmailTemplate = require("../../../../components/EmailTemplate"); // Update with the correct path
 dotenv.config();
 const resend = new Resend(process.env.RESEND_API_KEY);
 const send = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

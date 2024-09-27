@@ -24,12 +24,12 @@ exports.supabase = void 0;
 const dotenv = require("dotenv");
 dotenv.config();
 // @ts-ignore
-const express = require("express");
+// const express = require("express");
 // @ts-ignore
 const app = require("./app");
 // const env = require("./util/validateEnv");
 const { createClient } = require("@supabase/supabase-js");
-const port = process.env.PORT;
+const port = process.env.PORT || 3030;
 const supabaseUrl = process.env.DATABASE_URL;
 const supabaseKey = process.env.SUPABASE_API_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);

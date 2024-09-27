@@ -26,6 +26,10 @@ type ContactFormProps = {
 const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
   const { toast } = useToast();
 
+  const [isScreenSmall, setIsScreenSmall] = useState(false);
+  const [selectedValue, setSelectedValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -43,9 +47,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
     },
   });
 
-  const [isScreenSmall, setIsScreenSmall] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("");
-
   const phoneInputRef = useRef(null);
 
   // Check screen size and update state
@@ -62,6 +63,20 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
 
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
+
+  // Lock the scroll when modal is open
+  useEffect(() => {
+    if (openModal) {
+      document.body.classList.add("overflow-hidden"); // Add overflow-hidden when modal is open
+      window.scrollTo(0, 0); // Scroll to the top
+    } else {
+      document.body.classList.remove("overflow-hidden"); // Remove it when modal is closed
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden"); // Cleanup in case of component unmount
+    };
+  }, [openModal]); // Trigger on modal open/close
 
   const onSubmit: SubmitHandler<FormValues> = async (formData) => {
     try {
@@ -103,9 +118,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
         console.error("Error sending email:", data.error);
       } else {
         // Conditionally show toast or modal based on screen size
-        if (isScreenSmall) {
+        if (isScreenSmall == true) {
           // Show Modal
-          return <ToastModal />;
+          console.log(`${isScreenSmall} this is the state`);
+
+          // return
         } else {
           // Show Toast
           toast({
@@ -119,6 +136,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
         // Reset the form after submission
         setSelectedValue("");
         console.log("Email sent successfully:", data);
+        setOpenModal(true);
+        console.log(openModal);
 
         // <ToastModal />;
         // toast({
@@ -285,9 +304,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
               <path
                 d="M17.5 1L9.5 9L1.5 1"
                 stroke="#5C5D6D"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -340,6 +359,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
         </div>
         <Button className="w-full">{buttonText}</Button>
       </form>
+      {isScreenSmall && openModal && <ToastModal />}
     </div>
   );
 };
