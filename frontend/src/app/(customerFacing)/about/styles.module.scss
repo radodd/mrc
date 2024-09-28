@@ -2,16 +2,19 @@
 @import "../../../../css/queries.scss";
 
 .heroContainer {
+  border: orange 3px solid;
   position: relative;
   div:nth-child(2) {
     position: absolute;
     display: flex;
     justify-content: center;
     inset: 0;
+    border: 2px red solid;
   }
   h1 {
     display: flex;
     align-items: center;
+    border: 2px dotted green;
     @include large-break {
       font-size: 64px;
     }

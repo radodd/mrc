@@ -59,18 +59,19 @@ export default function Layout({
   ]);
 
   useEffect(() => {
+    const getMenuHeight = () => {
+      if (isSubmenuOpen === 1) return MENU_HEIGHT.STONEYARD;
+      if (isSubmenuOpen === 2) return MENU_HEIGHT.MRC;
+      if (isSubmenuOpen === 3) return MENU_HEIGHT.SPM;
+      return MENU_HEIGHT.default;
+    };
+
     if (!isMaterialsOpen) {
       setIsSubmenuOpen(null);
     }
     setMenuHeight(getMenuHeight());
   }, [isSubSubmenuOpen, isSubmenuOpen, isMaterialsOpen, filterValueList]);
 
-  const getMenuHeight = () => {
-    if (isSubmenuOpen === 1) return MENU_HEIGHT.STONEYARD;
-    if (isSubmenuOpen === 2) return MENU_HEIGHT.MRC;
-    if (isSubmenuOpen === 3) return MENU_HEIGHT.SPM;
-    return MENU_HEIGHT.default;
-  };
   // const getMenuWidth = () => {
   //   if (isSubmenuOpen === 2) return MENU_WIDTH.MRC;
   // };
