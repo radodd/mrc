@@ -41,7 +41,8 @@ const fetchProductById = async (
 ): Promise<ProductCardProps | null> => {
   try {
     console.log(id);
-    const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product?id=eq.${id}`;
+    // const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product?id=eq.${id}`;
+    const url = `https://mrc-two.vercel.app/api/products?id=iq.${id}`;
     console.log("Fetching product by ID. URL:", url);
 
     const response = await fetch(url, {

@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "frontend/api/package.json",
+      "src": "api/**/*.ts",
       "use": "@vercel/node"
     },
     {
@@ -12,7 +12,7 @@
   ],
   "routes": [
     {
-      "src": "frontend/src/app/api/(.*)",
+      "src": "/api/(.*)",
       "dest": "/api/$1"
     },
     {

@@ -19,9 +19,18 @@ const nextConfig = {
     return config;
   },
   // experimental: { appDir: true },
+  async rewrites() {
+    return [
+      {
+        source: "/api/products", // Frontend path
+        destination: "https://mrc-two.vercel.app/api/products", // Backend API endpoint
+      },
+    ];
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
+// export default nextConfig;
 // reactStrictMode: true,
 // env: {
 //   NEXT_PUBLIC_BASE_URL:

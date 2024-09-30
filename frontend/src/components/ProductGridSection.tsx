@@ -42,16 +42,26 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     const fetchProducts = async () => {
       try {
         // const response = await fetch("http://localhost:3030/products");
-        // const response = await fetch("https://mrc-two.vercel.app/api/products");
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product`,
+          // "/api/products",
+          "https://mrc-two.vercel.app/api/products",
           {
+            method: "GET",
+            credentials: "include",
             headers: {
               "Content-Type": "application/json",
-              apikey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY,
             },
           },
         );
+        // const response = await fetch(
+        //   `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product`,
+        //   {
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //       apikey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY,
+        //     },
+        //   },
+        // );
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

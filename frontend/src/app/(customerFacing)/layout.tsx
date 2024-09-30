@@ -273,7 +273,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
 );
 
 const FooterLinks = () => (
-  <div className="flex flex-col min-[1306px]:flex-row min-[1306]:justify-between max-[1305px]:items-center w-full">
+  <div className="flex flex-col min-[1306px]:flex-row min-[1306px]:justify-between max-[1305px]:items-center w-full">
     <div className="flex flex-col">
       <FooterLink href="/">Santa Paula Materials</FooterLink>
       <FooterLink href="/">MRC Rock and Sand</FooterLink>
