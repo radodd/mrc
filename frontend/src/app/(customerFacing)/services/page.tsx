@@ -8,33 +8,46 @@ import { santaPaulaMaterials } from "../../../../..";
 
 const page = () => {
   return (
-    <div className="flex flex-col gap-20 max-mobile:gap-16">
-      <h1 className="font-bold text-[64px] pt-20 max-mobile:pt-16 max-smMobie:text-[40px] text-center">
-        Services
-      </h1>
+    <div className="flex flex-col">
+      <div className="relative w-full h-[658px]  xlScreen:h-[800px] max-mobile:h-[480px] max-smMobie:h-[254px] overflow-hidden">
+        <Image
+          src="/Service Hero Section Image.svg"
+          alt="hero Image"
+          fill
+          className="object-cover"
+        />
+        <h1 className="absolute text-whitebase font-bold text-[64px] max-smMobie:text-[40px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          Services
+        </h1>
+      </div>
 
-      <div className="flex flex-col bg-primary">
+      <div className="flex flex-col bg-primary xlScreen:mb-20">
         <h1 className="font-bold text-whitebase text-[40px] my-6 px-[72px] max-smMobie:px-[32px] xlScreen:px-36 max-smMobie:text-[32px]">
           Santa Paula Materials
         </h1>
         {santaPaulaMaterials.map((materials) => (
           <div
             key={materials.id}
-            className={`flex bg-tanbase max-mobile:flex-col max-mobile:max-h-[790px] ${materials.id == 2 ? "flex-row-reverse " : null}`}
+            className={`flex bg-tanbase max-mobile:flex-col ${materials.id == 2 ? "flex-row-reverse" : null}`}
           >
-            <div className="relative w-1/2 h-full max-h-[468px] aspect-7/6 max-mobile:w-full">
+            {/* className="relative w-1/2 max-mobile:h-[480px] max-mobile:aspect-7/6 max-mobile:w-full"  deleted flex justify-center items-center*/}
+            <div className="relative w-1/2 max-mobile:h-[480px] max-mobile:w-full">
               <Image
                 alt="image"
                 src={materials.image}
-                fill={true}
+                // width={720}
+                // height={566}
+                fill
                 className="object-cover"
               />
             </div>
-            <div className="flex-col flex gap-10 w-1/2 h-min my-12 px-[72px] max-smMobie:px-8 xlScreen:px-36 max-mobile:w-full">
-              <h1 className="font-bold text-[32px] max-smMobie:text-2xl">
+            {/* border-2 border-red-500 flex flex-col gap-10 w-1/2 max-mobile:w-full
+            p-12 max-smMobie:px-8 xlScreen:px-36 */}
+            <div className="flex-col flex gap-10 w-1/2 py-12 px-[72px] max-smMobie:px-8 xlScreen:px-36 max-mobile:w-full">
+              <h1 className="font-bold text-[32px] max-smMobie:text-2xl text-primary-text">
                 {materials.name}
               </h1>
-              <p className="text-[20px] w-full max-smMobie:text-base">
+              <p className="text-[20px] w-full text-secondary-text max-smMobie:text-base self-stretch">
                 {materials.desc}
               </p>
               <div className="flex ">
@@ -51,16 +64,16 @@ const page = () => {
 
       {/* Mr rock & Sand */}
 
-      <div className="flex flex-col bg-primary">
+      <div className="flex flex-col bg-primary mb-20 max-mobile:mb-16">
         <h1 className="font-bold text-whitebase text-[40px] my-6 px-[72px] max-smMobie:px-[32px] xlScreen:px-36 max-smMobie:text-[32px]">
           MRC Rock & Sand
         </h1>
         {mrcRocknSand.map((service) => (
           <div
             key={service.id}
-            className={`flex bg-tanbase max-mobile:flex-col max-mobile:max-h-[720px] ${service.id == 1 || service.id == 3 ? null : "flex-row-reverse"}`}
+            className={`flex bg-tanbase max-mobile:flex-col ${service.id == 2 ? "flex-row-reverse" : null}`}
           >
-            <div className="relative w-1/2 max-mobile:max-h-[468px] max-mobile:aspect-7/6  max-mobile:w-full">
+            <div className="relative w-1/2 max-mobile:h-[480px]  max-mobile:w-full">
               <Image
                 alt="image"
                 src={service.image}
@@ -68,14 +81,14 @@ const page = () => {
                 style={{ objectFit: "cover" }}
               />
             </div>
-            <div className="flex-col flex gap-10 w-1/2 h-min my-12 px-[72px] max-smMobie:px-8 xlScreen:px-36 max-mobile:w-full">
-              <h1 className="font-bold text-[32px] max-smMobie:text-2xl">
+            <div className="flex-col flex gap-10 w-1/2 py-12 px-[72px] max-smMobie:px-8 xlScreen:px-36 max-mobile:w-full">
+              <h1 className="font-bold text-[32px] max-smMobie:text-2xl text-primary-text">
                 {service.name}
               </h1>
-              <p className="text-[20px] w-full max-smMobie:text-base">
+              <p className="text-[20px] w-full text-secondary-text max-smMobie:text-base self-stretch">
                 {service.desc}
               </p>
-              {service.id == 3 && (
+              {service.id == 2 && (
                 <div className="flex">
                   <Button variant={"outline"}>Contact MRC</Button>
                 </div>
