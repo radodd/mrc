@@ -32,18 +32,18 @@ const app = require("./app");
 
 // const env = require("./util/validateEnv");
 
-const { createClient } = require("@supabase/supabase-js");
+// const { createClient } = require("@supabase/supabase-js");
 
-const port = process.env.PORT || 3030;
-const supabaseUrl = process.env.DATABASE_URL as string;
-const supabaseKey = process.env.SUPABASE_API_KEY as string;
-const supabase = createClient(supabaseUrl, supabaseKey);
+// // const port = process.env.PORT || 3030;
+// const supabaseUrl = process.env.SUPABASE_URL as string;
+// const supabaseKey = process.env.SUPABASE_API_KEY as string;
+// const supabase = createClient(supabaseUrl, supabaseKey);
 
-app.listen(port, () => {
-  console.log("Supabase connected");
-  console.log("Server running on port: " + port);
-});
+// app.listen(port, () => {
+//   console.log("Supabase connected");
+//   console.log("Server running on port: " + port);
+// });
 
-console.log("Supabase client created", supabase);
-
-export { supabase };
+// console.log("Supabase client created", supabase);
+export default app;
+// module.exports = { app, supabase };

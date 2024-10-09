@@ -18,6 +18,7 @@ import {
 import MaterialDetailForm from "../../../../components/sections/materialDetailPage/MaterialDetailForm";
 
 import styles from "../../../../components/scss/MaterialDetail.module.scss";
+import { useRouter } from "next/navigation";
 
 export type ProductCardProps = {
   id: string;
@@ -33,28 +34,25 @@ export type ProductCardProps = {
 };
 
 type Orientation = "horizontal" | "vertical";
-console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
-console.log("Supabase API Key:", process.env.NEXT_PUBLIC_SUPABASE_API_KEY);
 
 const fetchProductById = async (
   id: string,
 ): Promise<ProductCardProps | null> => {
   try {
-    console.log(id);
-    // const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product?id=eq.${id}`;
-    const url = `https://mrc-two.vercel.app/api/products?id=iq.${id}`;
-    console.log("Fetching product by ID. URL:", url);
-
-    const response = await fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-        apikey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY,
+    console.log("ID IN PAGE.tsx", id);
+    const response = await fetch(
+      `https://mrc-two.vercel.app/api/products/${id}`,
+      {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Origin: window.location.origin,
+        },
       },
-    });
-
-    // Check for any network or HTTP errors
+    );
     if (!response.ok) {
-      const errorText = await response.text(); // Detailed error message from the response
+      const errorText = await response.text();
       throw new Error(
         `HTTP error! Status: ${response.status}. Message: ${errorText}`,
       );
@@ -63,15 +61,13 @@ const fetchProductById = async (
     const data = await response.json();
     console.log("Fetched data IN DETAILS PAGE:", data);
 
-    // Check if data format is correct
-    if (!Array.isArray(data)) {
-      throw new Error("Unexpected response format: data is not an array.");
-    }
+    // if (!Array.isArray(data)) {
+    //   throw new Error("Unexpected response format: data is not an array.");
+    // }
 
-    // Return the first product if available, else null
-    return data.length > 0 ? data[0] : null;
+    // return data.length > 0 ? data[0] : null;
+    return data;
   } catch (error) {
-    // Log different types of errors separately
     if (error instanceof TypeError) {
       console.error("Network error or invalid URL:", error);
     } else if (error instanceof SyntaxError) {
@@ -79,40 +75,15 @@ const fetchProductById = async (
     } else {
       console.error("Error fetching product by ID:", error);
     }
-
     return null;
   }
 };
 
-// const fetchProductById = async (
-//   id: string,
-// ): Promise<ProductCardProps | null> => {
-//   try {
-//     const response = await fetch(
-//       `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product?id=eq.${id}`,
-//       {
-//         headers: {
-//           "Content-Type": "application/json",
-//           apikey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY,
-//         },
-//       },
-//     );
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-//     const data = await response.json();
-//     console.log("Fetched data IN DETAILS PAGE:", data);
-//     // Assuming the data is an array with a single product
-//     return data.length > 0 ? data[0] : null;
-//   } catch (error) {
-//     console.error("Error fetching product by ID:", error);
-//     return null;
-//   }
-// };
-
 export default function ProductPage({ params }: { params: { id: string } }) {
   const { id } = params;
+  console.log("ID in page.tsx productpage", id, typeof id);
+  const router = useRouter();
+  // const { id } = router.query;
   const [product, setProduct] = useState<ProductCardProps | null>(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [orientation, setOrientation] = useState<Orientation>("horizontal");
@@ -128,7 +99,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Set initial orientation
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -144,7 +115,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (id) {
-      fetchProductById(id as string)
+      console.log("in page.tsx::", id, typeof id);
+      const productId = Array.isArray(id) ? id[0] : id;
+      fetchProductById(productId as string)
         .then((data) => {
           console.log("Fetched data IN DETAILS:", data); // Logging the product data
           setProduct(data);

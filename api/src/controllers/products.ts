@@ -12,9 +12,11 @@
 // const { Request, Response, NextFunction } = require("express");
 // const RequestHandler = require("express").RequestHandler;
 const { createClient } = require("@supabase/supabase-js");
-const supabaseUrl = process.env.DATABASE_URL as string;
+const supabaseUrl = process.env.SUPABASE_URL as string;
 const supabaseKey = process.env.SUPABASE_API_KEY as string;
 const supabase = createClient(supabaseUrl, supabaseKey);
+const { Response, NextFunction } = require("express");
+const Request = require("express");
 
 const createHttpError = require("http-errors");
 // const supabase = require("../server.ts");
@@ -103,29 +105,38 @@ export const createProduct = async (req, res, next) => {
   }
 };
 //@ts-ignore
-export const getProduct = async (req, res, next) => {
-  const productId = req.params.productId;
-
+exports.getProduct = async (req, res, next: any) => {
+  // const productId = parseInt(req.params.productId);
+  const { id } = req.params;
+  console.log("ID in getProduct:", id, typeof id);
+  if (!id || isNaN(parseInt(id))) {
+    return next(createHttpError(400, "Invalid or missing product ID"));
+  }
   try {
+    console.log("getProduct called");
+    const productId = parseInt(id);
+    console.log("ID in Server", productId);
     // Validate product ID
-    if (!productId) {
-      throw createHttpError(400, "Invalid product ID");
-    }
-
-    // Fetch product from Supabase
-    const { data: product, error } = await supabase
+    const { data, error } = await supabase
       .from("Product")
       .select("*")
       .eq("id", productId)
       .single();
 
+    // Fetch product from Supabase
+
     if (error) {
+      console.error("Supabase error", error);
+      throw createHttpError(404, "Product not found");
+    }
+    if (!data) {
       throw createHttpError(404, "Product not found");
     }
 
     // Respond with the product data
-    res.status(200).json(product);
+    res.status(200).json(data);
   } catch (error) {
+    console.error("Error in getProduct:", error);
     next(error);
   }
 };

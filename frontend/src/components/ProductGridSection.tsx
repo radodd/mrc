@@ -48,6 +48,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           {
             method: "GET",
             credentials: "include",
+
             headers: {
               "Content-Type": "application/json",
             },
@@ -278,7 +279,11 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
                 )}
                 <div className={styles.productCardContainer}>
                   {filteredProductList.map((product) => (
-                    <Link href={`/materials/${product.id}`} key={product.id}>
+                    <Link
+                      href={`/materials/${product.id}`}
+                      key={product.id}
+                      prefetch={false}
+                    >
                       <ProductCard {...product} />
                     </Link>
                   ))}

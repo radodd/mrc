@@ -44,13 +44,7 @@ export default function Layout({
   const { setFilterValueList, filterValueList } = useFilter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    console.log("isMaterialsOpen:", isMaterialsOpen);
-    console.log("isSubmenuOpen:", isSubmenuOpen);
-    console.log("isSubSubmenuOpen:", isSubSubmenuOpen);
-    // console.log("menuHeight:", menu);
-    console.log("filterValueList:", filterValueList);
-  }, [
+  useEffect(() => {}, [
     isMaterialsOpen,
     isSubmenuOpen,
     isSubSubmenuOpen,

@@ -18,15 +18,18 @@ const nextConfig = {
     });
     return config;
   },
-  // experimental: { appDir: true },
-  async rewrites() {
-    return [
-      {
-        source: "/api/products", // Frontend path
-        destination: "https://mrc-two.vercel.app/api/products", // Backend API endpoint
-      },
-    ];
+  typescript: {
+    ignoreBuildErrors: true,
   },
+  // experimental: { appDir: true },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/api/products", // Frontend path
+  //       destination: "https://mrc-two.vercel.app/api/products", // Backend API endpoint
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;

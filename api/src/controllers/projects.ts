@@ -4,7 +4,7 @@
 //@ts-ignore
 
 const { createClient } = require("@supabase/supabase-js");
-const supabaseUrl = process.env.DATABASE_URL as string;
+const supabaseUrl = process.env.SUPABASE_URL as string;
 const supabaseKey = process.env.SUPABASE_API_KEY as string;
 const supabase = createClient(supabaseUrl, supabaseKey);
 const RequestHandler = require("express");

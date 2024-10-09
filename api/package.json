@@ -29,7 +29,7 @@
     "@types/phoenix": "^1.6.4",
     "@types/react-dom": "^18.3.0",
     "nodemon": "^3.1.0",
-    "rimraf": "^5.0.7",
+    "rimraf": "^5.0.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
