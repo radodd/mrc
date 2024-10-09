@@ -64,19 +64,19 @@ export const companyAdress = [
 
 export const HISTORY = [
   {
-    title: "We started as MRC Rock & Sand",
-    body: "Ú-mel na ennas i-gwaith, síla lúmen na i-ost en. Tolo na hirillindor, ar ú-linnatha na i-estel. Man ennas le tenna, ar síla naarda sí alcar. Laita i eleni!",
+    title: "We started as Santa Paula Materials",
+    body: "Santa Paula Materials specializes in delivering high-quality aggregate products for construction and landscaping. We provide a wide range of materials, including rock, sand, gravel, and landscaping supplies. Additionally, we offer recycling and delivery services tailored to both residential and commercial projects. Our commitment to sustainability ensures a reliable supply that meets our customers' needs.",
+    image: "/image_carousel_spm.png",
+  },
+  {
+    title: "We added MRC Rock & Sand",
+    body: "MRC Rock and Sand is a general contracting company providing on-site  screening and crushing services. We have collaborated with land developers, gold mines, and county maintenance projects, delivering tailored solutions to meet their unique needs. We offer specialized services that include custom blending and aggregate processing.",
     image: "/about_us_timeline.png",
   },
   {
-    title: "We started as MRC Rock & Sand",
-    body: "Ú-mel na ennas i-gwaith, síla lúmen na i-ost en. Tolo na hirillindor, ar ú-linnatha na i-estel. Man ennas le tenna, ar síla naarda sí alcar. Laita i eleni!",
-    image: "/about_us_timeline.png",
-  },
-  {
-    title: "We started as MRC Rock & Sand",
-    body: "Ú-mel na ennas i-gwaith, síla lúmen na i-ost en. Tolo na hirillindor, ar ú-linnatha na i-estel. Man ennas le tenna, ar síla naarda sí alcar. Laita i eleni!",
-    image: "/about_us_timeline.png",
+    title: "Lastly, we added Stoneyard",
+    body: "At Stoneyard Building Materials, we offer an extensive range of natural stone products for both residential and commercial projects. We provide materials for hardscaping, such as patios, walkways, and walls, as well as interior applications like fireplaces and countertops. Additionally, we offer custom stonework and consultation services to help you achieve the perfect look and functionality for your project. ",
+    image: "/image_carousel_stoneyard.png",
   },
 ];
 

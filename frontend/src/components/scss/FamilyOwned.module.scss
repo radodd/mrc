@@ -3,18 +3,18 @@
 
 .sectionContainer {
   display: flex;
-  margin-bottom: 104px;
+  // margin-bottom: 104px;
 
   justify-content: space-between;
   @include large-break {
-    margin-top: 104px;
+    // margin-top: 104px;
   }
   @include mid-break {
-    margin-top: 104px;
+    // margin-top: 104px;
   }
   @include small-break {
-    margin-bottom: 40px;
-    margin-top: 40px;
+    // margin-bottom: 40px;
+    // margin-top: 40px;
     flex-direction: column-reverse;
   }
 }
@@ -63,8 +63,8 @@
   @include mid-break {
     // min-height: 420px;
     // min-width: 512px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    // padding-top: 40px;
+    // padding-bottom: 40px;
   }
   @include small-break {
     flex: none;

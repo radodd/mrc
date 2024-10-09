@@ -2,36 +2,70 @@
 @import "../../../../css/queries.scss";
 
 .heroContainer {
-  border: orange 3px solid;
   position: relative;
   div:nth-child(2) {
     position: absolute;
     display: flex;
     justify-content: center;
     inset: 0;
-    border: 2px red solid;
   }
   h1 {
+    z-index: 2;
     display: flex;
     align-items: center;
-    border: 2px dotted green;
+    color: var(--White-Base, #fdfbf6);
+    text-align: center;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -2.52px;
+    font-size: 36px;
+    @include mid-break {
+      font-size: 64px;
+    }
     @include large-break {
       font-size: 64px;
     }
   }
 }
 
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 430px;
+  height: 254px;
+
+  @media (min-width: 769px) and (max-width: 1305px) {
+    height: 480px;
+  }
+  @media (min-width: 1306px) and (max-width: 1600px) {
+    height: 658px;
+  }
+  @media (min-width: 1601px) {
+    height: 800px;
+  }
+}
+
+.imageContainer::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
 .image {
-  @include small-break {
-    aspect-ratio: 215 / 127;
-    margin-bottom: 40px;
-  }
-  @include mid-break {
-    margin-bottom: 64px;
-  }
-  @include large-break {
-    margin-bottom: 104px;
-  }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .familyOwnedContainer {
@@ -43,55 +77,51 @@
   div:nth-child(1) {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    // justify-content: start;
     align-items: start;
     text-align: center;
-    padding: 0 144px 104px;
+    padding: 40px 32px;
+    gap: 32px;
 
-    @include small-break {
-      padding: 0 32px 40px;
-      gap: 32px;
-
-      h1 {
-        font-size: 32px;
-      }
-    }
     @include mid-break {
-      padding: 0 72px 64px;
-      gap: 32px;
+      padding: 64px 72px;
     }
 
     @include large-break {
-      padding: 0 72px 104px;
+      padding: 104px 72px;
       gap: 53px;
+    }
+    @media (min-width: 1601px) {
+      padding: 104px 144px;
     }
     h1 {
       color: hsl(var(--primary-text));
-      font-size: 40px;
+      font-size: 32px;
       font-weight: 700;
-      letter-spacing: -1.2px;
-      @include small-break {
-        font-size: 32px;
-        line-height: 32px;
-        letter-spacing: -0.96px;
+      line-height: 32px;
+      letter-spacing: -0.96px;
+      @include mid-break {
+        font-size: 40px;
+        letter-spacing: -1.2px;
+      }
+      @include large-break {
+        font-size: 40px;
+        letter-spacing: -1.2px;
       }
     }
     p {
       color: hsl(var(--secondary-text));
       align-self: stretch;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 400;
-      letter-spacing: -0.96px;
-      text-align: center;
-      @include large-break {
-        text-align: left;
-      }
+
+      letter-spacing: -0.8px;
+      text-align: left;
       @include mid-break {
-        text-align: left;
+        font-size: 24px;
+        letter-spacing: -0.96px;
       }
-      @include small-break {
-        font-size: 20px;
-        letter-spacing: -0.8px;
+      @include large-break {
       }
     }
   }
@@ -100,107 +130,96 @@
 .historyContainer {
   display: flex;
   flex-direction: column;
-  gap: 104px;
-  padding: 0 0 104px;
-
+  margin-bottom: 40px;
   @include mid-break {
-    gap: 64px;
-    padding: 0 0 64px;
+    margin-bottom: 64px;
   }
-  @include small-break {
-    gap: 40px;
-    padding: 0 0 40px;
+  @include large-break {
+    margin-bottom: 104px;
+    div:nth-child(2) {
+      flex-direction: row;
+    }
   }
 }
 
 .historySubContainer {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 140px;
-  padding: 0 144px;
+
   @include large-break {
-    gap: 64px;
-    padding: 0 72px;
-  }
-  @include mid-break {
-    flex-direction: column;
-    gap: 64px;
-    padding: 0 72px;
-  }
-  @include small-break {
-    flex-direction: column;
-    gap: 32px;
-    padding: 0 32px;
+    flex-direction: row-reverse;
   }
 
   div:nth-child(2) {
     display: flex;
     flex-direction: column;
-    width: 612px;
+    padding: 48px 32px;
+    gap: 40px;
+    @include mid-break {
+      padding: 48px 72px;
+    }
     @include large-break {
-      justify-content: center;
-      width: 100%;
-      gap: 32px;
-      h1 {
+      flex: 1;
+      max-width: calc(50%);
+      padding: 48px 72px;
+    }
+    @media (min-width: 1601px) {
+      padding: 48px 144px;
+    }
+    h1 {
+      color: var(--Text-Primary, #2c2d31);
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px;
+      letter-spacing: -0.96px;
+      @include mid-break {
         font-size: 40px;
+        letter-spacing: -1.2px;
       }
-      p {
+      @include large-break {
+        font-size: 40px;
+        letter-spacing: -1.2px;
+        line-height: normal;
+      }
+    }
+    p {
+      color: var(--Text-Secondary, #5c5d6d);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: -0.32px;
+      @include mid-break {
         font-size: 20px;
       }
-    }
-    @include mid-break {
-      justify-content: center;
-      width: 100%;
-      gap: 40px;
-
-      h1 {
-        font-size: 32px;
-      }
-      p {
-        font-size: 16px;
-      }
-    }
-    @include small-break {
-      flex-direction: column;
-      width: 100%;
-      h1 {
-        font-size: 32px;
-        margin-bottom: 32px;
-      }
-      p {
-        font-size: 16px;
+      @include large-break {
+        font-size: 20px;
       }
     }
   }
 }
 
 .historyImageWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-
-  @include small-break {
-    width: 100%;
-  }
+  height: 240px;
+  width: 100%;
   @include mid-break {
-    width: 560px;
-    aspect-ratio: 560 / 345;
+    height: 480px;
   }
   @include large-break {
-    min-width: 560px;
-    aspect-ratio: 560 / 345;
+    flex: 1;
+    height: 480px;
   }
 }
 
 .historyImage {
-  @include small-break {
-    width: 325px;
-    object-fit: cover;
-    object-position: center;
-  }
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  width: 100%;
 }
 
 .faq {

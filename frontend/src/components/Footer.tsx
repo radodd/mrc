@@ -5,7 +5,7 @@ import { ComponentProps, ReactNode } from "react";
 
 export function Footer({ children }: { children: ReactNode }) {
   return (
-    <footer className="bg-primary text-primary-foreground flex max-[1305px]:justify-between px-[70px] py-8 max-[1305px]:px-8 max-[1305px]:flex-col max-[1305px]:items-center max-[1305px]:gap-10 border border-red-300">
+    <footer className="bg-primary text-primary-foreground flex max-[1305px]:justify-between px-[70px] py-8 max-[1305px]:px-8 max-[1305px]:flex-col max-[1305px]:items-center max-[1305px]:gap-10">
       {children}
     </footer>
   );

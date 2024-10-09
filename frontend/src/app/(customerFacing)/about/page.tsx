@@ -6,24 +6,26 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "../../../components/ui/accordion";
-import { Button } from "../../../components/ui/button";
 import Image from "next/image";
+import { HISTORY } from "../../../../..";
 
 import styles from "./styles.module.scss";
-import { HISTORY } from "../../../../..";
 
 export default function AboutPage() {
   return (
     <section>
       {/* HERO */}
       <div className={styles.heroContainer}>
-        <Image
-          src="/about_us_hero.png"
-          alt=""
-          width={2840}
-          height={749}
-          className={styles.image}
-        />
+        <div className={styles.imageContainer}>
+          <Image
+            src="/family_owned.png"
+            alt=""
+            width={4096}
+            height={2731}
+            className={styles.image}
+          />
+        </div>
+
         <div>
           <h1 className={`${styles.heroTitle} text-whitebase`}>About Us</h1>
         </div>
@@ -32,11 +34,16 @@ export default function AboutPage() {
       {/* Family Owned */}
       <div className={styles.familyOwnedContainer}>
         <div>
-          <h1>We are a family-owned company</h1>
+          <h1>We are a family-owned collection of companies</h1>
           <p>
-            Arda ennas ceninna le ar ámin ú-mel. Amin melda le, súla lle sina ná
-            nehn le. Man ennas eithel annin, ar sílva lle sina na sinome. Á
-            ambar astaldin, caita valar, ar lirima melinyë arda. Laita ar ambar!
+            Growing up in what is now Croatia, Mile Grbic developed a passion
+            for working with heavy equipment alongside his family in their small
+            business. When he immigrated to California, he brought his
+            enthusiasm for sustainability and rock products with him. After 25
+            years of gaining experience, he finally decided to launch his own
+            venture, joined by his immediate family. Today, we are committed to
+            providing quality products and services that consistently meet our
+            customers' standards.
           </p>
         </div>
       </div>
@@ -46,15 +53,15 @@ export default function AboutPage() {
         {HISTORY.map((item, index) => (
           <div
             key={index}
-            className={`${styles.historySubContainer} min-[1306px]:even:flex-row`}
+            className={`${styles.historySubContainer}`}
             // className="border-2 border-red-400 flex flex-col items-center min-[1306px]:flex-row-reverse min-[1306px]:even:flex-row min-[1306px]:mx-[70px] gap-[64px]"
           >
             <div className={styles.historyImageWrapper}>
               <Image
                 src={item.image}
                 alt=""
-                width={560}
-                height={345}
+                width={2000}
+                height={1000}
                 // fill
                 // style={{ objectFit: "cover" }}
                 className={styles.historyImage}

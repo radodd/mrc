@@ -205,7 +205,6 @@
 .imageContainer::before {
   @include queries.custom-break-900 {
     max-height: 601px;
-    max-height: 601px;
     content: "";
     position: absolute;
     z-index: 1;
