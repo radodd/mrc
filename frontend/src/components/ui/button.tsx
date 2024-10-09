@@ -30,6 +30,10 @@ const buttonVariants = cva(
           "text-primary font-openSans border-2 border-primary font-[24px] hover:underline hover:scale-[1.05] transition-all duration-200 bg-whitebase",
         quantity:
           "border-2 border-icon bg-transparent hover:scale-[1.05] transition-all ",
+        carouselOutline:
+          "border-2 border-whitebase bg-transparent text-whitebase font-openSans hover:scale-[1.05] transition-all duration-300",
+        carouselPrimary:
+          "border-2 border-[#A9C8D3] bg-[#A9C8D3] text-primary font-openSans hover:scale-[1.05] transition-all duration-300",
       },
       size: {
         default: "px-8 py-4",

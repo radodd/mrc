@@ -238,7 +238,7 @@ const CarouselPrevious = React.forwardRef<
       >
         <path
           d="M2 2L9.5 10L18 2"
-          stroke="hsl(var(--icon))"
+          stroke="#FDFBF6"
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -290,7 +290,7 @@ const CarouselNext = React.forwardRef<
       >
         <path
           d="M2 2L9.5 10L18 2"
-          stroke="hsl(var(--icon))"
+          stroke="#FDFBF6"
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"

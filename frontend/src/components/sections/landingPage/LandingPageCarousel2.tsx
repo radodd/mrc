@@ -23,41 +23,98 @@ const slides = [
       "We are a collection of companies here to service your construction needs. Click the arrow for more details.",
     buttons: [
       {
-        variant: "default",
+        variant: "carouselPrimary",
         text: "View All Materials",
         navigateTo: "/materials",
       },
-      { variant: "outline", text: "Contact Us", navigateTo: "/contact" },
+      {
+        variant: "carouselOutline",
+        text: "Contact Us",
+        navigateTo: "/contact",
+      },
     ],
     image: null,
   },
   {
-    header: "We are",
+    logo: "/logo_spm.svg",
     subheader: "Santa Paula Materials",
     description:
-      "Our main business is to do demolition and recycling of building materials. We can come get your dirt and then sell it. We sell the material we recycle, like concrete and soil.",
+      "We specialize in the demolition and recycling of building materials. We can take materials such as concrete, asphalt dirt and rock. We then break the materials down to offer products like crushed miscellaneous base.",
     buttons: [
-      { variant: "outline", text: "View Services", navigateTo: "/about" },
-      { variant: "default", text: "View Materials", navigateTo: "/contact" },
+      {
+        // variant: "carouselPrimary",
+        text: "View Materials",
+        navigateTo: "/contact",
+      },
+      {
+        // variant: "carouselOutline",
+        text: "View Services",
+        navigateTo: "/about",
+      },
+    ],
+    image: "/image_carousel_spm.png", // Replace with your actual image path
+  },
+  {
+    logo: "/logo_mrc.svg",
+    subheader: "MRC Rock & Sand",
+    description:
+      "Our main business is to supply a range of aggregates for the construction industry. We operate quarries, processing facilities and have a range of portable equipment to provide services for various projects.",
+    buttons: [
+      {
+        // variant: "default",
+        text: "View Materials",
+        navigateTo: "/contact",
+      },
+      {
+        // variant: "carouselOutline",
+        text: "View Services",
+        navigateTo: "/about",
+      },
     ],
     image: "/about_us_timeline.png", // Replace with your actual image path
   },
   {
-    header: "We are",
-    subheader: "Some Other Company",
+    logo: "/logo_stoneyard.svg",
+    subheader: "Stoneyard",
     description:
-      "We offer construction material recycling and demolition services.",
+      "We specialize in providing natural stone products for construction and landscaping purposes. Our stone may be used in various applications like building facades, countertops, and retaining walls. Our high quality natural stone products can enhance any project design.",
     buttons: [
-      { variant: "outline", text: "View Services", navigateTo: "/about" },
-      { variant: "default", text: "View Materials", navigateTo: "/contact" },
+      {
+        // variant: "default",
+        text: "View Materials",
+        navigateTo: "/contact",
+      },
     ],
-    image: "/about_us_timeline.png", // Replace with your actual image path
+    image: "/image_carousel_stoneyard.png", // Replace with your actual image path
   },
 ];
 
 export default function LandingPageCarousel2() {
   const [currentSlide, setCurrentSlide] = useState(-1);
   const [api, setApi] = useState<CarouselApi | null>(null);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0,
+  );
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Set up a resize event listener to track window width changes
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // Attach the event listener on mount
+    window.addEventListener("resize", handleResize);
+
+    // Remove the event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (!api) return;
@@ -77,6 +134,8 @@ export default function LandingPageCarousel2() {
     "secondary",
     "ghost",
     "quantity",
+    "carouselOutline",
+    "carouselPrimary",
   ] as const;
 
   return (
@@ -89,13 +148,13 @@ export default function LandingPageCarousel2() {
             return (
               <CarouselItem
                 key={index}
-                className={`${currentSlide === 2 || currentSlide === 3 ? styles.noPadding : ""} ${styles.carouselItem}`}
+                className={`${currentSlide === 2 || currentSlide === 3 || currentSlide === 4 ? styles.noPadding : ""} ${styles.carouselItem}`}
               >
                 {index === 0 ? (
                   <div className={styles.uniqueContentContainer}>
                     <div className={styles.uniqueHeader}>
-                      <span>{slide.header}</span>
-                      <div className="flex flex-row max-[856px]:flex-col">
+                      <span className="flex">{slide.header}</span>
+                      <div className="flex flex-row min-[857px]:items-center max-[856px]:flex-col">
                         <span>{slide.subheader}</span>
                         <div className={styles.sliderContainer}>
                           <Slider />
@@ -127,32 +186,57 @@ export default function LandingPageCarousel2() {
                 ) : (
                   <div className={styles.container}>
                     <div className={styles.textContainer}>
+                      <Image alt="" src={slide.logo} width={56} height={24} />
                       <div className={styles.headerContainer}>
-                        <span>{slide.header}</span>
+                        {/* <span>{slide.header}</span> */}
                         <span>{slide.subheader}</span>
                       </div>
                       <p className={styles.description}>{slide.description}</p>
                       <div className={styles.buttonContainer}>
-                        {slide.buttons.map((button, btnIndex) => (
-                          <Button
-                            key={btnIndex}
-                            variant={
-                              (currentSlide === 2 || currentSlide === 3) &&
-                              btnIndex === 0 &&
-                              window.innerWidth <= 900
-                                ? "whiteOutline"
-                                : validVariants.includes(
-                                      button.variant as (typeof validVariants)[number],
-                                    )
-                                  ? (button.variant as (typeof validVariants)[number])
-                                  : "default"
+                        {slide.buttons.map((button, btnIndex) => {
+                          console.log(
+                            `Button Index: ${btnIndex}, Button Text: ${button.text}`,
+                          );
+                          let variant = button.variant; // Default to the button's specified variant
+                          if (isMounted) {
+                            const isSmallScreen = windowWidth <= 900;
+                            const isLargeScreen = windowWidth > 900;
+
+                            if (
+                              isSmallScreen &&
+                              currentSlide !== 1 &&
+                              btnIndex === 0
+                            ) {
+                              variant = "default"; // For small screens on the first button when currentSlide is not 1
+                            } else if (btnIndex === 1 && isLargeScreen) {
+                              variant = "outline"; // For large screens on the second button
+                            } else if (btnIndex === 1 && isSmallScreen) {
+                              variant = "carouselOutline"; // Second button on any screen size
+                            } else if (btnIndex === 0 && isLargeScreen) {
+                              variant = "default";
                             }
-                            size="default"
-                            navigateTo={button.navigateTo}
-                          >
-                            {button.text}
-                          </Button>
-                        ))}
+                          }
+
+                          // Fall back to valid variants or default to "outline"
+                          // if (
+                          //   !validVariants.includes(
+                          //     variant as (typeof validVariants)[number],
+                          //   )
+                          // ) {
+                          //   variant = "destructive";
+                          // }
+
+                          return (
+                            <Button
+                              key={btnIndex}
+                              variant={variant}
+                              size="default"
+                              navigateTo={button.navigateTo}
+                            >
+                              {button.text}
+                            </Button>
+                          );
+                        })}
                       </div>
                     </div>
                     {slide.image && (
