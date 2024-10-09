@@ -36,23 +36,18 @@ const slides = [
     image: null,
   },
   {
-    logo: "/logo_spm.svg",
-    subheader: "Santa Paula Materials",
+    logo: "/logo_stoneyard.svg",
+    subheader: "Stoneyard",
     description:
-      "We specialize in the demolition and recycling of building materials. We can take materials such as concrete, asphalt dirt and rock. We then break the materials down to offer products like crushed miscellaneous base.",
+      "We specialize in providing natural stone products for construction and landscaping purposes. Our stone may be used in various applications like building facades, countertops, and retaining walls. Our high quality natural stone products can enhance any project design.",
     buttons: [
       {
-        // variant: "carouselPrimary",
+        // variant: "default",
         text: "View Materials",
         navigateTo: "/contact",
       },
-      {
-        // variant: "carouselOutline",
-        text: "View Services",
-        navigateTo: "/about",
-      },
     ],
-    image: "/image_carousel_spm.png", // Replace with your actual image path
+    image: "/image_carousel_stoneyard.png", // Replace with your actual image path
   },
   {
     logo: "/logo_mrc.svg",
@@ -74,18 +69,23 @@ const slides = [
     image: "/about_us_timeline.png", // Replace with your actual image path
   },
   {
-    logo: "/logo_stoneyard.svg",
-    subheader: "Stoneyard",
+    logo: "/logo_spm.svg",
+    subheader: "Santa Paula Materials",
     description:
-      "We specialize in providing natural stone products for construction and landscaping purposes. Our stone may be used in various applications like building facades, countertops, and retaining walls. Our high quality natural stone products can enhance any project design.",
+      "We specialize in the demolition and recycling of building materials. We can take materials such as concrete, asphalt dirt and rock. We then break the materials down to offer products like crushed miscellaneous base.",
     buttons: [
       {
-        // variant: "default",
+        // variant: "carouselPrimary",
         text: "View Materials",
         navigateTo: "/contact",
       },
+      {
+        // variant: "carouselOutline",
+        text: "View Services",
+        navigateTo: "/about",
+      },
     ],
-    image: "/image_carousel_stoneyard.png", // Replace with your actual image path
+    image: "/image_carousel_spm.png", // Replace with your actual image path
   },
 ];
 
