@@ -12,29 +12,43 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 64px;
-    padding: 80px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -2.52px;
+    font-size: 36px;
+    padding-top: 24px;
     @include mid-break {
-      display: none;
+      font-size: 64px;
+      padding-top: 64px;
     }
-    @include small-break {
-      display: none;
+    @include large-break {
+      font-size: 64px;
+      padding: 80px;
     }
   }
 }
 
 .productFilterCardContainer {
   display: flex;
-  margin-bottom: 24px;
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
   @include mid-break {
-    display: none;
+    margin-top: 24px;
+  }
+  @include large-break {
+    margin-top: 0;
   }
 }
 
 .buttonContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-
   margin: 64px 72px;
   @include large-break {
     display: none;
@@ -42,6 +56,7 @@
   @include custom-breakpoint(900px) {
     margin: 40px 35px;
   }
+
   Button {
     min-width: 100%;
   }
@@ -70,4 +85,13 @@
   @include mid-break {
     margin-inline: 52px;
   }
+}
+
+.chevronClose {
+  position: absolute;
+  left: 24px;
+  rotate: 180deg;
+}
+.chevronClose path {
+  fill: #235e74;
 }

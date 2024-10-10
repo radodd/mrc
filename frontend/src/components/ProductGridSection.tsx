@@ -11,6 +11,7 @@ import FilterDropDown from "./FilterDropDown";
 import AlphabetizeButtons from "./AlphabetizeButtons";
 import AlphabetizeRadio from "./AlphabetizeRadio";
 import { Separator } from "./ui/separator";
+import ChevronIcon from "../../public/chevron_nav_sharp.svg";
 
 import styles from "./scss/ProductGridSection.module.scss";
 
@@ -41,9 +42,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // const response = await fetch("http://localhost:3030/products");
         const response = await fetch(
-          // "/api/products",
           "https://mrc-two.vercel.app/api/products",
           {
             method: "GET",
@@ -54,15 +53,6 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             },
           },
         );
-        // const response = await fetch(
-        //   `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Product`,
-        //   {
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //       apikey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY,
-        //     },
-        //   },
-        // );
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -165,15 +155,45 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
       <div className={styles.buttonContainer}>
         <Button
           variant="outline"
+          size="mobileFilterOpen"
           onClick={() => setFilterDropdown(!filterDropDown)}
           className="relative"
         >
           Sort & Filter
         </Button>
+        <div className={styles.productFilterCardContainer}>
+          {filterValueList.map((filter, index) => (
+            <ProductFilterCard
+              key={index}
+              filter={filter}
+              onRemove={handleRemoveFilter}
+            />
+          ))}
+          {filterValueList.length === 0 && (
+            <ProductFilterCard
+              filter="All Materials"
+              onRemove={handleRemoveFilter}
+            />
+          )}
+        </div>
       </div>
       {filterDropDown && (
-        <div className="absolute top-[225px]">
-          <Separator />
+        <div className="absolute top-[100px] min-[1306px]:hidden">
+          <Button
+            variant="mobileFilterClose"
+            size="mobileFilterClose"
+            onClick={() => setFilterDropdown(!filterDropDown)}
+          >
+            <ChevronIcon
+              width={30}
+              height={30}
+              className={styles.chevronClose}
+            />
+            Sort & Filter
+          </Button>
+
+          {/* <Separator /> */}
+
           <AlphabetizeRadio products={products} setProducts={setProducts} />
           <FilterDropDown
             filterValueList={filterValueList}

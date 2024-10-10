@@ -28,12 +28,15 @@ const buttonVariants = cva(
 
         filter:
           "text-primary font-openSans border-2 border-primary font-[24px] hover:underline hover:scale-[1.05] transition-all duration-200 bg-whitebase",
+        filterMobile: "text-primary font-[16px] bg-[#A9C8D3] ",
         quantity:
           "border-2 border-icon bg-transparent hover:scale-[1.05] transition-all ",
         carouselOutline:
           "border-2 border-whitebase bg-transparent text-whitebase font-openSans hover:scale-[1.05] transition-all duration-300",
         carouselPrimary:
           "border-2 border-[#A9C8D3] bg-[#A9C8D3] text-primary font-openSans hover:scale-[1.05] transition-all duration-300",
+        mobileFilterClose:
+          "border-2 border-[#BEC0C9] bg-whitebase font-montserrat text-[24px] ",
       },
       size: {
         default: "px-8 py-4",
@@ -41,6 +44,9 @@ const buttonVariants = cva(
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
         filter: "px-4 py-2 rounded-[4px]",
+        filterMobile: "px-2 py-1 rounded-[4px]",
+        mobileFilterOpen: "px-6 py-3",
+        mobileFilterClose: "px-2 py-4 w-full h-[61px] rounded-none",
         quantity: "h-14 w-14 rounded-sm",
       },
     },

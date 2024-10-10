@@ -1,6 +1,7 @@
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import styles from "../components/scss/ProductFilterCards.module.scss";
 
 type ProductFilterCardProps = {
   filter: string;
@@ -15,23 +16,46 @@ export function ProductFilterCard({
   };
   return (
     <>
-      <div className=" flex gap-4">
+      <div className={styles.container}>
         <Button
           variant="filter"
           size="filter"
           onClick={handleClick}
-          className="flex items-center justify-center gap-4"
+          className={styles.buttonDesktop}
         >
           {filter}
           {filter !== "All Materials" && (
-            <Image src="/close.svg" alt="" width={12} height={12} />
+            <Image
+              src="/close.svg"
+              alt=""
+              width={12}
+              height={12}
+              className={styles.image}
+            />
           )}
         </Button>
-        <Separator
+        <Button
+          variant="filterMobile"
+          size="filterMobile"
+          onClick={handleClick}
+          className={styles.buttonMobile}
+        >
+          {filter}
+          {filter !== "All Materials" && (
+            <Image
+              src="/close.svg"
+              alt=""
+              width={12}
+              height={12}
+              className={styles.image}
+            />
+          )}
+        </Button>
+        {/* <Separator
           orientation="vertical"
           decorative={true}
-          className="mr-4 translate-y-[-6px]"
-        />
+          className="mr-4 translate-y-[-6px] "
+        /> */}
       </div>
     </>
   );

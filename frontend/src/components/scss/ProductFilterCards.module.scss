@@ -1,0 +1,35 @@
+@use "../../../css/queries.scss";
+@import "../../../css/queries.scss";
+
+.container {
+  margin: 4px;
+  display: flex;
+  width: fit-content;
+  @include large-break {
+    margin: 0 4px;
+  }
+  //   gap: 16px;
+}
+.buttonDesktop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  @include mid-break {
+    display: none;
+  }
+  @include small-break {
+    display: none;
+  }
+}
+
+.buttonMobile {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 4px;
+  width: min-content;
+  @include large-break {
+    display: none;
+  }
+}

@@ -121,7 +121,7 @@ const FilterDropDown: React.FC<{
     return count > acc ? count : acc;
   }, 0);
   return (
-    <div className="absolute flex justify-center items-center flex-col bg-whitebase">
+    <div className="absolute flex justify-center items-center flex-col bg-whitebase w-svw">
       <Accordion type="multiple">
         <FilterGroup
           title="Company"
