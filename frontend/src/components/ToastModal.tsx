@@ -20,7 +20,7 @@ const ToastModal = () => {
   const [isMaterialsOpen, setIsMaterialsOpen] = useState(false);
 
   return (
-    <div className="fixed flex flex-col justify-evenly w-full h-full -left-0 top-20 bg-whitebase">
+    <div className="fixed flex flex-col justify-evenly w-full h-full -left-0 top-20 bg-whitebase items-center">
       {/* <CustomerFacingNav>
         <NavigationMenu>
           <NavigationMenuList>
@@ -54,6 +54,9 @@ const ToastModal = () => {
           />
         </CustomerFacingNavLink>
       </CustomerFacingNav> */}
+      <div className="bg-primary-dark w-[88px] h-[88px] flex justify-center rounded-full">
+        <Image src="/mail.svg" alt="mail" width={48} height={48} />
+      </div>
       <h1 className="font-bold text-4xl text-center text-primary-text font-montserrat tracking-[-2.52px">
         Submitted!
       </h1>
@@ -75,8 +78,8 @@ const ToastModal = () => {
           </div>
         </div>
       </div>
-      <div className="bg-primary flex flex-col min-[1306px]:flex-row max-[1305px]:items-center w-full">
-        <div className="flex flex-col">
+      <div className="bg-primary flex flex-col min-[1306px]:flex-row max-[1305px]:items-center w-full ">
+        <div className="flex flex-col ">
           <FooterLink href="/">Santa Paula Materials</FooterLink>
           <FooterLink href="/">MRC Rock and Sand</FooterLink>
           <FooterLink href="/">Stoneyard</FooterLink>
