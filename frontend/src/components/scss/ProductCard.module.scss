@@ -9,28 +9,24 @@
 
 .separator {
   color: var(--Border-Gray, #bec0c9);
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
   @include small-break {
-    margin-bottom: 32px;
+    // margin-bottom: 32px;
   }
 }
 
 .imageWrapper {
-  min-width: 325px;
-  max-width: 325px;
-  height: 325px;
-
-  @include custom-breakpoint(900px) {
-    width: 366px;
-  }
+  height: 256px;
+  width: 100%;
   @include mid-break {
-    // min-width: 325px;
-    // min-height: 325px;
-    padding-top: 0;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: center;
+    height: 325px;
+    width: 325px;
+    min-width: 325px;
+  }
+  @include large-break {
+    height: 325px;
+    width: 325px;
+    min-width: 325px;
   }
 }
 
@@ -39,50 +35,37 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  @include small-break {
-  }
-  @include mid-break {
-    // aspect-ratio: 1 / 1;
-    // max-height: 325px;
-    // display: flex;
-    // align-items: center;
-  }
-  @include large-break {
-  }
 }
 
 .card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-
-  @include custom-breakpoint(900px) {
-    flex-direction: column;
-    margin: 0 32px;
-    gap: 32px;
-  }
+  gap: 21px;
+  padding: 40px 0;
+  max-width: 965px;
   @include mid-break {
-    justify-content: start;
-    gap: 21px;
+    flex-direction: row;
+    width: fit-content;
+  }
+
+  @include large-break {
+    flex-direction: row;
+    gap: 40px;
   }
 }
 
 .cardHeader {
   display: flex;
+  align-content: flex-start;
   align-self: self-start;
   gap: 16px;
   @include small-break {
     gap: 16px;
   }
   @include mid-break {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-  }
-  @include large-break {
-    max-width: 600px;
+    max-width: 530px;
   }
 }
 
@@ -94,7 +77,6 @@
 
 .cardDescription {
   align-self: stretch;
-  max-width: 600px;
   color: var(--Text-Secondary, #5c5d6d);
   font-size: 20px;
   font-weight: 400;

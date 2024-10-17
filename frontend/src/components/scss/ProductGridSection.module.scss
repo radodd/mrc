@@ -8,6 +8,7 @@
 }
 
 .sectionContainer {
+  width: 100%;
   h1 {
     display: flex;
     justify-content: center;
@@ -30,6 +31,20 @@
   }
 }
 
+.productFilterCardContainerDesktop {
+  display: flex;
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @include mid-break {
+    margin-top: 24px;
+  }
+  @include large-break {
+    margin-top: 0;
+  }
+}
 .productFilterCardContainer {
   display: flex;
   margin-top: 24px;
@@ -63,18 +78,13 @@
 }
 
 .productCardContainer {
-  display: flex;
+  max-width: fit-content;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  gap: 40px;
-  margin: 0 144px 0 72px;
-  @include large-break {
-    margin: 0 72px 72px;
-  }
+  margin: 0 32px;
   @include mid-break {
-    margin: 0 72px 64px;
-  }
-  @include custom-breakpoint(900px) {
-    margin: 0 32px 40px;
+    margin: 0 72px;
   }
 }
 

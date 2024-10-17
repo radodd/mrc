@@ -10,7 +10,6 @@ import Link from "next/link";
 import FilterDropDown from "./FilterDropDown";
 import AlphabetizeButtons from "./AlphabetizeButtons";
 import AlphabetizeRadio from "./AlphabetizeRadio";
-import { Separator } from "./ui/separator";
 import ChevronIcon from "../../public/chevron_nav_sharp.svg";
 
 import styles from "./scss/ProductGridSection.module.scss";
@@ -38,6 +37,9 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   const [alphabetFilter, setAlphabetFilter] = useState(false);
   const [filterDropDown, setFilterDropdown] = useState(false);
   const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    console.log("Current filters:", filterValueList);
+  }, [filterValueList]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -162,23 +164,57 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           Sort & Filter
         </Button>
         <div className={styles.productFilterCardContainer}>
-          {filterValueList.map((filter, index) => (
-            <ProductFilterCard
-              key={index}
-              filter={filter}
-              onRemove={handleRemoveFilter}
-            />
-          ))}
-          {filterValueList.length === 0 && (
+          {filterValueList.length === 0 ? (
             <ProductFilterCard
               filter="All Materials"
-              onRemove={handleRemoveFilter}
+              // onRemove={handleRemoveFilter}
             />
+          ) : (
+            filterValueList
+              .filter((filter) => filter)
+              .map((filter, index) => (
+                <ProductFilterCard
+                  key={index}
+                  filter={filter}
+                  onRemove={handleRemoveFilter}
+                />
+              ))
           )}
         </div>
       </div>
+      <div className="flex justify-center min-[1306px]:hidden ">
+        {loading ? ( // Display loading icon while fetching data
+          <div className={styles.loadingContainer}>
+            <Image
+              src="/loading.svg"
+              alt="Loading..."
+              width={800}
+              height={400}
+            />
+          </div>
+        ) : (
+          <>
+            {filteredProductList.length === 0 && (
+              <div className={styles.noItemsMatchContainer}>
+                <Image
+                  src="/no_items_match.svg"
+                  alt="No items match your filters"
+                  width={777}
+                  height={405}
+                />
+              </div>
+            )}
+            <div className={styles.productCardContainer}>
+              {filteredProductList.map((product) => (
+                <ProductCard {...product} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
       {filterDropDown && (
-        <div className="absolute top-[100px] min-[1306px]:hidden">
+        <div className=" bg-whitebase absolute top-[100px] min-[1306px]:hidden">
           <Button
             variant="mobileFilterClose"
             size="mobileFilterClose"
@@ -210,8 +246,10 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           />
         </div>
       )}
-      <div className="flex">
-        <div className="flex flex-col max-[1306px]:hidden">
+      {/* DESKTOP */}
+
+      <div className="flex flex-row justify-center items-start gap-[72px] max-[1306px]:hidden">
+        <div className="flex flex-col">
           {filterValueList.length === 0 ? (
             <Button
               variant="filter"
@@ -232,7 +270,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             <Button
               variant="filter"
               size="filter"
-              className="mb-6 min-[1306px]:ml-[72px]"
+              className="flex items-center mb-6 min-[1306px]:ml-[72px]"
               onClick={clearAllFilters}
             >
               Clear All Filters
@@ -250,10 +288,9 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             allFilters={[]}
           />
         </div>
-
-        <div>
-          <div className="flex justify-between min-[1306px]:mx-[72px] max-[1306px]:hidden">
-            <div className={styles.productFilterCardContainer}>
+        <div className="flex flex-col">
+          <div className="flex flex-row">
+            <div className={styles.productFilterCardContainerDesktop}>
               {filterValueList.map((filter, index) => (
                 <ProductFilterCard
                   key={index}
@@ -275,7 +312,8 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
               setAlphabetFilter={setAlphabetFilter}
             />
           </div>
-          <div>
+
+          <div className="min-[1306px]:mx-[0px] ">
             {loading ? ( // Display loading icon while fetching data
               <div className={styles.loadingContainer}>
                 <Image
@@ -299,13 +337,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
                 )}
                 <div className={styles.productCardContainer}>
                   {filteredProductList.map((product) => (
-                    <Link
-                      href={`/materials/${product.id}`}
-                      key={product.id}
-                      prefetch={false}
-                    >
-                      <ProductCard {...product} />
-                    </Link>
+                    <ProductCard {...product} />
                   ))}
                 </div>
               </>

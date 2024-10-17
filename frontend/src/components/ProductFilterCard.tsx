@@ -1,11 +1,10 @@
-import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import styles from "../components/scss/ProductFilterCards.module.scss";
 
 type ProductFilterCardProps = {
   filter: string;
-  onRemove: (filter: string) => void;
+  onRemove?: (filter: string) => void;
 };
 export function ProductFilterCard({
   filter,
@@ -14,6 +13,7 @@ export function ProductFilterCard({
   const handleClick = () => {
     onRemove(filter);
   };
+
   return (
     <>
       <div className={styles.container}>
@@ -51,11 +51,6 @@ export function ProductFilterCard({
             />
           )}
         </Button>
-        {/* <Separator
-          orientation="vertical"
-          decorative={true}
-          className="mr-4 translate-y-[-6px] "
-        /> */}
       </div>
     </>
   );

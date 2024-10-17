@@ -8,6 +8,7 @@ import {
 } from "./ui/card";
 import { Separator } from "./ui/separator";
 import styles from "../components/scss/ProductCard.module.scss";
+import Link from "next/link";
 
 type ProductCardProps = {
   id: string;
@@ -30,35 +31,41 @@ export function ProductCard({
   category,
 }: ProductCardProps) {
   return (
-    <>
+    <div className="">
       <Separator
         orientation="horizontal"
         decorative={true}
         className={styles.separator}
       />
-      <Card className={styles.card}>
-        <div className={styles.imageWrapper}>
-          <Image
-            src={image_primary}
-            alt={name}
-            width={325}
-            height={325}
-            className={styles.image}
-          />
-        </div>
-        <CardHeader className={styles.cardHeader}>
-          <CardTitle className={styles.cardTitle}>{name}</CardTitle>
-          <CardDescription className={styles.cardDescription}>
-            {description}
-          </CardDescription>
-          <CardContent className={styles.cardContent}>
-            <CardInfoRow label="Categories" value={category.join(", ")} />
-            <CardInfoRow label="Color" value={color.join(", ")} />
-            <CardInfoRow label="Company" value={company} />
-          </CardContent>
-        </CardHeader>
-      </Card>
-    </>
+      <Link href={`/materials/${id}`} key={id} prefetch={false}>
+        <Card className={styles.card}>
+          <div className={styles.imageWrapper}>
+            <Image
+              src={
+                image_primary !== null
+                  ? image_primary
+                  : "/image_not_available.svg"
+              }
+              alt={name}
+              width={325}
+              height={325}
+              className={styles.image}
+            />
+          </div>
+          <CardHeader className={styles.cardHeader}>
+            <CardTitle className={styles.cardTitle}>{name}</CardTitle>
+            <CardDescription className={styles.cardDescription}>
+              {description}
+            </CardDescription>
+            <CardContent className={styles.cardContent}>
+              <CardInfoRow label="Categories" value={category.join(", ")} />
+              {/* <CardInfoRow label="Color" value={color.join(", ")} />
+            <CardInfoRow label="Company" value={company} /> */}
+            </CardContent>
+          </CardHeader>
+        </Card>
+      </Link>
+    </div>
   );
 }
 
