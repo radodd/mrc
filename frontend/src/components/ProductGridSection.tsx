@@ -336,8 +336,8 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
                   </div>
                 )}
                 <div className={styles.productCardContainer}>
-                  {filteredProductList.map((product) => (
-                    <ProductCard {...product} />
+                  {filteredProductList.map((product, index) => (
+                    <ProductCard {...product} key={index} />
                   ))}
                 </div>
               </>
