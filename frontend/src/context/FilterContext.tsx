@@ -41,6 +41,14 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
       prevFilters.filter((f) => f !== filter),
     );
   };
+  // const clearFilter = (filter: string) => {
+  //   setFilterValueList((prevFilters) => {
+  //     const updatedFilters = prevFilters.filter((f) => f !== filter);
+  //     localStorage.setItem("filterValueList", JSON.stringify(updatedFilters)); // Update local storage
+  //     return updatedFilters; // Return the filtered array
+  //   });
+  // };
+
   return (
     <FilterContext.Provider
       value={{ filterValueList, setFilterValueList, clearFilter }}

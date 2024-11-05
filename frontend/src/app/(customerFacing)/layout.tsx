@@ -70,15 +70,24 @@ export default function Layout({
   //   if (isSubmenuOpen === 2) return MENU_WIDTH.MRC;
   // };
 
+  // const handleFilterClick = (filterValue: string) => {
+  //   const updatedFilterValueList = [filterValue];
+  //   setFilterValueList(updatedFilterValueList);
+  //   if (typeof window !== "undefined") {
+  //     localStorage.setItem(
+  //       "filterValueList",
+  //       JSON.stringify(updatedFilterValueList),
+  //     );
+  //   }
+  // };
   const handleFilterClick = (filterValue: string) => {
-    const updatedFilterValueList = [filterValue];
-    setFilterValueList(updatedFilterValueList);
-    if (typeof window !== "undefined") {
-      localStorage.setItem(
-        "filterValueList",
-        JSON.stringify(updatedFilterValueList),
-      );
-    }
+    setFilterValueList((prevList) => {
+      const updatedList = [...prevList, filterValue]; // Add the new filter to the existing list.
+      if (typeof window !== "undefined") {
+        localStorage.setItem("filterValueList", JSON.stringify(updatedList));
+      }
+      return updatedList;
+    });
   };
 
   return (
@@ -139,9 +148,9 @@ const MaterialMenuContent = ({
   >
     <Link
       href="/materials"
-      onClick={() => {
-        handleFilterClick([]);
-      }}
+      // onClick={() => {
+      //   handleFilterClick("");
+      // }}
       className="font-[700] font-openSans text-[20px] pb-[8px]"
     >
       Shop All Materials

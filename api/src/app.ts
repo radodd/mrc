@@ -14,6 +14,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static("src/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
   ? process.env.CORS_ALLOWED_ORIGINS.split(",")
   : [
@@ -28,10 +29,12 @@ const corsOptions = {
     console.log("Received CORS request from:", origin);
     if (!origin) return callback(null, true);
 
-    const isOriginAllowed = allowedOrigins.some((pattern) => {
-      const regex = new RegExp(`^${pattern.replace(/\*/g, ".*")}$`);
-      return regex.test(origin);
-    });
+    // const isOriginAllowed = allowedOrigins.some((pattern) => {
+    //   const regex = new RegExp(`^${pattern.replace(/\*/g, ".*")}$`);
+    //   return regex.test(origin);
+    // });
+
+    const isOriginAllowed = allowedOrigins.includes(origin);
 
     if (isOriginAllowed) {
       callback(null, true);
@@ -45,7 +48,11 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"], // Include allowed headers
   optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on 204 status
 };
-app.options("*", cors(corsOptions));
+
+app.options("*", cors(corsOptions), (res: any) => {
+  res.sendStatus(200);
+});
+
 app.use(cors(corsOptions));
 app.use("/api/resend", resendRouter);
 app.use("/api/products", productsRoutes);

@@ -25,12 +25,14 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground font-openSans hover:bg-secondary/80",
         ghost: "hover:bg-accent font-openSans hover:text-accent-foreground",
         link: "text-primary font-openSans underline",
-
         filter:
+          "text-primary font-openSans border-2  font-[24px] transition-all duration-200 bg-whitebase",
+        otherFilter:
           "text-primary font-openSans border-2 border-primary font-[24px] hover:underline hover:scale-[1.05] transition-all duration-200 bg-whitebase",
-        filterMobile: "text-primary font-[16px] bg-[#A9C8D3] ",
+        filterClear: "text-primary font-[16px] font-[700]",
+        filterMobile: "text-primary-dark font-[16px] bg-[#A9C8D3]/[.5] ",
         quantity:
-          "border-2 border-icon bg-transparent hover:scale-[1.05] transition-all ",
+          "border-2 border-icon bg-transparent rounded-[4px] hover:scale-[1.05] transition-all ",
         carouselOutline:
           "border-2 border-whitebase bg-transparent text-whitebase font-openSans hover:scale-[1.05] transition-all duration-300",
         carouselPrimary:
@@ -48,6 +50,7 @@ const buttonVariants = cva(
         mobileFilterOpen: "px-6 py-3",
         mobileFilterClose: "px-2 py-4 w-full h-[61px] rounded-none",
         quantity: "h-14 w-14 rounded-sm",
+        slim: "p-0 m-0 max-w-[70px]",
       },
     },
     defaultVariants: {

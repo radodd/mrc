@@ -6,7 +6,6 @@ import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { ProductFilters2 } from "./ProductFilters2";
 import Image from "next/image";
-import Link from "next/link";
 import FilterDropDown from "./FilterDropDown";
 import AlphabetizeButtons from "./AlphabetizeButtons";
 import AlphabetizeRadio from "./AlphabetizeRadio";
@@ -150,28 +149,43 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   const clearAllFilters = () => {
     setFilterValueList([]);
   };
-
+  console.log("before return", filterValueList);
   return (
     <section className={styles.sectionContainer}>
       <h1>{title}</h1>
       <div className={styles.buttonContainer}>
-        <Button
-          variant="outline"
-          size="mobileFilterOpen"
-          onClick={() => setFilterDropdown(!filterDropDown)}
-          className="relative"
-        >
-          Sort & Filter
-        </Button>
+        <div className="flex flex-row gap-6 w-full justify-center items-center">
+          <div className="w-full">
+            <Button
+              variant="outline"
+              size="mobileFilterOpen"
+              onClick={() => setFilterDropdown(!filterDropDown)}
+              className=""
+            >
+              Sort & Filter
+            </Button>
+          </div>
+
+          {filterValueList.length !== 0 && (
+            <div className="max-w-min">
+              <Button
+                variant="filterClear"
+                size="slim"
+                onClick={() => setFilterValueList([])}
+              >
+                Clear All
+              </Button>
+            </div>
+          )}
+        </div>
+
         <div className={styles.productFilterCardContainer}>
-          {filterValueList.length === 0 ? (
-            <ProductFilterCard
-              filter="All Materials"
-              // onRemove={handleRemoveFilter}
-            />
+          {filterValueList.length === 0 ||
+          (filterValueList.length === 1 && filterValueList[0] === "") ? (
+            <ProductFilterCard filter="All Materials" />
           ) : (
             filterValueList
-              .filter((filter) => filter)
+              .filter((filter) => filter && filter.length > 0)
               .map((filter, index) => (
                 <ProductFilterCard
                   key={index}
@@ -254,7 +268,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             <Button
               variant="filter"
               size="filter"
-              className=" mb-6 min-[1306px]:ml-[72px]"
+              className={`mb-6 min-[1306px]:ml-[72px] `}
               onClick={clearAllFilters}
             >
               <Image
@@ -268,7 +282,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             </Button>
           ) : (
             <Button
-              variant="filter"
+              variant="otherFilter"
               size="filter"
               className="flex items-center mb-6 min-[1306px]:ml-[72px]"
               onClick={clearAllFilters}

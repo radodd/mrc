@@ -1,13 +1,9 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Separator } from "../../../../components/ui/separator";
 import { Button } from "../../../../components/ui/button";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "../../../../components/ui/hover-card";
 import {
   Carousel,
   CarouselContent,
@@ -16,9 +12,9 @@ import {
   CarouselPrevious,
 } from "../../../../components/ui/carousel";
 import MaterialDetailForm from "../../../../components/sections/materialDetailPage/MaterialDetailForm";
+import { useRouter } from "next/navigation";
 
 import styles from "../../../../components/scss/MaterialDetail.module.scss";
-import { useRouter } from "next/navigation";
 
 export type ProductCardProps = {
   id: string;
@@ -39,7 +35,6 @@ const fetchProductById = async (
   id: string,
 ): Promise<ProductCardProps | null> => {
   try {
-    console.log("ID IN PAGE.tsx", id);
     const response = await fetch(
       `https://mrc-two.vercel.app/api/products/${id}`,
       {
@@ -61,11 +56,6 @@ const fetchProductById = async (
     const data = await response.json();
     console.log("Fetched data IN DETAILS PAGE:", data);
 
-    // if (!Array.isArray(data)) {
-    //   throw new Error("Unexpected response format: data is not an array.");
-    // }
-
-    // return data.length > 0 ? data[0] : null;
     return data;
   } catch (error) {
     if (error instanceof TypeError) {
@@ -81,9 +71,6 @@ const fetchProductById = async (
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  console.log("ID in page.tsx productpage", id, typeof id);
-  const router = useRouter();
-  // const { id } = router.query;
   const [product, setProduct] = useState<ProductCardProps | null>(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [orientation, setOrientation] = useState<Orientation>("horizontal");
@@ -129,7 +116,16 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   }, [id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center">
+        <Image
+          src="/loading.svg"
+          alt="loading page"
+          width={1000}
+          height={1000}
+        />
+      </div>
+    );
   }
 
   const numImages = product.imagePath.length;

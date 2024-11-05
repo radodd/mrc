@@ -15,7 +15,7 @@ const AlphabetizeButtons = ({
   return (
     <div>
       <Button
-        variant="filter"
+        variant="otherFilter"
         size="filter"
         onClick={() => setAlphabetFilter(!alphabetFilter)}
       >

@@ -20,7 +20,7 @@ const Request = require("express");
 
 const createHttpError = require("http-errors");
 // const supabase = require("../server.ts");
-console.log("Supabase Client in PRODUCTS:", supabase);
+// console.log("Supabase Client in PRODUCTS:", supabase);
 // @ts-ignore
 exports.getProducts = async (req, res, next) => {
   // export const getProducts: RequestHandler = async (

@@ -18,7 +18,7 @@ export function ProductFilterCard({
     <>
       <div className={styles.container}>
         <Button
-          variant="filter"
+          variant="otherFilter"
           size="filter"
           onClick={handleClick}
           className={styles.buttonDesktop}
@@ -42,13 +42,15 @@ export function ProductFilterCard({
         >
           {filter}
           {filter !== "All Materials" && (
-            <Image
-              src="/close.svg"
-              alt=""
-              width={12}
-              height={12}
-              className={styles.image}
-            />
+            <div className={styles.imageContainer}>
+              <Image
+                src="/close.svg"
+                alt=""
+                width={12}
+                height={12}
+                className={styles.image}
+              />
+            </div>
           )}
         </Button>
       </div>

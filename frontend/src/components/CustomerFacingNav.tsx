@@ -88,7 +88,7 @@ const MaterialsDropdown = () => {
         {/* <Separator className="bg-[#919EA6]" /> */}
         <div className="active:bg-tanbase w-full px-[8px] py-[24px]">
           <Link href="/materials">
-            <span className="text-[24px] font-[700] leading-[-0.48px]">
+            <span className="text-[24px] font-[700] leading-[-0.48px] bg-pink-200">
               Shop all our materials
             </span>
           </Link>
