@@ -28,4 +28,6 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
   ),
 );
 
+PhoneInput.displayName = "PhoneInput";
+
 export default PhoneInput;

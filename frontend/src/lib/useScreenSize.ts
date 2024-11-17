@@ -11,7 +11,7 @@ export function useScreenSize(threshold: number = 430) {
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
     return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
+  }, [checkScreenSize]);
 
   return isScreenSmall;
 }
