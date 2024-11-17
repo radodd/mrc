@@ -61,8 +61,8 @@ export default function RequestQuote() {
             </div>
           </CarouselItem>
         </CarouselContent>
-        <CarouselNext className={styles.next} />
-        <CarouselPrevious className={styles.prev} />
+        <CarouselNext width={20} height={30} className={styles.next} />
+        <CarouselPrevious width={20} height={30} className={styles.prev} />
       </Carousel>
 
       <Carousel className={styles.mediaQueryMobile}>

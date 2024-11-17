@@ -59,7 +59,6 @@ const MobileNavMenu = ({
           <NavLink href="/about">About</NavLink>
           <MaterialsDropdown />
           <NavLink href="/services">Services</NavLink>
-          <NavLink href="/projects">Projects</NavLink>
           <NavLink href="/contact">Contact</NavLink>
         </nav>
 
@@ -81,19 +80,16 @@ const MaterialsDropdown = () => {
         <ChevronDown className="absolute -rotate-90 right-6 top-15" />
       </SheetTrigger>
       <SheetContent className="w-[300px]" hideOverlay={true}>
-        {/* <Separator className="bg-[#919EA6]" /> */}
         <span className="relative text-[24px] font-[400] flex justify-center items-center px-[8px] py-[16px] text-blackbase border-2 border-primary focus:bg-tanbase">
           Materials
         </span>
-        {/* <Separator className="bg-[#919EA6]" /> */}
         <div className="active:bg-tanbase w-full px-[8px] py-[24px]">
           <Link href="/materials">
-            <span className="text-[24px] font-[700] leading-[-0.48px] bg-pink-200">
+            <span className="text-[24px] font-[700] leading-[-0.48px]">
               Shop all our materials
             </span>
           </Link>
         </div>
-
         <MaterialSections />
       </SheetContent>
     </Sheet>
@@ -298,7 +294,7 @@ export function CustomerFacingNavLink(
       {...props}
       className={cn(
         "font-openSans m-0 px-1 w-fit rounded-lg bg-whitebase hover:text-primary",
-        pathname === "/cart" && "font-bold",
+        pathname === "/cart" && "font-[400]",
       )}
     />
   );

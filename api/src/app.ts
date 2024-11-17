@@ -29,11 +29,6 @@ const corsOptions = {
     console.log("Received CORS request from:", origin);
     if (!origin) return callback(null, true);
 
-    // const isOriginAllowed = allowedOrigins.some((pattern) => {
-    //   const regex = new RegExp(`^${pattern.replace(/\*/g, ".*")}$`);
-    //   return regex.test(origin);
-    // });
-
     const isOriginAllowed = allowedOrigins.includes(origin);
 
     if (isOriginAllowed) {

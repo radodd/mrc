@@ -2,12 +2,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ReactInputMask from "react-input-mask";
-import { Button } from "./ui/button";
-import { useToast } from "../components/ui/use-toast";
-import EmailTemplate from "./EmailTemplate";
+import { Button } from "../ui/button";
+import { useToast } from "../ui/use-toast";
+import EmailTemplate from "../EmailTemplate";
 import ReactDOMServer from "react-dom/server";
 import Image from "next/image";
-import ToastModal from "./ToastModal";
+import ToastModal from "../ToastModal";
 
 type FormValues = {
   firstname: string;
@@ -82,9 +82,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
     try {
       const emailHtml = ReactDOMServer.renderToString(
         <EmailTemplate
-          firstname={formData.firstname}
-          lastname={formData.lastname}
-          phonenumber={formData.phonenumber}
+          firstName={formData.firstname}
+          lastName={formData.lastname}
+          phoneNumber={formData.phonenumber}
           email={formData.email}
           position={formData.position}
           company={formData.company}
@@ -92,25 +92,29 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
         />,
       );
 
-      const response = await fetch("http://localhost:3030/resend", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        // "http://localhost:3030/resend",
+        "https://mrc-two.vercel.app/api/resend",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "Your Email <onboarding@resend.dev>", // static 'from' field
+            to: "delivered@resend.dev",
+            subject: "Contact Form Submission",
+            html: emailHtml,
+            firstname: formData.firstname,
+            lastname: formData.lastname,
+            phonenumber: formData.phonenumber,
+            email: formData.email,
+            position: formData.position,
+            company: formData.company,
+            message: formData.message,
+          }),
         },
-        body: JSON.stringify({
-          from: "Your Email <onboarding@resend.dev>", // static 'from' field
-          to: "delivered@resend.dev",
-          subject: "Contact Form Submission",
-          html: emailHtml,
-          firstname: formData.firstname,
-          lastname: formData.lastname,
-          phonenumber: formData.phonenumber,
-          email: formData.email,
-          position: formData.position,
-          company: formData.company,
-          message: formData.message,
-        }),
-      });
+      );
       const data = await response.json();
       console.log("Server response:", data);
 
@@ -365,18 +369,3 @@ const ContactForm: React.FC<ContactFormProps> = ({ buttonText = "Submit" }) => {
 };
 
 export default ContactForm;
-
-// // Function to handle the resize event
-// function handleResize() {
-//   // Get the current width of the window
-//   const width = window.innerWidth;
-
-//   // Do something with the width
-//   console.log('Window width:', width);
-// }
-
-// // Add an event listener for the resize event
-// window.addEventListener('resize', handleResize);
-
-// // Optionally, call the handler once to get the initial width
-// handleResize();

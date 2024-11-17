@@ -6,6 +6,8 @@ import useEmblaCarousel, {
 } from "embla-carousel-react";
 import { cn } from "../../lib/utils";
 import { Button } from "./button";
+import CarouselPrevIcon from "../icons/CarouselPrevIcon";
+import CarouselNextIcon from "../icons/CarouselNextIcon";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -17,6 +19,9 @@ type CarouselProps = {
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
   setApi?: (api: CarouselApi) => void;
+  // width?: number;
+  // height?: number;
+  // color?: string;
 };
 
 type CarouselContextProps = {
@@ -53,6 +58,9 @@ const Carousel = React.forwardRef<
       plugins,
       className,
       children,
+      // width,
+      // height,
+      // color,
       ...props
     },
     ref,
@@ -134,6 +142,9 @@ const Carousel = React.forwardRef<
           canScrollPrev,
           canScrollNext,
           currentIndex,
+          // width,
+          // height,
+          // color,
         }}
       >
         <div
@@ -198,109 +209,103 @@ CarouselItem.displayName = "CarouselItem";
 
 const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
-  React.ComponentProps<typeof Button>
->(({ className, variant = "link", size = "icon", ...props }, ref) => {
-  const { orientation, scrollPrev, canScrollPrev, currentIndex } =
-    useCarousel();
+  React.ComponentProps<typeof Button> & {
+    width?: number;
+    height?: number;
+    color?: string;
+  }
+>(
+  (
+    {
+      className,
+      variant = "link",
+      size = "icon",
+      width,
+      height,
+      color,
+      ...props
+    },
+    ref,
+  ) => {
+    const {
+      orientation,
+      scrollPrev,
+      canScrollPrev,
+      currentIndex,
+      // color,
+      // width,
+      // height,
+    } = useCarousel();
 
-  return (
-    <Button
-      ref={ref}
-      variant={variant}
-      size={size}
-      className={cn(
-        "absolute  h-8 w-8 rounded-full",
-        orientation === "horizontal"
-          ? "left-0 top-1/2 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
-        className,
-        { hidden: currentIndex === 0 },
-      )}
-      disabled={!canScrollPrev}
-      onClick={scrollPrev}
-      {...props}
-    >
-      {/* <ArrowLeft className="h-4 w-4" /> */}
-      {/* <Image
-        src="/chevron_down.svg"
-        alt=""
-        width={32}
-        height={32}
-        className="rotate-90"
-      /> */}
-      <svg
-        width="20"
-        height="12"
-        viewBox="0 0 20 12"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="rotate-90 border-none"
+    return (
+      <Button
+        ref={ref}
+        variant={variant}
+        size={size}
+        className={cn(
+          "absolute  h-8 w-8 rounded-full",
+          orientation === "horizontal"
+            ? "left-0 top-1/2 -translate-y-1/2"
+            : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+          className,
+          { hidden: currentIndex === 0 },
+        )}
+        disabled={!canScrollPrev}
+        onClick={scrollPrev}
+        {...props}
       >
-        <path
-          d="M2 2L9.5 10L18 2"
-          stroke="#FDFBF6"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span className="sr-only">Previous slide</span>
-    </Button>
-  );
-});
+        <CarouselPrevIcon width={width} height={height} color={color} />
+        <span className="sr-only">Previous slide</span>
+      </Button>
+    );
+  },
+);
 CarouselPrevious.displayName = "CarouselPrevious";
 
 const CarouselNext = React.forwardRef<
   HTMLButtonElement,
-  React.ComponentProps<typeof Button>
->(({ className, variant = "link", size = "icon", ...props }, ref) => {
-  const { orientation, scrollNext, canScrollNext } = useCarousel();
+  React.ComponentProps<typeof Button> & {
+    width?: number;
+    height?: number;
+    color?: string;
+  }
+>(
+  (
+    {
+      className,
+      variant = "link",
+      size = "icon",
+      width,
+      height,
+      color,
+      ...props
+    },
+    ref,
+  ) => {
+    const { orientation, scrollNext, canScrollNext } = useCarousel();
 
-  return (
-    <Button
-      ref={ref}
-      variant={variant}
-      size={size}
-      className={cn(
-        "absolute h-8 w-8",
-        orientation === "horizontal"
-          ? "right-0 top-1/2 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
-        className,
-      )}
-      disabled={!canScrollNext}
-      onClick={scrollNext}
-      {...props}
-    >
-      {/* <ArrowRight className="h-4 w-4 " /> */}
-      {/* <Image
-        src="/chevron_down.svg"
-        alt=""
-        width={32}
-        height={32}
-        className="-rotate-90 border-none"
-      /> */}
-      <svg
-        width="20"
-        height="12"
-        viewBox="0 0 20 12"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="-rotate-90 border-none"
+    return (
+      <Button
+        ref={ref}
+        variant={variant}
+        size={size}
+        className={cn(
+          "absolute h-8 w-8",
+          orientation === "horizontal"
+            ? "right-0 top-1/2 -translate-y-1/2"
+            : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+          className,
+        )}
+        disabled={!canScrollNext}
+        onClick={scrollNext}
+        {...props}
       >
-        <path
-          d="M2 2L9.5 10L18 2"
-          stroke="#FDFBF6"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-
-      <span className="sr-only">Next slide</span>
-    </Button>
-  );
-});
+        <CarouselNextIcon width={width} height={height} color={color} />
+        <span className="sr-only">Next slide</span>
+      </Button>
+    );
+  },
+);
 CarouselNext.displayName = "CarouselNext";
 
 export {

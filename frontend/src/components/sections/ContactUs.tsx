@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 import styles from "../scss/ContactUs.module.scss";
 
-export default function ContactUs({ renderButton }: { renderButton: boolean }) {
+export default function ContactUs() {
   return (
     <div className={styles.contactContainer}>
       <div className={styles.imageContainer}>
@@ -28,24 +28,4 @@ export default function ContactUs({ renderButton }: { renderButton: boolean }) {
       </div>
     </div>
   );
-
-  /* {renderButton && (
-            <>
-              <Button
-                variant="outline"
-                navigateTo="/services"
-                className={styles.button}
-              >
-                View Services
-              </Button>
-
-              <Button
-                variant="outline"
-                navigateTo="/materials"
-                className={styles.button}
-              >
-                View Materials
-              </Button>
-            </>
-          )} */
 }

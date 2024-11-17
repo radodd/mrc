@@ -42,7 +42,6 @@ const slides = [
       "We specialize in providing natural stone products for construction and landscaping purposes. Our stone may be used in various applications like building facades, countertops, and retaining walls. Our high quality natural stone products can enhance any project design.",
     buttons: [
       {
-        // variant: "default",
         text: "View Materials",
         navigateTo: "/contact",
       },
@@ -56,12 +55,10 @@ const slides = [
       "Our main business is to supply a range of aggregates for the construction industry. We operate quarries, processing facilities and have a range of portable equipment to provide services for various projects.",
     buttons: [
       {
-        // variant: "default",
         text: "View Materials",
         navigateTo: "/contact",
       },
       {
-        // variant: "carouselOutline",
         text: "View Services",
         navigateTo: "/about",
       },
@@ -75,12 +72,10 @@ const slides = [
       "We specialize in the demolition and recycling of building materials. We can take materials such as concrete, asphalt dirt and rock. We then break the materials down to offer products like crushed miscellaneous base.",
     buttons: [
       {
-        // variant: "carouselPrimary",
         text: "View Materials",
         navigateTo: "/contact",
       },
       {
-        // variant: "carouselOutline",
         text: "View Services",
         navigateTo: "/about",
       },
@@ -143,8 +138,6 @@ export default function LandingPageCarousel2() {
       <Carousel setApi={setApi} className={styles.carousel}>
         <CarouselContent className={styles.carouselContent}>
           {slides.map((slide, index) => {
-            console.log("CarouselItem index:", currentSlide); // Log the index of each CarouselItem
-
             return (
               <CarouselItem
                 key={index}
@@ -217,15 +210,6 @@ export default function LandingPageCarousel2() {
                             }
                           }
 
-                          // Fall back to valid variants or default to "outline"
-                          // if (
-                          //   !validVariants.includes(
-                          //     variant as (typeof validVariants)[number],
-                          //   )
-                          // ) {
-                          //   variant = "destructive";
-                          // }
-
                           return (
                             <Button
                               key={btnIndex}
@@ -257,10 +241,15 @@ export default function LandingPageCarousel2() {
           })}
         </CarouselContent>
         <CarouselPrevious
-          className={`${currentSlide === 2 || currentSlide === 3 ? styles.whitePrev : ""} ${styles.prev}`}
+          width={20}
+          height={30}
+          className={` ${styles.prev}`}
         />
         <CarouselNext
-          className={`${currentSlide === 2 || currentSlide === 3 ? styles.white : ""} ${styles.next}`}
+          color="hsl(var(--white-base))"
+          width={20}
+          height={30}
+          className={` ${styles.next}`}
         />
         <div className={styles.indicatorContainer}>
           {Array.from({ length: slides.length }).map((_, index) => (

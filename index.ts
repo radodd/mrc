@@ -29,35 +29,35 @@ export const mrcRocknSand = [
   },
 ];
 
-export const companyAdress = [
+export const CompanyAddresses = [
   {
     id: 1,
     name: "Santa Paula Materials",
-    adress: "1224 E Santa Clara St, Santa Paula, CA 93060",
+    address: "1224 E Santa Clara St, Santa Paula, CA 93060",
     maps: "https://maps.app.goo.gl/auXAbfWyM3472uwb6",
   },
   {
     id: 2,
     name: "STONEYARD",
-    adress: "1400 E Santa Clara St, Santa Paula, CA 93060",
+    address: "1400 E Santa Clara St, Santa Paula, CA 93060",
     maps: "https://maps.app.goo.gl/6U3rWgLghiJeLMtF9",
   },
   {
     id: 3,
     name: "MRC Rock & Sand (Mojave)",
-    adress: "Mojave, CA 93501",
+    address: "Mojave, CA 93501",
     maps: "https://maps.app.goo.gl/Xr5dtssB8uk2qSQi9",
   },
   {
     id: 4,
     name: "MRC Rock & Sand (Ojai)",
-    adress: "Ojai, CA 93023",
+    address: "Ojai, CA 93023",
     maps: "https://maps.app.goo.gl/3vTg68e313t97rjB6",
   },
   {
     id: 5,
     name: "MRC Rock & Sand (Fillmore)",
-    adress: "Fillmore, CA 93015",
+    address: "Fillmore, CA 93015",
     maps: "https://maps.app.goo.gl/7LDDrX1aKRdLyGdn9",
   },
 ];

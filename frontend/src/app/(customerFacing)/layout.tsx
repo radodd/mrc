@@ -115,9 +115,6 @@ export default function Layout({
         </NavigationMenu>
         <CustomerFacingNavLink href="/about">About</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/services">Services</CustomerFacingNavLink>
-        <CustomerFacingNavLink href="/projectGallery">
-          Projects
-        </CustomerFacingNavLink>
         <CustomerFacingNavLink href="/contact">Contact</CustomerFacingNavLink>
         <CustomerFacingNavLink href="/cart">
           <ShoppingCart
@@ -284,14 +281,13 @@ const FooterLinks = () => (
     </div>
     <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
       <div className="flex flex-col">
-        <FooterLink href="/">About</FooterLink>
-        <FooterLink href="/">FAQ</FooterLink>
-        <FooterLink href="/">Contact</FooterLink>
+        <FooterLink href="/about">About</FooterLink>
+        <FooterLink href="/about">FAQ</FooterLink>
+        <FooterLink href="/contact">Contact</FooterLink>
       </div>
       <div className="flex flex-col">
-        <FooterLink href="/">Materials</FooterLink>
-        <FooterLink href="/">Services</FooterLink>
-        <FooterLink href="/">Projects</FooterLink>
+        <FooterLink href="/materials">Materials</FooterLink>
+        <FooterLink href="/services">Services</FooterLink>
       </div>
     </div>
   </div>

@@ -30,15 +30,17 @@ const buttonVariants = cva(
         otherFilter:
           "text-primary font-openSans border-2 border-primary font-[24px] hover:underline hover:scale-[1.05] transition-all duration-200 bg-whitebase",
         filterClear: "text-primary font-[16px] font-[700]",
-        filterMobile: "text-primary-dark font-[16px] bg-[#A9C8D3]/[.5] ",
+        filterMobile: "text-primary-dark font-[16px] bg-[#A9C8D3]/[.5]",
         quantity:
           "border-2 border-icon bg-transparent rounded-[4px] hover:scale-[1.05] transition-all ",
+        quantityCart:
+          "border border-icon bg-transparent rounded-[2px] py-1 px-4 hover:scale-[1.05] transition-all",
         carouselOutline:
           "border-2 border-whitebase bg-transparent text-whitebase font-openSans hover:scale-[1.05] transition-all duration-300",
         carouselPrimary:
           "border-2 border-[#A9C8D3] bg-[#A9C8D3] text-primary font-openSans hover:scale-[1.05] transition-all duration-300",
         mobileFilterClose:
-          "border-2 border-[#BEC0C9] bg-whitebase font-montserrat text-[24px] ",
+          "border-2 border-[#BEC0C9] bg-whitebase font-montserrat text-[24px]",
       },
       size: {
         default: "px-8 py-4",
@@ -50,6 +52,7 @@ const buttonVariants = cva(
         mobileFilterOpen: "px-6 py-3",
         mobileFilterClose: "px-2 py-4 w-full h-[61px] rounded-none",
         quantity: "h-14 w-14 rounded-sm",
+        quantityCart: "h-[28px] w-[28px]",
         slim: "p-0 m-0 max-w-[70px]",
       },
     },

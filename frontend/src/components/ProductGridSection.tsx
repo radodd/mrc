@@ -59,7 +59,6 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Fetched data IN GRID SECTION:", data);
         setProducts(data);
       } catch (error) {
         console.error("Error fetching DATA:", error);

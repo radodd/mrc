@@ -12,7 +12,6 @@ import {
   CarouselPrevious,
 } from "../../../../components/ui/carousel";
 import MaterialDetailForm from "../../../../components/sections/materialDetailPage/MaterialDetailForm";
-import { useRouter } from "next/navigation";
 
 import styles from "../../../../components/scss/MaterialDetail.module.scss";
 
@@ -54,7 +53,6 @@ const fetchProductById = async (
     }
 
     const data = await response.json();
-    console.log("Fetched data IN DETAILS PAGE:", data);
 
     return data;
   } catch (error) {
@@ -93,7 +91,6 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (product && product.imagePath?.length > 0) {
-      console.log("Fetched product IN DETAIL:", product); // Logging the product data
       setSelectedImage(product.imagePath[0]);
     } else {
       setSelectedImage("/gsa.png");
@@ -106,7 +103,6 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       const productId = Array.isArray(id) ? id[0] : id;
       fetchProductById(productId as string)
         .then((data) => {
-          console.log("Fetched data IN DETAILS:", data); // Logging the product data
           setProduct(data);
         })
         .catch((error) => {
@@ -148,13 +144,16 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               }}
               className={styles.carousel}
             >
-              <CarouselPrevious className={styles.prev} />
+              <CarouselPrevious
+                className={styles.prev}
+                width={13}
+                height={23}
+                color="hsl(var(--icon))"
+              />
               <CarouselContent className={styles.carouselContent}>
                 {product.imagePath.map((image, index) => (
                   <CarouselItem
                     key={index}
-                    // className="basis-1/4 pl-[10px] pr-[0px]"
-                    // className={`basis-[calc((75% - ${product.imagePath.length - 1} * 5px) / ${product.imagePath.length})] ml-[25px]`}
                     className={`basis-[${basisPercentage}%] ${styles.carouselItem}`}
                   >
                     <div
@@ -173,7 +172,12 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 ))}
               </CarouselContent>
 
-              <CarouselNext className={styles.next} />
+              <CarouselNext
+                className={styles.next}
+                width={13}
+                height={23}
+                color="hsl(var(--icon))"
+              />
             </Carousel>
           </div>
           <div className={styles.imageContainer}>
@@ -221,7 +225,6 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 className={`${styles.expandableContent} ${expanded ? styles.expanded : ""}`}
               >
                 <p className="text-[16px]">
-                  {" "}
                   We strive to provide the best price for your materials,
                   whether you're a wholesaler, retailer, or homeowner. To
                   request a quote, simply select the category, size, and
@@ -233,22 +236,6 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 </p>
               </div>
             )}
-            {/* <HoverCard>
-              <HoverCardTrigger>
-                <span className="italic underline text-secondary-text font-openSans cursor-pointer">
-                  What is Request to Quote?
-                </span>
-              </HoverCardTrigger>
-              <HoverCardContent>
-                We strive to provide the best price for your materials, whether
-                you're a wholesaler, retailer, or homeowner. To request a quote,
-                simply select the category, size, and quantity of the material,
-                then click the “Request to Quote” button to add the item to your
-                cart. Afterward, fill out your contact information in the cart.
-                Once submitted, we will promptly email you a detailed quote,
-                allowing you to proceed with placing your order.
-              </HoverCardContent>
-            </HoverCard> */}
           </div>
         </div>
       </div>

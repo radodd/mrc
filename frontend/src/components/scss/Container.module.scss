@@ -3,7 +3,7 @@
 
 .container {
   padding-inline: 144px;
-  @include large-break {
+  @include mid-break {
     padding-inline: 72px;
   }
   @include small-break {

@@ -1,3 +1,5 @@
+import styles from "../../../components/scss/Container.module.scss";
+
 export default function Layout({
   children,
 }: Readonly<{
@@ -5,7 +7,7 @@ export default function Layout({
 }>) {
   return (
     <>
-      <div className="mx-[72px]">{children}</div>
+      <div className={styles.container}>{children}</div>
     </>
   );
 }

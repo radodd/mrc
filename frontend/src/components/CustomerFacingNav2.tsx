@@ -57,7 +57,6 @@ const MobileNavMenu = ({
           <NavLink href="/about">About</NavLink>
           <MaterialsDropdown />
           <NavLink href="/services">Services</NavLink>
-          <NavLink href="/projects">Projects</NavLink>
           <NavLink href="/contact">Contact</NavLink>
         </nav>
 

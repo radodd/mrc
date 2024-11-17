@@ -1,9 +1,9 @@
 import React from "react";
 
 interface EmailTemplateProps {
-  firstname: string;
-  lastname: string;
-  phonenumber: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
   email: string;
   position: string;
   company: string;
@@ -11,9 +11,9 @@ interface EmailTemplateProps {
 }
 
 const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
-  firstname,
-  lastname,
-  phonenumber,
+  firstName,
+  lastName,
+  phoneNumber,
   email,
   position,
   company,
@@ -21,9 +21,9 @@ const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
 }: EmailTemplateProps) => (
   <div>
     <h1>
-      {firstname} {lastname} wants to connect!
+      {firstName} {lastName} wants to connect!
     </h1>
-    <p>Phone Number: {phonenumber}</p>
+    <p>Phone Number: {phoneNumber}</p>
     <p>Email: {email}</p>
     <p>position: {position}</p>
     <p>Company: {company}</p>
