@@ -1,5 +1,6 @@
 import React, { PropsWithRef, forwardRef, useRef } from "react";
-import ReactInputMask from "react-input-mask-next";
+// import ReactInputMask from "react-input-mask-next";
+import ReactInputMask from "react-input-mask";
 import { PhoneInputProps } from "../../lib/formTypes";
 
 import style from "./ContactForm.module.scss";
