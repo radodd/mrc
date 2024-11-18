@@ -15,40 +15,48 @@ app.use(express.static("src/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
-  ? process.env.CORS_ALLOWED_ORIGINS.split(",")
-  : [
-      "http://localhost:3000",
-      "http://localhost:3001",
-      "https://mrc-two.vercel.app",
-    ];
+// const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
+//   ? process.env.CORS_ALLOWED_ORIGINS.split(",")
+//   : [
+//       "http://localhost:3000",
+//       "http://localhost:3001",
+//       "https://mrc-two.vercel.app",
+//     ];
 
-const corsOptions = {
-  //@ts-ignore
-  origin: function (origin, callback) {
-    console.log("Received CORS request from:", origin);
-    if (!origin) return callback(null, true);
+// const corsOptions = {
+//   //@ts-ignore
+//   origin: function (origin, callback) {
+//     console.log("Received CORS request from:", origin);
+//     if (!origin) return callback(null, true);
 
-    const isOriginAllowed = allowedOrigins.includes(origin);
+//     const isOriginAllowed = allowedOrigins.includes(origin);
 
-    if (isOriginAllowed) {
-      callback(null, true);
-    } else {
-      console.log(`Origin ${origin} is not allowed by CORS.`);
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true, // Allow cookies and credentials in requests
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Include OPTIONS for preflight requests
-  allowedHeaders: ["Content-Type", "Authorization"], // Include allowed headers
-  optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on 204 status
-};
+//     if (isOriginAllowed) {
+//       callback(null, true);
+//     } else {
+//       console.log(`Origin ${origin} is not allowed by CORS.`);
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true, // Allow cookies and credentials in requests
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Include OPTIONS for preflight requests
+//   allowedHeaders: ["Content-Type", "Authorization"], // Include allowed headers
+//   optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on 204 status
+// };
 
-app.options("*", cors(corsOptions), (res: any) => {
-  res.sendStatus(200);
-});
+// app.options("*", cors(corsOptions), (res: any) => {
+//   res.sendStatus(200);
+// });
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: ["https://mrc-two.vercel.app"], // Allow specific frontend URL
+    methods: ["GET", "POST", "OPTIONS"], // Allow required methods
+    allowedHeaders: ["Content-Type"], // Allow necessary headers
+    credentials: true, // Enable credentials if needed
+  })
+);
 app.use("/api/resend", resendRouter);
 app.use("/api/products", productsRoutes);
 app.use("/api/projects", projectsRoutes);
