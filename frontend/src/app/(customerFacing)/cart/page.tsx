@@ -29,7 +29,7 @@ const HowToUseSection = () => (
   </>
 );
 
-const QuantityInput = ({ value, onIncrease, onDecrease }) => {
+const QuantityInput = ({ value, handleIncrease, handleDecrease, index }) => {
   console.log("QuantityInput value:", value);
 
   return (
@@ -39,8 +39,8 @@ const QuantityInput = ({ value, onIncrease, onDecrease }) => {
         <Button
           variant="quantityCart"
           size="quantityCart"
-          onClick={onDecrease}
-          disabled={value <= 1}
+          onClick={() => handleDecrease(index)}
+          disabled={value === 1}
         >
           -
         </Button>
@@ -49,10 +49,7 @@ const QuantityInput = ({ value, onIncrease, onDecrease }) => {
         <Button
           variant="quantityCart"
           size="quantityCart"
-          onClick={() => {
-            console.log("Increase button clicked. Current value:", value);
-            onIncrease();
-          }}
+          onClick={() => handleIncrease(index)}
         >
           +
         </Button>
@@ -63,53 +60,32 @@ const QuantityInput = ({ value, onIncrease, onDecrease }) => {
 
 const Cart = ({ cartItems, setCartItems }) => {
   const methods = useForm();
-  // const { control } = useForm();
-  const { control, setValue } = methods;
-  // const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const items = localStorage.getItem("cartItems");
-      const parsedItems = items ? JSON.parse(items) : [];
-      setCartItems(parsedItems);
-      // Initialize form with the cart items
-      parsedItems.forEach((item, index) => {
-        setValue(`cartItems[${index}].quantity`, item.quantity); // Set default value for each item
-      });
+      const storedItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+      setCartItems(storedItems);
     }
-  }, [setValue]);
+  }, [setCartItems]);
 
-  const handleQuantityChange = (index, newQuantity) => {
-    const updatedCartItems = cartItems.map((item, i) =>
+  const updateQuantity = (index, newQuantity) => {
+    const updatedCart = cartItems.map((item, i) =>
       i === index ? { ...item, quantity: newQuantity } : item,
     );
-    setCartItems(updatedCartItems);
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    setCartItems(updatedCart);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
   };
 
-  const handleIncrease = (index, fieldValue) => {
-    console.log(
-      `Increasing quantity for index ${index}. Current value: ${fieldValue}`,
-    );
-
-    const newQuantity = fieldValue + 1;
-    console.log(`New quantity: ${newQuantity}`);
-
-    setValue(`cartItems[${index}].quantity`, newQuantity); // Update form value
-    handleQuantityChange(index, newQuantity); // Update local state
+  const handleIncrease = (index) => {
+    const currentQuantity = parseInt(cartItems[index].quantity);
+    const newQuantity = currentQuantity + 1;
+    updateQuantity(index, newQuantity);
   };
-
-  const handleDecrease = (index, fieldValue) => {
-    if (fieldValue > 1) {
-      console.log(
-        `Decreasing quantity for index ${index}. Current value: ${fieldValue}`,
-      );
-
-      const newQuantity = fieldValue - 1;
-      console.log(`New quantity: ${newQuantity}`);
-
-      setValue(`cartItems[${index}].quantity`, newQuantity); // Update form value
-      handleQuantityChange(index, newQuantity); // Update local state
+  const handleDecrease = (index) => {
+    const currentQuantity = parseInt(cartItems[index].quantity);
+    if (currentQuantity > 1) {
+      const newQuantity = currentQuantity - 1;
+      updateQuantity(index, newQuantity);
     }
   };
 
@@ -149,53 +125,22 @@ const Cart = ({ cartItems, setCartItems }) => {
                   Size
                   <span className="ml-2 text-primary">{item.size}</span>
                 </span>
-                <div className="">
-                  {/* add quantity input here */}
-                  <Controller
-                    name={`cartItems[${index}].quantity`}
-                    control={control}
-                    defaultValue={item.quantity}
-                    render={({ field }) => {
-                      console.log(
-                        "Controller value for cartItem",
-                        index,
-                        ":",
-                        field.value,
-                      ); // Log field value
-                      return (
-                        <QuantityInput
-                          value={field.value}
-                          onIncrease={() => {
-                            console.log(
-                              "Increasing quantity for item",
-                              index,
-                              "Current value:",
-                              field.value,
-                            ); // Log current value when increase is triggered
-                            handleIncrease(index, field.value);
-                          }}
-                          onDecrease={() => {
-                            console.log(
-                              "Decreasing quantity for item",
-                              index,
-                              "Current value:",
-                              field.value,
-                            ); // Log current value when decrease is triggered
-                            handleDecrease(index, field.value);
-                          }}
-                        />
-                      );
-                    }}
+                <div className="quantity-controls">
+                  <QuantityInput
+                    index={index}
+                    value={item.quantity}
+                    handleIncrease={handleIncrease}
+                    handleDecrease={handleDecrease}
                   />
                 </div>
-                <Button
-                  variant="link"
-                  className="w-fit p-0 italic"
-                  onClick={() => handleDelete(index)}
-                >
-                  Delete
-                </Button>
               </div>
+              <Button
+                variant="link"
+                className="w-fit p-0 italic"
+                onClick={() => handleDelete(index)}
+              >
+                Delete
+              </Button>
             </div>
           ))
         ) : (
@@ -238,7 +183,6 @@ export default function CartPage() {
               <Cart cartItems={cartItems} setCartItems={setCartItems} />
             </AccordionContent>
           </AccordionItem>
-
           <AccordionItem value="item-3">
             <AccordionTrigger>Contact Information</AccordionTrigger>
             <AccordionContent>
