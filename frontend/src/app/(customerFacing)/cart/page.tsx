@@ -61,11 +61,11 @@ const QuantityInput = ({ value, onIncrease, onDecrease }) => {
   );
 };
 
-const Cart = () => {
+const Cart = ({ cartItems, setCartItems }) => {
   const methods = useForm();
   // const { control } = useForm();
   const { control, setValue } = methods;
-  const [cartItems, setCartItems] = useState([]);
+  // const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -206,6 +206,15 @@ const Cart = () => {
   );
 };
 export default function CartPage() {
+  const [cartItems, setCartItems] = useState();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const items = localStorage.getItem("cartItems");
+      setCartItems(items ? JSON.parse(items) : []);
+    }
+  }, []);
+
   return (
     <>
       <h1 className={style.header}>Request to Quote</h1>
@@ -226,14 +235,14 @@ export default function CartPage() {
           <AccordionItem value="item-2">
             <AccordionTrigger className="text-blackbase">Cart</AccordionTrigger>
             <AccordionContent>
-              <Cart />
+              <Cart cartItems={cartItems} setCartItems={setCartItems} />
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-3">
             <AccordionTrigger>Contact Information</AccordionTrigger>
             <AccordionContent>
-              <ContactForm2 />
+              <ContactForm2 cartItems={cartItems} />
             </AccordionContent>
           </AccordionItem>
         </Accordion>

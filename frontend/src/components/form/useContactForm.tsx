@@ -7,7 +7,7 @@ import { useToast } from "./../ui/use-toast";
 import { useScreenSize } from "./../../lib/useScreenSize";
 import { useState } from "react";
 
-export const useContactForm = () => {
+export const useContactForm = ({ cartItems }) => {
   const { toast } = useToast();
   const isScreenSmall = useScreenSize(430);
   const [openModal, setOpenModal] = useState(false);
@@ -32,7 +32,12 @@ export const useContactForm = () => {
 
   const onSubmit = async (formData: FormValues) => {
     try {
-      const result = await sendFormData(formData);
+      const payload = {
+        ...formData,
+        cartItems,
+      };
+      const result = await sendFormData(payload);
+      console.log("Form data and cart data:", payload);
 
       if (!result.success) {
         console.error("Error sending email:", result.error);

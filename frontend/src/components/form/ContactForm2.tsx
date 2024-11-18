@@ -14,13 +14,16 @@ import style from "./ContactForm.module.scss";
 
 type ContactFormProps = {
   buttonText?: string;
+  cartItems?: any;
 };
 
 const ContactForm2: React.FC<ContactFormProps> = ({
   buttonText = "Submit",
+  cartItems,
 }) => {
+  console.log("Received cartItems:", cartItems);
   const { register, handleSubmit, errors, onSubmit, openModal, isScreenSmall } =
-    useContactForm();
+    useContactForm({ cartItems });
 
   useEffect(() => {
     if (openModal) {
