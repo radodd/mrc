@@ -51,7 +51,7 @@ app.use(express.json());
 // app.use(cors(corsOptions));
 app.use(
   cors({
-    origin: ["https://mrc-two.vercel.app"], // Allow specific frontend URL
+    origin: ["https://mrc-two.vercel.app", "http://localhost:3000"], // Allow specific frontend URL
     methods: ["GET", "POST", "OPTIONS"], // Allow required methods
     allowedHeaders: ["Content-Type"], // Allow necessary headers
     credentials: true, // Enable credentials if needed

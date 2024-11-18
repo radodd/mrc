@@ -15,6 +15,7 @@ import { Input } from "../../../components/ui/input";
 import Image from "next/image";
 
 import style from "../../../components/scss/CartPage.module.scss";
+import ContactForm2 from "../../../components/form/ContactForm2";
 
 const HowToUseSection = () => (
   <>
@@ -231,7 +232,9 @@ export default function CartPage() {
 
           <AccordionItem value="item-3">
             <AccordionTrigger>Contact Information</AccordionTrigger>
-            <AccordionContent>{/* <ContactForm /> */}</AccordionContent>
+            <AccordionContent>
+              <ContactForm2 />
+            </AccordionContent>
           </AccordionItem>
         </Accordion>
 
