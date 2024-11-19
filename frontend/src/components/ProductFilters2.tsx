@@ -83,7 +83,7 @@ export const ProductFilters2: React.FC<{
   categoryCounts: Record<string, number>;
   textureCounts: Record<string, number>;
   colorCounts: Record<string, number>;
-  sizeCounts: Record<string, number>;
+  // sizeCounts: Record<string, number>;
   allFilters: string[];
 }> = ({
   filterValueList,
@@ -93,7 +93,7 @@ export const ProductFilters2: React.FC<{
   categoryCounts,
   textureCounts,
   colorCounts,
-  sizeCounts,
+  // sizeCounts,
   allFilters,
 }) => {
   const handleCheckboxChange = (category: string, value: string) => {
@@ -138,14 +138,14 @@ export const ProductFilters2: React.FC<{
         handleCheckboxChange={handleCheckboxChange}
         allFilters={AllColors}
       />
-      <FilterGroup
+      {/* <FilterGroup
         title="Size"
         filterKey="size"
         filterCounts={sizeCounts}
         filterValueList={filterValueList}
         handleCheckboxChange={handleCheckboxChange}
         allFilters={AllSizes}
-      />
+      /> */}
     </Accordion>
   );
 };

@@ -84,7 +84,7 @@ const FilterDropDown: React.FC<{
   categoryCounts: Record<string, number>;
   textureCounts: Record<string, number>;
   colorCounts: Record<string, number>;
-  sizeCounts: Record<string, number>;
+  // sizeCounts: Record<string, number>;
   allFilters: string[];
   filterDropDown: boolean;
   setFilterDropDown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -96,7 +96,7 @@ const FilterDropDown: React.FC<{
   categoryCounts,
   textureCounts,
   colorCounts,
-  sizeCounts,
+  // sizeCounts,
   filterDropDown,
   setFilterDropDown,
 }) => {
@@ -114,7 +114,7 @@ const FilterDropDown: React.FC<{
     ...Object.values(categoryCounts),
     ...Object.values(textureCounts),
     ...Object.values(colorCounts),
-    ...Object.values(sizeCounts),
+    // ...Object.values(sizeCounts),
   ];
 
   const totalResults = filterCountsArray.reduce((acc, count) => {
@@ -155,14 +155,14 @@ const FilterDropDown: React.FC<{
           handleCheckboxChange={handleCheckboxChange}
           allFilters={AllColors}
         />
-        <FilterGroup
+        {/* <FilterGroup
           title="Size"
           filterKey="size"
           filterCounts={sizeCounts}
           filterValueList={filterValueList}
           handleCheckboxChange={handleCheckboxChange}
           allFilters={AllSizes}
-        />
+        /> */}
       </Accordion>
       <div className={styles.buttonContainer}>
         <Button onClick={() => setFilterDropDown(!filterDropDown)}>

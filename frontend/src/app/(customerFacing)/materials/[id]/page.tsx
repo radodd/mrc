@@ -19,11 +19,11 @@ export type ProductCardProps = {
   id: string;
   name: string;
   description: string;
-  image_primary: string;
+  imagePrimary: string;
   imagePath: string[];
-  company: string;
+  company: string[];
   color: string[];
-  category: string[];
+  category: string;
   texture: string[];
   size: string[];
 };
@@ -196,7 +196,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           <h3>
             Categories:
             <span className="text-secondary-text font-normal pl-1">
-              {product.category?.join(", ")}
+              {product.category}
             </span>
           </h3>
           <h3>

@@ -11,7 +11,14 @@ const createHttpError = require("http-errors");
 exports.getMaterials = async (req, res, next) => {
   try {
     console.log("getMaterials called");
-    const { data, error } = await supabase.from("Materials").select("*");
+    const { data, error } = await supabase.from("Materials").select(` id, 
+    name, 
+    description, 
+    color, 
+    texture, 
+    imagePath, 
+    imagePrimary, 
+    category:Categories(name) `);
     console.log("THe Error", error);
     if (error) {
       throw createHttpError(500, "Failed to fetch Materials");

@@ -52,7 +52,7 @@ export default function MaterialDetailForm({ product }: FormProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: product.name,
-      image: product.image_primary,
+      image: product.imagePrimary,
       category: "",
       size: "",
       quantity: "1",
