@@ -16,6 +16,7 @@ exports.getMaterials = async (req, res, next) => {
     description, 
     color, 
     texture, 
+    company,
     imagePath, 
     imagePrimary, 
     category:Categories(name) `);
