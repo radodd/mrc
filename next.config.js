@@ -21,29 +21,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // experimental: { appDir: true },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: "/api/products", // Frontend path
-  //       destination: "https://mrc-two.vercel.app/api/products", // Backend API endpoint
-  //     },
-  //   ];
-  // },
 };
 
 module.exports = nextConfig;
-// export default nextConfig;
-// reactStrictMode: true,
-// env: {
-//   NEXT_PUBLIC_BASE_URL:
-//     process.env.NEXT_PUBLIC_BASE_URL || "https://mrc-two.vercel.app",
-// },
-// module.exports = nextConfig;
-// module.exports = {
-//   reactStrictMode: true,
-//   env: {
-//     NEXT_PUBLIC_BASE_URL:
-//       process.env.NEXT_PUBLIC_BASE_URL || "https://mrc-two.vercel.app",
-//   },
-// };

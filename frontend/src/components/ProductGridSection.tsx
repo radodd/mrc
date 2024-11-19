@@ -44,7 +44,8 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://mrc-two.vercel.app/api/products",
+          // "https://mrc-two.vercel.app/api/products",
+          "https://mrc-two.vercel.app/api/materials",
           {
             method: "GET",
             credentials: "include",

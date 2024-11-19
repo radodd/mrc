@@ -33,21 +33,13 @@
   height: 28px;
   padding: 4px 8px;
   font-size: 16px;
-  //   align-items: center;
-  //   display: flex;
-  //   justify-content: center;
-  //   text-align: center;
   border: 1px solid hsl(var(--icon));
   background-color: hsl(var(--whitebase));
   border-radius: 2px;
 }
 .imageContainer {
   width: 325px;
-  // height: 600px;
   overflow: hidden;
-  @include mid-break {
-    //   height: 552px;
-  }
 }
 
 .image {

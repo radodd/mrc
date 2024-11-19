@@ -1,16 +1,3 @@
-// import { Request, Response, NextFunction, RequestHandler } from "express";
-// import {
-//   Request,
-//   Response,
-//   NextFunction,
-//   RequestHandler,
-// } from "express-serve-static-core";
-
-// import createHttpError from "http-errors";
-// import supabase from "../server";
-
-// const { Request, Response, NextFunction } = require("express");
-// const RequestHandler = require("express").RequestHandler;
 const { createClient } = require("@supabase/supabase-js");
 const supabaseUrl = process.env.SUPABASE_URL as string;
 const supabaseKey = process.env.SUPABASE_API_KEY as string;
@@ -19,15 +6,9 @@ const { Response, NextFunction } = require("express");
 const Request = require("express");
 
 const createHttpError = require("http-errors");
-// const supabase = require("../server.ts");
-// console.log("Supabase Client in PRODUCTS:", supabase);
+
 // @ts-ignore
 exports.getProducts = async (req, res, next) => {
-  // export const getProducts: RequestHandler = async (
-  //   req: Request,
-  //   res: Response,
-  //   next: NextFunction
-  // ) => {
   try {
     console.log("getProducts called");
     const { data, error } = await supabase.from("Product").select("*");
@@ -106,7 +87,6 @@ export const createProduct = async (req, res, next) => {
 };
 //@ts-ignore
 exports.getProduct = async (req, res, next: any) => {
-  // const productId = parseInt(req.params.productId);
   const { id } = req.params;
   console.log("ID in getProduct:", id, typeof id);
   if (!id || isNaN(parseInt(id))) {
@@ -123,8 +103,6 @@ exports.getProduct = async (req, res, next: any) => {
       .eq("id", productId)
       .single();
 
-    // Fetch product from Supabase
-
     if (error) {
       console.error("Supabase error", error);
       throw createHttpError(404, "Product not found");
@@ -133,7 +111,6 @@ exports.getProduct = async (req, res, next: any) => {
       throw createHttpError(404, "Product not found");
     }
 
-    // Respond with the product data
     res.status(200).json(data);
   } catch (error) {
     console.error("Error in getProduct:", error);

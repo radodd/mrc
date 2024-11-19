@@ -1,7 +1,6 @@
 "use client";
 
 import { HOWTOUSE } from "../../../../../index";
-import ContactForm from "../../../components/form/ContactForm";
 import {
   Accordion,
   AccordionContent,
@@ -10,7 +9,7 @@ import {
 } from "../../../components/ui/accordion";
 import { Button } from "../../../components/ui/button";
 import { useEffect, useState } from "react";
-import { Controller, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "../../../components/ui/input";
 import Image from "next/image";
 
