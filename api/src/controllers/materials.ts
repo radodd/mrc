@@ -1,36 +1,51 @@
-const { createClient } = require("@supabase/supabase-js");
+import { createClient } from "@supabase/supabase-js";
+import createHttpError from "http-errors";
+import { Request, Response, NextFunction } from "express";
+
 const supabaseUrl = process.env.SUPABASE_URL as string;
 const supabaseKey = process.env.SUPABASE_API_KEY as string;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error(
+    "Supabase URL and API Key must be set in environment variables"
+  );
+}
+
 const supabase = createClient(supabaseUrl, supabaseKey);
-// const { Response, NextFunction } = require("express");
-// const Request = require("express");
 
-const createHttpError = require("http-errors");
-
-// @ts-ignore
-exports.getMaterials = async (req, res, next) => {
+export const getMaterials = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     console.log("getMaterials called");
-    const { data, error } = await supabase.from("Materials").select(` id, 
-    name, 
-    description, 
-    color, 
-    texture, 
-    company,
-    imagePath, 
-    imagePrimary, 
-    category:Categories(name) `);
-    console.log("THe Error", error);
+
+    const { data, error } = await supabase.from("Materials").select(`
+        id, 
+        name, 
+        description, 
+        color, 
+        texture, 
+        company, 
+        imagePath, 
+        imagePrimary, 
+        category:Categories(name)
+      `);
+
     if (error) {
+      console.error("Error fetching materials:", error);
       throw createHttpError(500, "Failed to fetch Materials");
     }
-    if (!data) {
+
+    if (!data || data.length === 0) {
       throw createHttpError(404, "No Materials found");
     }
-    console.log("Materials fetched", data);
-    res.json(data);
+
+    console.log("Materials fetched successfully:", data);
+    res.status(200).json(data);
   } catch (error) {
     console.error("Error in getMaterials:", error);
-    next(error);
+    next(error); // Pass error to the global error handler
   }
 };
