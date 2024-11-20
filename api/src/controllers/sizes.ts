@@ -24,9 +24,9 @@ export const getSizes = async (
 
     const { data, error } = await supabase.from("Sizes").select(`
         id, 
-        name, 
+        sizeValue, 
         material:Materials(name), 
-        category:Categories(name)
+        category:Categories(name),
       `);
 
     if (error) {
