@@ -17,8 +17,8 @@ interface Product {
   id: string;
   name: string;
   description: string;
-  imagePrimary: string;
-  imagePath: string;
+  image_primary: string;
+  imagePath: string[];
   company: string;
   color: string[];
   category: string[];
@@ -44,8 +44,8 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          // "https://mrc-two.vercel.app/api/products",
-          "https://mrc-two.vercel.app/api/materials",
+          "https://mrc-two.vercel.app/api/products",
+          // "https://mrc-two.vercel.app/api/materials",
           {
             method: "GET",
             credentials: "include",
@@ -92,27 +92,27 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     }
   });
 
-  // const categoryCounts = filteredProductList.reduce(
-  //   (counts: Record<string, number>, product) => {
-  //     product.category.forEach((cat) => {
-  //       counts[cat] = (counts[cat] || 0) + 1;
-  //     });
-  //     return counts;
-  //   },
-  //   {},
-  // );
-
   const categoryCounts = filteredProductList.reduce(
     (counts: Record<string, number>, product) => {
-      // Replace `product.category` with the correct field or transform `category_id` to a category name.
-      const categories = Array.isArray(product.color) ? product.color : [];
-      categories.forEach((cat) => {
+      product.category.forEach((cat) => {
         counts[cat] = (counts[cat] || 0) + 1;
       });
       return counts;
     },
     {},
   );
+
+  // const categoryCounts = filteredProductList.reduce(
+  //   (counts: Record<string, number>, product) => {
+  //     // Replace `product.category` with the correct field or transform `category_id` to a category name.
+  //     const categories = Array.isArray(product.color) ? product.color : [];
+  //     categories.forEach((cat) => {
+  //       counts[cat] = (counts[cat] || 0) + 1;
+  //     });
+  //     return counts;
+  //   },
+  //   {},
+  // );
   const colorCounts = filteredProductList.reduce(
     (counts: Record<string, number>, product) => {
       product.color.forEach((col) => {
@@ -141,15 +141,15 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     {},
   );
 
-  // const sizeCounts = filteredProductList.reduce(
-  //   (counts: Record<string, number>, product) => {
-  //     product.size.forEach((size) => {
-  //       counts[size] = (counts[size] || 0) + 1;
-  //     });
-  //     return counts;
-  //   },
-  //   {},
-  // );
+  const sizeCounts = filteredProductList.reduce(
+    (counts: Record<string, number>, product) => {
+      product.size.forEach((size) => {
+        counts[size] = (counts[size] || 0) + 1;
+      });
+      return counts;
+    },
+    {},
+  );
   const handleRemoveFilter = (filter: string) => {
     setFilterValueList((prevFilters) =>
       prevFilters.filter((f) => f !== filter),
@@ -264,7 +264,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             colorCounts={colorCounts}
             companyCounts={companyCounts}
             textureCounts={textureCounts}
-            // sizeCounts={sizeCounts}
+            sizeCounts={sizeCounts}
             allFilters={[]}
             filterDropDown={filterDropDown}
             setFilterDropDown={setFilterDropdown}
@@ -309,7 +309,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             colorCounts={colorCounts}
             companyCounts={companyCounts}
             textureCounts={textureCounts}
-            // sizeCounts={sizeCounts}
+            sizeCounts={sizeCounts}
             allFilters={[]}
           />
         </div>

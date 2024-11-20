@@ -125,31 +125,39 @@ interface SelectProps {
   selectedCategory?: string;
 }
 
-const CategorySelect = ({ product, form }: SelectProps) => (
-  <FormField
-    control={form.control}
-    name="category"
-    render={({ field }) => (
-      <FormItem>
-        <FormLabel className={styles.formLabel}>Category:</FormLabel>
-        <Select onValueChange={field.onChange} defaultValue={field.value}>
-          <FormControl>
-            <SelectTrigger className={styles.selectTrigger}>
-              <SelectValue placeholder="Select Category" />
-            </SelectTrigger>
-          </FormControl>
-          <SelectContent>
-            {product.category?.map((cat) => (
-              <SelectItem key={cat} value={cat}>
-                {cat}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </FormItem>
-    )}
-  />
-);
+const CategorySelect = ({ product, form }: SelectProps) => {
+  //   const categories = Array.isArray(product.category)
+  //     ? product.category
+  //     : product.category
+  //     ? [product.category.name] // Extract `name` if it's an object
+  //     : [];
+
+  return (
+    <FormField
+      control={form.control}
+      name="category"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className={styles.formLabel}>Category:</FormLabel>
+          <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <FormControl>
+              <SelectTrigger className={styles.selectTrigger}>
+                <SelectValue placeholder="Select Category" />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              {product.category?.map((cat) => (
+                <SelectItem key={cat} value={cat}>
+                  {cat}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </FormItem>
+      )}
+    />
+  );
+};
 
 const SizeSelect = ({ product, form, selectedCategory }: SelectProps) => (
   <FormField
@@ -180,56 +188,3 @@ const SizeSelect = ({ product, form, selectedCategory }: SelectProps) => (
     )}
   />
 );
-
-// interface QuantityInputProps {
-//   quantity: string;
-//   onDecrement: () => void;
-//   onIncrement: () => void;
-//   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-// }
-
-// const QuantityInput = ({
-//   quantity,
-//   onDecrement,
-//   onIncrement,
-//   onChange,
-// }: QuantityInputProps) => (
-//   <FormField
-//     name="quantity"
-//     render={({ field }) => (
-//       <FormItem className={styles.formItem}>
-//         <FormLabel className={styles.formLabel}>Quantity (Per Ton)</FormLabel>
-//         <div className={styles.quantityToggleContainer}>
-//           <Button
-//             type="button"
-//             variant="quantity"
-//             size="quantity"
-//             onClick={onDecrement}
-//           >
-//             <DecrementIcon color="hsl(var(--icon))" size={12} />
-//           </Button>
-//           <FormControl>
-//             <Input
-//               {...field}
-//               value={quantity}
-//               onChange={(e) => {
-//                 field.onChange(e);
-//                 onChange(e);
-//               }}
-//               className={styles.Input}
-//             />
-//           </FormControl>
-//           <Button
-//             type="button"
-//             variant="quantity"
-//             size="quantity"
-//             onClick={onIncrement}
-//           >
-//             <IncrementIcon color="hsl(var(--icon))" size={12} />
-//           </Button>
-//         </div>
-//         <FormMessage />
-//       </FormItem>
-//     )}
-//   />
-// );

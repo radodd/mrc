@@ -30,7 +30,7 @@ exports.getProducts = async (req, res, next) => {
 interface CreateProductBody {
   name: number;
   description: string;
-  imagePath: string;
+  imagePath: string[];
   company: string;
   color: string[];
   category: string[];

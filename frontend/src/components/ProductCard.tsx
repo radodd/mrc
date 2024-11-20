@@ -14,17 +14,18 @@ type ProductCardProps = {
   id: string;
   name: string;
   description: string;
-  imagePrimary: string;
+  image_primary: string;
   imagePath: string[];
   company: string;
   color: string[];
-  category: string;
+  // category: string[] | { name: string };
+  category: string[];
 };
 export function ProductCard({
   id,
   name,
   description,
-  imagePrimary,
+  image_primary,
   imagePath,
   company,
   color,
@@ -42,8 +43,8 @@ export function ProductCard({
           <div className={styles.imageWrapper}>
             <Image
               src={
-                imagePrimary !== null
-                  ? imagePrimary
+                image_primary !== null
+                  ? image_primary
                   : "/image_not_available.svg"
               }
               alt={name}
@@ -58,9 +59,9 @@ export function ProductCard({
               {description}
             </CardDescription>
             <CardContent className={styles.cardContent}>
-              <CardInfoRow label="Categories" value={category} />
-              {/* <CardInfoRow label="Color" value={color.join(", ")} />
-            <CardInfoRow label="Company" value={company} /> */}
+              <CardInfoRow label="Categories" value={category.join(", ")} />
+              <CardInfoRow label="Color" value={color.join(", ")} />
+              <CardInfoRow label="Company" value={company} />
             </CardContent>
           </CardHeader>
         </Card>

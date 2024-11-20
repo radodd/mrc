@@ -23,7 +23,8 @@ export type ProductCardProps = {
   imagePath: string[];
   company: string[];
   color: string[];
-  category: string;
+  // category: string[] | { name: string };
+  category: string[];
   texture: string[];
   size: string[];
 };
