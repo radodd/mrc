@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const productsRoutes = require("./routes/products");
 const materialsRoutes = require("./routes/materials");
+const sizesRoutes = require("./routes/sizes");
 const projectsRoutes = require("./routes/projects");
 const resendRouter = require("./routes/resend");
 // @ts-ignore
@@ -60,9 +61,8 @@ app.use(
 );
 app.use("/api/resend", resendRouter);
 app.use("/api/products", productsRoutes);
-console.log("Registering /api/materials route");
 app.use("/api/materials", materialsRoutes);
-console.log("/api/materials route registered");
+app.use("/api/sizes", sizesRoutes);
 app.use("/api/projects", projectsRoutes);
 
 app.use((req: any, res: any, next: any) => {
