@@ -26,7 +26,7 @@ export const getSizes = async (
         id, 
         sizeValue, 
         material:Materials(name), 
-        category:Categories(name),
+        category:Categories(name)
       `);
 
     if (error) {
