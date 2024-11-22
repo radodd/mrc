@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from "react";
 
 const MaterialDetailForm = () => {
-  const [categories, setCategories] = useState([]); // List of all categories
-  const [sizes, setSizes] = useState([]); // List of all sizes
-  const [filteredSizes, setFilteredSizes] = useState([]); // Sizes filtered by selected category
-  const [selectedCategory, setSelectedCategory] = useState(""); // User-selected category
+  const [categories, setCategories] = useState([]);
+  const [sizes, setSizes] = useState([]);
+  const [filteredSizes, setFilteredSizes] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     // Fetch categories
