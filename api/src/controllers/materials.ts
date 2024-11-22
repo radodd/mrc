@@ -152,5 +152,3 @@ export const getMaterial = async (
 //     next(error); // Pass error to the global error handler
 //   }
 // };
-
-// module.exports = { getMaterials };
