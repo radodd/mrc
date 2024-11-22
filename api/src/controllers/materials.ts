@@ -76,8 +76,7 @@ exports.getMaterials = async (req, res, next) => {
         texture, 
         company, 
         imagePath, 
-        imagePrimary, 
-        category:Categories(name)
+        imagePrimary
       `);
 
     if (error) {
