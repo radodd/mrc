@@ -6,7 +6,7 @@ const MaterialsController = require("../controllers/materials");
 const router = express.Router();
 
 router.get("/", MaterialsController.getMaterials);
-// router.get("/:id", ProductsController.getProduct);
+router.get("/:id", MaterialsController.getMaterial);
 // router.post("/", ProductsController.createProduct);
 
 module.exports = router;
