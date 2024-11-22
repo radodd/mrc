@@ -76,9 +76,7 @@ export const getMaterial = async (
           category_id,
           Categories (
             name
-          )
-        ),
-        MaterialCategories (
+          ),
           MaterialCategorySizes (
             size_id,
             Sizes (
