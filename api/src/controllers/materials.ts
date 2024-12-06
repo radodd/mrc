@@ -64,27 +64,31 @@ export const getMaterial = async (
       .from("Materials")
       .select(
         `
+    id,
+    name,
+    description,
+    color,
+    texture,
+    company,
+    imagePath,
+    imagePrimary,
+    MaterialCategories (
+      id,
+      category_id,
+      Categories (
         id,
-        name,
-        description,
-        color,
-        texture,
-        company,
-        imagePath,
-        imagePrimary,
-        MaterialCategories (
-          category_id,
-          Categories (
-            name
-          ),
-          MaterialCategorySizes (
-            size_id,
-            Sizes (
-              sizeValue
-            )
-          )
+        name
+      ),
+      MaterialCategorySizes (
+        id,
+        size_id,
+        Sizes (
+          id,
+          sizeValue
         )
-      `
+      )
+    )
+    `
       )
       .eq("id", id);
 
