@@ -10,7 +10,6 @@ const MaterialDetailForm = () => {
   const [selectedMaterial, setSelectedMaterial] = useState(null); // Selected material
   const [selectedCategory, setSelectedCategory] = useState(""); // Selected category
 
-  // Fetch materials and sizes on mount
   useEffect(() => {
     const fetchMaterials = async () => {
       try {
@@ -36,51 +35,57 @@ const MaterialDetailForm = () => {
       }
     };
 
-    const fetchSizes = async () => {
-      try {
-        const response = await fetch("https://mrc-two.vercel.app/api/sizes", {
-          method: "GET",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-        });
+    // const fetchSizes = async () => {
+    //   try {
+    //     const response = await fetch("https://mrc-two.vercel.app/api/sizes", {
+    //       method: "GET",
+    //       credentials: "include",
+    //       headers: { "Content-Type": "application/json" },
+    //     });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+    //     if (!response.ok) {
+    //       throw new Error(`HTTP error! Status: ${response.status}`);
+    //     }
 
-        const data = await response.json();
-        setSizes(data);
-      } catch (error) {
-        console.error("Error fetching sizes:", error);
-      }
-    };
+    //     const data = await response.json();
+    //     setSizes(data);
+    //   } catch (error) {
+    //     console.error("Error fetching sizes:", error);
+    //   }
+    // };
 
     fetchMaterials();
-    fetchSizes();
+    // fetchSizes();
   }, []);
 
-  // Update categories and reset selection when material is selected
   useEffect(() => {
     if (selectedMaterial) {
-      setCategories(
-        selectedMaterial.category ? [selectedMaterial.category.name] : [],
-      );
-      setSelectedCategory(""); // Reset selected category
-      setFilteredSizes([]); // Clear filtered sizes
+      const categoryNames =
+        selectedMaterial.MaterialCategories?.map(
+          (categoryItem) => categoryItem.Categories.name,
+        ) || [];
+
+      setCategories(categoryNames);
+      //   setSelectedCategory(""); // Reset selected category
+      //   setFilteredSizes([]); // Clear filtered sizes
     }
   }, [selectedMaterial]);
 
-  // Update filtered sizes when a category is selected
   useEffect(() => {
     if (selectedCategory) {
-      const matchingSizes = sizes.filter(
-        (size: any) => size.category.name === selectedCategory,
+      const category = selectedMaterial.MaterialCategories?.find(
+        (cat) => cat.Categories.name === selectedCategory,
       );
-      setFilteredSizes(matchingSizes);
-    } else {
-      setFilteredSizes([]);
+
+      const categorySizes =
+        category?.MaterialCategorySizes?.map(
+          (categorySize) => categorySize.Sizes.sizeValue,
+        ) || [];
+
+      setSizes(categorySizes);
+      setFilteredSizes(categorySizes);
     }
-  }, [selectedCategory, sizes]);
+  }, [selectedCategory]);
 
   return (
     <div>
@@ -132,9 +137,9 @@ const MaterialDetailForm = () => {
           <label htmlFor="size">Size:</label>
           <select id="size" disabled={!filteredSizes.length}>
             <option value="">Select a size</option>
-            {filteredSizes.map((size: any, index) => (
-              <option key={index} value={size.sizeValue}>
-                {size.sizeValue}
+            {sizes.map((size, index) => (
+              <option key={index} value={size}>
+                {size}
               </option>
             ))}
           </select>
