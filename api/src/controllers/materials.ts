@@ -22,14 +22,30 @@ export const getMaterials = async (
     console.log("getMaterials called");
 
     const { data, error } = await supabase.from("Materials").select(`
+    id,
+    name,
+    description,
+    color,
+    texture,
+    company,
+    imagePath,
+    imagePrimary,
+    MaterialCategories (
+      id,
+      category_id,
+      Categories (
         id,
-        name,
-        description,
-        color,
-        texture,
-        company,
-        imagePath,
-        imagePrimary
+        name
+      ),
+      MaterialCategorySizes (
+        id,
+        size_id,
+        Sizes (
+          id,
+          sizeValue
+        )
+      )
+    )
       `);
 
     if (error) {
