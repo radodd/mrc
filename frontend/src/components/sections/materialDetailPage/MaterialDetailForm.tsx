@@ -91,6 +91,7 @@ export default function MaterialDetailForm({ product }: FormProps) {
       cartList = [];
     }
     cartList.push(compressedData);
+    console.log("initial compress data", compressedData);
     localStorage.setItem("cartItems", JSON.stringify(cartList));
     console.log("Form Data JSON:", compressedData);
   };

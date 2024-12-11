@@ -30,7 +30,7 @@ const HowToUseSection = () => (
 );
 
 const QuantityInput = ({ value, handleIncrease, handleDecrease, index }) => {
-  console.log("QuantityInput value:", value);
+  // console.log("QuantityInput value:", value);
 
   return (
     <div className="flex flex-col items-start gap-[16px]">
@@ -64,13 +64,17 @@ const Cart = ({ cartItems, setCartItems }) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+      console.log("Stored Item", storedItems);
 
       const decompressedItems = storedItems
         .map((item) => {
-          const decompressedData = LZString.decompressFromUTF16(item);
-          return decompressedData ? JSON.parse(decompressedData) : null;
+          if (typeof item === "string") {
+            const decompressedData = LZString.decompressFromUTF16(item);
+            return decompressedData ? JSON.parse(decompressedData) : null;
+          }
         })
         .filter((item) => item !== null);
+      console.log("Decompressed Items", decompressedItems);
       setCartItems(decompressedItems);
     }
   }, [setCartItems]);
@@ -116,7 +120,7 @@ const Cart = ({ cartItems, setCartItems }) => {
             >
               <div className={style.imageContainer}>
                 <Image
-                  src={item.image ? item.image : "/image_not_available.svg"}
+                  src={item?.image ? item.image : "/image_not_available.svg"}
                   alt=""
                   width={500}
                   height={500}
@@ -124,21 +128,21 @@ const Cart = ({ cartItems, setCartItems }) => {
                 />
               </div>
 
-              <h1>{item.name}</h1>
+              <h1>{item?.name}</h1>
 
               <div className="flex flex-col gap-4">
                 <span>
                   Category
-                  <span className="ml-2 text-primary">{item.category}</span>
+                  <span className="ml-2 text-primary">{item?.category}</span>
                 </span>
                 <span>
                   Size
-                  <span className="ml-2 text-primary">{item.size}</span>
+                  <span className="ml-2 text-primary">{item?.size}</span>
                 </span>
                 <div className="quantity-controls">
                   <QuantityInput
                     index={index}
-                    value={item.quantity}
+                    value={item?.quantity || 1}
                     handleIncrease={handleIncrease}
                     handleDecrease={handleDecrease}
                   />
