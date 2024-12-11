@@ -10,6 +10,7 @@ const MaterialDetailForm = () => {
   const [selectedMaterial, setSelectedMaterial] = useState(null); // Selected material
   const [selectedCategory, setSelectedCategory] = useState(""); // Selected category
 
+  // Fetch materials and sizes on mount
   useEffect(() => {
     const fetchMaterials = async () => {
       try {
@@ -35,24 +36,24 @@ const MaterialDetailForm = () => {
       }
     };
 
-    // const fetchSizes = async () => {
-    //   try {
-    //     const response = await fetch("https://mrc-two.vercel.app/api/sizes", {
-    //       method: "GET",
-    //       credentials: "include",
-    //       headers: { "Content-Type": "application/json" },
-    //     });
+    //     const fetchSizes = async () => {
+    //       try {
+    //         const response = await fetch("https://mrc-two.vercel.app/api/sizes", {
+    //           method: "GET",
+    //           credentials: "include",
+    //           headers: { "Content-Type": "application/json" },
+    //         });
 
-    //     if (!response.ok) {
-    //       throw new Error(`HTTP error! Status: ${response.status}`);
-    //     }
+    //         if (!response.ok) {
+    //           throw new Error(`HTTP error! Status: ${response.status}`);
+    //         }
 
-    //     const data = await response.json();
-    //     setSizes(data);
-    //   } catch (error) {
-    //     console.error("Error fetching sizes:", error);
-    //   }
-    // };
+    //         const data = await response.json();
+    //         setSizes(data);
+    //       } catch (error) {
+    //         console.error("Error fetching sizes:", error);
+    //       }
+    //     };
 
     fetchMaterials();
     // fetchSizes();
@@ -73,17 +74,25 @@ const MaterialDetailForm = () => {
 
   useEffect(() => {
     if (selectedCategory) {
+      console.log("selectedCategory:", selectedCategory);
+      console.log(
+        "selectedMaterial.MaterialCategories:",
+        selectedMaterial.MaterialCategories,
+      );
       const category = selectedMaterial.MaterialCategories?.find(
         (cat) => cat.Categories.name === selectedCategory,
       );
+      console.log("Category", category);
 
       const categorySizes =
         category?.MaterialCategorySizes?.map(
           (categorySize) => categorySize.Sizes.sizeValue,
         ) || [];
+      console.log("category sizes", categorySizes);
 
       setSizes(categorySizes);
       setFilteredSizes(categorySizes);
+      console.log("filter sizes", filteredSizes);
     }
   }, [selectedCategory]);
 

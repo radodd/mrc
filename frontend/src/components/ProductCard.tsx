@@ -16,10 +16,15 @@ type ProductCardProps = {
   description: string;
   image_primary: string;
   imagePath: string[];
-  company: string;
+  company: string[];
   color: string[];
   // category: string[] | { name: string };
   category: string[];
+  // MaterialCategories?: {
+  //   Categories: {
+  //     name: string;
+  //   };
+  // }[];
 };
 export function ProductCard({
   id,
@@ -29,8 +34,15 @@ export function ProductCard({
   imagePath,
   company,
   color,
+  // MaterialCategories,
   category,
 }: ProductCardProps) {
+  // const categories = MaterialCategories
+  //   ? MaterialCategories.map(
+  //       (materialCategory) => materialCategory.Categories.name,
+  //     )
+  //   : [];
+  // console.log("Categories", categories);
   return (
     <div className="">
       <Separator
@@ -61,7 +73,7 @@ export function ProductCard({
             <CardContent className={styles.cardContent}>
               <CardInfoRow label="Categories" value={category.join(", ")} />
               <CardInfoRow label="Color" value={color.join(", ")} />
-              <CardInfoRow label="Company" value={company} />
+              <CardInfoRow label="Company" value={company.join(", ")} />
             </CardContent>
           </CardHeader>
         </Card>

@@ -103,19 +103,19 @@ const Cart = ({ cartItems, setCartItems }) => {
               key={index}
               className="flex flex-col p-6 gap-6 border-t-[3px] border-icon"
             >
-              <div className={style.imageContainer}>
+              {/* <div className={style.imageContainer}>
                 <Image
-                  src={item.image}
+                  src={item.image ? item.image : "/image_not_available.svg"}
                   alt=""
                   width={500}
                   height={500}
                   className={style.image}
                 />
-              </div>
+              </div> */}
 
               <h1>{item.name}</h1>
 
-              <div className="flex flex-col gap-4">
+              {/* <div className="flex flex-col gap-4">
                 <span>
                   Category
                   <span className="ml-2 text-primary">{item.category}</span>
@@ -132,7 +132,7 @@ const Cart = ({ cartItems, setCartItems }) => {
                     handleDecrease={handleDecrease}
                   />
                 </div>
-              </div>
+              </div> */}
               <Button
                 variant="link"
                 className="w-fit p-0 italic"

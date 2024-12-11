@@ -24,9 +24,13 @@ export type ProductCardProps = {
   company: string[];
   color: string[];
   // category: string[] | { name: string };
-  category: string[];
+  // category: string[];
+  categories: {
+    name: string;
+    sizes: string[];
+  }[];
   texture: string[];
-  size: string[];
+  // size: string[];
 };
 
 type Orientation = "horizontal" | "vertical";
@@ -36,7 +40,8 @@ const fetchProductById = async (
 ): Promise<ProductCardProps | null> => {
   try {
     const response = await fetch(
-      `https://mrc-two.vercel.app/api/products/${id}`,
+      // `https://mrc-two.vercel.app/api/products/${id}`,
+      `https://mrc-two.vercel.app/api/materials/${id}`,
       {
         method: "GET",
         credentials: "include",
@@ -54,8 +59,33 @@ const fetchProductById = async (
     }
 
     const data = await response.json();
+    console.log("Data", data);
+    const mappedProduct: ProductCardProps = {
+      id: data.id,
+      name: data.name,
+      description: data.description,
+      imagePrimary: data.imagePrimary,
+      imagePath: data.imagePath,
+      company: data.company,
+      color: data.color,
+      texture: data.texture,
+      categories: data.MaterialCategories.map((cat: any) => {
+        if (!cat.Categories) {
+          console.warn("Missing Category in MaterialCategories entry:", cat);
+          return null;
+        }
+        return {
+          name: cat.Categories.name,
+          sizes: (cat.MaterialCategorySizes || []).map(
+            (size: any) => size.Sizes?.sizeValue.trim() || "Unknown size",
+          ),
+        };
+      }).filter((category: any) => category !== null),
+    };
+    console.log("Data in fetch early", data.MaterialCategories);
+    console.log("mapped product", mappedProduct);
 
-    return data;
+    return mappedProduct;
   } catch (error) {
     if (error instanceof TypeError) {
       console.error("Network error or invalid URL:", error);
@@ -94,7 +124,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     if (product && product.imagePath?.length > 0) {
       setSelectedImage(product.imagePath[0]);
     } else {
-      setSelectedImage("/gsa.png");
+      setSelectedImage("/image_not_available.svg");
     }
   }, [product]);
 
@@ -103,13 +133,16 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       console.log("in page.tsx::", id, typeof id);
       const productId = Array.isArray(id) ? id[0] : id;
       fetchProductById(productId as string)
-        .then((data) => {
-          setProduct(data);
+        .then((mappedProduct) => {
+          setProduct(mappedProduct);
+          console.log("prodcuts", productId, product, mappedProduct);
         })
+
         .catch((error) => {
           console.error("Failed to fetch product data:", error);
         });
     }
+    // console.log("prodcuts", productId, product)
   }, [id]);
 
   if (!product) {
@@ -125,7 +158,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     );
   }
 
-  const numImages = product.imagePath.length;
+  const numImages = product.imagePath ? product.imagePath.length : 0;
   const totalGapWidthPercentage = ((4 * 5) / 480) * 50;
   const imageWidthPercentage = (100 - totalGapWidthPercentage) / numImages;
   const basisPercentage = imageWidthPercentage.toFixed(2);
@@ -152,7 +185,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 color="hsl(var(--icon))"
               />
               <CarouselContent className={styles.carouselContent}>
-                {product.imagePath.map((image, index) => (
+                {product.imagePath?.map((image, index) => (
                   <CarouselItem
                     key={index}
                     className={`basis-[${basisPercentage}%] ${styles.carouselItem}`}
@@ -197,7 +230,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           <h3>
             Categories:
             <span className="text-secondary-text font-normal pl-1">
-              {product.category}
+              {product.categories?.map((cat) => cat.name).join(", ")}
             </span>
           </h3>
           <h3>
