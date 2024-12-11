@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../../ui/form";
-
+import LZString from "lz-string";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -81,14 +81,18 @@ export default function MaterialDetailForm({ product }: FormProps) {
       quantity: values.quantity,
     };
 
+    const compressedData = LZString.compressToUTF16(
+      JSON.stringify(formDataJSON),
+    );
+
     const cart = localStorage.getItem("cartItems");
     let cartList = cart ? JSON.parse(cart) : [];
     if (!Array.isArray(cartList)) {
       cartList = [];
     }
-    cartList.push(formDataJSON);
+    cartList.push(compressedData);
     localStorage.setItem("cartItems", JSON.stringify(cartList));
-    console.log("Form Data JSON:", formDataJSON);
+    console.log("Form Data JSON:", compressedData);
   };
 
   const handleQuantityChange = (newQuantity: string) => {

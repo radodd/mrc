@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "../../../components/ui/input";
 import Image from "next/image";
+import LZString from "lz-string";
 
 import style from "../../../components/scss/CartPage.module.scss";
 import ContactForm2 from "../../../components/form/ContactForm2";
@@ -63,7 +64,14 @@ const Cart = ({ cartItems, setCartItems }) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-      setCartItems(storedItems);
+
+      const decompressedItems = storedItems
+        .map((item) => {
+          const decompressedData = LZString.decompressFromUTF16(item);
+          return decompressedData ? JSON.parse(decompressedData) : null;
+        })
+        .filter((item) => item !== null);
+      setCartItems(decompressedItems);
     }
   }, [setCartItems]);
 
@@ -72,7 +80,10 @@ const Cart = ({ cartItems, setCartItems }) => {
       i === index ? { ...item, quantity: newQuantity } : item,
     );
     setCartItems(updatedCart);
-    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+    const compressedItems = updatedCart.map((item) =>
+      LZString.compressToUTF16(JSON.stringify(item)),
+    );
+    localStorage.setItem("cartItems", JSON.stringify(compressedItems));
   };
 
   const handleIncrease = (index) => {
@@ -103,7 +114,7 @@ const Cart = ({ cartItems, setCartItems }) => {
               key={index}
               className="flex flex-col p-6 gap-6 border-t-[3px] border-icon"
             >
-              {/* <div className={style.imageContainer}>
+              <div className={style.imageContainer}>
                 <Image
                   src={item.image ? item.image : "/image_not_available.svg"}
                   alt=""
@@ -111,11 +122,11 @@ const Cart = ({ cartItems, setCartItems }) => {
                   height={500}
                   className={style.image}
                 />
-              </div> */}
+              </div>
 
               <h1>{item.name}</h1>
 
-              {/* <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4">
                 <span>
                   Category
                   <span className="ml-2 text-primary">{item.category}</span>
@@ -132,7 +143,7 @@ const Cart = ({ cartItems, setCartItems }) => {
                     handleDecrease={handleDecrease}
                   />
                 </div>
-              </div> */}
+              </div>
               <Button
                 variant="link"
                 className="w-fit p-0 italic"
