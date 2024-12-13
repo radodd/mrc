@@ -79,7 +79,7 @@ export default function AboutPage() {
       <ContactUs renderButton={true} />
 
       {/* FAQ */}
-      <div className={styles.faq}>
+      <div id="faq" className={styles.faq}>
         <h1 className="">FAQ</h1>
 
         <div className={styles.accordionContainer}>

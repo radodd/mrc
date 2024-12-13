@@ -38,7 +38,7 @@ const buttonVariants = cva(
         carouselOutline:
           "border-2 border-whitebase bg-transparent text-whitebase font-openSans hover:scale-[1.05] transition-all duration-300",
         carouselPrimary:
-          "border-2 border-[#A9C8D3] bg-[#A9C8D3] text-primary font-openSans hover:scale-[1.05] transition-all duration-300",
+          "border-2 border-[#FDFBF6] bg-[#FDFBF6] text-primary font-openSans hover:scale-[1.05] transition-all duration-300",
         mobileFilterClose:
           "border-2 border-[#BEC0C9] bg-whitebase font-montserrat text-[24px]",
       },

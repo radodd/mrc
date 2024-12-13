@@ -101,7 +101,7 @@
 }
 .materialsMenu {
   max-width: 300px;
-  padding: 16px 8px;
+  // padding: 16px 8px;
 
   span {
     font-family: var(--font-montserrat);
@@ -173,4 +173,57 @@
 .scrollbarHide {
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
+}
+
+.navLink {
+  color: var(--Black-Base, #0c232c);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.48px;
+  border-top-color: #919ea6;
+  padding: 16px 24px;
+}
+
+.materialListSheet {
+  width: 300px;
+  h3 {
+    color: var(--Black-Base, #0c232c);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.48px;
+    padding: 16px 8px;
+    border: 2px solid hsl(var(--primary));
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+  }
+  li {
+    color: var(--Black-Base, #0c232c);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    padding: 16px 8px;
+  }
+}
+
+.subtitleContainer {
+  display: flex;
+  padding: 24px 8px;
+  gap: 16px;
+  border-bottom: 1px solid var(--Gray, #919ea6);
+  span {
+    color: var(--Black-Base, #0c232c);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.32px;
+  }
 }

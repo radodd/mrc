@@ -172,7 +172,7 @@ const MaterialSection = ({
           <div className="flex flex-row px-[8px] py-[24px] gap-[16px]">
             <Logo />
             <p className="text-[16px]">
-              We are focused on artisanal stone and tile.
+              We are focused on artisanal stone and .
             </p>
           </div>
 

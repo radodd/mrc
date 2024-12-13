@@ -3,8 +3,8 @@ import { Button } from "../../../components/ui/button";
 import Image from "next/image";
 import React from "react";
 import { map } from "zod";
-import { mrcRocknSand } from "../../../../..";
-import { santaPaulaMaterials } from "../../../../..";
+import { ServicesMRC } from "../../../../..";
+import { ServicesSPM } from "../../../../..";
 
 const page = () => {
   return (
@@ -25,7 +25,7 @@ const page = () => {
         <h1 className="font-bold text-whitebase text-[40px] my-6 px-[72px] max-smMobie:px-[32px] xlScreen:px-36 max-smMobie:text-[32px]">
           Santa Paula Materials
         </h1>
-        {santaPaulaMaterials.map((materials) => (
+        {ServicesSPM.map((materials) => (
           <div
             key={materials.id}
             className={`flex bg-tanbase max-mobile:flex-col ${materials.id == 2 ? "flex-row-reverse" : null}`}
@@ -68,10 +68,10 @@ const page = () => {
         <h1 className="font-bold text-whitebase text-[40px] my-6 px-[72px] max-smMobie:px-[32px] xlScreen:px-36 max-smMobie:text-[32px]">
           MRC Rock & Sand
         </h1>
-        {mrcRocknSand.map((service) => (
+        {ServicesMRC.map((service) => (
           <div
             key={service.id}
-            className={`flex bg-tanbase max-mobile:flex-col ${service.id == 2 ? "flex-row-reverse" : null}`}
+            className={`flex bg-tanbase max-mobile:flex-col ${service.id !== 2 ? "flex-row-reverse" : null}`}
           >
             <div className="relative w-1/2 max-mobile:h-[480px]  max-mobile:w-full">
               <Image
@@ -88,11 +88,11 @@ const page = () => {
               <p className="text-[20px] w-full text-secondary-text max-smMobie:text-base self-stretch">
                 {service.desc}
               </p>
-              {service.id == 2 && (
-                <div className="flex">
-                  <Button variant={"outline"}>Contact MRC</Button>
-                </div>
-              )}
+              {/* {service.id == 2 && (
+                // <div className="flex">
+                //   <Button variant={"outline"}>Contact MRC</Button>
+                // </div>
+              )} */}
             </div>
           </div>
         ))}

@@ -23,6 +23,7 @@ import {
 } from "../../components/ui/navigation-menu";
 
 import styles from "./index.module.scss";
+import { CustomerFacingNav2 } from "../../components/CustomerFacingNav2";
 
 const MENU_HEIGHT = {
   default: "min-h-[416px]",
@@ -92,7 +93,7 @@ export default function Layout({
 
   return (
     <>
-      <CustomerFacingNav>
+      <CustomerFacingNav2>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem onMouseEnter={() => setIsMaterialsOpen(true)}>
@@ -121,7 +122,7 @@ export default function Layout({
             className={`${pathname === "/cart" && "fill-primary-dark"} min-w-[33px] hover:fill-primary-dark`}
           />
         </CustomerFacingNavLink>
-      </CustomerFacingNav>
+      </CustomerFacingNav2>
       <div>{children}</div>
       <Footer>
         <FooterLinks />
@@ -156,8 +157,10 @@ const MaterialMenuContent = ({
     <ul className="flex flex-col gap-[8px] w-[257px]">
       <MenuItem
         href="/materials"
+        logo="/logo_stoneyard.svg"
         title="STONEYARD"
         description="We are focused on artisanal stone and tile"
+        subDescription="We are focused on artisanal stone and tile"
         isSubmenuOpen={isSubmenuOpen === 1}
         onMouseEnter={() => setIsSubmenuOpen(1)}
         onClick={() => {
@@ -171,8 +174,10 @@ const MaterialMenuContent = ({
       />
       <MenuItem
         href="/materials"
+        logo="/logo_mrc_spm.svg"
         title="MRC Rock & Sand"
-        description="We are focused on artisanal stone and tile"
+        description="Supplying aggregates and services for construction."
+        subDescription="While MRC and SPM offer their own services, both companies sell the same high-quality construction materials."
         isSubmenuOpen={isSubmenuOpen === 2}
         onMouseEnter={() => setIsSubmenuOpen(2)}
         onClick={() => {
@@ -184,8 +189,10 @@ const MaterialMenuContent = ({
       />
       <MenuItem
         href="/materials"
+        logo="/logo_mrc_spm.svg"
         title="Santa Paula Mate..."
-        description="We are focused on artisanal stone and tile"
+        description="Demolition, recycling, and producing crushed materials."
+        subDescription="While MRC and SPM offer their own services, both companies sell the same high-quality construction materials."
         isSubmenuOpen={isSubmenuOpen === 3}
         onMouseEnter={() => setIsSubmenuOpen(3)}
         onClick={() => {
@@ -201,8 +208,10 @@ const MaterialMenuContent = ({
 
 interface MenuItemProps {
   href: string;
+  logo: string;
   title: string;
   description: string;
+  subDescription: string;
   onMouseEnter: () => void;
   onMouseLeave?: () => void;
   onClick: () => void;
@@ -216,8 +225,10 @@ interface MenuItemProps {
 
 const MenuItem: React.FC<MenuItemProps> = ({
   href,
+  logo,
   title,
   description,
+  subDescription,
   onMouseEnter,
   onClick,
   isSubmenuOpen,
@@ -238,8 +249,9 @@ const MenuItem: React.FC<MenuItemProps> = ({
       <ul className={styles.subMenuContainer}>
         <li className="w-[208px]">
           <SubList
+            logo={logo}
             title={title}
-            description={description}
+            subDescription={subDescription}
             menuHeight={menuHeight}
           />
         </li>
@@ -282,7 +294,7 @@ const FooterLinks = () => (
     <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
       <div className="flex flex-col">
         <FooterLink href="/about">About</FooterLink>
-        <FooterLink href="/about">FAQ</FooterLink>
+        <FooterLink href="/about#faq">FAQ</FooterLink>
         <FooterLink href="/contact">Contact</FooterLink>
       </div>
       <div className="flex flex-col">
@@ -328,25 +340,27 @@ const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
 ListItem.displayName = "ListItem";
 
 interface SubListProps {
+  logo: string;
   title?: string;
-  description?: string;
+  subDescription: string;
   items?: string[];
   onMouseLeave?: () => void;
   menuHeight?: string;
 }
 
 const SubList: React.FC<SubListProps> = ({
+  logo,
   title,
-  description,
+  subDescription,
   items,
   menuHeight,
 }) => (
   <>
     <div className={`${menuHeight} bg-whitebase w-[260px] py-[16px]`}>
       <div className={styles.subListHeaderContainer}>
-        <Image src="/logo_rocks.svg" alt="" width={80} height={60} />
+        <Image src={logo} alt="" width={80} height={60} />
         <span className="font-openSans font-semibold text-[25px]">{title}</span>
-        <p>{description}</p>
+        <p>{subDescription}</p>
       </div>
     </div>
 

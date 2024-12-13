@@ -73,16 +73,18 @@ const MobileNavMenu = ({
 const MaterialsDropdown = () => {
   return (
     <Sheet>
-      <SheetTrigger className="text-left flex flex-row items-center hover:font-bold">
+      <SheetTrigger className={`${styles.navLink} flex justify-between`}>
         Materials
-        <ChevronDown className="-rotate-90 translate-x-4" />
+        <ChevronDown className="-rotate-90" />
       </SheetTrigger>
       <SheetContent className={`${styles.materialsMenu}`} hideOverlay={true}>
-        <h3 className="text-[24px] font-normal text-blackbase text-center">
+        <h3 className="text-[24px] font-normal text-blackbase text-center border-primary focus:bg-tanbase border-2 px-2 py-4 justify-center flex items-center]">
           Materials
         </h3>
         <div className="py-6">
-          <NavLink href="/materials">Shop all our materials</NavLink>
+          <Link href="/materials" className="text-[24px] font-[700] px-2">
+            Shop all our materials
+          </Link>
         </div>
         <Separator />
         <MaterialSections />
@@ -98,14 +100,19 @@ const MaterialSections = () => (
       title="STONEYARD"
       description="We are focused on artisanal stone and tile."
       items={ArtisanalStone}
+      src="/logo_stoneyard.svg"
     />
     <MaterialSection
       title="MRC Rock & Sand"
-      description="Pending Content From Client"
+      description="Supplying aggregates and services for construction."
+      src="/logo_mrc_spm.svg"
+      items={ArtisanalStone}
     />
     <MaterialSection
       title="Santa Paula Materials"
-      description="We are focused on artisanal stone and tile."
+      description="Demolition, recycling, and producing crushed materials."
+      src="/logo_mrc_spm.svg"
+      items={ArtisanalStone}
     />
   </>
 );
@@ -114,14 +121,16 @@ const MaterialSection = ({
   title,
   description,
   items,
+  src,
 }: {
   title: string;
   description: string;
   items?: string[];
+  src: string;
 }) => (
   <Sheet>
-    <SheetTrigger>
-      <div className="my-4">
+    <SheetTrigger className="border-t border-t-[#919EA6]">
+      <div className="my-4 mx-2 ">
         <div className="flex justify-between mb-2">
           <span>{title}</span>
           <Image
@@ -130,26 +139,33 @@ const MaterialSection = ({
             width={17}
             height={17}
             className="-rotate-90"
-            style={{ filter: "brightness(0%)" }}
           />
         </div>
         <p>{description}</p>
       </div>
     </SheetTrigger>
-    <SheetContent hideOverlay={true} className={styles.mobileSheet}>
+    <SheetContent hideOverlay={true} className={styles.materialListSheet}>
       <h3 className="text-[20px] font-bold text-center">{title}</h3>
       {items && (
-        <ul className="flex flex-col">
-          {items.map((item, index) => (
-            <li
-              key={index}
-              className="w-full text-[16px] hover:font-bold px-2 py-4"
-            >
-              {item}
-              <Separator />
-            </li>
-          ))}
-        </ul>
+        <>
+          <div className={styles.subtitleContainer}>
+            <Image src={src} alt="" width={50} height={50} />
+            <span>{description}</span>
+          </div>
+          <ul>
+            {items.map((item, index) => (
+              <>
+                <li
+                  key={index}
+                  className="w-full text-[16px] hover:font-bold px-2 py-4"
+                >
+                  {item}
+                </li>
+                <Separator />
+              </>
+            ))}
+          </ul>
+        </>
       )}
     </SheetContent>
   </Sheet>
@@ -157,16 +173,13 @@ const MaterialSection = ({
 
 /** A reusable link component for navigation items */
 const NavLink = ({ href, children }: { href: string; children: ReactNode }) => (
-  <Link
-    href={href}
-    className="font-montserrat hover:font-bold border-y-[#919EA6]"
-  >
+  <Link href={href} className={styles.navLink}>
     {children}
   </Link>
 );
 
 /** The main CustomerFacingNav component */
-export function CustomerFacingNav({ children }: { children: ReactNode }) {
+export function CustomerFacingNav2({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

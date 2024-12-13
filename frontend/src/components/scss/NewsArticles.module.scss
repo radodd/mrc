@@ -2,73 +2,128 @@
 @import "../../../css/queries.scss";
 
 .sectionContainer {
-  display: flex;
-  flex-direction: column;
-  padding-top: 104px;
-  padding-bottom: 104px;
-  padding-inline: 144px;
-  gap: 40px;
+  position: relative;
+}
 
-  @include large-break {
-    padding-inline: 70px;
-  }
+.carousel {
+  position: relative;
   @include mid-break {
-    padding-inline: 70px;
+    max-height: 470px;
   }
-  @include small-break {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    padding-inline: 32px;
+  @include large-break {
+    max-height: 470px;
   }
 }
 
-.articleContainer {
-  display: flex;
-  gap: 24px;
-  @include small-break {
-    flex-direction: column;
-    align-items: center;
-    gap: 17px;
+.carouselContent {
+  @include mid-break {
+    max-height: 470px;
   }
-  h1 {
-    font-size: 32px;
-    padding-bottom: 17px;
-    @include small-break {
-      padding: 0;
-    }
-  }
-
-  p {
-    font-size: 20px;
-    // max-width: 300px;
+  @include large-break {
+    max-height: 470px;
   }
 }
 
 .imageContainer {
-  min-width: 325px;
-
+  width: 100%;
+  max-height: 266px;
+  overflow: hidden;
+  @include mid-break {
+    max-height: 700px;
+    min-width: calc(50%);
+  }
   @include large-break {
-    min-width: 300px;
+    max-height: 700px;
+    min-width: calc(50%);
+  }
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  @include mid-break {
+    height: 470px;
+  }
+  @include large-break {
+    height: 470px;
   }
 }
 
 .textContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 17px;
-  max-height: 220px;
-  min-height: 225px;
-  overflow: hidden;
+  gap: 24px;
+  margin: 40px 32px;
+  padding: 0 34px 36px;
+  @include mid-break {
+    // flex: 1;
+    margin: 64px 40px;
+    padding: 0 36px 32px;
+    // max-width: calc(50%);
+  }
+  @include large-break {
+    margin: 64px 40px;
+    padding: 0 24px 32px;
+  }
+  h1 {
+    color: var(--Text-Primary, #2c2d31);
+
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.48px;
+    @include mid-break {
+      font-size: 32px;
+    }
+    @include large-break {
+      font-size: 32px;
+    }
+  }
+  p {
+    color: var(--Text-Secondary, #5c5d6d);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    @include mid-break {
+      font-size: 20px;
+    }
+  }
 }
 
 .prev {
-  transform: translateY(-16px);
-  @include small-break {
-    // transform: translateX(45px);
-    // transform: translateY(-30px);
+  transform: translateY(7.6rem) translateX(1.3rem);
+  @include mid-break {
+    transform: translateY(0rem) translateX(1.4rem);
+  }
+  @include large-break {
+    transform: translateY(0rem) translateX(1.4rem);
   }
 }
 
 .next {
-  display: none;
+  transform: translateY(7.6rem) translateX(-1.2rem);
+  @include mid-break {
+    transform: translateY(0rem) translateX(-1.4rem);
+  }
+  @include large-break {
+    transform: translateY(0rem) translateX(-1.4rem);
+  }
+}
+
+.indicatorContainer {
+  position: absolute;
+  left: 41vw;
+  bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+  @include mid-break {
+    left: 71vw;
+  }
 }

@@ -15,7 +15,7 @@ import ChevronIcon from "../../public/chevron_nav_sharp.svg";
 import styles from "./scss/ProductGridSection.module.scss";
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   description: string;
   image_primary: string | null;
@@ -296,10 +296,17 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             <Button
               variant="otherFilter"
               size="filter"
-              className="flex items-center mb-6 min-[1306px]:ml-[72px]"
+              className="flex items-center mb-6 min-[1306px]:ml-[72px] justify-between"
               onClick={clearAllFilters}
             >
               Clear All Filters
+              <Image
+                src="/close.svg"
+                alt=""
+                width={12}
+                height={12}
+                className={styles.image}
+              />
             </Button>
           )}
           <ProductFilters2

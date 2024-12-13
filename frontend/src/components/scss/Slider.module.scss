@@ -45,9 +45,13 @@
 }
 
 .line {
+  color: var(--Primary---Light, #a9c8d3);
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   height: 100px;
   max-width: fit-content;
-  color: hsl(var(--white-base));
   font-family: var(--montserrat);
   font-size: 64px;
   font-style: normal;

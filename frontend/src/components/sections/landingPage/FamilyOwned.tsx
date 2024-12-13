@@ -20,7 +20,14 @@ export default function FamilyOwned() {
         </div>
       </div>
       <div className={styles.imageContainer}>
-        <Image src="/family_owned.png" alt="" width={822} height={529} />
+        <Image
+          src="/family_owned.png"
+          alt=""
+          width={822}
+          height={529}
+          className={styles.image}
+          style={{ objectFit: "cover", objectPosition: "center" }}
+        />
       </div>
     </div>
   );

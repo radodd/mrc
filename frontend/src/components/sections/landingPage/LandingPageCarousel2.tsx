@@ -14,78 +14,11 @@ import Slider from "../../SliderAnimation";
 import Image from "next/image";
 
 import styles from "../../scss/LandingPageCarousel2.module.scss";
-
-const slides = [
-  {
-    header: "Hello!",
-    subheader: "We are",
-    description:
-      "We are a collection of companies here to service your construction needs. Click the arrow for more details.",
-    buttons: [
-      {
-        variant: "carouselPrimary",
-        text: "View All Materials",
-        navigateTo: "/materials",
-      },
-      {
-        variant: "carouselOutline",
-        text: "Contact Us",
-        navigateTo: "/contact",
-      },
-    ],
-    image: null,
-  },
-  {
-    logo: "/logo_stoneyard.svg",
-    subheader: "Stoneyard",
-    description:
-      "We specialize in providing natural stone products for construction and landscaping purposes. Our stone may be used in various applications like building facades, countertops, and retaining walls. Our high quality natural stone products can enhance any project design.",
-    buttons: [
-      {
-        text: "View Materials",
-        navigateTo: "/contact",
-      },
-    ],
-    image: "/image_carousel_stoneyard.png", // Replace with your actual image path
-  },
-  {
-    logo: "/logo_mrc.svg",
-    subheader: "MRC Rock & Sand",
-    description:
-      "Our main business is to supply a range of aggregates for the construction industry. We operate quarries, processing facilities and have a range of portable equipment to provide services for various projects.",
-    buttons: [
-      {
-        text: "View Materials",
-        navigateTo: "/contact",
-      },
-      {
-        text: "View Services",
-        navigateTo: "/about",
-      },
-    ],
-    image: "/about_us_timeline.png", // Replace with your actual image path
-  },
-  {
-    logo: "/logo_spm.svg",
-    subheader: "Santa Paula Materials",
-    description:
-      "We specialize in the demolition and recycling of building materials. We can take materials such as concrete, asphalt dirt and rock. We then break the materials down to offer products like crushed miscellaneous base.",
-    buttons: [
-      {
-        text: "View Materials",
-        navigateTo: "/contact",
-      },
-      {
-        text: "View Services",
-        navigateTo: "/about",
-      },
-    ],
-    image: "/image_carousel_spm.png", // Replace with your actual image path
-  },
-];
+import { LandingPageCarousel } from "../../../../..";
+import CarouselIndicator from "../../ui/CarouselIndicator";
 
 export default function LandingPageCarousel2() {
-  const [currentSlide, setCurrentSlide] = useState(-1);
+  const [current, setCurrent] = useState(-1);
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 0,
@@ -114,9 +47,9 @@ export default function LandingPageCarousel2() {
   useEffect(() => {
     if (!api) return;
 
-    setCurrentSlide(api.selectedScrollSnap() + 1);
+    setCurrent(api.selectedScrollSnap() + 1);
     api.on("select", () => {
-      setCurrentSlide(api.selectedScrollSnap() + 1);
+      setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
 
@@ -137,19 +70,21 @@ export default function LandingPageCarousel2() {
     <>
       <Carousel setApi={setApi} className={styles.carousel}>
         <CarouselContent className={styles.carouselContent}>
-          {slides.map((slide, index) => {
+          {LandingPageCarousel.map((slide, index) => {
             return (
               <CarouselItem
                 key={index}
-                className={`${currentSlide === 2 || currentSlide === 3 || currentSlide === 4 ? styles.noPadding : ""} ${styles.carouselItem}`}
+                className={`${current === 2 || current === 3 || current === 4 ? styles.noPadding : ""} ${styles.carouselItem}`}
               >
                 {index === 0 ? (
                   <div className={styles.uniqueContentContainer}>
                     <div className={styles.uniqueHeader}>
                       <span className="flex">{slide.header}</span>
                       <div className="flex flex-row min-[857px]:items-center max-[856px]:flex-col">
-                        <span>{slide.subheader}</span>
-                        <div className={styles.sliderContainer}>
+                        <span className="text-[#A9C8D3]">
+                          {slide.subheader}
+                        </span>
+                        <div>
                           <Slider />
                         </div>
                       </div>
@@ -197,7 +132,7 @@ export default function LandingPageCarousel2() {
 
                             if (
                               isSmallScreen &&
-                              currentSlide !== 1 &&
+                              current !== 1 &&
                               btnIndex === 0
                             ) {
                               variant = "default"; // For small screens on the first button when currentSlide is not 1
@@ -251,30 +186,12 @@ export default function LandingPageCarousel2() {
           height={30}
           className={` ${styles.next}`}
         />
-        <div className={styles.indicatorContainer}>
-          {Array.from({ length: slides.length }).map((_, index) => (
-            <div key={index}>
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className={`${styles.indicator}`}
-              >
-                <rect
-                  width="12"
-                  height="12"
-                  rx="6"
-                  fill="#A9C8D3"
-                  className={`${
-                    currentSlide === index + 1 ? "fill-[#307084]" : ""
-                  }`}
-                />
-              </svg>
-            </div>
-          ))}
-        </div>
+        <CarouselIndicator
+          current={current}
+          total={4}
+          color="fill-[#FDFBF6]"
+          className={styles.indicatorContainer}
+        />
       </Carousel>
     </>
   );
