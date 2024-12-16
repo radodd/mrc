@@ -26,6 +26,7 @@ export const getMaterials = async (
     name,
     description,
     color,
+    uses,
     texture,
     company,
     imagePath,
