@@ -223,6 +223,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               className={styles.image}
             />
           </div>
+          <div className={styles.overlay}>
+            {selectedImage
+              .split("/")
+              .pop()
+              ?.split("?")[0]
+              .replace(/_/g, " ")
+              .replace(".png", "")}
+          </div>
         </div>
 
         <div className={styles.materialInfo}>

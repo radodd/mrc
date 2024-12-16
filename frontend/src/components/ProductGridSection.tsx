@@ -18,7 +18,7 @@ interface Product {
   id: string;
   name: string;
   description: string;
-  image_primary: string | null;
+  imagePrimary: string | null;
   imagePath: string[] | null;
   company: string[];
   color: string[];
@@ -64,7 +64,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           id: material.id,
           name: material.name,
           description: material.description,
-          image_primary: material.imagePrimary,
+          imagePrimary: material.imagePrimary,
           imagePath: material.imagePath,
           company: material.company,
           color: material.color,
@@ -403,7 +403,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
 //   id: string;
 //   name: string;
 //   description: string;
-//   image_primary: string;
+//   imagePrimary: string;
 //   imagePath: string[];
 //   company: string;
 //   color: string[];
@@ -779,7 +779,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
 //   id: string;
 //   name: string;
 //   description: string;
-//   image_primary: string;
+//   imagePrimary: string;
 //   imagePath: string[];
 //   company: string;
 //   color: string[];
