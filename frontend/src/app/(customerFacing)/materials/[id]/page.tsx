@@ -221,15 +221,17 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               width={601}
               height={601}
               className={styles.image}
-            />
-          </div>
-          <div className={styles.overlay}>
-            {selectedImage
-              .split("/")
-              .pop()
-              ?.split("?")[0]
-              .replace(/_/g, " ")
-              .replace(".png", "")}
+            />{" "}
+            <div className={styles.overlay}>
+              {selectedImage
+                .split("/")
+                .pop()
+                ?.split("?")[0]
+                .replace(/_/g, "/")
+                .replace(/%20/g, " ")
+                .replace(".png", "")
+                .replace(/in/, '"')}
+            </div>
           </div>
         </div>
 
