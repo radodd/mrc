@@ -14,7 +14,7 @@ const AlphabetizeButtons = ({
     setProducts(sortedList);
   };
   return (
-    <>
+    <div className="border-none">
       <Button
         variant="otherFilter"
         size="filter"
@@ -31,24 +31,26 @@ const AlphabetizeButtons = ({
         Sort by: A-Z
       </Button>
       {alphabetFilter && (
-        <div className="z-50 absolute">
+        <div className="z-50 absolute flex flex-col mt-2 w-[128px] border-2 border-primary rounded-[4px] ">
           <Button
             variant="filter"
             size="filter"
             onClick={() => handleSort("asc")}
+            className="border-none justify-start"
           >
-            A-Z
+            A - Z
           </Button>
           <Button
             variant="filter"
             size="filter"
             onClick={() => handleSort("desc")}
+            className="border-none justify-start pt-0"
           >
-            Z-A
+            Z - A
           </Button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

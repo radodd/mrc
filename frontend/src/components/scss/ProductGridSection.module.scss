@@ -80,10 +80,11 @@
   }
 }
 
-.productCardContainer {
+.materialCardContainer {
+  border: red 2px solid;
   max-width: fit-content;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
   flex-direction: column;
   margin: 0 32px;
   @include mid-break {

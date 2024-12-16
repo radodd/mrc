@@ -1,7 +1,7 @@
 "use client";
 
 import { useFilter } from "../context/FilterContext";
-import { ProductCard } from "./ProductCard";
+import { ProductCard } from "./MaterialCard";
 import { ProductFilterCard } from "./ProductFilterCard";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
@@ -22,6 +22,7 @@ interface Product {
   imagePath: string[] | null;
   company: string[];
   color: string[];
+  uses: string[];
   category: string[];
   texture: string[];
   size: string[];
@@ -67,6 +68,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           imagePath: material.imagePath,
           company: material.company,
           color: material.color,
+          uses: material.uses,
           texture: material.texture,
           category: material.MaterialCategories.map(
             (cat: any) => cat.Categories.name,
@@ -368,7 +370,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
                     />
                   </div>
                 )}
-                <div className={styles.productCardContainer}>
+                <div className={styles.materialCardContainer}>
                   {filteredProductList.map((product, index) => (
                     <ProductCard {...product} key={index} />
                   ))}

@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Separator } from "./ui/separator";
-import styles from "../components/scss/ProductCard.module.scss";
+import styles from "../components/scss/MaterialCard.module.scss";
 import Link from "next/link";
 
 type ProductCardProps = {
@@ -18,6 +18,7 @@ type ProductCardProps = {
   imagePath: string[];
   company: string[];
   color: string[];
+  uses: string[];
   // category: string[] | { name: string };
   category: string[];
   // MaterialCategories?: {
@@ -34,6 +35,7 @@ export function ProductCard({
   imagePath,
   company,
   color,
+  uses,
   // MaterialCategories,
   category,
 }: ProductCardProps) {
@@ -44,7 +46,7 @@ export function ProductCard({
   //   : [];
   // console.log("Categories", categories);
   return (
-    <div className="">
+    <>
       <Separator
         orientation="horizontal"
         decorative={true}
@@ -71,14 +73,28 @@ export function ProductCard({
               {description}
             </CardDescription>
             <CardContent className={styles.cardContent}>
-              <CardInfoRow label="Categories" value={category.join(", ")} />
-              <CardInfoRow label="Color" value={color.join(", ")} />
+              {company.join(", ") === "Santa Paula Materials" ||
+                (company.join(", ") === "MRC Rock & Sand" ? (
+                  <>
+                    <CardInfoRow
+                      label="Categories"
+                      value={category.join(", ")}
+                    />
+                    <CardInfoRow label="Color" value={color.join(", ")} />
+                  </>
+                ) : (
+                  <>
+                    <CardInfoRow label="Colors" value={color.join(", ")} />
+                    <CardInfoRow label="Uses" value={uses.join(", ")} />
+                  </>
+                ))}
+
               <CardInfoRow label="Company" value={company.join(", ")} />
             </CardContent>
           </CardHeader>
         </Card>
       </Link>
-    </div>
+    </>
   );
 }
 
