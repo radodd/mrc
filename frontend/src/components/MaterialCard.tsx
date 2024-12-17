@@ -76,12 +76,12 @@ export function ProductCard({
               {uses === null ? (
                 <>
                   <CardInfoRow label="Categories" value={category.join(", ")} />
-                  <CardInfoRow label="Color" value={color.join(", ")} />
+                  <CardInfoRow label="Color" value={color?.join(", ")} />
                 </>
               ) : (
                 <>
                   {" "}
-                  <CardInfoRow label="Colors" value={color.join(", ")} />
+                  <CardInfoRow label="Colors" value={color?.join(", ")} />
                   <CardInfoRow label="Uses" value={uses?.join(", ")} />
                 </>
               )}

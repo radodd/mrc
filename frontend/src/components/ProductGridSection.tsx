@@ -117,7 +117,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
 
   const colorCounts = filteredProductList.reduce(
     (counts: Record<string, number>, product) => {
-      product.color.forEach((col) => {
+      product.color?.forEach((col) => {
         counts[col] = (counts[col] || 0) + 1;
       });
       return counts;

@@ -221,7 +221,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               width={601}
               height={601}
               className={styles.image}
-            />{" "}
+            />
             <div className={styles.overlay}>
               {selectedImage
                 .split("/")
