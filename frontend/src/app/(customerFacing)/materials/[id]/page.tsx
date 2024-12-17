@@ -23,6 +23,7 @@ export type ProductCardProps = {
   imagePath: string[];
   company: string[];
   color: string[];
+  uses: string[];
   // category: string[] | { name: string };
   // category: string[];
   categories: {
@@ -68,6 +69,7 @@ const fetchProductById = async (
       imagePath: data.imagePath,
       company: data.company,
       color: data.color,
+      uses: data.uses,
       texture: data.texture,
       categories: data.MaterialCategories.map((cat: any) => {
         if (!cat.Categories) {
@@ -222,39 +224,78 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               height={601}
               className={styles.image}
             />
+
             <div className={styles.overlay}>
-              {selectedImage
-                .split("/")
-                .pop()
-                ?.split("?")[0]
-                .replace(/_/g, "/")
-                .replace(/%20/g, " ")
-                .replace(".png", "")
-                .replace(/in/, '"')}
+              {product.company.length !== 1 ? (
+                <>
+                  {selectedImage
+                    .split("/")
+                    .pop()
+                    ?.split("?")[0]
+                    .replace(/_/g, "/")
+                    .replace(/%20/g, " ")
+                    .replace(".png", "")
+                    .replace(/in/, '"')}{" "}
+                </>
+              ) : (
+                product.name
+              )}
             </div>
           </div>
         </div>
 
         <div className={styles.materialInfo}>
           <h1>{product.name}</h1>
-          <h3>
-            Categories:
-            <span className="text-secondary-text font-normal pl-1">
-              {product.categories?.map((cat) => cat.name).join(", ")}
-            </span>
-          </h3>
-          <h3>
-            Colors:
-            <span className="text-secondary-text font-normal pl-1">
-              {product.color?.join(", ")}
-            </span>
-          </h3>
-          <h3>
-            Textures:
-            <span className="text-secondary-text font-normal pl-1">
-              {product.texture?.join(", ")}
-            </span>
-          </h3>
+          {product.company.length !== 1 ? (
+            <>
+              <h3>
+                Categories:
+                <span className="text-secondary-text font-normal pl-1">
+                  {product.categories?.map((cat) => cat.name).join(", ")}
+                </span>
+              </h3>
+              <h3>
+                Colors:
+                <span className="text-secondary-text font-normal pl-1">
+                  {product.color?.join(", ")}
+                </span>
+              </h3>
+              <h3>
+                Textures:
+                <span className="text-secondary-text font-normal pl-1">
+                  {product.texture?.join(", ")}
+                </span>
+              </h3>
+              <h3>
+                Company:
+                <span className="text-secondary-text font-normal pl-1">
+                  {product.company.join(", ")}
+                </span>
+              </h3>
+            </>
+          ) : (
+            <>
+              <h3>
+                Colors:
+                <span className="text-secondary-text font-normal pl-1">
+                  {product.color?.join(", ")}
+                </span>
+              </h3>
+              <h3>
+                Company:
+                <span className="text-secondary-text font-normal pl-1">
+                  {product.company.join(", ")}
+                </span>
+              </h3>
+              <h3>
+                Uses:
+                <span className="text-secondary-text font-normal pl-1">
+                  {product.uses?.join(", ")}
+                </span>
+              </h3>
+            </>
+          )}
+
           <div className="flex gap-6">
             <Button>Category Sizes</Button>
           </div>
