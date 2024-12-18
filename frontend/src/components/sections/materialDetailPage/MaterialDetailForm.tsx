@@ -22,9 +22,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ProductCardProps } from "../../../app/(customerFacing)/materials/[id]/page";
 import ShoppingCartIcon from "../../icons/ShoppingCartIcon";
 import QuantityInput from "../../QuantityInput";
+import { useState } from "react";
 
 import styles from "../../scss/MaterialDetailForm.module.scss";
-import { useState } from "react";
 
 interface FormProps {
   product: ProductCardProps;
@@ -108,17 +108,22 @@ export default function MaterialDetailForm({ product }: FormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
-        <CategorySelect
-          product={product}
-          form={form}
-          onCategoryChange={handleCategoryChange}
-        />
-        <SizeSelect
-          product={product}
-          form={form}
-          // selectedCategory={form.watch("category")}
-          selectedCategory={selectedCategory}
-        />
+        {product.company.length === 2 && (
+          <>
+            <CategorySelect
+              product={product}
+              form={form}
+              onCategoryChange={handleCategoryChange}
+            />
+            <SizeSelect
+              product={product}
+              form={form}
+              // selectedCategory={form.watch("category")}
+              selectedCategory={selectedCategory}
+            />
+          </>
+        )}
+
         <QuantityInput
           // quantity={quantity}
           // onDecrement={() => adjustQuantity(-1)}
@@ -163,7 +168,7 @@ const CategorySelect = ({ product, form, onCategoryChange }: SelectProps) => {
       name="category"
       render={({ field }) => (
         <FormItem>
-          <FormLabel className={styles.formLabel}>Category:</FormLabel>
+          <FormLabel className={styles.FormLabel}>Category:</FormLabel>
           {/* <Select onValueChange={field.onChange} defaultValue={field.value}> */}
           <Select
             onValueChange={(value) => {
@@ -173,13 +178,17 @@ const CategorySelect = ({ product, form, onCategoryChange }: SelectProps) => {
             defaultValue={field.value}
           >
             <FormControl>
-              <SelectTrigger className={styles.selectTrigger}>
+              <SelectTrigger className={styles.SelectTrigger}>
                 <SelectValue placeholder="Select Category" />
               </SelectTrigger>
             </FormControl>
             <SelectContent>
               {product.categories?.map((cat) => (
-                <SelectItem key={cat.name} value={cat.name}>
+                <SelectItem
+                  key={cat.name}
+                  value={cat.name}
+                  className={styles.FormItem}
+                >
                   {cat.name}
                 </SelectItem>
               ))}
@@ -205,14 +214,14 @@ const SizeSelect = ({ product, form, selectedCategory }: SelectProps) => {
       name="size"
       render={({ field }) => (
         <FormItem>
-          <FormLabel className={styles.formLabel}>Size:</FormLabel>
+          <FormLabel className={styles.FormLabel}>Size:</FormLabel>
           <Select
             onValueChange={field.onChange}
             defaultValue={field.value}
             disabled={!selectedCategory}
           >
             <FormControl>
-              <SelectTrigger className={styles.selectTrigger}>
+              <SelectTrigger className={styles.SelectTrigger}>
                 <SelectValue placeholder="Select size" />
               </SelectTrigger>
             </FormControl>

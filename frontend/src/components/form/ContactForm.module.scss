@@ -50,6 +50,9 @@
   padding: 8px 0px 8px 16px;
   border: 1px solid #5c5d6d;
   border-radius: 4px;
+  &:focus {
+    border: green 2px solid;
+  }
 
   //   option[value=""] {
   //     color: #b0b0b0 !important; // Custom placeholder color

@@ -65,8 +65,8 @@ const QuantityInput = ({
       name="quantity"
       control={control}
       render={({ field }) => (
-        <FormItem className={styles.formItem}>
-          <FormLabel className={styles.formLabel}>Quantity (Per Ton)</FormLabel>
+        <FormItem className={styles.FormItem}>
+          <FormLabel className={styles.FormLabel}>Quantity (Per Ton)</FormLabel>
           <div className={styles.quantityToggleContainer}>
             <Button
               type="button"

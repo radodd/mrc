@@ -4,22 +4,28 @@
 .headerContainer {
   display: flex;
   justify-content: center;
-  padding-top: 104px;
-  padding-bottom: 104px;
+  padding: 40px 32px;
   @include mid-break {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding: 40px 72px;
   }
 
-  @include small-break {
-    padding-top: 40px;
-    padding-bottom: 40px;
+  @include large-break {
+    padding: 80px 72px;
   }
 
   h1 {
-    font-size: 64px;
-    @include small-break {
-      font-size: 40px;
+    color: var(--Text-Primary, #2c2d31);
+    text-align: center;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -2.52px;
+    @include mid-break {
+      font-size: 64px;
+    }
+    @include large-break {
+      font-size: 64px;
     }
   }
 }
@@ -36,23 +42,38 @@
   }
 }
 
+// .materialImagesContainer {
+//   display: flex;
+//   flex-direction: column-reverse;
+//   padding-right: 60px;
+//   gap: 24px;
+//   justify-content: start;
+//   @include mid-break {
+//     flex-direction: row-reverse;
+//     padding-right: 0px;
+//     padding-bottom: 24px;
+//     gap: 40px;
+//   }
+//   @include small-break {
+//     padding-right: 0;
+//     align-items: center;
+//     padding-bottom: 40px;
+//   }
+// }
 .materialImagesContainer {
   display: flex;
   flex-direction: column-reverse;
-  padding-right: 60px;
+  justify-content: center;
+  align-items: center;
   gap: 24px;
-  justify-content: start;
+  margin: 0 32px;
   @include mid-break {
     flex-direction: row-reverse;
-    padding-right: 0px;
-    padding-bottom: 24px;
-    gap: 40px;
   }
-  @include small-break {
-    padding-right: 0;
-    align-items: center;
-    border: 2px solid orange;
-    padding-bottom: 40px;
+  @include large-break {
+    // flex-direction: row-reverse;
+    justify-content: start;
+    margin: 0 0 0 72px;
   }
 }
 
@@ -63,13 +84,17 @@
   @include mid-break {
     max-height: 556px;
   }
+  @include large-break {
+    // max-height: 556px;
+  }
 }
 
 .carousel {
   display: flex;
   align-items: center;
   @include large-break {
-    max-width: 700px;
+    max-width: 100%;
+    height: 100%;
   }
   @include mid-break {
     height: 556px;
@@ -80,7 +105,10 @@
   transform: translateX(-40px) translateY(-18px);
 
   @include mid-break {
-    transform: translateX(-10px) translateY(45px) rotate(90deg);
+    transform: translateX(-17px) translateY(45px) rotate(90deg);
+  }
+  @include large-break {
+    // transform: translateX(-17px) translateY(45px) rotate(90deg);
   }
 }
 
@@ -91,10 +119,16 @@
   @include mid-break {
     transform: translateX(-10px) translateY(-50px) rotate(90deg);
   }
+  @include large-break {
+    // transform: translateX(-10px) translateY(-50px) rotate(90deg);
+  }
 }
 
 .carouselContent {
-  width: 480px;
+  width: 100%;
+  @include large-break {
+    // height: 460px;
+  }
   @include mid-break {
     width: fit-content;
     height: 460px;
@@ -108,6 +142,9 @@
   margin-left: 8px;
 
   @include mid-break {
+    margin-left: 0;
+  }
+  @include large-break {
     margin-left: 0;
   }
 }
@@ -148,7 +185,8 @@
   width: 601px;
   height: 601px;
   @include small-break {
-    width: 366px;
+    width: 100%;
+    max-width: 400px;
     height: 366px;
   }
 }
@@ -182,22 +220,52 @@
 .expandableContent.expanded {
   max-height: 150rem;
   opacity: 1;
+  p {
+    padding-top: 32px;
+  }
 }
 
-.materialInfo {
+.materialInfoContainer {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  width: 100%;
-  @include small-break {
-    gap: 24px;
+  gap: 24px;
+  padding: 40px 32px 0;
+  @include mid-break {
+    padding: 24px 72px;
   }
+  @include large-break {
+    padding: 0 72px 0 60px;
+    gap: 32px;
+  }
+
   h1 {
-    color: hsl(var(--primary));
-    font-size: 64px;
-    @include small-break {
-      font-size: 40px;
+    color: var(--Primary, #307084);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -1.2px;
+    @include mid-break {
+      font-size: 64px;
+      padding-bottom: 16px;
     }
+    @include large-break {
+      font-size: 64px;
+    }
+  }
+  h3 {
+    font-family: var(--font-openSans);
+  }
+
+  span {
+    color: var(--Text-Secondary, #5c5d6d);
+    font-family: var(--font-openSans);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.8px;
+    padding-left: 4px;
   }
 }
 
@@ -210,6 +278,7 @@
     font-style: italic;
     text-underline-offset: 1;
     color: hsl(var(--black-base));
+    padding: 0;
   }
 }
 

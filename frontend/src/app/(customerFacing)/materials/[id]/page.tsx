@@ -110,9 +110,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   useEffect(() => {
     const handleResize = () => {
       setOrientation(
-        window.innerWidth < 1305 && window.innerWidth > 768
-          ? "vertical"
-          : "horizontal",
+        window.innerWidth > 1306 || window.innerWidth < 768
+          ? "horizontal"
+          : "vertical",
       );
     };
 
@@ -244,54 +244,46 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        <div className={styles.materialInfo}>
+        <div className={styles.materialInfoContainer}>
           <h1>{product.name}</h1>
           {product.company.length !== 1 ? (
             <>
               <h3>
                 Categories:
-                <span className="text-secondary-text font-normal pl-1">
+                <span>
                   {product.categories?.map((cat) => cat.name).join(", ")}
                 </span>
               </h3>
               <h3>
                 Colors:
-                <span className="text-secondary-text font-normal pl-1">
-                  {product.color?.join(", ")}
-                </span>
+                <span>{product.color?.join(", ")}</span>
               </h3>
               <h3>
                 Textures:
-                <span className="text-secondary-text font-normal pl-1">
-                  {product.texture?.join(", ")}
-                </span>
+                <span>{product.texture?.join(", ")}</span>
               </h3>
-              <h3>
+              {/* <h3>
                 Company:
                 <span className="text-secondary-text font-normal pl-1">
                   {product.company.join(", ")}
                 </span>
-              </h3>
+              </h3> */}
             </>
           ) : (
             <>
               <h3>
                 Colors:
-                <span className="text-secondary-text font-normal pl-1">
-                  {product.color?.join(", ")}
-                </span>
+                <span>{product.color?.join(", ")}</span>
               </h3>
-              <h3>
+              {/* <h3>
                 Company:
                 <span className="text-secondary-text font-normal pl-1">
                   {product.company.join(", ")}
                 </span>
-              </h3>
+              </h3> */}
               <h3>
                 Uses:
-                <span className="text-secondary-text font-normal pl-1">
-                  {product.uses?.join(", ")}
-                </span>
+                <span>{product.uses?.join(", ")}</span>
               </h3>
             </>
           )}
@@ -328,19 +320,21 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       <div className={styles.materialDescriptionContainer}>
         <Separator className="bg-blackbase" />
         <h1>Material Description</h1>
-        <p>{product.description}</p>
+        {/* <p>{product.description}</p> */}
         <h3 className="text-blackbase">
           Company:
           <span className="text-secondary-text font-normal pl-1">
             {product.company}
           </span>
         </h3>
-        <h3 className="text-blackbase">
-          Uses:
-          <span className="text-secondary-text font-normal pl-1">
-            Pending more data from MRC
-          </span>
-        </h3>
+        {product.uses !== null && (
+          <h3 className="text-blackbase">
+            Uses:
+            <span className="text-secondary-text font-normal pl-1">
+              {product.uses}
+            </span>
+          </h3>
+        )}
       </div>
     </>
   );

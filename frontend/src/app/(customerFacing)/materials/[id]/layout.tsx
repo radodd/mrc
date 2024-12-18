@@ -9,7 +9,7 @@ export default function Layout({
 }>) {
   return (
     <>
-      <div className={styles.container}>{children}</div>
+      <div className="">{children}</div>
       <ContactUs renderButton={false} />
     </>
   );
