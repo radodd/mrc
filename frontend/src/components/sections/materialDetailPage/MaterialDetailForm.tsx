@@ -1,4 +1,3 @@
-// import { ProductCardProps } from "../../../app/(customerFacing)/materials/[id]/page";
 import { Button } from "../../ui/button";
 import {
   Select,
@@ -22,9 +21,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ProductCardProps } from "../../../app/(customerFacing)/materials/[id]/page";
 import ShoppingCartIcon from "../../icons/ShoppingCartIcon";
 import QuantityInput from "../../QuantityInput";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import styles from "../../scss/MaterialDetailForm.module.scss";
+import { toast } from "../../ui/use-toast";
 
 interface FormProps {
   product: ProductCardProps;
@@ -47,10 +46,9 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function MaterialDetailForm({ product }: FormProps) {
-  // const [quantity, setQuantity] = useState("1");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: product.name,
@@ -59,20 +57,11 @@ export default function MaterialDetailForm({ product }: FormProps) {
       size: "",
       quantity: "1",
     },
+    mode: "onSubmit",
   });
 
-  // const adjustQuantity = (amount: number) => {
-  //   const newQuantity = Math.max(Number(quantity) + amount, 1).toString();
-  //   setQuantity(newQuantity);
-  //   form.setValue("quantity", newQuantity);
-  // };
-
+  // Handle form submission logic
   const onSubmit: SubmitHandler<FormValues> = (values) => {
-    console.log("Form Errors:", form.formState.errors);
-
-    console.log(values);
-    console.log("Form Values Before Submit:", form.getValues());
-
     const formDataJSON = {
       name: values.name,
       image: values.image,
@@ -85,23 +74,46 @@ export default function MaterialDetailForm({ product }: FormProps) {
       JSON.stringify(formDataJSON),
     );
 
-    const cart = localStorage.getItem("cartItems");
-    let cartList = cart ? JSON.parse(cart) : [];
-    if (!Array.isArray(cartList)) {
-      cartList = [];
-    }
-    cartList.push(compressedData);
-    console.log("initial compress data", compressedData);
-    localStorage.setItem("cartItems", JSON.stringify(cartList));
-    console.log("Form Data JSON:", compressedData);
+    saveToCart(compressedData);
+    setSuccess(true);
   };
 
+  // Save compressed data to localStorage
+  const saveToCart = (compressedData: string) => {
+    const cart = localStorage.getItem("cartItems");
+    let cartList = cart ? JSON.parse(cart) : [];
+    cartList.push(compressedData);
+    localStorage.setItem("cartItems", JSON.stringify(cartList));
+  };
+
+  // Handle success state and form reset
+  useEffect(() => {
+    if (success) {
+      toast({
+        title: "Added to Cart",
+        description:
+          "Please view your cart to see all materials. Once submitted, someone from our team will email you a quote within 24 hours.",
+        src: "/shopping_cart_toast.svg",
+      });
+
+      // Reset form after successful submission
+      form.reset({
+        name: product.name,
+        image: product.imagePrimary,
+        category: "",
+        size: "",
+        quantity: "1",
+      });
+
+      setSuccess(false);
+    }
+  }, [success, form, product]);
+
   const handleQuantityChange = (newQuantity: string) => {
-    form.setValue("quantity", newQuantity); // Update the quantity in the form state
+    form.setValue("quantity", newQuantity);
   };
 
   const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
     form.setValue("category", category);
   };
 
@@ -115,31 +127,15 @@ export default function MaterialDetailForm({ product }: FormProps) {
               form={form}
               onCategoryChange={handleCategoryChange}
             />
-            <SizeSelect
-              product={product}
-              form={form}
-              // selectedCategory={form.watch("category")}
-              selectedCategory={selectedCategory}
-            />
+            <SizeSelect product={product} form={form} />
           </>
         )}
-
         <QuantityInput
-          // quantity={quantity}
-          // onDecrement={() => adjustQuantity(-1)}
-          // onIncrement={() => adjustQuantity(1)}
-          // onChange={(e) => setQuantity(e.target.value)}
-
-          // initialQuantity={form.watch("quantity")}
           onQuantityChange={handleQuantityChange}
           control={form.control}
           variant="quantity"
         />
-        <Button
-          type="submit"
-          onClick={() => console.log("Form Errors:", form.formState.errors)}
-          className={styles.submitButton}
-        >
+        <Button type="submit" className={styles.submitButton}>
           <ShoppingCartIcon color="hsl(var(--white-base))" size={22} />
           Request to Quote
         </Button>
@@ -155,13 +151,8 @@ interface SelectProps {
   onCategoryChange?: (category: string) => void;
 }
 
+// Category Select Component
 const CategorySelect = ({ product, form, onCategoryChange }: SelectProps) => {
-  //   const categories = Array.isArray(product.category)
-  //     ? product.category
-  //     : product.category
-  //     ? [product.category.name] // Extract `name` if it's an object
-  //     : [];
-
   return (
     <FormField
       control={form.control}
@@ -169,13 +160,12 @@ const CategorySelect = ({ product, form, onCategoryChange }: SelectProps) => {
       render={({ field }) => (
         <FormItem>
           <FormLabel className={styles.FormLabel}>Category:</FormLabel>
-          {/* <Select onValueChange={field.onChange} defaultValue={field.value}> */}
           <Select
             onValueChange={(value) => {
               field.onChange(value);
-              onCategoryChange?.(value);
+              onCategoryChange(value);
             }}
-            defaultValue={field.value}
+            value={field.value}
           >
             <FormControl>
               <SelectTrigger className={styles.SelectTrigger}>
@@ -200,13 +190,11 @@ const CategorySelect = ({ product, form, onCategoryChange }: SelectProps) => {
   );
 };
 
-const SizeSelect = ({ product, form, selectedCategory }: SelectProps) => {
-  const selectedCategorySizes =
-    selectedCategory &&
-    product.categories.find((category) => category.name === selectedCategory)
-      ?.sizes;
-
-  // console.log("Selected Category Sizes:", selectedCategorySizes);
+// Size Select Component
+const SizeSelect = ({ product, form }: SelectProps) => {
+  const selectedCategorySizes = product.categories.find(
+    (category) => category.name === form.watch("category"),
+  )?.sizes;
 
   return (
     <FormField
@@ -217,8 +205,8 @@ const SizeSelect = ({ product, form, selectedCategory }: SelectProps) => {
           <FormLabel className={styles.FormLabel}>Size:</FormLabel>
           <Select
             onValueChange={field.onChange}
-            defaultValue={field.value}
-            disabled={!selectedCategory}
+            value={field.value}
+            disabled={!form.watch("category")}
           >
             <FormControl>
               <SelectTrigger className={styles.SelectTrigger}>

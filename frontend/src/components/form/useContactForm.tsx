@@ -27,7 +27,7 @@ export const useContactForm = ({ cartItems }) => {
       company: "",
       message: "",
     },
-    mode: "onChange",
+    mode: "onSubmit",
   });
 
   const onSubmit = async (formData: FormValues) => {

@@ -1,59 +1,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Nav } from "./Nav";
-import { Footer, FooterLink } from "../components/Footer";
-import {
-  CustomerFacingNav,
-  CustomerFacingNavLink,
-} from "../components/CustomerFacingNav";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "../components/ui/navigation-menu";
+import { FooterLink } from "../components/Footer";
 
 const ToastModal = () => {
   const [isMaterialsOpen, setIsMaterialsOpen] = useState(false);
 
   return (
     <div className="fixed flex flex-col justify-evenly w-full h-full -left-0 top-20 bg-whitebase items-center">
-      {/* <CustomerFacingNav>
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem onMouseEnter={() => setIsMaterialsOpen(true)}>
-              <NavigationMenuTrigger className="font-openSans hover:text-primary">
-                Materials
-              </NavigationMenuTrigger>
-              {isMaterialsOpen && (
-                <MaterialMenuContent
-                  onMouseLeave={() => setIsMaterialsOpen(false)}
-                  menuHeight={menuHeight}
-                  isSubmenuOpen={isSubmenuOpen}
-                  isSubSubmenuOpen={isSubSubmenuOpen}
-                  setIsSubmenuOpen={setIsSubmenuOpen}
-                  setIsSubSubmenuOpen={setIsSubSubmenuOpen}
-                  handleFilterClick={handleFilterClick}
-                />
-              )}
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-        <CustomerFacingNavLink href="/about">About</CustomerFacingNavLink>
-        <CustomerFacingNavLink href="/services">Services</CustomerFacingNavLink>
-        <CustomerFacingNavLink href="/projectGallery">
-          Projects
-        </CustomerFacingNavLink>
-        <CustomerFacingNavLink href="/contact">Contact</CustomerFacingNavLink>
-        <CustomerFacingNavLink href="/cart">
-          <ShoppingCart
-            className={`${pathname === "/cart" && "fill-primary-dark"} min-w-[33px] hover:fill-primary-dark`}
-          />
-        </CustomerFacingNavLink>
-      </CustomerFacingNav> */}
       <div className="bg-primary-dark w-[88px] h-[88px] flex justify-center rounded-full">
         <Image src="/mail.svg" alt="mail" width={48} height={48} />
       </div>
@@ -99,74 +52,5 @@ const ToastModal = () => {
     </div>
   );
 };
-
-// const MaterialMenuContent = ({
-//   onMouseLeave,
-//   menuHeight,
-//   isSubmenuOpen,
-//   isSubSubmenuOpen,
-//   setIsSubmenuOpen,
-//   setIsSubSubmenuOpen,
-//   handleFilterClick,
-// }) => (
-//   <NavigationMenuContent
-//     onMouseLeave={onMouseLeave}
-//     className={`${menuHeight} flex justify-start bg-whitebase rounded-[10px] p-[16px]`}
-//   >
-//     <Link
-//       href="/materials"
-//       onClick={() => {
-//         handleFilterClick([]);
-//       }}
-//       className="font-[700] font-openSans text-[20px] pb-[8px]"
-//     >
-//       Shop All Materials
-//     </Link>
-
-//     <ul className="flex flex-col gap-[8px] w-[257px]">
-//       <MenuItem
-//         href="/materials"
-//         title="STONEYARD"
-//         description="We are focused on artisanal stone and tile"
-//         isSubmenuOpen={isSubmenuOpen === 1}
-//         onMouseEnter={() => setIsSubmenuOpen(1)}
-//         onClick={() => {
-//           setIsSubmenuOpen(null);
-//           handleFilterClick("Stoneyard");
-//         }}
-//         submenuItems={ArtisanalStone}
-//         isSubSubmenuOpen={isSubSubmenuOpen === 1}
-//         setIsSubSubmenuOpen={setIsSubSubmenuOpen}
-//         menuHeight={menuHeight}
-//       />
-//       <MenuItem
-//         href="/materials"
-//         title="MRC Rock & Sand"
-//         description="We are focused on artisanal stone and tile"
-//         isSubmenuOpen={isSubmenuOpen === 2}
-//         onMouseEnter={() => setIsSubmenuOpen(2)}
-//         onClick={() => {
-//           setIsSubmenuOpen(null);
-//           handleFilterClick("MRC Rock & Sand");
-//         }}
-//         submenuItems={MRCMaterials}
-//         menuHeight={menuHeight}
-//       />
-//       <MenuItem
-//         href="/materials"
-//         title="Santa Paula Mate..."
-//         description="We are focused on artisanal stone and tile"
-//         isSubmenuOpen={isSubmenuOpen === 3}
-//         onMouseEnter={() => setIsSubmenuOpen(3)}
-//         onClick={() => {
-//           setIsSubmenuOpen(null);
-//           handleFilterClick("Santa Paula Materials");
-//         }}
-//         submenuItems={SantaPaulaMaterials}
-//         menuHeight={menuHeight}
-//       />
-//     </ul>
-//   </NavigationMenuContent>
-// );
 
 export default ToastModal;
