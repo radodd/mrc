@@ -81,21 +81,22 @@ interface FilterContextProps {
 }
 
 const FilterContext = createContext<FilterContextProps | undefined>(undefined);
-export const FilterProvider = ({ children }: { children: ReactNode }) => {
-  if (typeof window === "undefined") {
-    return null; // Don't render on the server
-  }
 
+export const FilterProvider = ({ children }: { children: ReactNode }) => {
+  // Initialize state
   const [filterValueList, setFilterValueList] = useState<string[]>(() => {
-    const savedFilterValueList = localStorage.getItem("filterValueList");
-    if (savedFilterValueList) {
-      return Array.from(new Set(JSON.parse(savedFilterValueList)));
+    if (typeof window !== "undefined") {
+      const savedFilterValueList = localStorage.getItem("filterValueList");
+      if (savedFilterValueList) {
+        return Array.from(new Set(JSON.parse(savedFilterValueList)));
+      }
     }
     return [];
   });
 
+  // Effect to synchronize state with localStorage
   useEffect(() => {
-    if (filterValueList.length > 0) {
+    if (typeof window !== "undefined" && filterValueList.length > 0) {
       localStorage.setItem("filterValueList", JSON.stringify(filterValueList));
     }
   }, [filterValueList]);
@@ -106,6 +107,11 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  // Avoid rendering anything during server-side rendering
+  if (typeof window === "undefined") {
+    return null;
+  }
+
   return (
     <FilterContext.Provider
       value={{ filterValueList, setFilterValueList, clearFilter }}
@@ -114,6 +120,7 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
     </FilterContext.Provider>
   );
 };
+
 export const useFilter = () => {
   const context = useContext(FilterContext);
   if (context === undefined) {
