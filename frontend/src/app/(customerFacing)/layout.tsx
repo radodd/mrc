@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import ChevronNavSharp from "../../../public/chevron_nav_sharp.svg";
 import ShoppingCart from "../../../public/shopping_cart.svg";
-import { ArtisanalStone, MRCMaterials, SantaPaulaMaterials } from "../../../..";
+import { ArtisanalStone, MRCandSPMMaterials } from "../../../..";
 import { useFilter } from "../../context/FilterContext";
 import { cn } from "../../lib/utils";
 import {
@@ -24,15 +24,16 @@ import {
 
 import styles from "./index.module.scss";
 import { CustomerFacingNav2 } from "../../components/CustomerFacingNav2";
+// import { useRouter } from "next/router";
 
 const MENU_HEIGHT = {
   default: "min-h-[416px]",
 
-  STONEYARD: "h-[896px]",
+  STONEYARD: "h-[416px]",
 
-  MRC: "h-[456px]",
+  MRC: "h-[416px]",
 
-  SPM: "h-[544px]",
+  SPM: "h-[416px]",
 };
 
 export default function Layout({
@@ -44,6 +45,7 @@ export default function Layout({
   const [menuHeight, setMenuHeight] = useState(MENU_HEIGHT.default);
   const { setFilterValueList, filterValueList } = useFilter();
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {}, [
     isMaterialsOpen,
@@ -91,6 +93,43 @@ export default function Layout({
     });
   };
 
+  const handleMaterialDetail = async (item: string) => {
+    // const router = useRouter();
+    console.log("Material name provided:", item);
+
+    try {
+      // Log the fetch URL for debugging
+      const url = `https://mrc-two.vercel.app/api/materials?name=${encodeURIComponent(item)}`;
+      console.log("Fetch URL:", url);
+
+      // Fetch material details by name from your backend
+      const response = await fetch(url);
+
+      console.log("Fetch response status:", response.status);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch material by name");
+      }
+
+      const material = await response.json();
+
+      console.log("Material fetched:", material);
+
+      if (!material || !material.id) {
+        console.error("Material not found for name:", item);
+        return;
+      }
+
+      // Log the material ID before navigation
+      console.log("Material ID:", material.id);
+
+      // Navigate to the material detail page by ID
+      // router.push(`/materials/${material.id}`);
+    } catch (error) {
+      console.error("Error fetching material by name:", error);
+    }
+  };
+
   return (
     <>
       <CustomerFacingNav2>
@@ -109,6 +148,7 @@ export default function Layout({
                   setIsSubmenuOpen={setIsSubmenuOpen}
                   setIsSubSubmenuOpen={setIsSubSubmenuOpen}
                   handleFilterClick={handleFilterClick}
+                  handleMaterialDetail={handleMaterialDetail}
                 />
               )}
             </NavigationMenuItem>
@@ -139,6 +179,8 @@ const MaterialMenuContent = ({
   setIsSubmenuOpen,
   setIsSubSubmenuOpen,
   handleFilterClick,
+  handleMaterialDetail,
+  // onClick,
 }) => (
   <NavigationMenuContent
     onMouseLeave={onMouseLeave}
@@ -171,6 +213,7 @@ const MaterialMenuContent = ({
         isSubSubmenuOpen={isSubSubmenuOpen === 1}
         setIsSubSubmenuOpen={setIsSubSubmenuOpen}
         menuHeight={menuHeight}
+        handleMaterialDetail={handleMaterialDetail}
       />
       <MenuItem
         href="/materials"
@@ -184,8 +227,9 @@ const MaterialMenuContent = ({
           setIsSubmenuOpen(null);
           handleFilterClick("MRC Rock & Sand");
         }}
-        submenuItems={MRCMaterials}
+        submenuItems={MRCandSPMMaterials}
         menuHeight={menuHeight}
+        handleMaterialDetail={handleMaterialDetail}
       />
       <MenuItem
         href="/materials"
@@ -198,9 +242,11 @@ const MaterialMenuContent = ({
         onClick={() => {
           setIsSubmenuOpen(null);
           handleFilterClick("Santa Paula Materials");
+          // handleMaterialDetail();
         }}
-        submenuItems={SantaPaulaMaterials}
+        submenuItems={MRCandSPMMaterials}
         menuHeight={menuHeight}
+        handleMaterialDetail={handleMaterialDetail}
       />
     </ul>
   </NavigationMenuContent>
@@ -220,7 +266,8 @@ interface MenuItemProps {
   isSubSubmenuOpen?: boolean;
   setIsSubSubmenuOpen?: React.Dispatch<React.SetStateAction<number | null>>;
   menuHeight: string;
-  handleFilterClick?: () => void;
+  // handleFilterClick?: () => void;
+  handleMaterialDetail?: (item: string) => void;
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({
@@ -236,73 +283,46 @@ const MenuItem: React.FC<MenuItemProps> = ({
   isSubSubmenuOpen,
   setIsSubSubmenuOpen,
   menuHeight,
-  handleFilterClick,
+  handleMaterialDetail,
 }) => (
-  <ListItem
-    href={href}
-    title={title}
-    description={description}
-    onMouseEnter={onMouseEnter}
-    onClick={onClick}
-  >
-    {isSubmenuOpen && (
-      <ul className={styles.subMenuContainer}>
-        <li className="w-[208px]">
-          <SubList
-            logo={logo}
-            title={title}
-            subDescription={subDescription}
-            menuHeight={menuHeight}
-          />
-        </li>
-        {/* {title === "STONEYARD" ? (
-          <StoneyardCategories
-            items={["Artisanal Stone"]}
-            submenuItems={ArtisanalStone}
-          />
-        ) : isSubSubmenuOpen ? (
-          <SubList
-            items={submenuItems}
-            onMouseLeave={() => setIsSubSubmenuOpen(null)}
-          /> */}
-
-        {submenuItems && (
-          <div className="absolute bg-whitebase left-[260px] p-[16px] flex flex-col gap-[16px] rounded-r-[10px]">
-            {submenuItems.map((item, index) => (
-              <li
-                key={index}
-                className={`${title === "Santa Paula Mate..." || title === "STONEYARD" ? "w-[242px]" : ""} text-xl hover:text-primary w-[182px]`}
-                onClick={() => handleFilterClick()}
-              >
-                {item}
-              </li>
-            ))}
-          </div>
-        )}
-      </ul>
+  <>
+    <ListItem
+      href={href}
+      title={title}
+      description={description}
+      onMouseEnter={onMouseEnter}
+      // onClick={onClick}
+    >
+      {isSubmenuOpen && (
+        <ul className={styles.subMenuContainer}>
+          <li className="w-[208px]">
+            <SubList
+              logo={logo}
+              title={title}
+              subDescription={subDescription}
+              menuHeight={menuHeight}
+            />
+          </li>
+        </ul>
+      )}
+    </ListItem>
+    {isSubmenuOpen && submenuItems && (
+      <div className="absolute bg-whitebase left-[535px] top-[-1px] p-[16px] flex flex-col gap-[16px] rounded-r-[10px] h-[418px]">
+        {submenuItems.map((item, index) => (
+          <li
+            key={index}
+            className={`${title === "STONEYARD" ? "w-[242px]" : ""} text-xl hover:text-primary cursor-pointer w-[182px]`}
+            onClick={() => {
+              console.log("Clicked material:", item, typeof item);
+              handleMaterialDetail(item);
+            }}
+          >
+            {item}
+          </li>
+        ))}
+      </div>
     )}
-  </ListItem>
-);
-
-const FooterLinks = () => (
-  <div className="flex flex-col min-[1306px]:flex-row min-[1306px]:justify-between max-[1305px]:items-center w-full">
-    <div className="flex flex-col">
-      <FooterLink href="/">Santa Paula Materials</FooterLink>
-      <FooterLink href="/">MRC Rock and Sand</FooterLink>
-      <FooterLink href="/">Stoneyard</FooterLink>
-    </div>
-    <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
-      <div className="flex flex-col">
-        <FooterLink href="/about">About</FooterLink>
-        <FooterLink href="/about#faq">FAQ</FooterLink>
-        <FooterLink href="/contact">Contact</FooterLink>
-      </div>
-      <div className="flex flex-col">
-        <FooterLink href="/materials">Materials</FooterLink>
-        <FooterLink href="/services">Services</FooterLink>
-      </div>
-    </div>
-  </div>
+  </>
 );
 
 interface ListItemProps extends React.ComponentPropsWithoutRef<"a"> {
@@ -416,3 +436,23 @@ const StoneyardCategories = ({ items, submenuItems }) => {
     </div>
   );
 };
+const FooterLinks = () => (
+  <div className="flex flex-col min-[1306px]:flex-row min-[1306px]:justify-between max-[1305px]:items-center w-full">
+    <div className="flex flex-col">
+      <FooterLink href="/">Santa Paula Materials</FooterLink>
+      <FooterLink href="/">MRC Rock and Sand</FooterLink>
+      <FooterLink href="/">Stoneyard</FooterLink>
+    </div>
+    <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
+      <div className="flex flex-col">
+        <FooterLink href="/about">About</FooterLink>
+        <FooterLink href="/about#faq">FAQ</FooterLink>
+        <FooterLink href="/contact">Contact</FooterLink>
+      </div>
+      <div className="flex flex-col">
+        <FooterLink href="/materials">Materials</FooterLink>
+        <FooterLink href="/services">Services</FooterLink>
+      </div>
+    </div>
+  </div>
+);

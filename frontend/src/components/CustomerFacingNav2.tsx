@@ -17,7 +17,7 @@ import {
 import { ChevronDown } from "lucide-react";
 import { NavigationMenuLink } from "./ui/navigation-menu";
 import { Separator } from "./ui/separator";
-import { ArtisanalStone } from "../../..";
+import { ArtisanalStone, MRCandSPMMaterials } from "../../..";
 
 import styles from "./scss/CustomerFacingNav.module.scss";
 
@@ -112,7 +112,7 @@ const MaterialSections = () => (
       title="Santa Paula Materials"
       description="Demolition, recycling, and producing crushed materials."
       src="/logo_mrc_spm.svg"
-      items={ArtisanalStone}
+      items={MRCandSPMMaterials}
     />
   </>
 );

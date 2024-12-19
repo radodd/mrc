@@ -71,10 +71,10 @@ export const getMaterial = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { id } = req.params; // Extract the material ID from the route parameters
+  const { name } = req.params; // Extract the material ID from the route parameters
 
   try {
-    console.log(`getMaterialById called for ID: ${id}`);
+    console.log(`getMaterialById called for ID: ${name}`);
 
     // Query to fetch material details along with its categories and sizes
     const { data, error } = await supabase
@@ -108,7 +108,8 @@ export const getMaterial = async (
     )
     `
       )
-      .eq("id", id);
+      // .eq("id", id);
+      .ilike("name", `%${name}%`);
 
     if (error) {
       console.error("Error fetching material by ID:", error);
@@ -116,7 +117,7 @@ export const getMaterial = async (
     }
 
     if (!data || data.length === 0) {
-      throw createHttpError(404, `Material with ID ${id} not found`);
+      throw createHttpError(404, `Material with ID ${name} not found`);
     }
 
     console.log("Material details fetched successfully:", data);
@@ -126,49 +127,3 @@ export const getMaterial = async (
     next(error); // Pass error to the global error handler
   }
 };
-
-// const { createClient } = require("@supabase/supabase-js");
-// const createHttpError = require("http-errors");
-
-// const supabaseUrl = process.env.SUPABASE_URL;
-// const supabaseKey = process.env.SUPABASE_API_KEY;
-
-// if (!supabaseUrl || !supabaseKey) {
-//   throw new Error(
-//     "Supabase URL and API Key must be set in environment variables"
-//   );
-// }
-
-// const supabase = createClient(supabaseUrl, supabaseKey);
-// @ts-ignore
-// exports.getMaterials = async (req, res, next) => {
-//   try {
-//     console.log("getMaterials called");
-
-//     const { data, error } = await supabase.from("Materials").select(`
-//         id,
-//         name,
-//         description,
-//         color,
-//         texture,
-//         company,
-//         imagePath,
-//         imagePrimary
-//       `);
-
-//     if (error) {
-//       console.error("Error fetching materials:", error);
-//       throw createHttpError(500, "Failed to fetch Materials");
-//     }
-
-//     if (!data || data.length === 0) {
-//       throw createHttpError(404, "No Materials found");
-//     }
-
-//     console.log("Materials fetched successfully:", data);
-//     res.status(200).json(data);
-//   } catch (error) {
-//     console.error("Error in getMaterials:", error);
-//     next(error); // Pass error to the global error handler
-//   }
-// };
