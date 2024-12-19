@@ -184,15 +184,20 @@ export const getMaterialById = async (
     next(error); // Pass error to the global error handler
   }
 };
+
 export const getMaterialByName = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { name } = req.params; // Extract material name from route parameters
+  const { name } = req.query; // Get the material name from query parameters
 
   try {
-    console.log(`getMaterialByName called for Name: ${name}`);
+    if (!name) {
+      throw createHttpError(400, "Material name is required");
+    }
+
+    console.log(`getMaterialsByName called for Name: ${name}`);
 
     // Query to fetch material details by name
     const { data, error } = await supabase
@@ -238,9 +243,9 @@ export const getMaterialByName = async (
     }
 
     console.log("Material details fetched successfully:", data);
-    res.status(200).json(data[0]); // Return the first item since names should be unique
+    res.status(200).json(data[0]); // Return the first matched item
   } catch (error) {
-    console.error("Error in getMaterialByName:", error);
+    console.error("Error in getMaterialsByName:", error);
     next(error); // Pass error to the global error handler
   }
 };
