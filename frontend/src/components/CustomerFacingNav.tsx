@@ -104,7 +104,7 @@ const MaterialSections = () => {
     <>
       <Separator className="bg-[#919EA6]" />
       <MaterialSection
-        title="STONEYARD"
+        title="Stoneyard"
         description="We are focused on artisanal stone and tile."
         items={ArtisanalStone}
         setFilterValueList={setFilterValueList}
@@ -160,14 +160,14 @@ const MaterialSection = ({
           <p>{description}</p>
         </div>
       </SheetTrigger>
-      {title === "STONEYARD" ? (
+      {title === "Stoneyard" ? (
         <SheetContent
           hideOverlay={true}
           className={styles.stoneyardMaterialCategorySheet}
         >
           {/* Stoneyard content */}
           <span className="relative text-[24px] font-[700] flex justify-center items-center text-blackbase border-2 border-primary active:bg-tanbase">
-            STONEYARD
+            Stoneyard
           </span>
           <div className="flex flex-row px-[8px] py-[24px] gap-[16px]">
             <Logo />

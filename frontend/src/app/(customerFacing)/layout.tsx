@@ -5,7 +5,12 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import ChevronNavSharp from "../../../public/chevron_nav_sharp.svg";
 import ShoppingCart from "../../../public/shopping_cart.svg";
-import { ArtisanalStone, MRCandSPMMaterials, MaterialID } from "../../../..";
+import {
+  ArtisanalStone,
+  MRCandSPMMaterials,
+  MaterialID,
+  SantaPaulaMaterials,
+} from "../../../..";
 import { useFilter } from "../../context/FilterContext";
 import { cn } from "../../lib/utils";
 import {
@@ -257,7 +262,7 @@ const MaterialMenuContent = ({
           handleFilterClick("Santa Paula Materials");
           // handleMaterialDetail();
         }}
-        submenuItems={MRCandSPMMaterials}
+        submenuItems={SantaPaulaMaterials}
         menuHeight={menuHeight}
         handleMaterialDetail={handleMaterialDetail}
       />

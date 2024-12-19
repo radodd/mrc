@@ -107,7 +107,7 @@ export const CompanyAddresses = [
   },
   {
     id: 2,
-    name: "STONEYARD",
+    name: "Stoneyard",
     address: "1400 E Santa Clara St, Santa Paula, CA 93060",
     maps: "https://maps.app.goo.gl/6U3rWgLghiJeLMtF9",
   },
@@ -174,7 +174,7 @@ export const HOWTOUSE = [
 
 export const MaterialsMenu = [
   {
-    company: "STONEYARD",
+    company: "Stoneyard",
     text: "We are focused on artisanal stone and tile.",
   },
   {
@@ -209,6 +209,8 @@ export const MRCandSPMMaterials = [
   "Santa Barbara",
   "Construction Aggregates",
 ];
+
+export const SantaPaulaMaterials = ["Construction Aggregates"];
 
 export const RequestQuoteCards = [
   {

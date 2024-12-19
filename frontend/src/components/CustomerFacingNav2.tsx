@@ -97,7 +97,7 @@ const MaterialsDropdown = () => {
 const MaterialSections = () => (
   <>
     <MaterialSection
-      title="STONEYARD"
+      title="Stoneyard"
       description="We are focused on artisanal stone and tile."
       items={ArtisanalStone}
       src="/logo_stoneyard.svg"

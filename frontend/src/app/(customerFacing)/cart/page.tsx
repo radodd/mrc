@@ -115,7 +115,7 @@ const Cart = ({ cartItems, setCartItems }) => {
         {cartItems.length > 0 ? (
           cartItems.map((item, index) => (
             <div key={index} className={style.cartItemContainer}>
-              <div className={style.imageContainer}>
+              {/* <div className={style.imageContainer}>
                 <Image
                   src={item?.image ? item.image : "/image_not_available.svg"}
                   alt=""
@@ -123,7 +123,7 @@ const Cart = ({ cartItems, setCartItems }) => {
                   height={500}
                   className={style.image}
                 />
-              </div>
+              </div> */}
 
               <h1>{item?.name}</h1>
 
