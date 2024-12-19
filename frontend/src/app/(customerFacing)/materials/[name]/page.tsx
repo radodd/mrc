@@ -36,13 +36,13 @@ export type ProductCardProps = {
 
 type Orientation = "horizontal" | "vertical";
 
-const fetchProductById = async (
-  id: string,
+const fetchMaterialByName = async (
+  name: string,
 ): Promise<ProductCardProps | null> => {
   try {
     const response = await fetch(
       // `https://mrc-two.vercel.app/api/products/${id}`,
-      `https://mrc-two.vercel.app/api/materials/${id}`,
+      `https://mrc-two.vercel.app/api/materials/${name}`,
       {
         method: "GET",
         credentials: "include",
@@ -100,8 +100,8 @@ const fetchProductById = async (
   }
 };
 
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default function ProductPage({ params }: { params: { name: string } }) {
+  const { name } = params;
   const [product, setProduct] = useState<ProductCardProps | null>(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [orientation, setOrientation] = useState<Orientation>("horizontal");
@@ -130,22 +130,34 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     }
   }, [product]);
 
+  // useEffect(() => {
+  //   if (id) {
+  //     console.log("in page.tsx::", id, typeof id);
+  //     const productId = Array.isArray(id) ? id[0] : id;
+  //     fetchProductById(productId as string)
+  //       .then((mappedProduct) => {
+  //         setProduct(mappedProduct);
+  //         console.log("prodcuts", productId, product, mappedProduct);
+  //       })
+
+  //       .catch((error) => {
+  //         console.error("Failed to fetch product data:", error);
+  //       });
+  //   }
+  //   // console.log("prodcuts", productId, product)
+  // }, [id]);
+
   useEffect(() => {
-    if (id) {
-      console.log("in page.tsx::", id, typeof id);
-      const productId = Array.isArray(id) ? id[0] : id;
-      fetchProductById(productId as string)
+    if (name) {
+      fetchMaterialByName(name)
         .then((mappedProduct) => {
           setProduct(mappedProduct);
-          console.log("prodcuts", productId, product, mappedProduct);
         })
-
         .catch((error) => {
           console.error("Failed to fetch product data:", error);
         });
     }
-    // console.log("prodcuts", productId, product)
-  }, [id]);
+  }, [name]);
 
   if (!product) {
     return (
