@@ -33,17 +33,18 @@
   justify-content: center;
   align-items: center;
   // width: 430px;
-  height: 254px;
+  // height: 254px;
+  width: 100%;
 
-  @media (min-width: 769px) and (max-width: 1305px) {
-    height: 480px;
-  }
-  @media (min-width: 1306px) and (max-width: 1600px) {
-    height: 658px;
-  }
-  @media (min-width: 1601px) {
-    height: 800px;
-  }
+  // @media (min-width: 769px) and (max-width: 1305px) {
+  //   height: 480px;
+  // }
+  // @media (min-width: 1306px) and (max-width: 1600px) {
+  //   height: 658px;
+  // }
+  // @media (min-width: 1601px) {
+  //   height: 800px;
+  // }
 }
 
 .imageContainer::before {

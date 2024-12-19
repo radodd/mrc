@@ -17,12 +17,20 @@ export default function AboutPage() {
       {/* HERO */}
       <div className={styles.heroContainer}>
         <div className={styles.imageContainer}>
-          <Image
+          {/* <Image
             src="/family_owned.png"
             alt=""
             width={4096}
             height={2731}
             className={styles.image}
+          /> */}
+          <video
+            src="/family_owned_video.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className={styles.imageContainer}
           />
         </div>
 
