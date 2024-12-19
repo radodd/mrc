@@ -81,23 +81,24 @@ interface FilterContextProps {
 }
 
 const FilterContext = createContext<FilterContextProps | undefined>(undefined);
-
 export const FilterProvider = ({ children }: { children: ReactNode }) => {
+  if (typeof window === "undefined") {
+    return null; // Don't render on the server
+  }
+
   const [filterValueList, setFilterValueList] = useState<string[]>(() => {
     const savedFilterValueList = localStorage.getItem("filterValueList");
     if (savedFilterValueList) {
-      // Parse and ensure uniqueness using Set
       return Array.from(new Set(JSON.parse(savedFilterValueList)));
     }
     return [];
   });
 
-  // useEffect(() => {
-  //   if (filterValueList.length > 0) {
-  //     // Only update localStorage if the list is not empty
-  //     localStorage.setItem("filterValueList", JSON.stringify(filterValueList));
-  //   }
-  // }, [filterValueList]);
+  useEffect(() => {
+    if (filterValueList.length > 0) {
+      localStorage.setItem("filterValueList", JSON.stringify(filterValueList));
+    }
+  }, [filterValueList]);
 
   const clearFilter = (filter: string) => {
     setFilterValueList((prevFilters) =>
@@ -114,10 +115,42 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const useFilter = () => {
-  const context = useContext(FilterContext);
-  if (context === undefined) {
-    throw new Error("useFilter must be used within a FilterProvider");
-  }
-  return context;
-};
+// export const FilterProvider = ({ children }: { children: ReactNode }) => {
+//   const [filterValueList, setFilterValueList] = useState<string[]>(() => {
+//     const savedFilterValueList = localStorage.getItem("filterValueList");
+//     if (savedFilterValueList) {
+//       // Parse and ensure uniqueness using Set
+//       return Array.from(new Set(JSON.parse(savedFilterValueList)));
+//     }
+//     return [];
+//   });
+
+//   useEffect(() => {
+//     if (filterValueList.length > 0) {
+//       // Only update localStorage if the list is not empty
+//       localStorage.setItem("filterValueList", JSON.stringify(filterValueList));
+//     }
+//   }, [filterValueList]);
+
+//   const clearFilter = (filter: string) => {
+//     setFilterValueList((prevFilters) =>
+//       prevFilters.filter((f) => f !== filter),
+//     );
+//   };
+
+//   return (
+//     <FilterContext.Provider
+//       value={{ filterValueList, setFilterValueList, clearFilter }}
+//     >
+//       {children}
+//     </FilterContext.Provider>
+//   );
+// };
+
+// export const useFilter = () => {
+//   const context = useContext(FilterContext);
+//   if (context === undefined) {
+//     throw new Error("useFilter must be used within a FilterProvider");
+//   }
+//   return context;
+// };
