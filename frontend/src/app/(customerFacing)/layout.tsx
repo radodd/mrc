@@ -196,9 +196,9 @@ const MaterialMenuContent = ({
   >
     <Link
       href="/materials"
-      // onClick={() => {
-      //   handleFilterClick("");
-      // }}
+      onClick={() => {
+        handleFilterClick([]);
+      }}
       className="font-[700] font-openSans text-[20px] pb-[8px]"
     >
       Shop All Materials

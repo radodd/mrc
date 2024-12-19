@@ -80,9 +80,12 @@ export function ProductCard({
                 </>
               ) : (
                 <>
-                  {" "}
                   <CardInfoRow label="Colors" value={color?.join(", ")} />
-                  <CardInfoRow label="Uses" value={uses?.join(", ")} />
+                  {uses[0] === "TBD" ? (
+                    <></>
+                  ) : (
+                    <CardInfoRow label="Uses" value={uses?.join(", ")} />
+                  )}
                 </>
               )}
 

@@ -224,7 +224,7 @@ export default function CartPage() {
         </Accordion>
 
         <div className="flex-1 max-[1306px]:hidden">
-          <h2 className="font-bold text-xl text-primary mb-4">How to use</h2>
+          <h2 className={style.howToText}>How to use</h2>
           <div className={style.howToContainer}>
             {HOWTOUSE.map((item, index) => (
               <div key={index} className="mb-8">
