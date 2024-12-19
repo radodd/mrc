@@ -124,8 +124,12 @@ export default function RequestQuote() {
             </div>
           </CarouselItem>
         </CarouselContent>
-        <CarouselNext className={styles.nextMobile} />
-        <CarouselPrevious className={styles.prevMobile} />
+        <CarouselNext width={20} height={30} className={styles.nextMobile} />
+        <CarouselPrevious
+          width={20}
+          height={30}
+          className={styles.prevMobile}
+        />
       </Carousel>
     </div>
   );

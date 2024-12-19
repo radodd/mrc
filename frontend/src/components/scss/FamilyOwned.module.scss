@@ -16,8 +16,8 @@
   gap: 24px;
   max-width: 100%;
   padding: 40px 32px;
+  max-width: calc(50% - 0px);
   @include mid-break {
-    max-width: calc(50% - 0px);
     padding: 40px 72px;
   }
   @include large-break {

@@ -79,7 +79,9 @@ export default function LandingPageCarousel2() {
                 {index === 0 ? (
                   <div className={styles.uniqueContentContainer}>
                     <div className={styles.uniqueHeader}>
-                      <span className="flex">{slide.header}</span>
+                      <span className="flex text-whitebase">
+                        {slide.header}
+                      </span>
                       <div className="flex flex-row min-[857px]:items-center max-[856px]:flex-col">
                         <span className="text-[#A9C8D3]">
                           {slide.subheader}

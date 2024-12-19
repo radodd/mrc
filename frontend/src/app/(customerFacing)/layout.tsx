@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import ChevronNavSharp from "../../../public/chevron_nav_sharp.svg";
 import ShoppingCart from "../../../public/shopping_cart.svg";
-import { ArtisanalStone, MRCandSPMMaterials } from "../../../..";
+import { ArtisanalStone, MRCandSPMMaterials, MaterialID } from "../../../..";
 import { useFilter } from "../../context/FilterContext";
 import { cn } from "../../lib/utils";
 import {
@@ -83,50 +83,52 @@ export default function Layout({
   //     );
   //   }
   // };
+  // const handleFilterClick = (filterValue: string) => {
+  //   setFilterValueList((prevList) => {
+  //     const updatedList = [...prevList, filterValue]; // Add the new filter to the existing list.
+  //     if (typeof window !== "undefined") {
+  //       localStorage.setItem("filterValueList", JSON.stringify(updatedList));
+  //     }
+  //     return updatedList;
+  //   });
+  // };
+
+  // const handleFilterClick = (filterValue: string) => {
+  // setFilterValueList([filterValue]); // Clear existing filters and set the new one
+  // if (typeof window !== "undefined") {
+  //   localStorage.setItem("filterValueList", JSON.stringify([filterValue]));
+  //   console.log(filterValueList, filterValue); // Store the updated list in localStorage
+  // }
+  // };
+
   const handleFilterClick = (filterValue: string) => {
     setFilterValueList((prevList) => {
-      const updatedList = [...prevList, filterValue]; // Add the new filter to the existing list.
+      // First, clear the filter list and then check if the filterValue is unique
+      const updatedList =
+        prevList.length === 0 || !prevList.includes(filterValue)
+          ? [filterValue] // If list is empty or filterValue is not in the list, add the new filter
+          : prevList; // Keep the existing list if the value already exists
+
       if (typeof window !== "undefined") {
-        localStorage.setItem("filterValueList", JSON.stringify(updatedList));
+        localStorage.setItem("filterValueList", JSON.stringify(updatedList)); // Store the updated list in localStorage
+        console.log("Updated filter list:", updatedList);
       }
+
       return updatedList;
     });
   };
 
-  const handleMaterialDetail = async (item: string) => {
-    // const router = useRouter();
-    console.log("Material name provided:", item);
+  const handleMaterialDetail = async (materialName: string) => {
+    // Find the material by name
+    const material = MaterialID.find((item) => item.name === materialName);
 
-    try {
-      // Log the fetch URL for debugging
-      const url = `https://mrc-two.vercel.app/api/materials?name=${encodeURIComponent(item)}`;
-      console.log("Fetch URL:", url);
-
-      // Fetch material details by name from your backend
-      const response = await fetch(url);
-
-      console.log("Fetch response status:", response.status);
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch material by name");
-      }
-
-      const material = await response.json();
-
-      console.log("Material fetched:", material);
-
-      if (!material || !material.id) {
-        console.error("Material not found for name:", item);
-        return;
-      }
-
-      // Log the material ID before navigation
-      console.log("Material ID:", material.id);
-
-      // Navigate to the material detail page by ID
-      // router.push(`/materials/${material.id}`);
-    } catch (error) {
-      console.error("Error fetching material by name:", error);
+    if (material) {
+      console.log("Found material with ID:", material.id);
+      // Now you can use the material.id to fetch details or navigate to the details page
+      // For example:
+      router.push(`/materials/${material.id}`);
+    } else {
+      console.error("Material not found:", materialName);
     }
   };
 
@@ -224,8 +226,8 @@ const MaterialMenuContent = ({
         isSubmenuOpen={isSubmenuOpen === 2}
         onMouseEnter={() => setIsSubmenuOpen(2)}
         onClick={() => {
-          setIsSubmenuOpen(null);
           handleFilterClick("MRC Rock & Sand");
+          setIsSubmenuOpen(null);
         }}
         submenuItems={MRCandSPMMaterials}
         menuHeight={menuHeight}
@@ -438,7 +440,7 @@ const StoneyardCategories = ({ items, submenuItems }) => {
 };
 const FooterLinks = () => (
   <div className="flex flex-col min-[1306px]:flex-row min-[1306px]:justify-between max-[1305px]:items-center w-full">
-    <div className="flex flex-col">
+    <div className="flex flex-col min-[768px]:text-center">
       <FooterLink href="/">Santa Paula Materials</FooterLink>
       <FooterLink href="/">MRC Rock and Sand</FooterLink>
       <FooterLink href="/">Stoneyard</FooterLink>

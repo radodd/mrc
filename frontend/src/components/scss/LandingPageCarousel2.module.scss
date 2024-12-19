@@ -64,7 +64,8 @@
   }
 
   span {
-    color: var(--White-Base, #fdfbf6);
+    // color: var(--Primary---Light, #a9c8d3);
+
     text-align: start;
     align-items: center;
     font-family: var(--font-montserrat);
@@ -183,7 +184,7 @@
 .imageContainer {
   flex: 1;
   width: 100%;
-  height: 601px;
+  height: 603px;
   @include queries.custom-break-900 {
     position: absolute;
   }

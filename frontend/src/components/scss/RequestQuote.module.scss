@@ -127,6 +127,8 @@
 }
 .nextMobile {
   // transform: translateX(5px);
+  stroke: #5c5d6d;
+
   right: -10px;
 }
 
@@ -136,4 +138,5 @@
 
 .prevMobile {
   left: -10px;
+  stroke: #5c5d6d;
 }

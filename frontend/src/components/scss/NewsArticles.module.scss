@@ -28,6 +28,7 @@
   width: 100%;
   max-height: 266px;
   overflow: hidden;
+  width: calc(50%);
   @include mid-break {
     max-height: 700px;
     min-width: calc(50%);

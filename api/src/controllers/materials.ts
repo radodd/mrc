@@ -133,6 +133,7 @@ export const getMaterialById = async (
   next: NextFunction
 ) => {
   const { id } = req.params;
+
   try {
     // Query to fetch material details by ID
     const { data, error } = await supabase
@@ -191,10 +192,14 @@ export const getMaterialByName = async (
   next: NextFunction
 ) => {
   const { name } = req.query; // Get the material name from query parameters
+  console.log("Received name parameter:", name);
 
   try {
-    if (!name) {
-      throw createHttpError(400, "Material name is required");
+    if (!name || typeof name !== "string") {
+      throw createHttpError(
+        400,
+        "Material name is required and must be a string"
+      );
     }
 
     console.log(`getMaterialsByName called for Name: ${name}`);
