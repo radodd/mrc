@@ -92,12 +92,12 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
     return [];
   });
 
-  useEffect(() => {
-    if (filterValueList.length > 0) {
-      // Only update localStorage if the list is not empty
-      localStorage.setItem("filterValueList", JSON.stringify(filterValueList));
-    }
-  }, [filterValueList]);
+  // useEffect(() => {
+  //   if (filterValueList.length > 0) {
+  //     // Only update localStorage if the list is not empty
+  //     localStorage.setItem("filterValueList", JSON.stringify(filterValueList));
+  //   }
+  // }, [filterValueList]);
 
   const clearFilter = (filter: string) => {
     setFilterValueList((prevFilters) =>
