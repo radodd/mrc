@@ -124,9 +124,6 @@ export default function LandingPageCarousel2() {
                       <p className={styles.description}>{slide.description}</p>
                       <div className={styles.buttonContainer}>
                         {slide.buttons.map((button, btnIndex) => {
-                          console.log(
-                            `Button Index: ${btnIndex}, Button Text: ${button.text}`,
-                          );
                           let variant = button.variant; // Default to the button's specified variant
                           if (isMounted) {
                             const isSmallScreen = windowWidth <= 900;

@@ -104,7 +104,7 @@ const MaterialSections = () => (
     />
     <MaterialSection
       title="MRC Rock & Sand"
-      description="Supplying aggregates and services for construction."
+      description=" aggregates and services for construction."
       src="/logo_mrc_spm.svg"
       items={ArtisanalStone}
     />

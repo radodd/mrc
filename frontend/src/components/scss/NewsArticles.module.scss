@@ -9,9 +9,11 @@
   position: relative;
   @include mid-break {
     max-height: 470px;
+    margin-bottom: 104px;
   }
   @include large-break {
     max-height: 470px;
+    margin-bottom: 104px;
   }
 }
 
@@ -28,7 +30,7 @@
   width: 100%;
   max-height: 266px;
   overflow: hidden;
-  width: calc(50%);
+  // width: calc(50%);
   @include mid-break {
     max-height: 700px;
     min-width: calc(50%);
@@ -65,7 +67,8 @@
     // max-width: calc(50%);
   }
   @include large-break {
-    margin: 64px 40px;
+    gap: 40px;
+    margin: 80px 144px 80px 40px;
     padding: 0 24px 32px;
   }
   h1 {
@@ -93,6 +96,9 @@
     @include mid-break {
       font-size: 20px;
     }
+    @include large-break {
+      font-size: 20px;
+    }
   }
 }
 
@@ -100,9 +106,13 @@
   transform: translateY(7.6rem) translateX(1.3rem);
   @include mid-break {
     transform: translateY(0rem) translateX(1.4rem);
+    fill: antiquewhite;
+    color: antiquewhite;
   }
   @include large-break {
     transform: translateY(0rem) translateX(1.4rem);
+    fill: antiquewhite;
+    color: antiquewhite;
   }
 }
 
@@ -112,7 +122,7 @@
     transform: translateY(0rem) translateX(-1.4rem);
   }
   @include large-break {
-    transform: translateY(0rem) translateX(-1.4rem);
+    transform: translateY(0rem) translateX(-5rem);
   }
 }
 
@@ -125,6 +135,9 @@
   justify-content: center;
   gap: 12px;
   @include mid-break {
+    left: 71vw;
+  }
+  @include large-break {
     left: 71vw;
   }
 }

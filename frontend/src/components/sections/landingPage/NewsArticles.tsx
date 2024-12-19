@@ -18,6 +18,18 @@ import CarouselIndicator from "../../ui/CarouselIndicator";
 export default function NewsArticles() {
   const [current, setCurrent] = useState(-1);
   const [api, setApi] = useState<CarouselApi | null>(null);
+  const [isAbove768px, setIsAbove768px] = useState(
+    typeof window !== "undefined" ? window.innerWidth > 768 : false,
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setIsAbove768px(window.innerWidth > 768);
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!api) {
@@ -57,7 +69,7 @@ export default function NewsArticles() {
         <CarouselPrevious
           width={20}
           height={30}
-          color="#235E74"
+          color={isAbove768px ? "#FDFBF6" : "#235E74"}
           className={styles.prev}
         />
         <CarouselNext

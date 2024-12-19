@@ -31,9 +31,10 @@
 }
 
 .materialDetailsContainer {
+  // border: 2px green solid;
   display: flex;
   justify-content: center;
-
+  padding-bottom: 40px;
   @include mid-break {
     flex-direction: column;
   }
@@ -61,6 +62,7 @@
 //   }
 // }
 .materialImagesContainer {
+  // border: 2px red solid;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -73,7 +75,9 @@
   @include large-break {
     // flex-direction: row-reverse;
     justify-content: start;
+    // align-items: end;
     margin: 0 0 0 72px;
+    max-width: 620px;
   }
 }
 
@@ -86,6 +90,7 @@
   }
   @include large-break {
     // max-height: 556px;
+    max-width: 75%;
   }
 }
 
@@ -219,6 +224,7 @@
 
 .expandableContent.expanded {
   max-height: 150rem;
+  max-width: 550px;
   opacity: 1;
   p {
     padding-top: 32px;

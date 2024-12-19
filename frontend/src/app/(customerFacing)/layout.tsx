@@ -24,6 +24,7 @@ import {
 
 import styles from "./index.module.scss";
 import { CustomerFacingNav2 } from "../../components/CustomerFacingNav2";
+import { ClientOnly } from "../../lib/ClientOnly";
 // import { useRouter } from "next/router";
 
 const MENU_HEIGHT = {
@@ -93,30 +94,30 @@ export default function Layout({
   //   });
   // };
 
-  // const handleFilterClick = (filterValue: string) => {
-  // setFilterValueList([filterValue]); // Clear existing filters and set the new one
-  // if (typeof window !== "undefined") {
-  //   localStorage.setItem("filterValueList", JSON.stringify([filterValue]));
-  //   console.log(filterValueList, filterValue); // Store the updated list in localStorage
-  // }
-  // };
-
   const handleFilterClick = (filterValue: string) => {
-    setFilterValueList((prevList) => {
-      // First, clear the filter list and then check if the filterValue is unique
-      const updatedList =
-        prevList.length === 0 || !prevList.includes(filterValue)
-          ? [filterValue] // If list is empty or filterValue is not in the list, add the new filter
-          : prevList; // Keep the existing list if the value already exists
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem("filterValueList", JSON.stringify(updatedList)); // Store the updated list in localStorage
-        console.log("Updated filter list:", updatedList);
-      }
-
-      return updatedList;
-    });
+    setFilterValueList([filterValue]); // Clear existing filters and set the new one
+    if (typeof window !== "undefined") {
+      localStorage.setItem("filterValueList", JSON.stringify([filterValue]));
+      console.log("Updated filterValueList:", [filterValue]);
+    }
   };
+
+  // const handleFilterClick = (filterValue: string) => {
+  //   setFilterValueList((prevList) => {
+  //     // First, clear the filter list and then check if the filterValue is unique
+  //     const updatedList =
+  //       prevList.length === 0 || !prevList.includes(filterValue)
+  //         ? [filterValue] // If list is empty or filterValue is not in the list, add the new filter
+  //         : prevList; // Keep the existing list if the value already exists
+
+  //     if (typeof window !== "undefined") {
+  //       localStorage.setItem("filterValueList", JSON.stringify(updatedList)); // Store the updated list in localStorage
+  //       console.log("Updated filter list:", updatedList);
+  //     }
+
+  //     return updatedList;
+  //   });
+  // };
 
   const handleMaterialDetail = async (materialName: string) => {
     // Find the material by name
@@ -156,15 +157,20 @@ export default function Layout({
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        <CustomerFacingNavLink href="/about">About</CustomerFacingNavLink>
-        <CustomerFacingNavLink href="/services">Services</CustomerFacingNavLink>
-        <CustomerFacingNavLink href="/contact">Contact</CustomerFacingNavLink>
-        <CustomerFacingNavLink href="/cart">
-          <ShoppingCart
-            className={`${pathname === "/cart" && "fill-primary-dark"} min-w-[33px] hover:fill-primary-dark`}
-          />
-        </CustomerFacingNavLink>
+        <ClientOnly>
+          <CustomerFacingNavLink href="/about">About</CustomerFacingNavLink>
+          <CustomerFacingNavLink href="/services">
+            Services
+          </CustomerFacingNavLink>
+          <CustomerFacingNavLink href="/contact">Contact</CustomerFacingNavLink>
+          <CustomerFacingNavLink href="/cart">
+            <ShoppingCart
+              className={`${pathname === "/cart" && "fill-primary-dark"} min-w-[33px] hover:fill-primary-dark`}
+            />
+          </CustomerFacingNavLink>
+        </ClientOnly>
       </CustomerFacingNav2>
+
       <div>{children}</div>
       <Footer>
         <FooterLinks />
@@ -200,6 +206,7 @@ const MaterialMenuContent = ({
 
     <ul className="flex flex-col gap-[8px] w-[257px]">
       <MenuItem
+        data-testid="menu-item-stoneyard"
         href="/materials"
         logo="/logo_stoneyard.svg"
         title="STONEYARD"
@@ -207,9 +214,12 @@ const MaterialMenuContent = ({
         subDescription="We are focused on artisanal stone and tile"
         isSubmenuOpen={isSubmenuOpen === 1}
         onMouseEnter={() => setIsSubmenuOpen(1)}
-        onClick={() => {
-          setIsSubmenuOpen(null);
+        onClick={(event) => {
+          console.log("Click", event);
+          console.log("handleFilterClick triggered with filter: Stoneyard");
+
           handleFilterClick("Stoneyard");
+          setIsSubmenuOpen(null);
         }}
         submenuItems={ArtisanalStone}
         isSubSubmenuOpen={isSubSubmenuOpen === 1}
@@ -226,6 +236,7 @@ const MaterialMenuContent = ({
         isSubmenuOpen={isSubmenuOpen === 2}
         onMouseEnter={() => setIsSubmenuOpen(2)}
         onClick={() => {
+          console.log("handleFilterClick triggered with filter: MRC");
           handleFilterClick("MRC Rock & Sand");
           setIsSubmenuOpen(null);
         }}
@@ -262,7 +273,7 @@ interface MenuItemProps {
   subDescription: string;
   onMouseEnter: () => void;
   onMouseLeave?: () => void;
-  onClick: () => void;
+  onClick: (event) => void;
   isSubmenuOpen: boolean;
   submenuItems?: string[];
   isSubSubmenuOpen?: boolean;
@@ -293,7 +304,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
       title={title}
       description={description}
       onMouseEnter={onMouseEnter}
-      // onClick={onClick}
+      onClick={onClick}
     >
       {isSubmenuOpen && (
         <ul className={styles.subMenuContainer}>
@@ -396,51 +407,51 @@ const SubList: React.FC<SubListProps> = ({
   </>
 );
 
-const StoneyardCategories = ({ items, submenuItems }) => {
-  const [isArtisanalStoneHovered, setIsArtisanalStoneHovered] = useState(false);
+// const StoneyardCategories = ({ items, submenuItems }) => {
+//   const [isArtisanalStoneHovered, setIsArtisanalStoneHovered] = useState(false);
 
-  const handleMouseEnter = () => setIsArtisanalStoneHovered(true);
-  const handleMouseLeave = () => setIsArtisanalStoneHovered(false);
+//   const handleMouseEnter = () => setIsArtisanalStoneHovered(true);
+//   const handleMouseLeave = () => setIsArtisanalStoneHovered(false);
 
-  return (
-    <div className="relative bg-whitebase left-[37px] w-fit">
-      <div
-        className="flex justify-start items-center h-fit p-[16px] min-w-[232px]"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <ul>
-          {items?.map((item, index) => (
-            <li
-              key={index}
-              className="text-[20px] text-primary-text font-openSans"
-            >
-              {item}
-              {item === "Artisanal Stone" && isArtisanalStoneHovered && (
-                <div className="absolute left-full top-0 bg-whitebase p-4 rounded-r-[10px] w-[253px]">
-                  <div>
-                    {submenuItems.map((item, index) => (
-                      <li
-                        key={index}
-                        className="text-xl hover:text-primary  bg-whitebase"
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-        <ChevronNavSharp className="ml-[16px]" />
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div className="relative bg-whitebase left-[37px] w-fit">
+//       <div
+//         className="flex justify-start items-center h-fit p-[16px] min-w-[232px]"
+//         onMouseEnter={handleMouseEnter}
+//         onMouseLeave={handleMouseLeave}
+//       >
+//         <ul>
+//           {items?.map((item, index) => (
+//             <li
+//               key={index}
+//               className="text-[20px] text-primary-text font-openSans"
+//             >
+//               {item}
+//               {item === "Artisanal Stone" && isArtisanalStoneHovered && (
+//                 <div className="absolute left-full top-0 bg-whitebase p-4 rounded-r-[10px] w-[253px]">
+//                   <div>
+//                     {submenuItems.map((item, index) => (
+//                       <li
+//                         key={index}
+//                         className="text-xl hover:text-primary  bg-whitebase"
+//                       >
+//                         {item}
+//                       </li>
+//                     ))}
+//                   </div>
+//                 </div>
+//               )}
+//             </li>
+//           ))}
+//         </ul>
+//         <ChevronNavSharp className="ml-[16px]" />
+//       </div>
+//     </div>
+//   );
+// };
 const FooterLinks = () => (
   <div className="flex flex-col min-[1306px]:flex-row min-[1306px]:justify-between max-[1305px]:items-center w-full">
-    <div className="flex flex-col min-[768px]:text-center">
+    <div className="flex flex-col max-[1291px]:text-center">
       <FooterLink href="/">Santa Paula Materials</FooterLink>
       <FooterLink href="/">MRC Rock and Sand</FooterLink>
       <FooterLink href="/">Stoneyard</FooterLink>

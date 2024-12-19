@@ -328,11 +328,11 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
-
+      {/* 
       <div className={styles.materialDescriptionContainer}>
         <Separator className="bg-blackbase" />
         <h1>Material Description</h1>
-        {/* <p>{product.description}</p> */}
+      
         <h3 className="text-blackbase">
           Company:
           <span className="text-secondary-text font-normal pl-1">
@@ -347,7 +347,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             </span>
           </h3>
         )}
-      </div>
+      </div> */}
     </>
   );
 }
