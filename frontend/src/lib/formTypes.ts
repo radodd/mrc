@@ -12,6 +12,13 @@ export type FormValues = {
   position: string;
   company: string;
   message: string;
+  cartItems?: {
+    name: string;
+    quantity: string;
+    category: string;
+    size: string;
+    image?: string;
+  }[];
 };
 
 // export type EmailPayloadProps {

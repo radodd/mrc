@@ -30,7 +30,7 @@ import { ClientOnly } from "../../lib/ClientOnly";
 const MENU_HEIGHT = {
   default: "min-h-[416px]",
 
-  STONEYARD: "h-[416px]",
+  Stoneyard: "h-[416px]",
 
   MRC: "h-[416px]",
 
@@ -58,7 +58,7 @@ export default function Layout({
 
   useEffect(() => {
     const getMenuHeight = () => {
-      if (isSubmenuOpen === 1) return MENU_HEIGHT.STONEYARD;
+      if (isSubmenuOpen === 1) return MENU_HEIGHT.Stoneyard;
       if (isSubmenuOpen === 2) return MENU_HEIGHT.MRC;
       if (isSubmenuOpen === 3) return MENU_HEIGHT.SPM;
       return MENU_HEIGHT.default;
@@ -209,7 +209,7 @@ const MaterialMenuContent = ({
         data-testid="menu-item-stoneyard"
         href="/materials"
         logo="/logo_stoneyard.svg"
-        title="STONEYARD"
+        title="Stoneyard"
         description="We are focused on artisanal stone and tile"
         subDescription="We are focused on artisanal stone and tile"
         isSubmenuOpen={isSubmenuOpen === 1}
@@ -247,7 +247,7 @@ const MaterialMenuContent = ({
       <MenuItem
         href="/materials"
         logo="/logo_mrc_spm.svg"
-        title="Santa Paula Mate..."
+        title="Santa Paula Materials"
         description="Demolition, recycling, and producing crushed materials."
         subDescription="While MRC and SPM offer their own services, both companies sell the same high-quality construction materials."
         isSubmenuOpen={isSubmenuOpen === 3}
@@ -320,11 +320,11 @@ const MenuItem: React.FC<MenuItemProps> = ({
       )}
     </ListItem>
     {isSubmenuOpen && submenuItems && (
-      <div className="absolute bg-whitebase left-[535px] top-[-1px] p-[16px] flex flex-col gap-[16px] rounded-r-[10px] h-[418px]">
+      <div className="absolute bg-whitebase left-[535px] top-[0px] p-[16px] flex flex-col gap-[16px] rounded-r-[10px] h-[416px]">
         {submenuItems.map((item, index) => (
           <li
             key={index}
-            className={`${title === "STONEYARD" ? "w-[242px]" : ""} text-xl hover:text-primary cursor-pointer w-[182px]`}
+            className={`${title === "Stoneyard" ? "w-[242px]" : ""} text-xl hover:text-primary cursor-pointer w-[182px]`}
             onClick={() => {
               console.log("Clicked material:", item, typeof item);
               handleMaterialDetail(item);

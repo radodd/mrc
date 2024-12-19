@@ -18,7 +18,7 @@ import style from "../../../components/scss/CartPage.module.scss";
 import ContactForm2 from "../../../components/form/ContactForm2";
 
 const HowToUseSection = () => (
-  <>
+  <div className=" py-[40px]">
     {HOWTOUSE.map((item, index) => (
       <div key={index} className="mb-[30px]">
         <h2 className="font-bold text-xl text-primary">{item.title}</h2>
@@ -26,15 +26,15 @@ const HowToUseSection = () => (
       </div>
     ))}
     <Button className="w-full">Contact Us</Button>
-  </>
+  </div>
 );
 
 const QuantityInput = ({ value, handleIncrease, handleDecrease, index }) => {
   // console.log("QuantityInput value:", value);
 
   return (
-    <div className="flex flex-col items-start gap-[16px]">
-      <span className="text-primary-text text-[20px]">Quantity (Per Ton)</span>
+    <div className={style.quantityContainer}>
+      <span>Quantity (Per Ton)</span>
       <div className="flex gap-4">
         <Button
           variant="quantityCart"
@@ -114,10 +114,7 @@ const Cart = ({ cartItems, setCartItems }) => {
       <div>
         {cartItems.length > 0 ? (
           cartItems.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col p-6 gap-6 border-t-[3px] border-icon"
-            >
+            <div key={index} className={style.cartItemContainer}>
               <div className={style.imageContainer}>
                 <Image
                   src={item?.image ? item.image : "/image_not_available.svg"}
@@ -130,15 +127,24 @@ const Cart = ({ cartItems, setCartItems }) => {
 
               <h1>{item?.name}</h1>
 
-              <div className="flex flex-col gap-4">
-                <span>
-                  Category
-                  <span className="ml-2 text-primary">{item?.category}</span>
-                </span>
-                <span>
-                  Size
-                  <span className="ml-2 text-primary">{item?.size}</span>
-                </span>
+              <div className="flex flex-col">
+                {item?.category ? (
+                  <div className={style.cartItemDetail}>
+                    <h3>
+                      Category
+                      <span className="ml-2 text-primary">
+                        {item?.category}
+                      </span>
+                    </h3>
+                    <h3>
+                      Size
+                      <span className="ml-2 text-primary">{item?.size}</span>
+                    </h3>
+                  </div>
+                ) : (
+                  <></>
+                )}
+
                 <div className="quantity-controls">
                   <QuantityInput
                     index={index}
@@ -150,7 +156,7 @@ const Cart = ({ cartItems, setCartItems }) => {
               </div>
               <Button
                 variant="link"
-                className="w-fit p-0 italic"
+                className="w-fit p-0 mt-2 italic"
                 onClick={() => handleDelete(index)}
               >
                 Delete
@@ -166,11 +172,15 @@ const Cart = ({ cartItems, setCartItems }) => {
 };
 export default function CartPage() {
   const [cartItems, setCartItems] = useState();
-
+  const [openAccordion, setOpenAccordion] = useState("item-1");
   useEffect(() => {
     if (typeof window !== "undefined") {
       const items = localStorage.getItem("cartItems");
-      setCartItems(items ? JSON.parse(items) : []);
+      const parsedItems = items ? JSON.parse(items) : [];
+      setCartItems(parsedItems);
+      if (items.length > 0) {
+        setOpenAccordion("item-2");
+      }
     }
   }, []);
 
@@ -181,10 +191,12 @@ export default function CartPage() {
         <Accordion
           type="single"
           collapsible
+          value={openAccordion} // Controlled state
+          onValueChange={setOpenAccordion}
           className="max-[1306px]:w-full flex-1"
         >
           <AccordionItem value="item-1" className="min-[1306px]:hidden">
-            <AccordionTrigger className="text-blackbase">
+            <AccordionTrigger className={style.AccordionTrigger}>
               How to use
             </AccordionTrigger>
             <AccordionContent>
@@ -192,22 +204,28 @@ export default function CartPage() {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
-            <AccordionTrigger className="text-blackbase">Cart</AccordionTrigger>
+            <AccordionTrigger className={style.AccordionTrigger}>
+              Cart
+            </AccordionTrigger>
             <AccordionContent>
               <Cart cartItems={cartItems} setCartItems={setCartItems} />
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
-            <AccordionTrigger>Contact Information</AccordionTrigger>
+            <AccordionTrigger className={style.AccordionTrigger}>
+              Contact Information
+            </AccordionTrigger>
             <AccordionContent>
-              <ContactForm2 cartItems={cartItems} />
+              <div className={style.padding}>
+                <ContactForm2 cartItems={cartItems} />
+              </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
 
         <div className="flex-1 max-[1306px]:hidden">
           <h2 className="font-bold text-xl text-primary mb-4">How to use</h2>
-          <div>
+          <div className={style.howToContainer}>
             {HOWTOUSE.map((item, index) => (
               <div key={index} className="mb-8">
                 <h2 className="font-bold text-xl text-primary">{item.title}</h2>

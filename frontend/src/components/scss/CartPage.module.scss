@@ -40,6 +40,7 @@
 .imageContainer {
   width: 325px;
   overflow: hidden;
+  padding-bottom: 24px;
 }
 
 .image {
@@ -47,4 +48,75 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.AccordionTrigger {
+  color: var(--Text-Primary, #2c2d31);
+  font-family: var(--font-montserrat);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.96px;
+  padding: 16px 0;
+}
+
+.cartItemContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 0;
+  border-bottom: 3px solid var(--Border-Gray, #bec0c9);
+  &:last-child {
+    border-bottom: none;
+  }
+  h1 {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.48px;
+  }
+}
+
+.cartItemDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  h3 {
+    color: var(--Text-Secondary, #5c5d6d);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.8px;
+  }
+}
+
+.quantityContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 16px;
+  padding-top: 8px;
+  span {
+    color: var(--Text-Primary, #2c2d31);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.8px;
+  }
+}
+
+.padding {
+  padding: 40px 0;
+}
+
+.howToContainer {
+  @include mid-break {
+    padding: 0 0 72px;
+  }
+  @include large-break {
+    padding: 0 0 72px;
+  }
 }
