@@ -6,8 +6,8 @@ const MaterialsController = require("../controllers/materials");
 const router = express.Router();
 
 router.get("/", MaterialsController.getMaterials);
-router.get("/:id", MaterialsController.getMaterial);
-router.get("/:name", MaterialsController.getMaterial);
-// router.post("/", ProductsController.createProduct);
+// router.get("/:id", MaterialsController.getMaterial);
+router.get("/:id", MaterialsController.getMaterialById); // For fetching material by ID
+router.get("/material/:name", MaterialsController.getMaterialByName);
 
 module.exports = router;
