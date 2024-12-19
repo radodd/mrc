@@ -5,20 +5,117 @@ import { useEffect, useRef, useState } from "react";
 import styles from "../components/scss/Slider.module.scss";
 
 const Slider = () => {
-  const lines = ["STONEYARD", "MRC Rock & Sand", "Santa Paula Materials"];
+  const lines = [
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+    "STONEYARD",
+    "MRC Rock & Sand",
+    "Santa Paula Materials",
+  ];
   const [currentLine, setCurrentLine] = useState(0);
   const sliderRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentLine((prev) => (prev + 1) % lines.length);
-    }, 1000);
+    }, 1050);
 
     return () => clearInterval(interval);
   }, [lines.length]);
 
   useEffect(() => {
-    sliderRef.current.style.transform = `translateY(-${currentLine * 33}%)`;
+    sliderRef.current.style.transform = `translateY(-${currentLine * 1.0416}%)`;
   }, [currentLine]);
 
   return (

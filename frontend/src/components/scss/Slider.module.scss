@@ -6,12 +6,16 @@
   height: 100px;
   position: relative;
   max-width: fit-content;
+
   @include large-break {
     flex-direction: column;
   }
   @include mid-break {
     width: max-content;
     height: 80px;
+  }
+  @include queries.custom-break-1305-1069 {
+    transform: translateY(-6px);
   }
   @include queries.custom-break-1068-856 {
     height: 120px;
