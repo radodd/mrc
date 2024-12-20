@@ -39,6 +39,9 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
     setFilterValueList((prevFilters) =>
       prevFilters.filter((f) => f !== filter),
     );
+    setTempFilterValueList((prevFilters) =>
+      prevFilters.filter((f) => f !== filter),
+    );
   };
   // const clearFilter = (filter: string) => {
   //   setFilterValueList((prevFilters) => {
