@@ -3,7 +3,7 @@
 import { cn } from "../lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { ComponentProps, ReactNode, useState } from "react";
 import "hamburgers/dist/hamburgers.css";
 import {
@@ -17,7 +17,12 @@ import {
 import { ChevronDown } from "lucide-react";
 import { NavigationMenuLink } from "./ui/navigation-menu";
 import { Separator } from "./ui/separator";
-import { ArtisanalStone, MRCandSPMMaterials } from "../../..";
+import {
+  ArtisanalStone,
+  MRCandSPMMaterials,
+  MaterialID,
+  SantaPaulaMaterials,
+} from "../../..";
 
 import styles from "./scss/CustomerFacingNav.module.scss";
 import { useCart } from "../context/CartContext";
@@ -33,9 +38,11 @@ const Logo = () => (
 const MobileNavMenu = ({
   isOpen,
   setIsOpen,
+  handleMaterialDetail,
 }: {
   isOpen: boolean;
   setIsOpen: (state: boolean) => void;
+  handleMaterialDetail: (item: string) => void;
 }) => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -56,7 +63,7 @@ const MobileNavMenu = ({
       <SheetContent hideChevron={true} className="w-[300px]">
         <nav className={styles.sheet}>
           <NavLink href="/about">About</NavLink>
-          <MaterialsDropdown />
+          <MaterialsDropdown handleMaterialDetail={handleMaterialDetail} />
           <NavLink href="/services">Services</NavLink>
           <NavLink href="/contact">Contact</NavLink>
         </nav>
@@ -71,7 +78,7 @@ const MobileNavMenu = ({
 };
 
 /** Materials Dropdown inside the Mobile Nav */
-const MaterialsDropdown = () => {
+const MaterialsDropdown = ({ handleMaterialDetail }) => {
   return (
     <Sheet>
       <SheetTrigger className={`${styles.navLink} flex justify-between`}>
@@ -88,32 +95,35 @@ const MaterialsDropdown = () => {
           </Link>
         </div>
         <Separator />
-        <MaterialSections />
+        <MaterialSections handleMaterialDetail={handleMaterialDetail} />
       </SheetContent>
     </Sheet>
   );
 };
 
 /** Artisanal Stone and other material sections */
-const MaterialSections = () => (
+const MaterialSections = ({ handleMaterialDetail }) => (
   <>
     <MaterialSection
       title="Stoneyard"
       description="We are focused on artisanal stone and tile."
       items={ArtisanalStone}
       src="/logo_stoneyard.svg"
+      handleMaterialDetail={handleMaterialDetail}
     />
     <MaterialSection
       title="MRC Rock & Sand"
-      description=" aggregates and services for construction."
+      description=" Supplying aggregates and services for construction."
       src="/logo_mrc_spm.svg"
-      items={ArtisanalStone}
+      items={MRCandSPMMaterials}
+      handleMaterialDetail={handleMaterialDetail}
     />
     <MaterialSection
       title="Santa Paula Materials"
       description="Demolition, recycling, and producing crushed materials."
       src="/logo_mrc_spm.svg"
-      items={MRCandSPMMaterials}
+      items={SantaPaulaMaterials}
+      handleMaterialDetail={handleMaterialDetail}
     />
   </>
 );
@@ -123,11 +133,13 @@ const MaterialSection = ({
   description,
   items,
   src,
+  handleMaterialDetail,
 }: {
   title: string;
   description: string;
   items?: string[];
   src: string;
+  handleMaterialDetail: (item: string) => void;
 }) => (
   <Sheet>
     <SheetTrigger className="border-t border-t-[#919EA6]">
@@ -158,7 +170,11 @@ const MaterialSection = ({
               <>
                 <li
                   key={index}
-                  className="w-full text-[16px] hover:font-bold px-2 py-4"
+                  className="w-full text-[16px] hover:font-bold px-2 py-4 cursor-pointer"
+                  onClick={() => {
+                    console.log("Clicked material:", item, typeof item);
+                    handleMaterialDetail(item);
+                  }}
                 >
                   {item}
                 </li>
@@ -183,6 +199,18 @@ const NavLink = ({ href, children }: { href: string; children: ReactNode }) => (
 export function CustomerFacingNav2({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const { cartItems } = useCart();
+  const router = useRouter();
+
+  const handleMaterialDetail = async (materialName: string) => {
+    const material = MaterialID.find((item) => item.name === materialName);
+
+    if (material) {
+      console.log("Found material with ID:", material.id);
+      router.push(`/materials/${material.id}`);
+    } else {
+      console.error("Material not found:", materialName);
+    }
+  };
 
   return (
     <div className={styles.navContainer}>
@@ -210,7 +238,11 @@ export function CustomerFacingNav2({ children }: { children: ReactNode }) {
               </span>
             )}
           </CustomerFacingNavLink>
-          <MobileNavMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+          <MobileNavMenu
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            handleMaterialDetail={handleMaterialDetail}
+          />
         </div>
       </nav>
     </div>
