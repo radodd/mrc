@@ -20,7 +20,7 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           mask="(999) 999-9999"
           inputref={ref}
           className={style.inputField}
-        />{" "}
+        />
       </NonStrictWrapper>
       <label className={style.label}>{label}</label>
       {error && <p className={style.errorMessage}>{error}</p>}

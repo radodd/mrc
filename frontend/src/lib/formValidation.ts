@@ -1,6 +1,9 @@
 export const validationRules = {
   firstName: { required: "Please enter your first name" },
-  lastName: { required: "Please enter your last name" },
+  lastName: {
+    required: "Please enter your last name",
+    validate: (value: string) => typeof value === "string" || "Invalid input",
+  },
   phoneNumber: {
     required: "Please enter your phone number",
     validate: (value: string) =>

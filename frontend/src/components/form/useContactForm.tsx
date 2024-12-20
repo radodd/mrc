@@ -16,6 +16,9 @@ export const useContactForm = ({ cartItems }) => {
     register,
     handleSubmit,
     reset,
+    watch,
+    trigger,
+    setValue,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
@@ -27,10 +30,12 @@ export const useContactForm = ({ cartItems }) => {
       company: "",
       message: "",
     },
-    mode: "onSubmit",
+    mode: "onBlur",
   });
 
   const onSubmit = async (formData: FormValues) => {
+    const isValid = await trigger();
+    if (!isValid) return;
     try {
       const payload = {
         ...formData,
@@ -67,6 +72,9 @@ export const useContactForm = ({ cartItems }) => {
     openModal,
     setOpenModal,
     isScreenSmall,
+    watch,
+    trigger,
+    setValue,
   };
 };
 

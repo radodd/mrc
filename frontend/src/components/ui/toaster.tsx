@@ -11,6 +11,8 @@ import {
 } from "../../components/ui/toast";
 import { useToast } from "../../components/ui/use-toast";
 
+import styles from "../scss/Toaster.module.scss";
+
 export function Toaster() {
   const { toasts } = useToast();
 
@@ -18,14 +20,24 @@ export function Toaster() {
     <ToastProvider>
       {toasts.map(function ({ id, title, description, action, src, ...props }) {
         return (
-          <Toast key={id} {...props}>
-            <div className="flex flex-col items-center gap-10">
-              <div className="bg-primary-dark w-[88px] h-[88px] flex justify-center rounded-full">
-                <Image alt="" src={src} width={48} height={48} />
+          <Toast key={id} {...props} className={styles.Toast} open>
+            <div className={styles.toastContainer}>
+              <div className={styles.imageContainer}>
+                <Image
+                  alt=""
+                  src={src}
+                  width={48}
+                  height={48}
+                  className={styles.image}
+                />
               </div>
-              {title && <ToastTitle>{title}</ToastTitle>}
+              {title && (
+                <ToastTitle className={styles.title}>{title}</ToastTitle>
+              )}
               {description && (
-                <ToastDescription>{description}</ToastDescription>
+                <ToastDescription className={styles.description}>
+                  {description}
+                </ToastDescription>
               )}
               <div className="flex gap-2">
                 <Image
@@ -44,7 +56,7 @@ export function Toaster() {
           </Toast>
         );
       })}
-      <ToastViewport className="" />
+      <ToastViewport className={styles.viewport} />
     </ToastProvider>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,10 +14,7 @@ import {
 } from "../../../..";
 import { useFilter } from "../../context/FilterContext";
 import { cn } from "../../lib/utils";
-import {
-  CustomerFacingNav,
-  CustomerFacingNavLink,
-} from "../../components/CustomerFacingNav";
+import { CustomerFacingNavLink } from "../../components/CustomerFacingNav";
 import { Footer, FooterLink } from "../../components/Footer";
 import {
   NavigationMenu,
@@ -26,12 +24,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "../../components/ui/navigation-menu";
-
-import styles from "./index.module.scss";
 import { CustomerFacingNav2 } from "../../components/CustomerFacingNav2";
 import { ClientOnly } from "../../lib/ClientOnly";
 import { useCart } from "../../context/CartContext";
-// import { useRouter } from "next/router";
+
+import styles from "./index.module.scss";
 
 const MENU_HEIGHT = {
   default: "min-h-[416px]",
@@ -127,13 +124,10 @@ export default function Layout({
   // };
 
   const handleMaterialDetail = async (materialName: string) => {
-    // Find the material by name
     const material = MaterialID.find((item) => item.name === materialName);
 
     if (material) {
       console.log("Found material with ID:", material.id);
-      // Now you can use the material.id to fetch details or navigate to the details page
-      // For example:
       router.push(`/materials/${material.id}`);
     } else {
       console.error("Material not found:", materialName);
@@ -420,48 +414,6 @@ const SubList: React.FC<SubListProps> = ({
   </>
 );
 
-// const StoneyardCategories = ({ items, submenuItems }) => {
-//   const [isArtisanalStoneHovered, setIsArtisanalStoneHovered] = useState(false);
-
-//   const handleMouseEnter = () => setIsArtisanalStoneHovered(true);
-//   const handleMouseLeave = () => setIsArtisanalStoneHovered(false);
-
-//   return (
-//     <div className="relative bg-whitebase left-[37px] w-fit">
-//       <div
-//         className="flex justify-start items-center h-fit p-[16px] min-w-[232px]"
-//         onMouseEnter={handleMouseEnter}
-//         onMouseLeave={handleMouseLeave}
-//       >
-//         <ul>
-//           {items?.map((item, index) => (
-//             <li
-//               key={index}
-//               className="text-[20px] text-primary-text font-openSans"
-//             >
-//               {item}
-//               {item === "Artisanal Stone" && isArtisanalStoneHovered && (
-//                 <div className="absolute left-full top-0 bg-whitebase p-4 rounded-r-[10px] w-[253px]">
-//                   <div>
-//                     {submenuItems.map((item, index) => (
-//                       <li
-//                         key={index}
-//                         className="text-xl hover:text-primary  bg-whitebase"
-//                       >
-//                         {item}
-//                       </li>
-//                     ))}
-//                   </div>
-//                 </div>
-//               )}
-//             </li>
-//           ))}
-//         </ul>
-//         <ChevronNavSharp className="ml-[16px]" />
-//       </div>
-//     </div>
-//   );
-// };
 const FooterLinks = () => (
   <div className="flex flex-col min-[1306px]:flex-row min-[1306px]:justify-between max-[1305px]:items-center w-full">
     <div className="flex flex-col max-[1291px]:text-center">

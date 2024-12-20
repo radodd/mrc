@@ -22,8 +22,17 @@ const ContactForm2: React.FC<ContactFormProps> = ({
   cartItems,
 }) => {
   console.log("Received cartItems:", cartItems);
-  const { register, handleSubmit, errors, onSubmit, openModal, isScreenSmall } =
-    useContactForm({ cartItems });
+  const {
+    register,
+    handleSubmit,
+    errors,
+    onSubmit,
+    openModal,
+    isScreenSmall,
+    watch,
+    trigger,
+    setValue,
+  } = useContactForm({ cartItems });
 
   useEffect(() => {
     if (openModal) {
@@ -52,6 +61,10 @@ const ContactForm2: React.FC<ContactFormProps> = ({
             placeholder="Last Name"
             error={errors.lastName?.message}
             register={register("lastName", validationRules.lastName)}
+            onChange={(e) => {
+              setValue("lastName", e.target.value);
+              trigger("lastName");
+            }}
           />
         </div>
         <PhoneInput
@@ -65,6 +78,10 @@ const ContactForm2: React.FC<ContactFormProps> = ({
           placeholder="Email"
           error={errors.email?.message}
           register={register("email", validationRules.email)}
+          onChange={(e) => {
+            setValue("email", e.target.value);
+            trigger("email");
+          }}
         />
         <SelectInput
           label="Position"

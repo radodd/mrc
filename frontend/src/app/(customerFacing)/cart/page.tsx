@@ -13,10 +13,10 @@ import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "../../../components/ui/input";
 import LZString from "lz-string";
 import ContactForm2 from "../../../components/form/ContactForm2";
-
-import style from "../../../components/scss/CartPage.module.scss";
 import { useCart } from "../../../context/CartContext";
 import Image from "next/image";
+
+import style from "../../../components/scss/CartPage.module.scss";
 
 const HowToUseSection = () => (
   <div className=" py-[40px]">
@@ -31,8 +31,6 @@ const HowToUseSection = () => (
 );
 
 const QuantityInput = ({ value, handleIncrease, handleDecrease, index }) => {
-  // console.log("QuantityInput value:", value);
-
   return (
     <div className={style.quantityContainer}>
       <span>Quantity (Per Ton)</span>
@@ -202,7 +200,7 @@ export default function CartPage() {
         <Accordion
           type="single"
           collapsible
-          value={openAccordion} // Controlled state
+          value={openAccordion}
           onValueChange={setOpenAccordion}
           className="max-[1306px]:w-full flex-1"
         >

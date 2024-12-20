@@ -1,4 +1,5 @@
 "use client";
+
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface CartContextProps {
@@ -17,7 +18,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const removeFromCart = () => {
-    setCartItems((prev) => (prev > 0 ? prev - 1 : 0)); // Prevent negative values
+    setCartItems((prev) => (prev > 0 ? prev - 1 : 0));
   };
 
   return (

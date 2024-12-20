@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Separator } from "../../../../components/ui/separator";
 import { Button } from "../../../../components/ui/button";
 import {
   Carousel,
@@ -24,14 +23,11 @@ export type ProductCardProps = {
   company: string[];
   color: string[];
   uses: string[];
-  // category: string[] | { name: string };
-  // category: string[];
   categories: {
     name: string;
     sizes: string[];
   }[];
   texture: string[];
-  // size: string[];
 };
 
 type Orientation = "horizontal" | "vertical";
@@ -41,7 +37,6 @@ const fetchMaterialById = async (
 ): Promise<ProductCardProps | null> => {
   try {
     const response = await fetch(
-      // `https://mrc-two.vercel.app/api/products/${id}`,
       `https://mrc-two.vercel.app/api/materials/${id}`,
       {
         method: "GET",
@@ -144,20 +139,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           console.error("Failed to fetch product data:", error);
         });
     }
-    // console.log("prodcuts", productId, product)
   }, [id]);
-
-  // useEffect(() => {
-  //   if (name) {
-  //     fetchMaterialByName(name)
-  //       .then((mappedProduct) => {
-  //         setProduct(mappedProduct);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Failed to fetch product data:", error);
-  //       });
-  //   }
-  // }, [name]);
 
   if (!product) {
     return (
@@ -328,26 +310,6 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
-      {/* 
-      <div className={styles.materialDescriptionContainer}>
-        <Separator className="bg-blackbase" />
-        <h1>Material Description</h1>
-      
-        <h3 className="text-blackbase">
-          Company:
-          <span className="text-secondary-text font-normal pl-1">
-            {product.company}
-          </span>
-        </h3>
-        {product.uses !== null && (
-          <h3 className="text-blackbase">
-            Uses:
-            <span className="text-secondary-text font-normal pl-1">
-              {product.uses}
-            </span>
-          </h3>
-        )}
-      </div> */}
     </>
   );
 }
