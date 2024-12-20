@@ -162,9 +162,6 @@ const MaterialMenuContent = ({
   >
     <Link
       href="/materials"
-      onClick={() => {
-        // handleFilterClick([]);
-      }}
       className="font-[700] font-openSans text-[20px] pb-[8px]"
     >
       Shop All Materials
@@ -172,7 +169,6 @@ const MaterialMenuContent = ({
 
     <ul className="flex flex-col gap-[8px] w-[257px]">
       <MenuItem
-        // data-testid="menu-item-stoneyard"
         href="/materials"
         logo="/logo_stoneyard.svg"
         title="Stoneyard"

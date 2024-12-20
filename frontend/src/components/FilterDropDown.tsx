@@ -16,6 +16,7 @@ import {
 import { Button } from "./ui/button";
 
 import styles from "../components/scss/FilterDropDown.module.scss";
+import { useFilter } from "../context/FilterContext";
 
 type FilterGroupProps = {
   title: string;
@@ -24,6 +25,7 @@ type FilterGroupProps = {
   filterValueList: string[];
   handleCheckboxChange: (filterKey: string, value: string) => void;
   allFilters?: string[];
+  // tempFilterValueList: string[];
 };
 
 const FilterGroup: React.FC<FilterGroupProps> = ({
@@ -33,7 +35,9 @@ const FilterGroup: React.FC<FilterGroupProps> = ({
   filterValueList,
   handleCheckboxChange,
   allFilters,
+  // tempFilterValueList,
 }) => {
+  const { tempFilterValueList } = useFilter();
   return (
     <AccordionItem value={filterKey} className={styles.filterContainer}>
       <AccordionTrigger className={styles.trigger}>
@@ -46,7 +50,10 @@ const FilterGroup: React.FC<FilterGroupProps> = ({
               key={key}
               label={key}
               count={filterCounts[key] || 0}
-              isChecked={filterValueList.includes(key)}
+              isChecked={
+                tempFilterValueList.includes(key) ||
+                filterValueList.includes(key)
+              }
               onChange={() => handleCheckboxChange(filterKey, key)}
             />
           ))}
@@ -88,9 +95,10 @@ const FilterDropDown: React.FC<{
   allFilters: string[];
   filterDropDown: boolean;
   setFilterDropDown: React.Dispatch<React.SetStateAction<boolean>>;
+  // tempFilterValueList: string
 }> = ({
-  filterValueList,
-  setFilterValueList,
+  // filterValueList,
+  // setFilterValueList,
   clearFilter,
   companyCounts,
   categoryCounts,
@@ -99,16 +107,35 @@ const FilterDropDown: React.FC<{
   sizeCounts,
   filterDropDown,
   setFilterDropDown,
+  // tempFilterValueList,
 }) => {
-  const handleCheckboxChange = (category: string, value: string) => {
-    if (filterValueList.includes(value)) {
-      setFilterValueList((prev) => prev.filter((v) => v !== value));
-      clearFilter(value);
-    } else {
-      setFilterValueList((prev) => [...prev, value]);
-    }
-  };
+  // const handleCheckboxChange = (category: string, value: string) => {
+  //   if (filterValueList.includes(value)) {
+  //     setFilterValueList((prev) => prev.filter((v) => v !== value));
+  //     clearFilter(value);
+  //   } else {
+  //     setFilterValueList((prev) => [...prev, value]);
+  //   }
+  // };
 
+  const {
+    tempFilterValueList,
+    setTempFilterValueList,
+    filterValueList,
+    setFilterValueList,
+  } = useFilter();
+  const handleCheckboxChange = (category: string, value: string) => {
+    setTempFilterValueList((prev) => {
+      if (prev.includes(value)) {
+        return prev.filter((v) => v !== value);
+      } else {
+        return [...prev, value];
+      }
+    });
+  };
+  const applyFilters = () => {
+    setFilterValueList(tempFilterValueList);
+  };
   const filterCountsArray = [
     ...Object.values(companyCounts),
     ...Object.values(categoryCounts),
@@ -165,7 +192,12 @@ const FilterDropDown: React.FC<{
         />
       </Accordion>
       <div className={styles.buttonContainer}>
-        <Button onClick={() => setFilterDropDown(!filterDropDown)}>
+        <button onClick={applyFilters}>Apply Filters</button>
+        <Button
+          onClick={() => {
+            setFilterDropDown(!filterDropDown);
+          }}
+        >
           Show {totalResults} Results
         </Button>
       </div>
