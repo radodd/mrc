@@ -11,11 +11,12 @@ import { Button } from "../../../components/ui/button";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "../../../components/ui/input";
-import Image from "next/image";
 import LZString from "lz-string";
+import ContactForm2 from "../../../components/form/ContactForm2";
 
 import style from "../../../components/scss/CartPage.module.scss";
-import ContactForm2 from "../../../components/form/ContactForm2";
+import { useCart } from "../../../context/CartContext";
+import Image from "next/image";
 
 const HowToUseSection = () => (
   <div className=" py-[40px]">
@@ -60,6 +61,7 @@ const QuantityInput = ({ value, handleIncrease, handleDecrease, index }) => {
 
 const Cart = ({ cartItems, setCartItems }) => {
   const methods = useForm();
+  const { removeFromCart } = useCart();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -107,6 +109,7 @@ const Cart = ({ cartItems, setCartItems }) => {
     const updatedCartItems = cartItems.filter((_, i) => i !== index);
     setCartItems(updatedCartItems);
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    removeFromCart();
   };
 
   return (
@@ -164,7 +167,15 @@ const Cart = ({ cartItems, setCartItems }) => {
             </div>
           ))
         ) : (
-          <p>Cart is empty.</p>
+          <div>
+            <Image
+              src="/no_items_in_cart.svg"
+              alt=""
+              width={400}
+              height={300}
+              className="w-full"
+            />
+          </div>
         )}
       </div>
     </FormProvider>

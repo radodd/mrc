@@ -30,6 +30,7 @@ import {
 import styles from "./index.module.scss";
 import { CustomerFacingNav2 } from "../../components/CustomerFacingNav2";
 import { ClientOnly } from "../../lib/ClientOnly";
+import { useCart } from "../../context/CartContext";
 // import { useRouter } from "next/router";
 
 const MENU_HEIGHT = {
@@ -52,6 +53,7 @@ export default function Layout({
   const { setFilterValueList, filterValueList } = useFilter();
   const pathname = usePathname();
   const router = useRouter();
+  const { cartItems } = useCart();
 
   useEffect(() => {}, [
     isMaterialsOpen,
@@ -172,6 +174,12 @@ export default function Layout({
             <ShoppingCart
               className={`${pathname === "/cart" && "fill-primary-dark"} min-w-[33px] hover:fill-primary-dark`}
             />
+            {/* Counter Badge */}
+            {cartItems > 0 && (
+              <span className="absolute top-[24px] right-[70px] bg-[#A9C8D3] text-primary text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                {cartItems}
+              </span>
+            )}
           </CustomerFacingNavLink>
         </ClientOnly>
       </CustomerFacingNav2>

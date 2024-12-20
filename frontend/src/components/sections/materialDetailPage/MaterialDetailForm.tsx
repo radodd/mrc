@@ -24,6 +24,7 @@ import QuantityInput from "../../QuantityInput";
 import { useEffect, useState } from "react";
 import styles from "../../scss/MaterialDetailForm.module.scss";
 import { toast } from "../../ui/use-toast";
+import { useCart } from "../../../context/CartContext";
 
 interface FormProps {
   product: ProductCardProps;
@@ -47,6 +48,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function MaterialDetailForm({ product }: FormProps) {
   const [success, setSuccess] = useState(false);
+  const { addToCart } = useCart();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -75,6 +77,7 @@ export default function MaterialDetailForm({ product }: FormProps) {
     );
 
     saveToCart(compressedData);
+    addToCart();
     setSuccess(true);
   };
 

@@ -20,6 +20,7 @@ import { Separator } from "./ui/separator";
 import { ArtisanalStone, MRCandSPMMaterials } from "../../..";
 
 import styles from "./scss/CustomerFacingNav.module.scss";
+import { useCart } from "../context/CartContext";
 
 /** A reusable component for the site logo */
 const Logo = () => (
@@ -181,6 +182,7 @@ const NavLink = ({ href, children }: { href: string; children: ReactNode }) => (
 /** The main CustomerFacingNav component */
 export function CustomerFacingNav2({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { cartItems } = useCart();
 
   return (
     <div className={styles.navContainer}>
@@ -201,6 +203,12 @@ export function CustomerFacingNav2({ children }: { children: ReactNode }) {
               height={33}
               className="bg-whitebase flex min-w-[33px]"
             />
+            {/* Counter Badge */}
+            {cartItems > 0 && (
+              <span className="absolute top-[25px] right-[135px] bg-[#A9C8D3] text-primary text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                {cartItems}
+              </span>
+            )}
           </CustomerFacingNavLink>
           <MobileNavMenu isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>

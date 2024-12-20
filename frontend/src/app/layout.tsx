@@ -6,6 +6,7 @@ import { cn } from "../lib/utils";
 import { Providers } from "../components/Providers";
 import { Toaster } from "../components/ui/toaster";
 import { FilterProvider } from "../context/FilterContext";
+import { CartProvider } from "../context/CartContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-openSans" });
@@ -41,7 +42,9 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <FilterProvider>{children}</FilterProvider>
+          <FilterProvider>
+            <CartProvider>{children}</CartProvider>
+          </FilterProvider>
         </Providers>
         <Toaster />
       </body>
