@@ -74,54 +74,13 @@ export default function Layout({
     setMenuHeight(getMenuHeight());
   }, [isSubSubmenuOpen, isSubmenuOpen, isMaterialsOpen, filterValueList]);
 
-  // const getMenuWidth = () => {
-  //   if (isSubmenuOpen === 2) return MENU_WIDTH.MRC;
-  // };
-
-  // const handleFilterClick = (filterValue: string) => {
-  //   const updatedFilterValueList = [filterValue];
-  //   setFilterValueList(updatedFilterValueList);
-  //   if (typeof window !== "undefined") {
-  //     localStorage.setItem(
-  //       "filterValueList",
-  //       JSON.stringify(updatedFilterValueList),
-  //     );
-  //   }
-  // };
-  // const handleFilterClick = (filterValue: string) => {
-  //   setFilterValueList((prevList) => {
-  //     const updatedList = [...prevList, filterValue]; // Add the new filter to the existing list.
-  //     if (typeof window !== "undefined") {
-  //       localStorage.setItem("filterValueList", JSON.stringify(updatedList));
-  //     }
-  //     return updatedList;
-  //   });
-  // };
-
   const handleFilterClick = (filterValue: string) => {
-    setFilterValueList([filterValue]); // Clear existing filters and set the new one
+    setFilterValueList([filterValue]);
     if (typeof window !== "undefined") {
       localStorage.setItem("filterValueList", JSON.stringify([filterValue]));
       console.log("Updated filterValueList:", [filterValue]);
     }
   };
-
-  // const handleFilterClick = (filterValue: string) => {
-  //   setFilterValueList((prevList) => {
-  //     // First, clear the filter list and then check if the filterValue is unique
-  //     const updatedList =
-  //       prevList.length === 0 || !prevList.includes(filterValue)
-  //         ? [filterValue] // If list is empty or filterValue is not in the list, add the new filter
-  //         : prevList; // Keep the existing list if the value already exists
-
-  //     if (typeof window !== "undefined") {
-  //       localStorage.setItem("filterValueList", JSON.stringify(updatedList)); // Store the updated list in localStorage
-  //       console.log("Updated filter list:", updatedList);
-  //     }
-
-  //     return updatedList;
-  //   });
-  // };
 
   const handleMaterialDetail = async (materialName: string) => {
     const material = MaterialID.find((item) => item.name === materialName);
@@ -204,7 +163,7 @@ const MaterialMenuContent = ({
     <Link
       href="/materials"
       onClick={() => {
-        handleFilterClick([]);
+        // handleFilterClick([]);
       }}
       className="font-[700] font-openSans text-[20px] pb-[8px]"
     >
@@ -213,7 +172,7 @@ const MaterialMenuContent = ({
 
     <ul className="flex flex-col gap-[8px] w-[257px]">
       <MenuItem
-        data-testid="menu-item-stoneyard"
+        // data-testid="menu-item-stoneyard"
         href="/materials"
         logo="/logo_stoneyard.svg"
         title="Stoneyard"
