@@ -33,7 +33,13 @@ type ProductGridSectionProps = {
 };
 
 export default function ProductGridSection({ title }: ProductGridSectionProps) {
-  const { filterValueList, setFilterValueList, clearFilter } = useFilter();
+  const {
+    filterValueList,
+    setFilterValueList,
+    clearFilter,
+    setTempFilterValueList,
+    tempFilterValueList,
+  } = useFilter();
   const [products, setProducts] = useState<Product[]>([]);
   const [alphabetFilter, setAlphabetFilter] = useState(false);
   const [filterDropDown, setFilterDropdown] = useState(false);
@@ -94,7 +100,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   const filteredProductList = products.filter((product) => {
     if (filterValueList.length === 0) return true;
 
-    return filterValueList.every((filterValue) => {
+    return filterValueList.some((filterValue) => {
       return (
         product.color.includes(filterValue) ||
         product.company.includes(filterValue) ||
@@ -162,7 +168,9 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     clearFilter(filter);
   };
 
-  const clearAllFilters = () => setFilterValueList([]);
+  const clearAllFilters = () => {
+    setFilterValueList([]), setTempFilterValueList([]);
+  };
 
   return (
     <section className={styles.sectionContainer}>

@@ -20,7 +20,7 @@ export function Toaster() {
     <ToastProvider>
       {toasts.map(function ({ id, title, description, action, src, ...props }) {
         return (
-          <Toast key={id} {...props} className={styles.Toast} open>
+          <Toast key={id} {...props} className={styles.Toast}>
             <div className={styles.toastContainer}>
               <div className={styles.imageContainer}>
                 <Image
@@ -46,7 +46,7 @@ export function Toaster() {
                   height={33}
                   alt="phone"
                 />
-                <p className="font-bold text-primary-text tracking-[-0.8px]">
+                <p className="font-bold text-primary-text tracking-[-0.8px] ">
                   (805) 524 - 5569
                 </p>
               </div>
