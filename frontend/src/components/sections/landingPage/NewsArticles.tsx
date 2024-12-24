@@ -22,12 +22,25 @@ export default function NewsArticles() {
     typeof window !== "undefined" ? window.innerWidth > 768 : false,
   );
 
+  // useEffect(() => {
+  //   function handleResize() {
+  //     setIsAbove768px(window.innerWidth > 768);
+  //   }
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
+
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     function handleResize() {
       setIsAbove768px(window.innerWidth > 768);
     }
+
     window.addEventListener("resize", handleResize);
     handleResize();
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 

@@ -193,7 +193,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
               <Button
                 variant="filterClear"
                 size="slim"
-                onClick={() => setFilterValueList([])}
+                onClick={clearAllFilters}
               >
                 Clear All
               </Button>
