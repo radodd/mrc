@@ -16,13 +16,15 @@
   gap: 24px;
   max-width: 100%;
   padding: 40px 32px;
-  max-width: calc(50% - 0px);
+
   @include mid-break {
     padding: 40px 72px;
+    max-width: calc(50% - 0px);
   }
   @include large-break {
     gap: 40px;
     padding: 108px 72px;
+    max-width: calc(50% - 0px);
   }
   h1 {
     color: var(--Text-Primary, #2c2d31);

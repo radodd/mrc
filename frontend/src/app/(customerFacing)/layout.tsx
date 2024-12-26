@@ -372,9 +372,11 @@ const SubList: React.FC<SubListProps> = ({
 const FooterLinks = () => (
   <div className="flex flex-col min-[1306px]:flex-row min-[1306px]:justify-between max-[1305px]:items-center w-full">
     <div className="flex flex-col max-[1291px]:text-center">
-      <FooterLink href="/">Santa Paula Materials</FooterLink>
-      <FooterLink href="/">MRC Rock and Sand</FooterLink>
-      <FooterLink href="/">Stoneyard</FooterLink>
+      <FooterLink href="/about#SantaPaulaMaterials">
+        Santa Paula Materials
+      </FooterLink>
+      <FooterLink href="/about#MRC">MRC Rock and Sand</FooterLink>
+      <FooterLink href="/about#Stoneyard">Stoneyard</FooterLink>
     </div>
     <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
       <div className="flex flex-col">

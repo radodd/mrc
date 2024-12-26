@@ -27,7 +27,7 @@
 }
 
 .imageContainer {
-  width: 100%;
+  max-width: 100%;
   max-height: 266px;
   overflow: hidden;
   // width: calc(50%);
@@ -38,6 +38,7 @@
   @include large-break {
     max-height: 700px;
     min-width: calc(50%);
+    // max-width: calc(50%);
   }
 }
 
@@ -79,8 +80,16 @@
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.48px;
+
     @include mid-break {
       font-size: 32px;
+    }
+    @include custom-break-1068-768 {
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: -0.48px;
     }
     @include large-break {
       font-size: 32px;
@@ -95,6 +104,13 @@
     letter-spacing: -0.32px;
     @include mid-break {
       font-size: 20px;
+    }
+    @include custom-break-1068-768 {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: -0.32px;
     }
     @include large-break {
       font-size: 20px;
@@ -126,18 +142,31 @@
   }
 }
 
+// .indicatorContainer {
+//   position: absolute;
+//   left: 41vw;
+//   bottom: 40px;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   gap: 12px;
+//   @include mid-break {
+//     left: 45.5vw;
+//   }
+//   @include large-break {
+//     left: 45.5vw;
+//   }
+// }
+
 .indicatorContainer {
   position: absolute;
-  left: 41vw;
-  bottom: 40px;
+  bottom: 50px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 12px;
-  @include mid-break {
-    left: 71vw;
-  }
-  @include large-break {
-    left: 71vw;
+  @include small-break {
+    bottom: 32px;
   }
 }

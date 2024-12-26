@@ -6,6 +6,7 @@ import LandingPageCarousel2 from "../../components/sections/landingPage/LandingP
 import NewsArticles from "../../components/sections/landingPage/NewsArticles";
 import RequestQuote from "../../components/sections/landingPage/RequestQuote";
 import WeSpecialize from "../../components/sections/landingPage/WeSpecialize";
+import { FilterProvider } from "../../context/FilterContext";
 
 export default function HomePage() {
   return (

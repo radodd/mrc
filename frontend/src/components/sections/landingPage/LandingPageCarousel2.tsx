@@ -16,6 +16,7 @@ import Image from "next/image";
 import styles from "../../scss/LandingPageCarousel2.module.scss";
 import { LandingPageCarousel } from "../../../../..";
 import CarouselIndicator from "../../ui/CarouselIndicator";
+import { useFilter } from "../../../context/FilterContext";
 
 export default function LandingPageCarousel2() {
   const [current, setCurrent] = useState(-1);
@@ -24,6 +25,7 @@ export default function LandingPageCarousel2() {
     typeof window !== "undefined" ? window.innerWidth : 0,
   );
   const [isMounted, setIsMounted] = useState(false);
+  const { setFilterValueList, filterValueList } = useFilter();
 
   useEffect(() => {
     setIsMounted(true);
@@ -150,6 +152,8 @@ export default function LandingPageCarousel2() {
                               variant={variant}
                               size="default"
                               navigateTo={button.navigateTo}
+                              filter={button.filter}
+                              onClick={() => setFilterValueList(button.filter)}
                             >
                               {button.text}
                             </Button>

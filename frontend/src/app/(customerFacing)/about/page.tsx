@@ -60,6 +60,7 @@ export default function AboutPage() {
       <div className={styles.historyContainer}>
         {HISTORY.map((item, index) => (
           <div
+            id={item.id}
             key={index}
             className={`${styles.historySubContainer}`}
             // className="border-2 border-red-400 flex flex-col items-center min-[1306px]:flex-row-reverse min-[1306px]:even:flex-row min-[1306px]:mx-[70px] gap-[64px]"

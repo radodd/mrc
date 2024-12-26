@@ -14,6 +14,7 @@ import { Articles } from "../../../../..";
 import styles from "../../scss/NewsArticles.module.scss";
 import { useEffect, useState } from "react";
 import CarouselIndicator from "../../ui/CarouselIndicator";
+import { Button } from "../../ui/button";
 
 export default function NewsArticles() {
   const [current, setCurrent] = useState(-1);
@@ -75,6 +76,13 @@ export default function NewsArticles() {
               <div className={styles.textContainer}>
                 <h1>{article.title}</h1>
                 <p>{article.content}</p>
+                <Button
+                  variant="outline"
+                  size="default"
+                  navigateTo={article.url}
+                >
+                  Read Article
+                </Button>
               </div>
             </CarouselItem>
           ))}
