@@ -43,12 +43,19 @@ const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   >
     <h2 style={{ fontWeight: "bold", fontSize: "13px" }}>
       Subject:
-      <span style={{ fontWeight: "normal", fontSize: "13px" }}>
+      <span
+        style={{ fontWeight: "normal", fontSize: "13px", paddingLeft: "4px" }}
+      >
         New Quote Request - {firstName} {lastName}
       </span>
     </h2>
     <span
-      style={{ fontWeight: "bold", fontSize: "13px", marginBottom: "13px" }}
+      style={{
+        fontWeight: "bold",
+        fontSize: "13px",
+        marginBottom: "13px",
+        paddingBottom: "13px",
+      }}
     >
       Dear MRC Rock & Sand/Santa Paula Materials/Stoneyard
     </span>
@@ -56,8 +63,9 @@ const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
       style={{
         display: "block",
         borderBottom: "1px solid #ccc",
+        paddingTop: "13px",
         paddingBottom: "13px",
-        marginBottom: "8px",
+        // marginBottom: "8px",
         fontSize: "13px",
       }}
     >
@@ -75,7 +83,6 @@ const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
         marginLeft: "30px",
         borderBottom: "1px solid #ccc",
         paddingBottom: "13px",
-        // marginBottom: "8px",
         fontSize: "13px",
       }}
     >
@@ -92,10 +99,10 @@ const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
         <strong>Role:</strong> {position}
       </li>
       <li style={{ marginBottom: "8px" }}>
-        <strong>Company (if applicable):</strong> {company ? company : "N/A"}
+        <strong>Company (if applicable):</strong> {company}
       </li>
       <li>
-        <strong>Message:</strong> {message}
+        <strong>Message:</strong> {message === "" ? "N/A" : message}
       </li>
     </ul>
     <h1 style={{ fontWeight: "bold", fontSize: "15px" }}>
@@ -133,7 +140,7 @@ const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
                 fontSize: "13px",
               }}
             >
-              Quantity
+              Category
             </th>
             <th
               style={{
@@ -143,7 +150,7 @@ const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
                 backgroundColor: "#d9d9d9",
               }}
             >
-              Category
+              Size
             </th>
             <th
               style={{
@@ -177,7 +184,7 @@ const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
         </tbody>
       </table>
     ) : (
-      <p>No cart items available.</p>
+      <p>{firstName} did not add any materials to their cart.</p>
     )}
 
     <h2 style={{ fontWeight: "bold", fontSize: "13px", paddingBottom: "13px" }}>
