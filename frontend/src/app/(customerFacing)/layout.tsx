@@ -50,8 +50,8 @@ export default function Layout({
   const { setFilterValueList, filterValueList } = useFilter();
   const pathname = usePathname();
   const router = useRouter();
-  const { cartItems } = useCart();
-
+  const { cartItems, cartItemCounter } = useCart();
+  console.log(cartItemCounter);
   useEffect(() => {}, [
     isMaterialsOpen,
     isSubmenuOpen,
@@ -128,9 +128,9 @@ export default function Layout({
               className={`${pathname === "/cart" && "fill-primary-dark"} min-w-[33px] hover:fill-primary-dark`}
             />
             {/* Counter Badge */}
-            {cartItems > 0 && (
+            {cartItemCounter > 0 && (
               <span className="absolute top-[24px] right-[70px] bg-[#A9C8D3] text-primary text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                {cartItems}
+                {cartItemCounter}
               </span>
             )}
           </CustomerFacingNavLink>

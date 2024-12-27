@@ -8,7 +8,7 @@ import {
   AccordionTrigger,
 } from "../../../components/ui/accordion";
 import { Button } from "../../../components/ui/button";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "../../../components/ui/input";
 import LZString from "lz-string";
@@ -57,33 +57,13 @@ const QuantityInput = ({ value, handleIncrease, handleDecrease, index }) => {
   );
 };
 
-const Cart = ({ cartItems, setCartItems }) => {
+const Cart = ({ cartItems, addToCart }) => {
   const methods = useForm();
   const { removeFromCart } = useCart();
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-      console.log("Stored Item", storedItems);
-
-      const decompressedItems = storedItems
-        .map((item) => {
-          if (typeof item === "string") {
-            const decompressedData = LZString.decompressFromUTF16(item);
-            return decompressedData ? JSON.parse(decompressedData) : null;
-          }
-        })
-        .filter((item) => item !== null);
-      console.log("Decompressed Items", decompressedItems);
-      setCartItems(decompressedItems);
-    }
-  }, [setCartItems]);
-
   const updateQuantity = (index, newQuantity) => {
     const updatedCart = cartItems.map((item, i) =>
       i === index ? { ...item, quantity: newQuantity } : item,
     );
-    setCartItems(updatedCart);
     const compressedItems = updatedCart.map((item) =>
       LZString.compressToUTF16(JSON.stringify(item)),
     );
@@ -95,6 +75,7 @@ const Cart = ({ cartItems, setCartItems }) => {
     const newQuantity = currentQuantity + 1;
     updateQuantity(index, newQuantity);
   };
+
   const handleDecrease = (index) => {
     const currentQuantity = parseInt(cartItems[index].quantity);
     if (currentQuantity > 1) {
@@ -104,12 +85,12 @@ const Cart = ({ cartItems, setCartItems }) => {
   };
 
   const handleDelete = (index) => {
+    const itemToDelete = cartItems[index];
     const updatedCartItems = cartItems.filter((_, i) => i !== index);
-    setCartItems(updatedCartItems);
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    removeFromCart();
+    removeFromCart(itemToDelete);
   };
-
+  console.log("CART ITEMS", cartItems);
   return (
     <FormProvider {...methods}>
       <div>
@@ -129,7 +110,7 @@ const Cart = ({ cartItems, setCartItems }) => {
               <h1>{item?.name}</h1>
 
               <div className="flex flex-col">
-                {item?.category ? (
+                {item?.category && (
                   <div className={style.cartItemDetail}>
                     <h3>
                       Category
@@ -137,13 +118,14 @@ const Cart = ({ cartItems, setCartItems }) => {
                         {item?.category}
                       </span>
                     </h3>
-                    <h3>
-                      Size
-                      <span className="ml-2 text-primary">{item?.size}</span>
-                    </h3>
+
+                    {item?.size && (
+                      <h3>
+                        Size
+                        <span className="ml-2 text-primary">{item?.size}</span>
+                      </h3>
+                    )}
                   </div>
-                ) : (
-                  <></>
                 )}
 
                 <div className="quantity-controls">
@@ -180,18 +162,22 @@ const Cart = ({ cartItems, setCartItems }) => {
   );
 };
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState();
+  const { cartItems, addToCart } = useCart();
   const [openAccordion, setOpenAccordion] = useState(["item-1"]);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const items = localStorage.getItem("cartItems");
       const parsedItems = items ? JSON.parse(items) : [];
-      setCartItems(parsedItems);
-      if (items.length > 0) {
+      if (parsedItems.length > 0) {
         setOpenAccordion(["item-2"]);
       }
     }
   }, []);
+
+  // const handleAddItemToCart = (item) => {
+  //   addToCart(item);
+  // };
   console.log(openAccordion);
   return (
     <>
@@ -217,7 +203,7 @@ export default function CartPage() {
               Cart
             </AccordionTrigger>
             <AccordionContent>
-              <Cart cartItems={cartItems} setCartItems={setCartItems} />
+              <Cart cartItems={cartItems} addToCart={addToCart} />
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">

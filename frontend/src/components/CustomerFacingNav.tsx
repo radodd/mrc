@@ -257,7 +257,7 @@ const NavLink = ({ href, children }: { href: string; children: ReactNode }) => (
 /** The main CustomerFacingNav component */
 export function CustomerFacingNav({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { cartItems } = useCart();
+  const { cartItemCounter } = useCart();
 
   return (
     <div className={styles.navContainer}>
@@ -279,9 +279,9 @@ export function CustomerFacingNav({ children }: { children: ReactNode }) {
               className="bg-whitebase flex min-w-[33px]"
             />
             {/* Counter Badge */}
-            {cartItems > 0 && (
-              <span className="absolute top-[24px] right-[70px] bg-[#A9C8D3] text-primary text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                {cartItems}
+            {cartItemCounter > 0 && (
+              <span className="absolute top-[24px] right-[70px] bg-[#A9C8D3] text-primary text-xs font-bold rounded-full h-5 w-[500px] flex items-center justify-center">
+                {cartItemCounter}
               </span>
             )}
           </CustomerFacingNavLink>

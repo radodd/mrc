@@ -25,10 +25,8 @@
 
 .buttonMobile {
   display: flex;
-  // justify-content: space-between;
   gap: 8px;
-  // margin: 4px;
-  width: min-content;
+  width: fit-content;
   @include large-break {
     display: none;
   }

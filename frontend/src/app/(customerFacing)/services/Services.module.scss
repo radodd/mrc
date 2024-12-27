@@ -2,7 +2,6 @@
 @import "./css/queries.scss";
 
 .imageContainer {
-  border: red 2px solid;
   height: 240px;
   @include mid-break {
     height: 480px;

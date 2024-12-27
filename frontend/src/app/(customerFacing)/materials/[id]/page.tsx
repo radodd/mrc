@@ -240,7 +240,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
         <div className={styles.materialInfoContainer}>
           <h1>{product.name}</h1>
-          {product.company.length !== 1 ? (
+          {product.company.includes(
+            "MRC Rock & Sand" || "Santa Paula Materials",
+          ) ? (
             <>
               <h3>
                 Categories:

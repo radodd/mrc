@@ -198,7 +198,7 @@ const NavLink = ({ href, children }: { href: string; children: ReactNode }) => (
 /** The main CustomerFacingNav component */
 export function CustomerFacingNav2({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { cartItems } = useCart();
+  const { cartItems, cartItemCounter } = useCart();
   const router = useRouter();
 
   const handleMaterialDetail = async (materialName: string) => {
@@ -232,9 +232,9 @@ export function CustomerFacingNav2({ children }: { children: ReactNode }) {
               className="bg-whitebase flex min-w-[33px]"
             />
             {/* Counter Badge */}
-            {cartItems > 0 && (
+            {cartItemCounter > 0 && (
               <span className="absolute top-[25px] right-[135px] bg-[#A9C8D3] text-primary text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                {cartItems}
+                {cartItemCounter}
               </span>
             )}
           </CustomerFacingNavLink>

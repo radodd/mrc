@@ -259,7 +259,7 @@ export const Articles = [
       url: "https://www.youtube.com/watch?v=zYtb3uYsGnU",
   },
   {
-    image: "/article2.png",
+    image: "/article2b.jpg",
     title: "As Montecito cleanup continues, a search for...",
     content:
       "Santa Paula Materials, which sells rocks and recycled construction debris, will collect the rocks that are hauled out, while Standard Industries, a building material...",

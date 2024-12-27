@@ -196,7 +196,7 @@ const FilterDropDown: React.FC<{
         <Button
           onClick={() => {
             setFilterDropDown(!filterDropDown);
-            applyFilters;
+            applyFilters();
           }}
         >
           Apply Filters
