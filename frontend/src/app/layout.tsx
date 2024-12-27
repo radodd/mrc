@@ -7,6 +7,7 @@ import { Providers } from "../components/Providers";
 import { Toaster } from "../components/ui/toaster";
 import { FilterProvider } from "../context/FilterContext";
 import { CartProvider } from "../context/CartContext";
+import Footer from "../components/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-openSans" });
@@ -32,6 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* <div className="flex flex-col min-h-screen"> */}
       <body
         className={cn(
           "bg-whitebase min-h-screen  antialiased",
@@ -41,13 +43,17 @@ export default function RootLayout({
           roboto.variable,
         )}
       >
-        <Providers>
-          <FilterProvider>
-            <CartProvider>{children}</CartProvider>
-          </FilterProvider>
-        </Providers>
+        <div className="flex-grow min-h-screen">
+          <Providers>
+            <FilterProvider>
+              <CartProvider>{children}</CartProvider>
+            </FilterProvider>
+          </Providers>
+        </div>
         <Toaster />
+        <Footer />
       </body>
+      {/* </div> */}
     </html>
   );
 }

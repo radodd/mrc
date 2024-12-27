@@ -1,0 +1,23 @@
+@use "./css/queries.scss";
+@import "./css/queries.scss";
+
+.imageContainer {
+  border: red 2px solid;
+  height: 240px;
+  @include mid-break {
+    height: 480px;
+  }
+  @include large-break {
+    height: 490px;
+  }
+  //   @include custom-break-1601 {
+  //     height: 504px;
+  //   }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}

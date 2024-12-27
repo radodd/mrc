@@ -181,25 +181,25 @@ const Cart = ({ cartItems, setCartItems }) => {
 };
 export default function CartPage() {
   const [cartItems, setCartItems] = useState();
-  const [openAccordion, setOpenAccordion] = useState("item-1");
+  const [openAccordion, setOpenAccordion] = useState(["item-1"]);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const items = localStorage.getItem("cartItems");
       const parsedItems = items ? JSON.parse(items) : [];
       setCartItems(parsedItems);
       if (items.length > 0) {
-        setOpenAccordion("item-2");
+        setOpenAccordion(["item-2"]);
       }
     }
   }, []);
-
+  console.log(openAccordion);
   return (
     <>
       <h1 className={style.header}>Request to Quote</h1>
       <div className={style.container}>
         <Accordion
-          type="single"
-          collapsible
+          type="multiple"
+          // collapsible={false}
           value={openAccordion}
           onValueChange={setOpenAccordion}
           className="max-[1306px]:w-full flex-1"
@@ -229,7 +229,17 @@ export default function CartPage() {
                 <ContactForm2 cartItems={cartItems} />
               </div>
             </AccordionContent>
-          </AccordionItem>
+          </AccordionItem>{" "}
+          <div className={style.buttonContainer}>
+            <Button
+              variant="default"
+              size="default"
+              onClick={() => setOpenAccordion(["item-3"])}
+              className={`${openAccordion.includes("item-3") ? "hidden" : ""} ${style.button}`}
+            >
+              Submit
+            </Button>
+          </div>
         </Accordion>
 
         <div className="flex-1 max-[1306px]:hidden">

@@ -15,7 +15,7 @@ import {
 import { useFilter } from "../../context/FilterContext";
 import { cn } from "../../lib/utils";
 import { CustomerFacingNavLink } from "../../components/CustomerFacingNav";
-import { Footer, FooterLink } from "../../components/Footer";
+import { Footer } from "../../components/Footer";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -138,9 +138,9 @@ export default function Layout({
       </CustomerFacingNav2>
 
       <div>{children}</div>
-      <Footer>
-        <FooterLinks />
-      </Footer>
+      {/* <Footer> */}
+      {/* <FooterLinks /> */}
+      {/* </Footer> */}
     </>
   );
 }
@@ -191,7 +191,7 @@ const MaterialMenuContent = ({
       />
       <MenuItem
         href="/materials"
-        logo="/logo_mrc_spm.svg"
+        logo="/logo_mrc.svg"
         title="MRC Rock & Sand"
         description="Supplying aggregates and services for construction."
         subDescription="While MRC and SPM offer their own services, both companies sell the same high-quality construction materials."
@@ -208,7 +208,7 @@ const MaterialMenuContent = ({
       />
       <MenuItem
         href="/materials"
-        logo="/logo_mrc_spm.svg"
+        logo="/logo_spm.svg"
         title="Santa Paula Materials"
         description="Demolition, recycling, and producing crushed materials."
         subDescription="While MRC and SPM offer their own services, both companies sell the same high-quality construction materials."
@@ -369,25 +369,25 @@ const SubList: React.FC<SubListProps> = ({
   </>
 );
 
-const FooterLinks = () => (
-  <div className="flex flex-col min-[1306px]:flex-row min-[1306px]:justify-between max-[1305px]:items-center w-full">
-    <div className="flex flex-col max-[1291px]:text-center">
-      <FooterLink href="/about#SantaPaulaMaterials">
-        Santa Paula Materials
-      </FooterLink>
-      <FooterLink href="/about#MRC">MRC Rock and Sand</FooterLink>
-      <FooterLink href="/about#Stoneyard">Stoneyard</FooterLink>
-    </div>
-    <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
-      <div className="flex flex-col">
-        <FooterLink href="/about">About</FooterLink>
-        <FooterLink href="/about#faq">FAQ</FooterLink>
-        <FooterLink href="/contact">Contact</FooterLink>
-      </div>
-      <div className="flex flex-col">
-        <FooterLink href="/materials">Materials</FooterLink>
-        <FooterLink href="/services">Services</FooterLink>
-      </div>
-    </div>
-  </div>
-);
+// const FooterLinks = () => (
+//   <div className="flex flex-col min-[1306px]:flex-row min-[1306px]:justify-between max-[1305px]:items-center w-full">
+//     <div className="flex flex-col max-[1291px]:text-center">
+//       <FooterLink href="/about#SantaPaulaMaterials">
+//         Santa Paula Materials
+//       </FooterLink>
+//       <FooterLink href="/about#MRC">MRC Rock and Sand</FooterLink>
+//       <FooterLink href="/about#Stoneyard">Stoneyard</FooterLink>
+//     </div>
+//     <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
+//       <div className="flex flex-col">
+//         <FooterLink href="/about">About</FooterLink>
+//         <FooterLink href="/about#faq">FAQ</FooterLink>
+//         <FooterLink href="/contact">Contact</FooterLink>
+//       </div>
+//       <div className="flex flex-col">
+//         <FooterLink href="/materials">Materials</FooterLink>
+//         <FooterLink href="/services">Services</FooterLink>
+//       </div>
+//     </div>
+//   </div>
+// );

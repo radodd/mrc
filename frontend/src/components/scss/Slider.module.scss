@@ -24,7 +24,8 @@
     height: 50px;
   }
   @include queries.custom-break-470 {
-    height: 70px;
+    // border: red 2px solid;
+    height: 77px;
   }
 }
 
@@ -75,7 +76,7 @@
     max-width: fit-content;
   }
   @include queries.custom-break-470 {
-    height: 80px;
+    height: 85px;
     max-width: 300px;
     font-size: 36px;
     padding-bottom: 15px;

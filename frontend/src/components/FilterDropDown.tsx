@@ -192,13 +192,14 @@ const FilterDropDown: React.FC<{
         />
       </Accordion>
       <div className={styles.buttonContainer}>
-        <button onClick={applyFilters}>Apply Filters</button>
+        {/* <button onClick={applyFilters}>Apply Filters</button> */}
         <Button
           onClick={() => {
             setFilterDropDown(!filterDropDown);
+            applyFilters;
           }}
         >
-          Show {totalResults} Results
+          Apply Filters
         </Button>
       </div>
     </div>

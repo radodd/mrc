@@ -61,3 +61,8 @@ $breakpoint-xl-width: 2500px;
     @content;
   }
 }
+@mixin custom-break-1601 {
+  @media (max-width: 1601px) {
+    @content;
+  }
+}

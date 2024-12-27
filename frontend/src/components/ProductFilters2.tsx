@@ -17,6 +17,7 @@ import {
 import styles from "./scss/ProductFilters.module.scss";
 import { useState } from "react";
 import { useFilter } from "../context/FilterContext";
+import { Button } from "./ui/button";
 
 type FilterGroupProps = {
   title: string;
@@ -135,6 +136,17 @@ export const ProductFilters2: React.FC<{
   };
   return (
     <>
+      <div className="w-full flex justify-end items-end">
+        <Button
+          onClick={applyFilters}
+          // disabled={filterValueList !== null}
+          variant={tempFilterValueList.length !== 0 ? "default" : "filter"}
+          className="mb-6  mr-0 w-[275px]"
+        >
+          Apply Filters
+        </Button>
+      </div>
+
       <Accordion type="multiple">
         <FilterGroup
           title="Company"
@@ -182,7 +194,6 @@ export const ProductFilters2: React.FC<{
           allFilters={AllSizes}
         />
       </Accordion>
-      <button onClick={applyFilters}>Apply Filters</button>
     </>
   );
 };
