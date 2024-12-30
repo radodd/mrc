@@ -24,7 +24,10 @@ const page = () => {
       </div>
 
       <div className="flex flex-col bg-primary xlScreen:mb-20">
-        <h1 className="font-bold text-whitebase text-[40px] my-6 px-[72px] max-smMobie:px-[32px] xlScreen:px-36 max-smMobie:text-[32px]">
+        <h1
+          id="SPM"
+          className="font-bold text-whitebase text-[40px] my-6 px-[72px] max-smMobie:px-[32px] xlScreen:px-36 max-smMobie:text-[32px]"
+        >
           Santa Paula Materials
         </h1>
         {ServicesSPM.map((materials) => (
@@ -69,9 +72,13 @@ const page = () => {
       {/* Mr rock & Sand */}
 
       <div className="flex flex-col bg-primary mb-20 max-mobile:mb-16">
-        <h1 className="font-bold text-whitebase text-[40px] my-6 px-[72px] max-smMobie:px-[32px] xlScreen:px-36 max-smMobie:text-[32px]">
+        <h1
+          id="MRC"
+          className="font-bold text-whitebase text-[40px] my-6 px-[72px] max-smMobie:px-[32px] xlScreen:px-36 max-smMobie:text-[32px]"
+        >
           MRC Rock & Sand
         </h1>
+
         {ServicesMRC.map((service) => (
           <div
             key={service.id}

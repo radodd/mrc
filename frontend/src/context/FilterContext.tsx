@@ -10,7 +10,8 @@ import React, {
 
 interface FilterContextProps {
   filterValueList: string[];
-  setFilterValueList: React.Dispatch<React.SetStateAction<string[]>>;
+  // setFilterValueList: React.Dispatch<React.SetStateAction<string[]>>;
+  setFilterValueList: (newList: string[]) => void;
   clearFilter: (filter: string) => void;
   tempFilterValueList: string[];
   setTempFilterValueList: React.Dispatch<React.SetStateAction<string[]>>;
@@ -29,11 +30,24 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [tempFilterValueList, setTempFilterValueList] = useState<string[]>([]);
 
   useEffect(() => {
+    console.log("filterValueList updated:", filterValueList);
+  }, [filterValueList]);
+
+  useEffect(() => {
     const savedFilterValueList = localStorage.getItem("filterValueList");
     if (savedFilterValueList) {
       setFilterValueList(JSON.parse(savedFilterValueList));
     }
   }, []);
+
+  useEffect(() => {
+    // Update localStorage whenever filterValueList changes
+    if (filterValueList.length > 0) {
+      localStorage.setItem("filterValueList", JSON.stringify(filterValueList));
+    } else {
+      localStorage.removeItem("filterValueList"); // Remove from localStorage when empty
+    }
+  }, [filterValueList]);
 
   const clearFilter = (filter: string) => {
     setFilterValueList((prevFilters) =>

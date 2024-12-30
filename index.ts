@@ -64,7 +64,7 @@ export const LandingPageCarousel = [
       },
       {
         text: "View Services",
-        navigateTo: "/services#SantaPaulaMaterials",
+        navigateTo: "/services#SPM",
       },
     ],
     image: "/image_carousel_spm.png", // Replace with your actual image path

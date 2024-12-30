@@ -163,6 +163,7 @@ const MaterialMenuContent = ({
     <Link
       href="/materials"
       className="font-[700] font-openSans text-[20px] pb-[8px]"
+      // onClick={handleFilterClick()}
     >
       Shop All Materials
     </Link>
