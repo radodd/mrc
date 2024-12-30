@@ -6,11 +6,13 @@ import { sendFormData } from "./apiClient";
 import { useToast } from "./../ui/use-toast";
 import { useScreenSize } from "./../../lib/useScreenSize";
 import { useState } from "react";
+import { useCart } from "../../context/CartContext";
 
 export const useContactForm = ({ cartItems }) => {
   const { toast } = useToast();
   const isScreenSmall = useScreenSize(430);
   const [openModal, setOpenModal] = useState(false);
+  const { removeFromCart } = useCart();
 
   const {
     register,
@@ -47,6 +49,8 @@ export const useContactForm = ({ cartItems }) => {
       if (!result.success) {
         console.error("Error sending email:", result.error);
       } else {
+        cartItems.forEach((_, index) => removeFromCart(index));
+        // setCartItems([])
         if (isScreenSmall) {
           setOpenModal(true);
         } else {

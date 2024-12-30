@@ -8,10 +8,9 @@ import {
   AccordionTrigger,
 } from "../../../components/ui/accordion";
 import { Button } from "../../../components/ui/button";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "../../../components/ui/input";
-import LZString from "lz-string";
 import ContactForm2 from "../../../components/form/ContactForm2";
 import { useCart } from "../../../context/CartContext";
 import Image from "next/image";
@@ -57,39 +56,35 @@ const QuantityInput = ({ value, handleIncrease, handleDecrease, index }) => {
   );
 };
 
-const Cart = ({ cartItems, addToCart }) => {
+const Cart = () => {
+  const { cartItems, setCartItems } = useCart();
   const methods = useForm();
-  const { removeFromCart } = useCart();
-  const updateQuantity = (index, newQuantity) => {
-    const updatedCart = cartItems.map((item, i) =>
-      i === index ? { ...item, quantity: newQuantity } : item,
-    );
-    const compressedItems = updatedCart.map((item) =>
-      LZString.compressToUTF16(JSON.stringify(item)),
-    );
-    localStorage.setItem("cartItems", JSON.stringify(compressedItems));
+
+  const updateQuantity = (index: number, newQuantity: number) => {
+    const updatedCart = [...cartItems];
+    updatedCart[index].quantity = newQuantity.toString();
+    setCartItems(updatedCart);
   };
 
-  const handleIncrease = (index) => {
-    const currentQuantity = parseInt(cartItems[index].quantity);
+  const handleIncrease = (index: number) => {
+    const currentQuantity = parseInt(cartItems[index].quantity, 10);
     const newQuantity = currentQuantity + 1;
     updateQuantity(index, newQuantity);
   };
 
-  const handleDecrease = (index) => {
-    const currentQuantity = parseInt(cartItems[index].quantity);
+  const handleDecrease = (index: number) => {
+    const currentQuantity = parseInt(cartItems[index].quantity, 10);
     if (currentQuantity > 1) {
       const newQuantity = currentQuantity - 1;
       updateQuantity(index, newQuantity);
     }
   };
 
-  const handleDelete = (index) => {
-    const itemToDelete = cartItems[index];
-    const updatedCartItems = cartItems.filter((_, i) => i !== index);
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    removeFromCart(itemToDelete);
+  const handleDelete = (index: number) => {
+    const updatedCart = cartItems.filter((_, i) => i !== index);
+    setCartItems(updatedCart);
   };
+
   console.log("CART ITEMS", cartItems);
   return (
     <FormProvider {...methods}>
@@ -162,22 +157,15 @@ const Cart = ({ cartItems, addToCart }) => {
   );
 };
 export default function CartPage() {
-  const { cartItems, addToCart } = useCart();
-  const [openAccordion, setOpenAccordion] = useState(["item-1"]);
+  const { cartItems, cartItemCounter } = useCart();
+  const [openAccordion, setOpenAccordion] = useState<string[]>(["item-1"]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const items = localStorage.getItem("cartItems");
-      const parsedItems = items ? JSON.parse(items) : [];
-      if (parsedItems.length > 0) {
-        setOpenAccordion(["item-2"]);
-      }
+    if (cartItemCounter > 0) {
+      setOpenAccordion(["item-2"]);
     }
-  }, []);
+  }, [cartItems]);
 
-  // const handleAddItemToCart = (item) => {
-  //   addToCart(item);
-  // };
   console.log(openAccordion);
   return (
     <>
@@ -203,7 +191,7 @@ export default function CartPage() {
               Cart
             </AccordionTrigger>
             <AccordionContent>
-              <Cart cartItems={cartItems} addToCart={addToCart} />
+              <Cart />
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">

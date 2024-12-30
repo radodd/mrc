@@ -31,6 +31,7 @@ interface FormProps {
 }
 
 const formSchema = z.object({
+  // id: z.string(),
   name: z.string(),
   image: z.string().nullable(),
   category: z.string({
@@ -53,6 +54,7 @@ export default function MaterialDetailForm({ product }: FormProps) {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      // id: product.id,
       name: product.name,
       image: product.imagePrimary,
       category: "",
@@ -65,29 +67,42 @@ export default function MaterialDetailForm({ product }: FormProps) {
   // Handle form submission logic
   const onSubmit: SubmitHandler<FormValues> = (values) => {
     const formDataJSON = {
+      // id: values.id,
       name: values.name,
       image: values.image,
       category: values.category,
       size: values.size,
       quantity: values.quantity,
     };
+    addToCart(formDataJSON);
 
-    const compressedData = LZString.compressToUTF16(
-      JSON.stringify(formDataJSON),
-    );
+    // const compressedData = LZString.compressToUTF16(
+    //   JSON.stringify(formDataJSON),
 
-    saveToCart(compressedData);
-    addToCart();
+    // saveToCart(compressedData);
+
     setSuccess(true);
   };
 
   // Save compressed data to localStorage
-  const saveToCart = (compressedData: string) => {
-    const cart = localStorage.getItem("cartItems");
-    let cartList = cart ? JSON.parse(cart) : [];
-    cartList.push(compressedData);
-    localStorage.setItem("cartItems", JSON.stringify(cartList));
-  };
+  // const saveToCart = (compressedData: string) => {
+  //   const cart = localStorage.getItem("cartItems");
+  //   let cartList;
+  //   try {
+  //     cartList = cart ? JSON.parse(cart) : []; // Parse the cart or initialize as an empty array
+  //     if (!Array.isArray(cartList)) {
+  //       // Ensure cartList is an array
+  //       cartList = [];
+  //     }
+  //   } catch (error) {
+  //     // If parsing fails, initialize as an empty array
+  //     console.error("Error parsing cartItems from localStorage:", error);
+  //     cartList = [];
+  //   }
+
+  //   cartList.push(compressedData); // Add the new compressed data to the array
+  //   localStorage.setItem("cartItems", JSON.stringify(cartList)); // Save the updated array back to localStorage
+  // };
 
   // Handle success state and form reset
   useEffect(() => {
@@ -123,7 +138,7 @@ export default function MaterialDetailForm({ product }: FormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
-        {product.company.length === 2 && (
+        {product.company[0] !== "Stoneyard" && (
           <>
             <CategorySelect
               product={product}

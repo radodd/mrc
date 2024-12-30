@@ -1,28 +1,89 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+  useRef,
+} from "react";
+import LZString from "lz-string";
 
+interface CartItem {
+  // id: string;
+  name: string;
+  quantity: string;
+  category?: string;
+  size?: string;
+}
 interface CartContextProps {
-  cartItems: number;
-  addToCart: () => void;
-  removeFromCart: () => void;
+  cartItems: CartItem[];
+  cartItemCounter: number;
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (index: number) => void;
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cartItems, setCartItems] = useState(0);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const isFirstLoad = useRef(true);
 
-  const addToCart = () => {
-    setCartItems((prev) => prev + 1);
+  const cartItemCounter = cartItems.length;
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cartItems");
+    if (savedCart) {
+      try {
+        console.log("Saved cart data:", savedCart); // Log raw data
+        const decompressedCart = JSON.parse(
+          LZString.decompressFromUTF16(savedCart) || "[]",
+        );
+        console.log("Decompressed cart data:", decompressedCart); // Log decompressed data
+        if (Array.isArray(decompressedCart)) {
+          setCartItems(decompressedCart);
+        } else {
+          console.warn("Invalid cart data in localStorage");
+        }
+      } catch (error) {
+        console.error(
+          "Error decompressing cartItems form localStorage:",
+          error,
+        );
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+      return;
+    }
+    console.log("Saving cart to localStorage:", cartItems);
+    const compressedData = LZString.compressToUTF16(JSON.stringify(cartItems));
+    localStorage.setItem("cartItems", compressedData);
+  }, [cartItems]);
+
+  const addToCart = (item: CartItem) => {
+    setCartItems((prev) => [...prev, item]);
   };
 
-  const removeFromCart = () => {
-    setCartItems((prev) => (prev > 0 ? prev - 1 : 0));
+  const removeFromCart = (index: number) => {
+    setCartItems((prev) => prev.filter((_, i) => i !== index));
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        cartItemCounter,
+        addToCart,
+        removeFromCart,
+        setCartItems,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
