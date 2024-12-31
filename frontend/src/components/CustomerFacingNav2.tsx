@@ -81,7 +81,9 @@ const MobileNavMenu = ({
 const MaterialsDropdown = ({ handleMaterialDetail }) => {
   return (
     <Sheet>
-      <SheetTrigger className={`${styles.navLink} flex justify-between`}>
+      <SheetTrigger
+        className={`${styles.navLink} flex justify-between items-center`}
+      >
         Materials
         <ChevronDown className="-rotate-90" />
       </SheetTrigger>
