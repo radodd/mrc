@@ -227,3 +227,22 @@
     letter-spacing: -0.32px;
   }
 }
+
+.cartCounter {
+  position: absolute;
+  top: 25px;
+  right: 135px;
+  background-color: #a9c8d3;
+  color: hsl(var(--primary));
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 9999px;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include small-break {
+    right: 98px;
+  }
+}

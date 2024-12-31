@@ -233,9 +233,7 @@ export function CustomerFacingNav2({ children }: { children: ReactNode }) {
             />
             {/* Counter Badge */}
             {cartItemCounter > 0 && (
-              <span className="absolute top-[25px] right-[135px] bg-[#A9C8D3] text-primary text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                {cartItemCounter}
-              </span>
+              <span className={styles.cartCounter}>{cartItemCounter}</span>
             )}
           </CustomerFacingNavLink>
           <MobileNavMenu
