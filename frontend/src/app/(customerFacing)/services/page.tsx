@@ -50,7 +50,7 @@ const page = () => {
             </div>
             {/* border-2 border-red-500 flex flex-col gap-10 w-1/2 max-mobile:w-full
             p-12 max-smMobie:px-8 xlScreen:px-36 */}
-            <div className="flex-col flex gap-10 w-1/2 py-12 px-[72px] max-smMobie:px-8 xlScreen:px-36 max-mobile:w-full ">
+            <div className="flex-col flex gap-10 w-1/2 py-12 px-[72px] max-smMobie:px-8 xlScreen:px-36 max-mobile:w-full justify-center">
               <h1 className="font-bold text-[32px] max-smMobie:text-2xl text-primary-text">
                 {materials.name}
               </h1>
@@ -97,7 +97,7 @@ const page = () => {
                 className={styles.image}
               />
             </div>
-            <div className="flex-col flex gap-10 w-1/2 py-12 px-[72px] max-smMobie:px-8 xlScreen:px-36 max-mobile:w-full">
+            <div className="flex-col flex gap-10 w-1/2 py-12 px-[72px] max-smMobie:px-8 xlScreen:px-36 max-mobile:w-full justify-center">
               <h1 className="font-bold text-[32px] max-smMobie:text-2xl text-primary-text">
                 {service.name}
               </h1>

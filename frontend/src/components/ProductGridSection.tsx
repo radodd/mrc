@@ -97,13 +97,51 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     fetchProducts();
   }, []);
 
+  // const filteredProductList = products.filter((product) => {
+  //   if (filterValueList.length === 0) return true;
+
+  //   return filterValueList.every((filterValue) => {
+  //     return (
+  //       product.color.includes(filterValue) ||
+  //       product.company.includes(filterValue) ||
+  //       product.category.includes(filterValue) ||
+  //       product.texture.includes(filterValue) ||
+  //       product.size.includes(filterValue)
+  //     );
+  //   });
+  // });
   const filteredProductList = products.filter((product) => {
     if (filterValueList.length === 0) return true;
 
-    return filterValueList.some((filterValue) => {
+    // Separate company filters from other filters
+    const companyFilters = filterValueList.filter((filter) =>
+      product.company.includes(filter),
+    );
+    const otherFilters = filterValueList.filter(
+      (filter) => !product.company.includes(filter),
+    );
+
+    // If any company filter is selected, prioritize it
+    if (companyFilters.length > 0) {
+      // Ensure the product matches a company filter and any of the other filters
+      return (
+        companyFilters.some((filter) => product.company.includes(filter)) &&
+        (otherFilters.length === 0 ||
+          otherFilters.some((filterValue) => {
+            return (
+              product.color.includes(filterValue) ||
+              product.category.includes(filterValue) ||
+              product.texture.includes(filterValue) ||
+              product.size.includes(filterValue)
+            );
+          }))
+      );
+    }
+
+    // If no company filter is selected, apply other filters normally
+    return otherFilters.every((filterValue) => {
       return (
         product.color.includes(filterValue) ||
-        product.company.includes(filterValue) ||
         product.category.includes(filterValue) ||
         product.texture.includes(filterValue) ||
         product.size.includes(filterValue)

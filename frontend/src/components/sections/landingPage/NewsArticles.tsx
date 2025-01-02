@@ -81,7 +81,7 @@ export default function NewsArticles() {
                   size="default"
                   navigateTo={article.url}
                 >
-                  Read Article
+                  {article.button}
                 </Button>
               </div>
             </CarouselItem>

@@ -257,20 +257,23 @@ export const Articles = [
     content:
       "As a young boy in the lush seaside municipality of pre blocka Croatia Mile once dreamed of captaining his own ship. Yet due to the restraints of the socialist Federal... ",
       url: "https://www.youtube.com/watch?v=zYtb3uYsGnU",
+      button: "Watch Video"
   },
   {
     image: "/article2b.jpg",
     title: "As Montecito cleanup continues, a search for...",
     content:
       "Santa Paula Materials, which sells rocks and recycled construction debris, will collect the rocks that are hauled out, while Standard Industries, a building material...",
-      url: "https://www.latimes.com/local/lanow/la-me-ln-montecito-mud-20180117-story.html#:~:text=Santa%20Paula%20Materials%2C%20which%20sells%20rocks%20and,the%20California%20Department%20of%20Resources%20Recycling%20and"
+      url: "https://www.latimes.com/local/lanow/la-me-ln-montecito-mud-20180117-story.html#:~:text=Santa%20Paula%20Materials%2C%20which%20sells%20rocks%20and,the%20California%20Department%20of%20Resources%20Recycling%20and",
+      button: "Read Article"
   },
   {
     image: "/article3.png",
     title: "SP Materials: State $1.1M loan to help create new...",
     content:
       "The ceremonial check for the proposed expansion - considered in the category of “green” business practices - was presented Thursday to Santa Paula Materials’...",
-      url: "https://santapaulatimes.com/news/archivestory.php/aid/26736/SP_Materials:_State_$1.1M_loan_to_help_create_new_recycling_business.html"
+      url: "https://santapaulatimes.com/news/archivestory.php/aid/26736/SP_Materials:_State_$1.1M_loan_to_help_create_new_recycling_business.html",
+      button: "Read Article"
   },
 ];
 
