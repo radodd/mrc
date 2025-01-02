@@ -47,6 +47,10 @@
     width: 48px;
     height: 48px;
   }
+  @include large-break {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .title {
@@ -70,6 +74,18 @@
 }
 
 .viewport {
-  top: 40%;
-  left: 8%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin: 30px;
+  // padding: 30px;
+
+  /* Fixed to the viewport */
+  top: 50%; /* Move to 50% from the top */
+  left: 0%; /* Move to 50% from the left */
+  // transform: translate(-50%, -50%);
+  // top: 40%;
+  // // left: 8%;
+  // transform: translate(-50%, -50%);
 }

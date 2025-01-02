@@ -20,7 +20,7 @@ export function Toaster() {
     <ToastProvider>
       {toasts.map(function ({ id, title, description, action, src, ...props }) {
         return (
-          <Toast key={id} {...props} className={styles.Toast}>
+          <Toast key={id} {...props} className={styles.Toast} open={true}>
             <div className={styles.toastContainer}>
               <div className={styles.imageContainer}>
                 <Image

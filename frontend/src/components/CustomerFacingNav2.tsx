@@ -148,13 +148,14 @@ const MaterialSection = ({
       <div className="my-4 mx-2 ">
         <div className="flex justify-between mb-2">
           <span>{title}</span>
-          <Image
+          <ChevronDown className="-rotate-90" />
+          {/* <Image
             src="/chevron_down.svg"
             alt="Chevron Icon"
             width={17}
             height={17}
             className="-rotate-90"
-          />
+          /> */}
         </div>
         <p>{description}</p>
       </div>

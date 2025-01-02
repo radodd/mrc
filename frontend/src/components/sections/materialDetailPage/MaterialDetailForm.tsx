@@ -14,8 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../../ui/form";
-import LZString from "lz-string";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProductCardProps } from "../../../app/(customerFacing)/materials/[id]/page";
@@ -108,6 +107,7 @@ export default function MaterialDetailForm({ product }: FormProps) {
   useEffect(() => {
     if (success) {
       toast({
+        open: true,
         title: "Added to Cart",
         description:
           "Please view your cart to see all materials. Once submitted, someone from our team will email you a quote within 24 hours.",
