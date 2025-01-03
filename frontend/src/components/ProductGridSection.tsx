@@ -181,7 +181,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     }
 
     // If no company filter is selected, apply other filters normally
-    return otherFilters.every((filterValue) => {
+    return otherFilters.some((filterValue) => {
       return (
         product.color.includes(filterValue) ||
         product.category.includes(filterValue) ||
