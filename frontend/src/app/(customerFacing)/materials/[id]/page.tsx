@@ -285,7 +285,13 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           )}
 
           <div className="flex gap-6">
-            <Button>Category Sizes</Button>
+            <Button
+              onClick={() =>
+                window.open("/Category_Sizes_Reference.pdf", "_blank")
+              }
+            >
+              Category Sizes
+            </Button>
           </div>
 
           <MaterialDetailForm product={product} />
