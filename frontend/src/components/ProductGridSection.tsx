@@ -148,24 +148,101 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   //     );
   //   });
   // });
+
+  // const filteredProductList = products.filter((product) => {
+  //   if (filterValueList.length === 0) return true; // No filters, return all products
+
+  //   // Separate company filters from other filters
+  //   const hardcodedCompanies = [
+  //     "MRC Rock & Sand",
+  //     "Stoneyard",
+  //     "Santa Paula Materials",
+  //   ];
+
+  //   // Step 1: Separate company filters by checking if they match any of the hardcoded companies
+  //   const companyFilters = filterValueList.filter(
+  //     (filter) => hardcodedCompanies.includes(filter), // Check if filter matches any of the hardcoded companies
+  //   );
+  //   const otherFilters = filterValueList.filter(
+  //     (filter) => !companyFilters.includes(filter),
+  //   );
+  //   console.log("Company filters:", companyFilters); // Log company filters
+  //   console.log("Other filters:", otherFilters);
+
+  //   // If company filters exist, prioritize them
+  //   if (companyFilters.length > 0 && otherFilters.length === 0) {
+  //     console.log(
+  //       "Two or more company filters selected. Checking company match...",
+  //     );
+  //     const companyMatch = companyFilters.some((filter) =>
+  //       product.company.includes(filter),
+  //     );
+  //     console.log("Company match:", companyMatch);
+  //     return companyMatch;
+  //   }
+
+  //   // If one company filter exists, check the company and other filters
+  //   if (companyFilters.length === 1) {
+  //     console.log("One company filter selected. Checking company match...");
+  //     const matchesCompany = companyFilters.some((filter) =>
+  //       product.company.includes(filter),
+  //     );
+  //     console.log("Matches company:", matchesCompany);
+
+  //     const matchesOtherFilters = otherFilters.every((filterValue) => {
+  //       return (
+  //         product.color.includes(filterValue) ||
+  //         product.category.includes(filterValue) ||
+  //         product.texture.includes(filterValue) ||
+  //         product.size.includes(filterValue)
+  //       );
+  //     });
+
+  //     // Return only products that match the company and all additional filters
+  //     return matchesCompany && matchesOtherFilters;
+  //   }
+
+  //   // If no company filters exist, apply logic for other filters
+  //   const matchesOtherFilters = otherFilters.every((filterValue) => {
+  //     // For each filter value, check against each category independently (OR within categories)
+  //     const matchesCategory =
+  //       (product.color.some((color) => color.includes(filterValue)) ||
+  //         product.category.some((cat) => cat.includes(filterValue)) ||
+  //         product.texture.some((tex) => tex.includes(filterValue)) ||
+  //         product.size.some((sz) => sz.includes(filterValue))) &&
+  //       filterValue;
+  //     console.log(
+  //       `Filter '${filterValue}' matches category in product:`,
+  //       matchesCategory,
+  //     );
+  //     return matchesCategory;
+  //   });
+
+  //   // Return true if product matches all selected filters (AND logic across categories)
+  //   return matchesOtherFilters;
+  // });
+
   const filteredProductList = products.filter((product) => {
-    if (filterValueList.length === 0) return true;
+    if (filterValueList.length === 0) return true; // No filters, return all products
 
     // Separate company filters from other filters
-    // const companyFilters = filterValueList.filter((filter) =>
-    //   product.company.some((company) => company.includes(filter)),
-    // );
-    const companyFilters = [
+    const hardcodedCompanies = [
       "MRC Rock & Sand",
       "Stoneyard",
       "Santa Paula Materials",
     ];
+
+    // Step 1: Separate company filters by checking if they match any of the hardcoded companies
+    const companyFilters = filterValueList.filter(
+      (filter) => hardcodedCompanies.includes(filter), // Check if filter matches any of the hardcoded companies
+    );
     const otherFilters = filterValueList.filter(
       (filter) => !companyFilters.includes(filter),
     );
     console.log("Company filters:", companyFilters); // Log company filters
     console.log("Other filters:", otherFilters);
 
+    // If company filters exist, prioritize them
     if (companyFilters.length > 0 && otherFilters.length === 0) {
       console.log(
         "Two or more company filters selected. Checking company match...",
@@ -176,35 +253,47 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
       console.log("Company match:", companyMatch);
       return companyMatch;
     }
-    // If company filters exist, prioritize them
+
+    // If one company filter exists, check the company and other filters
     if (companyFilters.length === 1) {
       console.log("One company filter selected. Checking company match...");
       const matchesCompany = companyFilters.some((filter) =>
         product.company.includes(filter),
       );
       console.log("Matches company:", matchesCompany);
-      const matchesOtherFilters = otherFilters.every((filterValue) => {
+
+      const matchesOtherFilters = otherFilters.some((filterValue) => {
+        // Use OR logic within categories
         return (
-          product.color.includes(filterValue) ||
-          product.category.includes(filterValue) ||
-          product.texture.includes(filterValue) ||
-          product.size.includes(filterValue)
+          product.color.some((color) => color.includes(filterValue)) ||
+          product.category.some((cat) => cat.includes(filterValue)) ||
+          product.texture.some((tex) => tex.includes(filterValue)) ||
+          product.size.some((sz) => sz.includes(filterValue))
         );
       });
 
-      // Return only products that match a company and all additional filters
+      // Return only products that match the company and any other filter
       return matchesCompany && matchesOtherFilters;
     }
 
-    // If no company filters exist, apply the logic for other filters
-    return otherFilters.some((filterValue) => {
-      return (
-        product.color.includes(filterValue) ||
-        product.category.includes(filterValue) ||
-        product.texture.includes(filterValue) ||
-        product.size.includes(filterValue)
+    // If no company filters exist, apply logic for other filters
+    const matchesOtherFilters = otherFilters.some((filterValue) => {
+      // For each filter value, check against each category independently (OR within categories)
+      const matchesCategory =
+        (product.color.some((color) => color.includes(filterValue)) ||
+          product.category.some((cat) => cat.includes(filterValue)) ||
+          product.texture.some((tex) => tex.includes(filterValue)) ||
+          product.size.some((sz) => sz.includes(filterValue))) &&
+        filterValue;
+      console.log(
+        `Filter '${filterValue}' matches category in product:`,
+        matchesCategory,
       );
+      return matchesCategory;
     });
+
+    // Return true if product matches all selected filters (AND logic across categories)
+    return matchesOtherFilters;
   });
 
   const categoryCounts = filteredProductList.reduce(
