@@ -197,7 +197,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     }
 
     // If no company filters exist, apply the logic for other filters
-    return otherFilters.every((filterValue) => {
+    return otherFilters.some((filterValue) => {
       return (
         product.color.includes(filterValue) ||
         product.category.includes(filterValue) ||
