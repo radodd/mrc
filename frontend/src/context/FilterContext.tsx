@@ -29,9 +29,9 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [filterValueList, setFilterValueList] = useState<string[]>([]);
   const [tempFilterValueList, setTempFilterValueList] = useState<string[]>([]);
 
-  useEffect(() => {
-    console.log("filterValueList updated:", filterValueList);
-  }, [filterValueList]);
+  // useEffect(() => {
+  //   console.log("filterValueList updated:", filterValueList);
+  // }, [filterValueList]);
 
   useEffect(() => {
     const savedFilterValueList = localStorage.getItem("filterValueList");

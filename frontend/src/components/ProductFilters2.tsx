@@ -139,7 +139,7 @@ export const ProductFilters2: React.FC<{
       <div className="w-full flex justify-end items-end">
         <Button
           onClick={applyFilters}
-          // disabled={filterValueList !== null}
+          disabled={filterValueList.length > 0}
           variant={tempFilterValueList.length !== 0 ? "default" : "filter"}
           className="mb-6  mr-0 w-[275px]"
         >

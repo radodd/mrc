@@ -148,26 +148,41 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   //     );
   //   });
   // });
-
   const filteredProductList = products.filter((product) => {
     if (filterValueList.length === 0) return true;
 
     // Separate company filters from other filters
-    const companyFilters = filterValueList.filter((filter) =>
-      product.company.includes(filter),
-    );
+    // const companyFilters = filterValueList.filter((filter) =>
+    //   product.company.some((company) => company.includes(filter)),
+    // );
+    const companyFilters = [
+      "MRC Rock & Sand",
+      "Stoneyard",
+      "Santa Paula Materials",
+    ];
     const otherFilters = filterValueList.filter(
-      (filter) => !product.company.includes(filter),
+      (filter) => !companyFilters.includes(filter),
     );
+    console.log("Company filters:", companyFilters); // Log company filters
+    console.log("Other filters:", otherFilters);
 
-    // If any company filter is selected, prioritize it
-    if (companyFilters.length > 0) {
-      // Ensure the product matches a company filter
+    if (companyFilters.length > 0 && otherFilters.length === 0) {
+      console.log(
+        "Two or more company filters selected. Checking company match...",
+      );
+      const companyMatch = companyFilters.some((filter) =>
+        product.company.includes(filter),
+      );
+      console.log("Company match:", companyMatch);
+      return companyMatch;
+    }
+    // If company filters exist, prioritize them
+    if (companyFilters.length === 1) {
+      console.log("One company filter selected. Checking company match...");
       const matchesCompany = companyFilters.some((filter) =>
         product.company.includes(filter),
       );
-
-      // Ensure the product matches all other filters
+      console.log("Matches company:", matchesCompany);
       const matchesOtherFilters = otherFilters.every((filterValue) => {
         return (
           product.color.includes(filterValue) ||
@@ -177,11 +192,12 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
         );
       });
 
+      // Return only products that match a company and all additional filters
       return matchesCompany && matchesOtherFilters;
     }
 
-    // If no company filter is selected, apply other filters normally
-    return otherFilters.some((filterValue) => {
+    // If no company filters exist, apply the logic for other filters
+    return otherFilters.every((filterValue) => {
       return (
         product.color.includes(filterValue) ||
         product.category.includes(filterValue) ||
