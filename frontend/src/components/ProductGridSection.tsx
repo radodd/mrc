@@ -592,7 +592,28 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   if (categoriesWithMultipleFilters.length > 0) {
     console.log("Applying OR filtering for categories with multiple filters.");
 
+    const selectedCompanyFilters = filterValueList.filter((filter) =>
+      filterBelongsToCategory(filter, "company"),
+    );
+
     const orFilteredProductList = products.filter((product) => {
+      // Ensure the product matches the selected company filter, if any
+      const matchesSelectedCompany =
+        selectedCompanyFilters.length === 0 ||
+        selectedCompanyFilters.some((filter) => {
+          const productCompany = product["company"];
+          if (Array.isArray(productCompany)) {
+            return productCompany.includes(filter);
+          } else if (typeof productCompany === "string") {
+            return productCompany === filter;
+          }
+          return false;
+        });
+
+      // If it doesn't match the selected company, skip it
+      if (!matchesSelectedCompany) return false;
+
+      // Apply OR logic for categories with multiple filters
       return categoriesWithMultipleFilters.some((category) => {
         const categoryFilters = filterValueList.filter((filter) =>
           filterBelongsToCategory(filter, category),
