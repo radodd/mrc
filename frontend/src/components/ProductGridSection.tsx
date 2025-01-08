@@ -11,6 +11,13 @@ import FilterDropDown from "./FilterDropDown";
 import AlphabetizeButtons from "./AlphabetizeButtons";
 import AlphabetizeRadio from "./AlphabetizeRadio";
 import ChevronIcon from "../../public/chevron_nav_sharp.svg";
+import {
+  AllCompanies,
+  AllCategories,
+  AllTextures,
+  AllColors,
+  AllSizes,
+} from "../../../index";
 
 import styles from "./scss/ProductGridSection.module.scss";
 
@@ -222,81 +229,414 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   //   return matchesOtherFilters;
   // });
 
-  const filteredProductList = products.filter((product) => {
-    if (filterValueList.length === 0) return true; // No filters, return all products
+  // const filteredProductList = products.filter((product) => {
+  //   if (filterValueList.length === 0) return true; // No filters, return all products
 
-    // Separate company filters from other filters
-    const hardcodedCompanies = [
-      "MRC Rock & Sand",
-      "Stoneyard",
-      "Santa Paula Materials",
-    ];
+  //   // Separate company filters from other filters
+  //   const hardcodedCompanies = [
+  //     "MRC Rock & Sand",
+  //     "Stoneyard",
+  //     "Santa Paula Materials",
+  //   ];
 
-    // Step 1: Separate company filters by checking if they match any of the hardcoded companies
-    const companyFilters = filterValueList.filter(
-      (filter) => hardcodedCompanies.includes(filter), // Check if filter matches any of the hardcoded companies
-    );
-    const otherFilters = filterValueList.filter(
-      (filter) => !companyFilters.includes(filter),
-    );
-    console.log("Company filters:", companyFilters); // Log company filters
-    console.log("Other filters:", otherFilters);
+  //   // Step 1: Separate company filters by checking if they match any of the hardcoded companies
+  //   const companyFilters = filterValueList.filter(
+  //     (filter) => hardcodedCompanies.includes(filter), // Check if filter matches any of the hardcoded companies
+  //   );
+  //   const otherFilters = filterValueList.filter(
+  //     (filter) => !companyFilters.includes(filter),
+  //   );
+  //   console.log("Company filters:", companyFilters); // Log company filters
+  //   console.log("Other filters:", otherFilters);
 
-    // If company filters exist, prioritize them
-    if (companyFilters.length > 0 && otherFilters.length === 0) {
-      console.log(
-        "Two or more company filters selected. Checking company match...",
-      );
-      const companyMatch = companyFilters.some((filter) =>
-        product.company.includes(filter),
-      );
-      console.log("Company match:", companyMatch);
-      return companyMatch;
-    }
+  //   // If company filters exist, prioritize them
+  //   if (companyFilters.length > 0 && otherFilters.length === 0) {
+  //     console.log(
+  //       "Two or more company filters selected. Checking company match...",
+  //     );
+  //     const companyMatch = companyFilters.some((filter) =>
+  //       product.company.includes(filter),
+  //     );
+  //     console.log("Company match:", companyMatch);
+  //     return companyMatch;
+  //   }
 
-    // If one company filter exists, check the company and other filters
-    if (companyFilters.length === 1) {
-      console.log("One company filter selected. Checking company match...");
-      const matchesCompany = companyFilters.some((filter) =>
-        product.company.includes(filter),
-      );
-      console.log("Matches company:", matchesCompany);
+  //   // If one company filter exists, check the company and other filters
+  //   if (companyFilters.length === 1) {
+  //     console.log("One company filter selected. Checking company match...");
+  //     const matchesCompany = companyFilters.some((filter) =>
+  //       product.company.includes(filter),
+  //     );
+  //     console.log("Matches company:", matchesCompany);
 
-      const matchesOtherFilters = otherFilters.some((filterValue) => {
-        // Use OR logic within categories
-        return (
-          product.color.some((color) => color.includes(filterValue)) ||
-          product.category.some((cat) => cat.includes(filterValue)) ||
-          product.texture.some((tex) => tex.includes(filterValue)) ||
-          product.size.some((sz) => sz.includes(filterValue))
-        );
-      });
+  //     const matchesOtherFilters = otherFilters.some((filterValue) => {
+  //       // Use OR logic within categories
+  //       return (
+  //         product.color.some((color) => color.includes(filterValue)) ||
+  //         product.category.some((cat) => cat.includes(filterValue)) ||
+  //         product.texture.some((tex) => tex.includes(filterValue)) ||
+  //         product.size.some((sz) => sz.includes(filterValue))
+  //       );
+  //     });
 
-      // Return only products that match the company and any other filter
-      return matchesCompany && matchesOtherFilters;
-    }
+  //     // Return only products that match the company and any other filter
+  //     return matchesCompany && matchesOtherFilters;
+  //   }
 
-    // If no company filters exist, apply logic for other filters
-    const matchesOtherFilters = otherFilters.some((filterValue) => {
-      // For each filter value, check against each category independently (OR within categories)
-      const matchesCategory =
-        (product.color.some((color) => color.includes(filterValue)) ||
-          product.category.some((cat) => cat.includes(filterValue)) ||
-          product.texture.some((tex) => tex.includes(filterValue)) ||
-          product.size.some((sz) => sz.includes(filterValue))) &&
-        filterValue;
-      console.log(
-        `Filter '${filterValue}' matches category in product:`,
-        matchesCategory,
-      );
-      return matchesCategory;
+  //   // If no company filters exist, apply logic for other filters
+  //   const matchesOtherFilters = otherFilters.some((filterValue) => {
+  //     // For each filter value, check against each category independently (OR within categories)
+  //     const matchesCategory =
+  //       (product.color.some((color) => color.includes(filterValue)) ||
+  //         product.category.some((cat) => cat.includes(filterValue)) ||
+  //         product.texture.some((tex) => tex.includes(filterValue)) ||
+  //         product.size.some((sz) => sz.includes(filterValue))) &&
+  //       filterValue;
+  //     console.log(
+  //       `Filter '${filterValue}' matches category in product:`,
+  //       matchesCategory,
+  //     );
+  //     return matchesCategory;
+  //   });
+
+  //   // Return true if product matches all selected filters (AND logic across categories)
+  //   return matchesOtherFilters;
+  // });
+
+  // const filteredProductList = products.filter((product) => {
+  //   if (filterValueList.length === 0) {
+  //     console.log("No filters applied, returning all products.");
+  //     return true; // No filters, return all products
+  //   }
+
+  //   console.log("Filter values:", filterValueList);
+
+  //   // Group filters by categories, including 'company'
+  //   const groupedFilters = {
+  //     company: [],
+  //     color: [],
+  //     category: [],
+  //     texture: [],
+  //     size: [],
+  //   };
+
+  //   // Populate grouped filters
+  //   filterValueList.forEach((filter) => {
+  //     if (product.company.includes(filter)) {
+  //       groupedFilters.company.push(filter);
+  //     } else if (product.color.some((color) => color.includes(filter))) {
+  //       groupedFilters.color.push(filter);
+  //     } else if (product.category.some((cat) => cat.includes(filter))) {
+  //       groupedFilters.category.push(filter);
+  //     } else if (product.texture.some((tex) => tex.includes(filter))) {
+  //       groupedFilters.texture.push(filter);
+  //     } else if (product.size.some((sz) => sz.includes(filter))) {
+  //       groupedFilters.size.push(filter);
+  //     }
+  //   });
+
+  //   console.log(
+  //     `Grouped filters for product '${product.name}':`,
+  //     groupedFilters,
+  //   );
+
+  //   // Track if product matches any filters across all categories
+  //   let matchesAnyFilter = false;
+
+  //   // Strict matching: Fail if a category has filters but no match
+  //   const matchesGroupedFilters = Object.keys(groupedFilters).every((key) => {
+  //     const filters = groupedFilters[key];
+
+  //     // Skip categories without filters
+  //     if (filters.length === 0) {
+  //       console.log(`No filters in category '${key}', skipping.`);
+  //       return true;
+  //     }
+
+  //     // Check for matches in this category
+  //     const matches = filters.some((filter) => {
+  //       if (key === "company") {
+  //         return product.company.includes(filter); // Direct match for company
+  //       }
+  //       return product[key].some((value) =>
+  //         value.toLowerCase().includes(filter.toLowerCase()),
+  //       ); // Match for other categories
+  //     });
+
+  //     if (matches) {
+  //       matchesAnyFilter = true; // Track if any filter matches
+  //     } else {
+  //       console.log(
+  //         `Product '${product.name}' does not match any filter in category '${key}'.`,
+  //       );
+  //     }
+
+  //     console.log(
+  //       `Product '${product.name}' matches category '${key}' filters:`,
+  //       matches,
+  //     );
+  //     return matches; // Fail if no match in this category
+  //   });
+
+  //   console.log(
+  //     `Product '${product.name}' matches all category filters:`,
+  //     matchesGroupedFilters,
+  //   );
+  //   console.log(
+  //     `Product '${product.name}' matches at least one filter:`,
+  //     matchesAnyFilter,
+  //   );
+
+  //   return matchesGroupedFilters && matchesAnyFilter;
+  // });
+  // Track filter counts for each category
+  // Available filter lists from your index file
+  // const categoryFilterCount = {
+  //   company: 0,
+  //   color: 0,
+  //   category: 0,
+  //   texture: 0,
+  //   size: 0,
+  // };
+
+  // // Step 1: Count how many filters are applied per category
+  // filterValueList.forEach((filter) => {
+  //   Object.keys(categoryFilterCount).forEach((category) => {
+  //     if (filterBelongsToCategory(filter, category)) {
+  //       categoryFilterCount[category]++;
+  //     }
+  //   });
+  // });
+
+  // // Log the filter count per category
+  // console.log("Category Filter Counts:", categoryFilterCount);
+
+  // // Step 2: Identify categories with two or more filters applied
+  // const categoriesWithMultipleFilters = Object.keys(categoryFilterCount).filter(
+  //   (category) => categoryFilterCount[category] >= 2,
+  // );
+
+  // console.log(
+  //   "Categories with two or more filters applied:",
+  //   categoriesWithMultipleFilters,
+  // );
+
+  // // Step 3: Apply the filter to the product list
+  // const filteredProductList = products.filter((product) => {
+  //   if (filterValueList.length === 0) {
+  //     console.log("No filters applied, returning all products.");
+  //     return true; // No filters, return all products
+  //   }
+
+  //   let matchesAllFilters = true;
+
+  //   // Step 3.1: Apply the "AND" logic for selected filters across categories
+  //   filterValueList.forEach((filter) => {
+  //     const filterCategory = Object.keys(categoryFilterCount).find((category) =>
+  //       filterBelongsToCategory(filter, category)
+  //     );
+
+  //     console.log("Processing filter:", filter);
+  //     console.log("Filter belongs to category:", filterCategory);
+
+  //     if (filterCategory) {
+  //       // Logic for categories with multiple filters (OR logic)
+  //       if (categoryFilterCount[filterCategory] >= 2) {
+  //         console.log(`Category "${filterCategory}" has multiple filters applied. Applying "OR" logic.`);
+
+  //         const productValue = product[filterCategory];
+
+  //         // Check if the product matches any of the selected filters in this category
+  //         if (Array.isArray(productValue)) {
+  //           matchesAllFilters =
+  //             matchesAllFilters &&
+  //             productValue.some((value) => filterValueList.includes(value));
+  //         } else if (typeof productValue === "string") {
+  //           matchesAllFilters =
+  //             matchesAllFilters && filterValueList.includes(productValue);
+  //         }
+  //       } else {
+  //         // Logic for categories with one filter applied (AND logic)
+  //         console.log(`Category "${filterCategory}" has one filter applied. Applying "AND" logic.`);
+
+  //         const matchesFilterInCategory = Object.keys(product).some((key) => {
+  //           const productValue = product[key];
+  //           if (Array.isArray(productValue)) {
+  //             return productValue.some((value) => value.includes(filter));
+  //           } else if (typeof productValue === "string") {
+  //             return productValue.includes(filter);
+  //           }
+  //           return false;
+  //         });
+
+  //         console.log(`Product matches filter in category "${filterCategory}":`, matchesFilterInCategory);
+  //         matchesAllFilters = matchesAllFilters && matchesFilterInCategory;
+  //       }
+  //     }
+  //   });
+
+  //   // Step 3.2: Ensure all conditions match across categories and handle "OR" logic for multiple filters in a category
+  //   console.log("Product matches all filters:", matchesAllFilters);
+  //   return matchesAllFilters;
+  // });
+
+  // console.log("Filtered Product List:", filteredProductList);
+
+  // // Helper function to check if a filter belongs to a category
+  // function filterBelongsToCategory(filter, category) {
+  //   const categoryFilters = {
+  //     company: AllCompanies,
+  //     color: AllColors,
+  //     category: AllCategories,
+  //     texture: AllTextures,
+  //     size: AllSizes,
+  //   };
+
+  //   // Check if the filter belongs to the category by checking against the predefined list
+  //   return categoryFilters[category]?.includes(filter);
+  // }
+
+  // Track filter counts for each category
+  const categoryFilterCount = {
+    company: 0,
+    color: 0,
+    category: 0,
+    texture: 0,
+    size: 0,
+  };
+
+  // Step 1: Count how many filters are applied per category
+  filterValueList.forEach((filter) => {
+    Object.keys(categoryFilterCount).forEach((category) => {
+      if (filterBelongsToCategory(filter, category)) {
+        categoryFilterCount[category]++;
+      }
     });
-
-    // Return true if product matches all selected filters (AND logic across categories)
-    return matchesOtherFilters;
   });
 
-  const categoryCounts = filteredProductList.reduce(
+  // Step 2: Identify categories with two or more filters applied
+  const categoriesWithMultipleFilters = Object.keys(categoryFilterCount).filter(
+    (category) => categoryFilterCount[category] >= 2,
+  );
+
+  // Log categories with two or more filters
+  console.log(
+    "Categories with two or more filters:",
+    categoriesWithMultipleFilters,
+  );
+
+  // Step 3: Apply the filter to the product list
+  let exactMatchFilteredProductList = [];
+  let finalFilteredProductList = [];
+
+  if (filterValueList.length === 1) {
+    console.log("Only one filter applied, applying exact match.");
+
+    // Apply exact match filtering for a single filter
+    exactMatchFilteredProductList = products.filter((product) => {
+      return filterValueList.every((filter) => {
+        const filterCategory = Object.keys(categoryFilterCount).find(
+          (category) => filterBelongsToCategory(filter, category),
+        );
+
+        console.log("Checking exact match for filter:", filter);
+        console.log("Filter belongs to category:", filterCategory);
+
+        if (filterCategory) {
+          const productValue = product[filterCategory];
+
+          if (Array.isArray(productValue)) {
+            return productValue.some((value) => value === filter); // Exact match in array
+          } else if (typeof productValue === "string") {
+            return productValue === filter; // Exact match for string values
+          }
+        }
+
+        return false;
+      });
+    });
+
+    console.log(
+      "Exact Match Filtered Product List:",
+      exactMatchFilteredProductList,
+    );
+
+    // Now, use the exact match filtered list as the final result
+    finalFilteredProductList = exactMatchFilteredProductList;
+  } else {
+    console.log("More than one filter applied, applying AND filtering logic.");
+
+    // Step 4: Apply existing AND filter logic (if multiple filters are selected)
+    finalFilteredProductList = products.filter((product) => {
+      const matchesAllFilters = filterValueList.every((filter) => {
+        const matchesFilterInCategory = Object.keys(product).some((key) => {
+          const productValue = product[key];
+          if (Array.isArray(productValue)) {
+            return productValue.some((value) => value.includes(filter));
+          } else if (typeof productValue === "string") {
+            return productValue.includes(filter);
+          }
+          return false;
+        });
+
+        return matchesFilterInCategory;
+      });
+
+      return matchesAllFilters;
+    });
+
+    console.log("AND Filtered Product List:", finalFilteredProductList);
+  }
+
+  // Step 5: Apply OR logic for categories with multiple filters
+  if (categoriesWithMultipleFilters.length > 0) {
+    console.log("Applying OR filtering for categories with multiple filters.");
+
+    const orFilteredProductList = products.filter((product) => {
+      return categoriesWithMultipleFilters.some((category) => {
+        const categoryFilters = filterValueList.filter((filter) =>
+          filterBelongsToCategory(filter, category),
+        );
+
+        // Check if any filter in the category matches the product
+        return categoryFilters.some((filter) => {
+          const productValue = product[category];
+          if (Array.isArray(productValue)) {
+            return productValue.some((value) => value === filter);
+          } else if (typeof productValue === "string") {
+            return productValue === filter;
+          }
+          return false;
+        });
+      });
+    });
+
+    console.log("OR Filtered Product List:", orFilteredProductList);
+
+    // Combine OR filtered results with the final result
+    finalFilteredProductList = [
+      ...new Set([...finalFilteredProductList, ...orFilteredProductList]),
+    ];
+  }
+
+  // Final output
+  console.log("Final Filtered Product List:", finalFilteredProductList);
+
+  // Helper function to check if a filter belongs to a category
+  function filterBelongsToCategory(filter, category) {
+    const categoryFilters = {
+      company: AllCompanies,
+      color: AllColors,
+      category: AllCategories,
+      texture: AllTextures,
+      size: AllSizes,
+    };
+
+    // Check if the filter belongs to the category by checking against the predefined list
+    return categoryFilters[category]?.includes(filter);
+  }
+
+  const categoryCounts = finalFilteredProductList.reduce(
     (counts: Record<string, number>, product) => {
       product.category.forEach((cat) => {
         counts[cat] = (counts[cat] || 0) + 1;
@@ -306,7 +646,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     {},
   );
 
-  const colorCounts = filteredProductList.reduce(
+  const colorCounts = finalFilteredProductList.reduce(
     (counts: Record<string, number>, product) => {
       product.color?.forEach((col) => {
         counts[col] = (counts[col] || 0) + 1;
@@ -316,7 +656,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     {},
   );
 
-  const companyCounts = filteredProductList.reduce(
+  const companyCounts = finalFilteredProductList.reduce(
     (counts: Record<string, number>, product) => {
       product.company.forEach((comp) => {
         counts[comp] = (counts[comp] || 0) + 1;
@@ -326,7 +666,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     {},
   );
 
-  const textureCounts = filteredProductList.reduce(
+  const textureCounts = finalFilteredProductList.reduce(
     (counts: Record<string, number>, product) => {
       product.texture.forEach((tex) => {
         counts[tex] = (counts[tex] || 0) + 1;
@@ -336,7 +676,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     {},
   );
 
-  const sizeCounts = filteredProductList.reduce(
+  const sizeCounts = finalFilteredProductList.reduce(
     (counts: Record<string, number>, product) => {
       product.size.forEach((size) => {
         counts[size] = (counts[size] || 0) + 1;
@@ -415,7 +755,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           </div>
         ) : (
           <>
-            {filteredProductList.length === 0 && (
+            {finalFilteredProductList.length === 0 && (
               <div className={styles.noItemsMatchContainer}>
                 <Image
                   src="/no_items_match.svg"
@@ -426,7 +766,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
               </div>
             )}
             <div className={styles.productCardContainer}>
-              {filteredProductList.map((product, index) => (
+              {finalFilteredProductList.map((product, index) => (
                 <ProductCard {...product} key={index} />
               ))}
             </div>
@@ -553,7 +893,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
               </div>
             ) : (
               <>
-                {filteredProductList.length === 0 && (
+                {finalFilteredProductList.length === 0 && (
                   <div className={styles.noItemsMatchContainer}>
                     <Image
                       src="/no_items_match.svg"
@@ -564,7 +904,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
                   </div>
                 )}
                 <div className={styles.materialCardContainer}>
-                  {filteredProductList.map((product, index) => (
+                  {finalFilteredProductList.map((product, index) => (
                     <ProductCard {...product} key={index} />
                   ))}
                 </div>
