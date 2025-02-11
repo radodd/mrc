@@ -27,7 +27,7 @@ export const LandingPageCarousel = [
       {
         text: "View Materials",
         navigateTo: "/materials",
-        filter: ["Stoneyard"]
+        filter: ["Stoneyard"],
       },
     ],
     image: "/image_carousel_stoneyard.png", // Replace with your actual image path
@@ -41,7 +41,7 @@ export const LandingPageCarousel = [
       {
         text: "View Materials",
         navigateTo: "/materials",
-        filter: ["MRC Rock & Sand"]
+        filter: ["MRC Rock & Sand"],
       },
       {
         text: "View Services",
@@ -59,8 +59,7 @@ export const LandingPageCarousel = [
       {
         text: "View Materials",
         navigateTo: "/materials",
-        filter: ["Santa Paula Materials"]
-      
+        filter: ["Santa Paula Materials"],
       },
       {
         text: "View Services",
@@ -256,24 +255,24 @@ export const Articles = [
     title: "Spirit of Small Business 2016 honoree, Santa Paula Materials",
     content:
       "As a young boy in the lush seaside municipality of pre blocka Croatia Mile once dreamed of captaining his own ship. Yet due to the restraints of the socialist Federal... ",
-      url: "https://www.youtube.com/watch?v=zYtb3uYsGnU",
-      button: "Watch Video"
+    url: "https://www.youtube.com/watch?v=zYtb3uYsGnU",
+    button: "Watch Video",
   },
   {
     image: "/article2b.jpg",
     title: "As Montecito cleanup continues, a search for...",
     content:
       "Santa Paula Materials, which sells rocks and recycled construction debris, will collect the rocks that are hauled out, while Standard Industries, a building material...",
-      url: "https://www.latimes.com/local/lanow/la-me-ln-montecito-mud-20180117-story.html#:~:text=Santa%20Paula%20Materials%2C%20which%20sells%20rocks%20and,the%20California%20Department%20of%20Resources%20Recycling%20and",
-      button: "Read Article"
+    url: "https://www.latimes.com/local/lanow/la-me-ln-montecito-mud-20180117-story.html#:~:text=Santa%20Paula%20Materials%2C%20which%20sells%20rocks%20and,the%20California%20Department%20of%20Resources%20Recycling%20and",
+    button: "Read Article",
   },
   {
     image: "/article3.png",
     title: "SP Materials: State $1.1M loan to help create new...",
     content:
       "The ceremonial check for the proposed expansion - considered in the category of “green” business practices - was presented Thursday to Santa Paula Materials’...",
-      url: "https://santapaulatimes.com/news/archivestory.php/aid/26736/SP_Materials:_State_$1.1M_loan_to_help_create_new_recycling_business.html",
-      button: "Read Article"
+    url: "https://santapaulatimes.com/news/archivestory.php/aid/26736/SP_Materials:_State_$1.1M_loan_to_help_create_new_recycling_business.html",
+    button: "Read Article",
   },
 ];
 
@@ -367,4 +366,22 @@ export const MaterialID = [
   { id: 23, name: "Pacific Clay Brick" },
   { id: 27, name: "Belgard Pavers" },
   { id: 28, name: "Pebbles" },
+];
+
+export const ContactInfo = [
+  {
+    company: "MRC Rock & Sand",
+    phoneNumber: "(805) 524-5569",
+    email: "info@mrcrs.com",
+  },
+  {
+    company: "Santa Paula Materials",
+    phoneNumber: "(805) 525-6858",
+    email: "info@santapaulamaterials.com",
+  },
+  {
+    company: "Stoneyard",
+    phoneNumber: "(805) 962-9511",
+    email: "stoneyardsp@gmail.com",
+  },
 ];

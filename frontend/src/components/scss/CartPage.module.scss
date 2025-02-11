@@ -29,7 +29,11 @@
 }
 
 .input {
-  width: 42px;
+  // border: solid red 2px;
+  // display: flex;
+  text-align: center;
+  width: 75px;
+  // max-width: fit-content;
   height: 28px;
   padding: 4px 8px;
   font-size: 16px;

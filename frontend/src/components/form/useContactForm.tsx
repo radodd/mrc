@@ -8,7 +8,8 @@ import { useScreenSize } from "./../../lib/useScreenSize";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 
-export const useContactForm = ({ cartItems }) => {
+export const useContactForm = ({ cartItems = [] }) => {
+  // const { cartItems } = useCart()
   const { toast } = useToast();
   const isScreenSmall = useScreenSize(430);
   const [openModal, setOpenModal] = useState(false);
@@ -38,10 +39,15 @@ export const useContactForm = ({ cartItems }) => {
   const onSubmit = async (formData: FormValues) => {
     const isValid = await trigger();
     if (!isValid) return;
+
+    console.log("Cart items before submission:", cartItems);
+    console.log("Type of cartItems:", typeof cartItems);
+    console.log("Is cartItems an array?", Array.isArray(cartItems));
+
     try {
       const payload = {
         ...formData,
-        cartItems,
+        cartItems: Array.isArray(cartItems) ? cartItems : [],
       };
       const result = await sendFormData(payload);
       console.log("Form data and cart data:", payload);
@@ -49,8 +55,9 @@ export const useContactForm = ({ cartItems }) => {
       if (!result.success) {
         console.error("Error sending email:", result.error);
       } else {
-        cartItems.forEach((_, index) => removeFromCart(index));
-        // setCartItems([])
+        if (Array.isArray(cartItems)) {
+          cartItems.forEach((_, index) => removeFromCart(index));
+        }
         if (isScreenSmall) {
           setOpenModal(true);
         } else {

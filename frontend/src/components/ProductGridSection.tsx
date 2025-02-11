@@ -520,17 +520,17 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   );
 
   // Log categories with two or more filters
-  console.log(
-    "Categories with two or more filters:",
-    categoriesWithMultipleFilters,
-  );
+  // console.log(
+  //   "Categories with two or more filters:",
+  //   categoriesWithMultipleFilters,
+  // );
 
   // Step 3: Apply the filter to the product list
   let exactMatchFilteredProductList = [];
   let finalFilteredProductList = [];
 
   if (filterValueList.length === 1) {
-    console.log("Only one filter applied, applying exact match.");
+    // console.log("Only one filter applied, applying exact match.");
 
     // Apply exact match filtering for a single filter
     exactMatchFilteredProductList = products.filter((product) => {
@@ -539,8 +539,8 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
           (category) => filterBelongsToCategory(filter, category),
         );
 
-        console.log("Checking exact match for filter:", filter);
-        console.log("Filter belongs to category:", filterCategory);
+        // console.log("Checking exact match for filter:", filter);
+        // console.log("Filter belongs to category:", filterCategory);
 
         if (filterCategory) {
           const productValue = product[filterCategory];
@@ -585,7 +585,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
       return matchesAllFilters;
     });
 
-    console.log("AND Filtered Product List:", finalFilteredProductList);
+    // console.log("AND Filtered Product List:", finalFilteredProductList);
   }
 
   // Step 5: Apply OR logic for categories with multiple filters
@@ -707,10 +707,15 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
     {},
   );
 
+  // const handleRemoveFilter = (filter: string) => {
+  //   setFilterValueList((prevFilters: string[]) =>
+  //     prevFilters.filter((f) => f !== filter),
+  //   );
+  //   clearFilter(filter);
+  // };
   const handleRemoveFilter = (filter: string) => {
-    setFilterValueList((prevFilters) =>
-      prevFilters.filter((f) => f !== filter),
-    );
+    const updatedFilter = filterValueList.filter((f) => f !== filter);
+    setFilterValueList(updatedFilter);
     clearFilter(filter);
   };
 
@@ -834,7 +839,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
         <div className="flex flex-col">
           {filterValueList.length === 0 ? (
             <Button
-              variant="filter"
+              variant="filterDisabled"
               size="filter"
               className={`mb-6 min-[1306px]:ml-[72px] `}
               onClick={clearAllFilters}

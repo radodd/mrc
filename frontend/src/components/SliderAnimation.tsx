@@ -109,7 +109,7 @@ const Slider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentLine((prev) => (prev + 1) % lines.length);
-    }, 1050);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [lines.length]);

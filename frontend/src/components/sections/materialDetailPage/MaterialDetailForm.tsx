@@ -74,40 +74,14 @@ export default function MaterialDetailForm({ product }: FormProps) {
       quantity: values.quantity,
     };
     addToCart(formDataJSON);
-
-    // const compressedData = LZString.compressToUTF16(
-    //   JSON.stringify(formDataJSON),
-
-    // saveToCart(compressedData);
-
     setSuccess(true);
   };
-
-  // Save compressed data to localStorage
-  // const saveToCart = (compressedData: string) => {
-  //   const cart = localStorage.getItem("cartItems");
-  //   let cartList;
-  //   try {
-  //     cartList = cart ? JSON.parse(cart) : []; // Parse the cart or initialize as an empty array
-  //     if (!Array.isArray(cartList)) {
-  //       // Ensure cartList is an array
-  //       cartList = [];
-  //     }
-  //   } catch (error) {
-  //     // If parsing fails, initialize as an empty array
-  //     console.error("Error parsing cartItems from localStorage:", error);
-  //     cartList = [];
-  //   }
-
-  //   cartList.push(compressedData); // Add the new compressed data to the array
-  //   localStorage.setItem("cartItems", JSON.stringify(cartList)); // Save the updated array back to localStorage
-  // };
 
   // Handle success state and form reset
   useEffect(() => {
     if (success) {
       toast({
-        open: true,
+        // open: true,
         title: "Added to Cart",
         description:
           "Please view your cart to see all materials. Once submitted, someone from our team will email you a quote within 24 hours.",

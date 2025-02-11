@@ -45,7 +45,7 @@
   }
   @include large-break {
     height: 731px;
-    width: 612px;
+    min-width: 509px;
     gap: 40px;
     border-radius: 24px;
   }
@@ -91,7 +91,13 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.72px;
+  @include mid-break {
+    font-size: 24px;
+  }
+  @include large-break {
+    font-size: 24px;
+  }
 }
 
 .companyAddressCardContainer {

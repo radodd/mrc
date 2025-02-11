@@ -25,7 +25,9 @@ const HowToUseSection = () => (
         <p className="text-secondary-text">{item.content}</p>
       </div>
     ))}
-    <Button className="w-full">Contact Us</Button>
+    <Button className="w-full" navigateTo="/contact">
+      Contact Us
+    </Button>
   </div>
 );
 
@@ -43,7 +45,7 @@ const QuantityInput = ({ value, handleIncrease, handleDecrease, index }) => {
           -
         </Button>
 
-        <Input readOnly type="number" value={value} className={style.input} />
+        <Input readOnly type="string" value={value} className={style.input} />
         <Button
           variant="quantityCart"
           size="quantityCart"

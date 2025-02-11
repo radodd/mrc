@@ -149,13 +149,6 @@ const MaterialSection = ({
         <div className="flex justify-between mb-2">
           <span>{title}</span>
           <ChevronDown className="-rotate-90" />
-          {/* <Image
-            src="/chevron_down.svg"
-            alt="Chevron Icon"
-            width={17}
-            height={17}
-            className="-rotate-90"
-          /> */}
         </div>
         <p>{description}</p>
       </div>
@@ -209,7 +202,8 @@ export function CustomerFacingNav2({ children }: { children: ReactNode }) {
 
     if (material) {
       console.log("Found material with ID:", material.id);
-      router.push(`/materials/${material.id}`);
+      // router.push(`/materials/${material.id}`);
+      window.location.href = `/materials/${material.id}`;
     } else {
       console.error("Material not found:", materialName);
     }

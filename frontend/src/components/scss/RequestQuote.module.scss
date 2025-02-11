@@ -140,3 +140,20 @@
   left: -10px;
   stroke: #5c5d6d;
 }
+
+.quoteButtonContainer {
+  display: flex;
+  flex-direction: column;
+  color: var(--Text-Primary, #2c2d31);
+  font-family: var(--font-openSans);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.8px;
+  gap: 40px;
+  @include mid-break {
+    font-size: 24px;
+    letter-spacing: -0.96px;
+  }
+}

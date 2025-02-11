@@ -9,6 +9,7 @@ import {
 } from "../../ui/carousel";
 
 import styles from "../../scss/RequestQuote.module.scss";
+import { Button } from "../../ui/button";
 
 export default function RequestQuote() {
   return (
@@ -131,6 +132,10 @@ export default function RequestQuote() {
           className={styles.prevMobile}
         />
       </Carousel>
+      <div className={styles.quoteButtonContainer}>
+        <span>Ready to try it out? Click below to begin</span>
+        <Button navigateTo="/materials">View Our Materials Catalog</Button>
+      </div>
     </div>
   );
 }

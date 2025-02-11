@@ -49,9 +49,7 @@ const FilterGroup: React.FC<FilterGroupProps> = ({
             key={key}
             label={key}
             count={filterCounts[key] || 0}
-            isChecked={
-              tempFilterValueList.includes(key) || filterValueList.includes(key)
-            }
+            isChecked={tempFilterValueList.includes(key)}
             onChange={() => handleCheckboxChange(filterKey, key)}
           />
         ))}
@@ -113,6 +111,7 @@ export const ProductFilters2: React.FC<{
   //   useState<string[]>(filterValueList);
 
   const handleCheckboxChange = (category: string, value: string) => {
+    console.log("handleCheckboxChange:", tempFilterValueList);
     setTempFilterValueList((prev) => {
       if (prev.includes(value)) {
         return prev.filter((v) => v !== value); // Remove the value if already in the list
@@ -140,7 +139,9 @@ export const ProductFilters2: React.FC<{
         <Button
           onClick={applyFilters}
           // disabled={filterValueList.length > 0}
-          variant={tempFilterValueList.length !== 0 ? "default" : "filter"}
+          variant={
+            tempFilterValueList.length !== 0 ? "default" : "filterDisabled"
+          }
           className="mb-6  mr-0 w-[275px]"
         >
           Apply Filters

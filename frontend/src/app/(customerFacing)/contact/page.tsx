@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ContactForm2 from "../../../components/form/ContactForm2";
-import { CompanyAddresses } from "../../../../..";
+import { CompanyAddresses, ContactInfo } from "../../../../..";
 
 import style from "./ContactPage.module.scss";
 
@@ -18,28 +18,52 @@ const ContactInformation = () => (
       </p>
     </div>
     <div className={style.contactsContainer}>
-      <ContactDetail
-        icon="/call.svg"
-        label="Phone Number"
-        detail="(805) 524 - 5569"
-      />
-      <ContactDetail icon="/mail.svg" label="Email" detail="info@mrcrs.com" />
+      <div className="flex flex-col gap-10">
+        {ContactInfo.map((info, index) => (
+          <ContactDetail
+            key={index}
+            company={info.company}
+            phoneNumber={info.phoneNumber}
+            email={info.email}
+          />
+        ))}
+      </div>
+      {/* <ContactDetail icon="/mail.svg" label="Email" detail="info@mrcrs.com" /> */}
     </div>
   </div>
 );
 
 const ContactDetail = ({
-  icon,
-  label,
-  detail,
+  phoneNumber,
+  email,
+  company,
 }: {
-  icon: string;
-  label: string;
-  detail: string;
+  company: string;
+  phoneNumber: string;
+  email: string;
 }) => (
-  <div className="flex items-center gap-2">
-    <Image src={icon} alt={label} width={33} height={33} />
-    <span className={style.contactDetail}>{detail}</span>
+  <div className="flex flex-col items-start gap-2">
+    <span className={style.contactDetail}>{company}</span>
+    <div className="flex">
+      <Image
+        src="/call.svg"
+        alt="Phone Icon"
+        width={33}
+        height={33}
+        className="mr-2"
+      />
+      <span className={style.contactDetail}>{phoneNumber}</span>
+    </div>
+    <div className="flex">
+      <Image
+        src="/mail.svg"
+        alt="Email Icon"
+        width={33}
+        height={33}
+        className="mr-2"
+      />
+      <span className={style.contactDetail}>{email}</span>
+    </div>
   </div>
 );
 

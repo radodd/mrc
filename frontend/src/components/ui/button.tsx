@@ -27,7 +27,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground font-openSans hover:bg-secondary/80",
         ghost: "hover:bg-accent font-openSans hover:text-accent-foreground",
         link: "text-primary font-openSans underline",
-        filter:
+        filterDisabled:
           "text-primary font-openSans border-2  font-[24px] transition-all duration-200 bg-whitebase",
         otherFilter:
           "text-primary font-openSans border-2 border-primary font-[24px] hover:underline hover:scale-[1.05] transition-all duration-200 bg-whitebase",

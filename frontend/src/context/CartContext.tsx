@@ -37,11 +37,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const savedCart = localStorage.getItem("cartItems");
     if (savedCart) {
       try {
-        console.log("Saved cart data:", savedCart); // Log raw data
+        // console.log("Saved cart data:", savedCart); // Log raw data
         const decompressedCart = JSON.parse(
           LZString.decompressFromUTF16(savedCart) || "[]",
         );
-        console.log("Decompressed cart data:", decompressedCart); // Log decompressed data
+        // console.log("Decompressed cart data:", decompressedCart);
         if (Array.isArray(decompressedCart)) {
           setCartItems(decompressedCart);
         } else {
