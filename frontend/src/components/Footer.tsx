@@ -1,21 +1,7 @@
 "use client";
-// import { cn } from "../lib/utils";
-// import Link from "next/link";
-// import { ComponentProps, ReactNode } from "react";
-
-// export function Footer({ children }: { children?: ReactNode }) {
-//   return (
-//     <footer className="bg-primary text-primary-foreground flex max-[1305px]:justify-between px-[70px] py-8 max-[1305px]:px-8 max-[1305px]:flex-col max-[1305px]:items-center max-[1305px]:gap-10">
-//       {children}
-//     </footer>
-//   );
-// }
-
-// "use client";
 import Link, { LinkProps } from "next/link";
 
 import styles from "../components/scss/Footer.module.scss";
-import { cn } from "../lib/utils";
 
 export function Footer() {
   return (
@@ -36,11 +22,11 @@ export function Footer() {
           </div>
           <div className={styles.subContainer}>
             <FooterLink href="/materials">Materials</FooterLink>
-            <FooterLink href="/services">Services</FooterLink>{" "}
+            <FooterLink href="/services">Services</FooterLink>
           </div>
         </div>
       </footer>
-      <p className="text-sm">&copy; 2024 Your Company. All rights reserved.</p>{" "}
+      <p className="text-sm">&copy; 2024. All rights reserved.</p>
     </>
   );
 }

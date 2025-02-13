@@ -62,7 +62,7 @@ export default function NewsArticles() {
       <Carousel setApi={setApi} className={styles.carousel}>
         <CarouselContent className={styles.carouselContent}>
           {Articles.map((article, index) => (
-            <CarouselItem key={index} className="pl-3 min-[769px]:flex">
+            <CarouselItem key={index} className="pl-3 min-[980px]:flex">
               <div className={styles.imageContainer}>
                 <Image
                   src={article.image}

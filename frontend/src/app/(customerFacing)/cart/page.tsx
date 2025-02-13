@@ -227,7 +227,9 @@ export default function CartPage() {
                 <p className="text-secondary-text">{item.content}</p>
               </div>
             ))}
-            <Button className="w-full mt-4">Contact Us</Button>
+            <Button navigateTo="/contact" className="w-full mt-4">
+              Contact Us
+            </Button>
           </div>
         </div>
       </div>

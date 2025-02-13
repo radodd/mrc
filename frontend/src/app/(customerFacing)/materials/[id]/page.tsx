@@ -220,20 +220,17 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             />
 
             <div className={styles.overlay}>
-              {product.company.length !== 1 ? (
-                <>
-                  {selectedImage
-                    .split("/")
-                    .pop()
-                    ?.split("?")[0]
-                    .replace(/_/g, "/")
-                    .replace(/%20/g, " ")
-                    .replace(".png", "")
-                    .replace(/in/, '"')}{" "}
-                </>
-              ) : (
-                product.name
-              )}
+              {/* {product.company.length !== 2 ? ( */}
+              <>
+                {selectedImage
+                  .split("/")
+                  .pop()
+                  ?.split("?")[0]
+                  .replace(/_/g, "/")
+                  .replace(/%20/g, " ")
+                  .replace(".png", "")
+                  .replace(/in/, '"')}{" "}
+              </>
             </div>
           </div>
         </div>

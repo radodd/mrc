@@ -116,14 +116,14 @@ const MaterialSections = ({ handleMaterialDetail }) => (
     <MaterialSection
       title="MRC Rock & Sand"
       description=" Supplying aggregates and services for construction."
-      src="/logo_mrc_spm.svg"
+      src="/logo_mrc.svg"
       items={MRCandSPMMaterials}
       handleMaterialDetail={handleMaterialDetail}
     />
     <MaterialSection
       title="Santa Paula Materials"
       description="Demolition, recycling, and producing crushed materials."
-      src="/logo_mrc_spm.svg"
+      src="/logo_spm.svg"
       items={SantaPaulaMaterials}
       handleMaterialDetail={handleMaterialDetail}
     />
