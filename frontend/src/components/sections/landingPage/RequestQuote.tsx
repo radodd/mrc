@@ -10,12 +10,15 @@ import {
 
 import styles from "../../scss/RequestQuote.module.scss";
 import { Button } from "../../ui/button";
+import Link from "next/link";
 
 export default function RequestQuote() {
   return (
     <div className={styles.quoteContainer}>
-      <div>
-        <h1>Try out our Request to Quote</h1>
+      <div className="w-fit underline text-primary-dark">
+        <Link href="/materials">
+          <h1 className="text-primary-dark">Request to Quote</h1>
+        </Link>
       </div>
 
       <div className={`${styles.cardContainer} ${styles.mediaQueryDesktop}`}>
@@ -132,10 +135,10 @@ export default function RequestQuote() {
           className={styles.prevMobile}
         />
       </Carousel>
-      <div className={styles.quoteButtonContainer}>
+      {/* <div className={styles.quoteButtonContainer}>
         <span>Ready to try it out? Click below to begin</span>
         <Button navigateTo="/materials">View Our Materials Catalog</Button>
-      </div>
+      </div> */}
     </div>
   );
 }
