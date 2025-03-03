@@ -7,7 +7,7 @@ export default function FamilyOwned() {
   return (
     <div className={styles.sectionContainer}>
       <div className={styles.textContainer}>
-        <h1>We are family-owned.</h1>
+        <h1>We are family-owned. TEST</h1>
         <p>
           From the shores of Croatia, Santa Paula Materials is a family run
           company committed to recycling and integrating natural materials
