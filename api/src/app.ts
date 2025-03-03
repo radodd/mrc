@@ -17,23 +17,48 @@ app.use(express.static("src/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: [
-      "https://mrc-two.vercel.app",
-      "http://localhost:3000",
-      "https://mrc-staging.vercel.app",
-    ],
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: [
+//       "https://mrc-two.vercel.app",
+//       "http://localhost:3000",
+//       "https://mrc-staging.vercel.app",
+//     ],
+//     methods: ["GET", "POST", "OPTIONS"],
+//     allowedHeaders: ["Content-Type"],
+//     credentials: true,
+//   })
+// );
+const corsOptions = {
+  origin: [
+    "https://mrc-staging.vercel.app", // Allow this domain
+    "http://localhost:3000", // Local dev environment
+    "https://mrc-two.vercel.app", // Your API domain
+  ],
+  methods: ["GET", "POST", "OPTIONS"], // Allowed methods
+  allowedHeaders: ["Content-Type"], // Allowed headers
+  credentials: true, // Allow credentials
+};
+
+// Use CORS middleware
+app.use(cors(corsOptions));
+
+// Preflight (OPTIONS) request handling
+app.options("*", cors(corsOptions));
 app.use("/api/resend", resendRouter);
 // app.use("/api/products", productsRoutes);
 app.use("/api/materials", materialsRoutes);
 // app.use("/api/sizes", sizesRoutes);
 // app.use("/api/projects", projectsRoutes);
+
+// @ts-ignore
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://mrc-staging.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
 app.use((req: any, res: any, next: any) => {
   console.log(`Received request: ${req.method} ${req.url}`);
