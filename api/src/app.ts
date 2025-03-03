@@ -19,7 +19,11 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["https://mrc-two.vercel.app", "http://localhost:3000"],
+    origin: [
+      "https://mrc-two.vercel.app",
+      "http://localhost:3000",
+      "https://mrc-staging.vercel.app",
+    ],
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
