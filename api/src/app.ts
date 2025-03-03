@@ -45,9 +45,30 @@ app.use(cors(corsOptions));
 
 // Preflight (OPTIONS) request handling
 app.options("*", cors(corsOptions));
+
+// @ts-ignore
+const allowCors = (fn) => async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://mrc-staging.vercel.app"
+  ); // Specific origin
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, OPTIONS, PATCH, DELETE, POST, PUT"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    res.status(200).end(); // Handle preflight OPTIONS requests
+    return;
+  }
+
+  return await fn(req, res); // Proceed to the actual API handler
+};
 app.use("/api/resend", resendRouter);
 // app.use("/api/products", productsRoutes);
-app.use("/api/materials", materialsRoutes);
+app.use("/api/materials", allowCors(materialsRoutes));
 // app.use("/api/sizes", sizesRoutes);
 // app.use("/api/projects", projectsRoutes);
 
