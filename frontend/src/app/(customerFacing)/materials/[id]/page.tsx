@@ -55,7 +55,7 @@ const fetchMaterialById = async (
     }
 
     const data = await response.json();
-    console.log("Data", data);
+
     const mappedProduct: ProductCardProps = {
       id: data.id,
       name: data.name,
@@ -79,8 +79,6 @@ const fetchMaterialById = async (
         };
       }).filter((category: any) => category !== null),
     };
-    console.log("Data in fetch early", data.MaterialCategories);
-    console.log("mapped product", mappedProduct);
 
     return mappedProduct;
   } catch (error) {
@@ -127,12 +125,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (id) {
-      console.log("in page.tsx::", id, typeof id);
       const productId = Array.isArray(id) ? id[0] : id;
       fetchMaterialById(productId as string)
         .then((mappedProduct) => {
           setProduct(mappedProduct);
-          console.log("prodcuts", productId, product, mappedProduct);
         })
 
         .catch((error) => {

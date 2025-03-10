@@ -113,7 +113,7 @@ const page = () => {
           </div>
         ))}
       </div>
-      <ContactUs renderButton={false} />
+      <ContactUs />
     </div>
   );
 };
