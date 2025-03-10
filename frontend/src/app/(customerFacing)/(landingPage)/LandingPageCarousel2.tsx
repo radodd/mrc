@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "../../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselApi,
@@ -8,14 +8,14 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../../ui/carousel";
+} from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
-import Slider from "../../SliderAnimation";
+import Slider from "@/components/SliderAnimation";
 import Image from "next/image";
 
-import styles from "../../scss/LandingPageCarousel2.module.scss";
+import styles from "@/scss/LandingPageCarousel2.module.scss";
 import { LandingPageCarousel } from "../../../../..";
-import CarouselIndicator from "../../ui/CarouselIndicator";
+import CarouselIndicator from "@/components/ui/CarouselIndicator";
 import { useFilter } from "../../../context/FilterContext";
 
 export default function LandingPageCarousel2() {
@@ -59,7 +59,7 @@ export default function LandingPageCarousel2() {
     "outline",
     "default",
     "link",
-    "filter",
+    // "filter",
     "destructive",
     "secondary",
     "ghost",

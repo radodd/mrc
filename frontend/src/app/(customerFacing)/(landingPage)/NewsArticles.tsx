@@ -8,14 +8,14 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../../../components/ui/carousel";
-import { Articles } from "../../../../..";
+} from "@/components/ui/carousel";
 
-import styles from "../../scss/NewsArticles.module.scss";
+import styles from "@/scss/NewsArticles.module.scss";
 import { useEffect, useState } from "react";
-import CarouselIndicator from "../../ui/CarouselIndicator";
-import { Button } from "../../ui/button";
-
+import CarouselIndicator from "@/components/ui/CarouselIndicator";
+import { Button } from "@/components/ui/button";
+import { Articles } from "../../../../..";
+// import { Articles } from "@/index";
 export default function NewsArticles() {
   const [current, setCurrent] = useState(-1);
   const [api, setApi] = useState<CarouselApi | null>(null);
@@ -24,26 +24,17 @@ export default function NewsArticles() {
   );
 
   // useEffect(() => {
+  //   if (typeof window === "undefined") return;
+
   //   function handleResize() {
   //     setIsAbove768px(window.innerWidth > 768);
   //   }
+
   //   window.addEventListener("resize", handleResize);
   //   handleResize();
+
   //   return () => window.removeEventListener("resize", handleResize);
   // }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    function handleResize() {
-      setIsAbove768px(window.innerWidth > 768);
-    }
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     if (!api) {
@@ -62,7 +53,10 @@ export default function NewsArticles() {
       <Carousel setApi={setApi} className={styles.carousel}>
         <CarouselContent className={styles.carouselContent}>
           {Articles.map((article, index) => (
-            <CarouselItem key={index} className="pl-3 min-[980px]:flex">
+            <CarouselItem
+              key={index}
+              className="pl-3 min-[980px]:flex max-h-fit"
+            >
               <div className={styles.imageContainer}>
                 <Image
                   src={article.image}

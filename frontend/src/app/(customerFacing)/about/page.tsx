@@ -17,13 +17,6 @@ export default function AboutPage() {
       {/* HERO */}
       <div className={styles.heroContainer}>
         <div className={styles.imageContainer}>
-          {/* <Image
-            src="/family_owned.png"
-            alt=""
-            width={4096}
-            height={2731}
-            className={styles.image}
-          /> */}
           <video
             src="/family_owned_video.mp4"
             autoPlay
@@ -63,7 +56,6 @@ export default function AboutPage() {
             id={item.id}
             key={index}
             className={`${styles.historySubContainer}`}
-            // className="border-2 border-red-400 flex flex-col items-center min-[1306px]:flex-row-reverse min-[1306px]:even:flex-row min-[1306px]:mx-[70px] gap-[64px]"
           >
             <div className={styles.historyImageWrapper}>
               <Image
@@ -71,13 +63,14 @@ export default function AboutPage() {
                 alt=""
                 width={2000}
                 height={1000}
-                // fill
-                // style={{ objectFit: "cover" }}
                 className={styles.historyImage}
               />
             </div>
             <div>
-              <h1>{item.title}</h1>
+              <h1>
+                <span className="block pb-3">{item.block}</span>
+                {item.title}
+              </h1>
               <p>{item.body}</p>
             </div>
           </div>
@@ -85,7 +78,7 @@ export default function AboutPage() {
       </div>
       {/* CONTACT US */}
 
-      <ContactUs renderButton={true} />
+      <ContactUs />
 
       {/* FAQ */}
       <div id="faq" className={styles.faq}>

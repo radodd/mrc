@@ -56,6 +56,17 @@ $breakpoint-xl-width: 2500px;
   }
 }
 
+@mixin custom-break-980-770 {
+  @media (min-width: 770px) and (max-width: 980px) {
+    @content;
+  }
+}
+@mixin custom-break-770-680 {
+  @media (min-width: 680px) and (max-width: 770px) {
+    @content;
+  }
+}
+
 @mixin custom-break-900 {
   @media (max-width: 900px) {
     @content;

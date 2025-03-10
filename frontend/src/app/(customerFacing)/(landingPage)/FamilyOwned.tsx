@@ -1,13 +1,13 @@
 import Image from "next/image";
-import { Button } from "../../ui/button";
+import { Button } from "@/components/ui/button";
 
-import styles from "../../scss/FamilyOwned.module.scss";
+import styles from "@/scss/FamilyOwned.module.scss";
 
 export default function FamilyOwned() {
   return (
     <div className={styles.sectionContainer}>
       <div className={styles.textContainer}>
-        <h1>We are family-owned. TEST</h1>
+        <h1>We are family-owned.</h1>
         <p>
           From the shores of Croatia, Santa Paula Materials is a family run
           company committed to recycling and integrating natural materials
