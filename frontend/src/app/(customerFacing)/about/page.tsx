@@ -10,8 +10,17 @@ import Image from "next/image";
 import { HISTORY } from "../../../../..";
 
 import styles from "./styles.module.scss";
+import { useEffect } from "react";
 
 export default function AboutPage() {
+  useEffect(() => {
+    console.log(window.location.hash);
+    if (window.location.hash === "#faq") {
+      setTimeout(() => {
+        document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, []);
   return (
     <section>
       {/* HERO */}
