@@ -34,7 +34,7 @@ export default function AboutPage() {
           } else {
             console.error("FAQ element not found");
           }
-        }, 100);
+        }, 500);
       }
     };
     window.addEventListener("hashchange", handleHashChange);
