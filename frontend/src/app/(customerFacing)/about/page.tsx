@@ -13,14 +13,37 @@ import styles from "./styles.module.scss";
 import { useEffect } from "react";
 
 export default function AboutPage() {
+  // useEffect(() => {
+  //   console.log("useEffect triggered");
+  //   console.log(window.location.hash);
+  //   if (window.location.hash === "#faq") {
+  //     setTimeout(() => {
+  //       document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" });
+  //     }, 100);
+  //   }
+  // }, []);
+
   useEffect(() => {
-    console.log(window.location.hash);
-    if (window.location.hash === "#faq") {
-      setTimeout(() => {
-        document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    }
+    const handleHashChange = () => {
+      console.log(window.location.hash);
+      if (window.location.hash === "#faq") {
+        setTimeout(() => {
+          const faqElement = document.getElementById("faq");
+          if (faqElement) {
+            faqElement.scrollIntoView({ behavior: "smooth" });
+          } else {
+            console.error("FAQ element not found");
+          }
+        }, 100);
+      }
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    handleHashChange();
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
   }, []);
+
   return (
     <section>
       {/* HERO */}
@@ -90,8 +113,10 @@ export default function AboutPage() {
       <ContactUs />
 
       {/* FAQ */}
-      <div id="faq" className={styles.faq}>
-        <h1 className="">FAQ</h1>
+      <div className={styles.faq}>
+        <h1 id="faq" className="">
+          FAQ
+        </h1>
 
         <div className={styles.accordionContainer}>
           <Accordion type="multiple" className="w-full">
