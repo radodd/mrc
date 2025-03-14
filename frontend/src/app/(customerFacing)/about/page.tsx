@@ -27,14 +27,14 @@ export default function AboutPage() {
     const handleHashChange = () => {
       console.log(window.location.hash);
       if (window.location.hash === "#faq") {
-        setTimeout(() => {
-          const faqElement = document.getElementById("faq");
-          if (faqElement) {
-            faqElement.scrollIntoView({ behavior: "smooth" });
-          } else {
-            console.error("FAQ element not found");
-          }
-        }, 500);
+        // setTimeout(() => {
+        const faqElement = document.getElementById("faq");
+        if (faqElement) {
+          faqElement.scrollIntoView({ behavior: "smooth" });
+        } else {
+          console.error("FAQ element not found");
+        }
+        // }, 500);
       }
     };
     window.addEventListener("hashchange", handleHashChange);
