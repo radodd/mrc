@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Button } from "../../ui/button";
+import { Button } from "@/components/ui/button";
 
-import styles from "../../scss/FamilyOwned.module.scss";
+import styles from "@/scss/FamilyOwned.module.scss";
 
 export default function FamilyOwned() {
   return (

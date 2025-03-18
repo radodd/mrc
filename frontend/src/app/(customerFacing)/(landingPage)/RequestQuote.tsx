@@ -6,10 +6,10 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../../ui/carousel";
+} from "@/components/ui/carousel";
 
-import styles from "../../scss/RequestQuote.module.scss";
-import { Button } from "../../ui/button";
+import styles from "@/scss/RequestQuote.module.scss";
+// import { Button } from "../../../components/ui/button";
 import Link from "next/link";
 
 export default function RequestQuote() {

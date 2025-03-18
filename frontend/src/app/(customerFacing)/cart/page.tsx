@@ -87,7 +87,6 @@ const Cart = () => {
     setCartItems(updatedCart);
   };
 
-  console.log("CART ITEMS", cartItems);
   return (
     <FormProvider {...methods}>
       <div>
@@ -168,7 +167,6 @@ export default function CartPage() {
     }
   }, [cartItems]);
 
-  console.log(openAccordion);
   return (
     <>
       <h1 className={style.header}>Request to Quote</h1>

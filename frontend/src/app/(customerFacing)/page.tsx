@@ -1,11 +1,11 @@
 import ContactUs from "../../components/sections/ContactUs";
-import FamilyOwned from "../../components/sections/landingPage/FamilyOwned";
-import GovAgencies from "../../components/sections/landingPage/GovAgencies";
+import FamilyOwned from "./(landingPage)/FamilyOwned";
+import GovAgencies from "./(landingPage)/GovAgencies";
 // import LandingPageCarousel from "../../components/sections/landingPage/LandingPageCarousel";
-import LandingPageCarousel2 from "../../components/sections/landingPage/LandingPageCarousel2";
-import NewsArticles from "../../components/sections/landingPage/NewsArticles";
-import RequestQuote from "../../components/sections/landingPage/RequestQuote";
-import WeSpecialize from "../../components/sections/landingPage/WeSpecialize";
+import LandingPageCarousel2 from "./(landingPage)/LandingPageCarousel2";
+import NewsArticles from "./(landingPage)/NewsArticles";
+import RequestQuote from "./(landingPage)/RequestQuote";
+// import WeSpecialize from "./(landingPage)/WeSpecialize";
 import { FilterProvider } from "../../context/FilterContext";
 
 export default function HomePage() {
@@ -17,7 +17,7 @@ export default function HomePage() {
       {/* <GovAgencies /> */}
       <NewsArticles />
       {/* <WeSpecialize /> */}
-      <ContactUs renderButton={false} />
+      <ContactUs />
     </>
   );
 }

@@ -35,8 +35,8 @@ export const LandingPageCarousel = [
   {
     logo: "/logo_mrc.svg",
     subheader: "MRC Rock & Sand",
-    description:
-      "Our main business is to supply a range of aggregates for the construction industry. We operate quarries, processing facilities and have a range of portable equipment to provide services for various projects.",
+    description: "Supplying aggregates and services for construction",
+    // "Our main business is to supply a range of aggregates for the construction industry. We operate quarries, processing facilities and have a range of portable equipment to provide services for various projects.",
     buttons: [
       {
         text: "View Materials",
@@ -53,8 +53,8 @@ export const LandingPageCarousel = [
   {
     logo: "/logo_spm.svg",
     subheader: "Santa Paula Materials",
-    description:
-      "We specialize in the demolition and recycling of building materials. We can take materials such as concrete, asphalt dirt and rock. We then break the materials down to offer products like crushed miscellaneous base.",
+    description: "Recycling and producing crushed materials",
+    // "We specialize in the demolition and recycling of building materials. We can take materials such as concrete, asphalt dirt and rock. We then break the materials down to offer products like crushed miscellaneous base.",
     buttons: [
       {
         text: "View Materials",
@@ -80,13 +80,13 @@ export const ServicesSPM = [
 ];
 
 export const ServicesMRC = [
-  {
-    id: 1,
-    image: "/C & D Demolition.png",
-    // image: "/image 136.svg",
-    name: "C & D Demolition",
-    desc: "We offer comprehensive construction and demolition (C&D) services that focus on efficient site clean-up and material recovery. Our team specializes in safely dismantling structures and managing the debris generated from these projects. We prioritize recycling and reclaiming valuable materials. We’re committed to providing a smooth, efficient experience for our clients while promoting sustainability.",
-  },
+  // {
+  //   id: 1,
+  //   image: "/C & D Demolition.png",
+  //   // image: "/image 136.svg",
+  //   name: "C & D Demolition",
+  //   desc: "We offer comprehensive construction and demolition (C&D) services that focus on efficient site clean-up and material recovery. Our team specializes in safely dismantling structures and managing the debris generated from these projects. We prioritize recycling and reclaiming valuable materials. We’re committed to providing a smooth, efficient experience for our clients while promoting sustainability.",
+  // },
   {
     id: 2,
     image: "/RockReclamation.png",
@@ -111,7 +111,7 @@ export const CompanyAddresses = [
   {
     id: 2,
     name: "Stoneyard",
-    address: "1400 E Santa Clara St, Santa Paula, CA 93060",
+    address: "1580 E Lemonwood Dr, Santa Paula, CA 93060",
     maps: "https://maps.app.goo.gl/6U3rWgLghiJeLMtF9",
   },
   {
@@ -137,19 +137,23 @@ export const CompanyAddresses = [
 export const HISTORY = [
   {
     id: "SantaPaulaMaterials",
-    title: "We started as Santa Paula Materials",
+    block: "We started as,",
+    title: "Santa Paula Materials",
     body: "Santa Paula Materials specializes in delivering high-quality aggregate products for construction and landscaping. We provide a wide range of materials, including rock, sand, gravel, and landscaping supplies. Additionally, we offer recycling and delivery services tailored to both residential and commercial projects. Our commitment to sustainability ensures a reliable supply that meets our customers' needs.",
     image: "/image_carousel_spm.png",
   },
   {
     id: "MRC",
-    title: "We added MRC Rock & Sand",
+
+    block: "We added,",
+    title: "MRC Rock & Sand",
     body: "MRC Rock and Sand is a general contracting company providing on-site  screening and crushing services. We have collaborated with land developers, gold mines, and county maintenance projects, delivering tailored solutions to meet their unique needs. We offer specialized services that include custom blending and aggregate processing.",
     image: "/about_us_timeline.png",
   },
   {
     id: "Stoneyard",
-    title: "Lastly, we added Stoneyard",
+    block: "Lastly, we added",
+    title: "Stoneyard",
     body: "At Stoneyard Building Materials, we offer an extensive range of natural stone products for both residential and commercial projects. We provide materials for hardscaping, such as patios, walkways, and walls, as well as interior applications like fireplaces and countertops. Additionally, we offer custom stonework and consultation services to help you achieve the perfect look and functionality for your project. ",
     image: "/image_carousel_stoneyard.png",
   },
