@@ -122,7 +122,7 @@ const MaterialSections = ({ handleMaterialDetail }) => (
     />
     <MaterialSection
       title="Santa Paula Materials"
-      description="Demolition, recycling, and producing crushed materials."
+      description="Recycling, and producing crushed materials."
       src="/logo_spm.svg"
       items={SantaPaulaMaterials}
       handleMaterialDetail={handleMaterialDetail}

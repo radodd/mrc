@@ -211,7 +211,7 @@ const MaterialMenuContent = ({
         href="/materials"
         logo="/logo_spm.svg"
         title="Santa Paula Materials"
-        description="Demolition, recycling, and producing crushed materials."
+        description="Recycling, and producing crushed materials."
         subDescription="While MRC and SPM offer their own services, both companies sell the same high-quality construction materials."
         isSubmenuOpen={isSubmenuOpen === 3}
         onMouseEnter={() => setIsSubmenuOpen(3)}
