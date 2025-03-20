@@ -1,12 +1,8 @@
 import ContactUs from "../../components/sections/ContactUs";
 import FamilyOwned from "./(landingPage)/FamilyOwned";
-import GovAgencies from "./(landingPage)/GovAgencies";
-// import LandingPageCarousel from "../../components/sections/landingPage/LandingPageCarousel";
 import LandingPageCarousel2 from "./(landingPage)/LandingPageCarousel2";
 import NewsArticles from "./(landingPage)/NewsArticles";
 import RequestQuote from "./(landingPage)/RequestQuote";
-// import WeSpecialize from "./(landingPage)/WeSpecialize";
-import { FilterProvider } from "../../context/FilterContext";
 
 export default function HomePage() {
   return (
@@ -20,31 +16,4 @@ export default function HomePage() {
       <ContactUs />
     </>
   );
-}
-
-{
-  /* TESTIMONIAL Section */
-}
-{
-  /* <Carousel className="flex bg-slate-400 h-[365px] justify-center items-center my-[50px]">
-        <CarouselContent className="">
-          <CarouselItem className="flex bg-slate-600 items-center justify-center">
-            &quot;Working with MRC Rock & Sand was an absolute pleasure! Their
-            team&apos;s dedication to quality and customer satisfaction is
-            unmatched. From start to finish, they provided top-notch service and
-            delivered exceptional materials for our construction project. We
-            couldn&apos;t be happier with the results and highly recommend MRC
-            Rock & Sand to anyone in need of reliable and high-quality rock and
-            sand materials.&quot;
-          </CarouselItem>
-          <CarouselItem className="flex bg-slate-600 items-center justify-center">
-            A STELLAR REVIEW
-          </CarouselItem>
-          <CarouselItem className="flex bg-slate-600 items-center justify-center">
-            ANOTHER STELLAR REVIEDW
-          </CarouselItem>
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel> */
 }

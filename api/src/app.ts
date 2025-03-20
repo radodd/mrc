@@ -29,39 +29,15 @@ const corsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  methods: ["GET", "POST", "OPTIONS"], // Allowed methods
-  allowedHeaders: ["Content-Type"], // Allowed headers
-  credentials: true, // Allow credentials
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"],
+  credentials: true,
 };
 
-// Use CORS middleware
 app.use(cors(corsOptions));
 
-// Preflight (OPTIONS) request handling
-app.options("*", cors(corsOptions));
-
-// @ts-ignore
-const allowCors = (fn) => async (req, res) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow_Origin", origin);
-  }
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, OPTIONS, PATCH, DELETE, POST, PUT"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
-  if (req.method === "OPTIONS") {
-    res.status(200).end(); // Handle preflight OPTIONS requests
-    return;
-  }
-
-  return await fn(req, res); // Proceed to the actual API handler
-};
 app.use("/api/resend", resendRouter);
-app.use("/api/materials", allowCors(materialsRoutes));
+app.use("/api/materials", materialsRoutes);
 
 app.use((req: any, res: any, next: any) => {
   console.log(`Received request: ${req.method} ${req.url}`);
