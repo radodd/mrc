@@ -34,6 +34,7 @@ const corsOptions = {
     "https://mrc-staging.vercel.app", // Allow this domain
     "http://localhost:3000", // Local dev environment
     "https://mrc-two.vercel.app", // Your API domain
+    "https://stonesuppliers.net",
   ],
   methods: ["GET", "POST", "OPTIONS"], // Allowed methods
   allowedHeaders: ["Content-Type"], // Allowed headers
