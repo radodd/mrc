@@ -195,7 +195,7 @@ const MaterialMenuContent = ({
         logo="/logo_mrc.svg"
         title="MRC Rock & Sand"
         description="Supplying aggregates and services for construction."
-        subDescription="While MRC and SPM offer their own services, both companies sell the same high-quality construction materials."
+        subDescription="Supplying aggregates and services for construction."
         isSubmenuOpen={isSubmenuOpen === 2}
         onMouseEnter={() => setIsSubmenuOpen(2)}
         onClick={() => {
@@ -211,8 +211,8 @@ const MaterialMenuContent = ({
         href="/materials"
         logo="/logo_spm.svg"
         title="Santa Paula Materials"
-        description="Recycling, and producing crushed materials."
-        subDescription="While MRC and SPM offer their own services, both companies sell the same high-quality construction materials."
+        description="Recycling and producing crushed materials."
+        subDescription="Recycling and producing crushed materials"
         isSubmenuOpen={isSubmenuOpen === 3}
         onMouseEnter={() => setIsSubmenuOpen(3)}
         onClick={() => {
