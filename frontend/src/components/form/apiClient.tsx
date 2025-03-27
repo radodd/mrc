@@ -18,7 +18,7 @@ export const sendFormData = async (formData: FormValues) => {
         html: emailHtml,
       }),
     });
-
+    console.log("FORM DATA", formData);
     // Log the raw response
     console.log("Raw Response:", response);
     // Check for HTTP errors

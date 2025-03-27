@@ -17,6 +17,7 @@ app.use(express.json());
 const allowedOrigins = [
   "https://mrc-staging.vercel.app",
   "http://localhost:3000",
+  "http://localhost:3001",
   "https://mrc-two.vercel.app",
   "https://www.stonesuppliers.net",
 ];
