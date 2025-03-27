@@ -12,7 +12,7 @@ export const sendFormData = async (formData: FormValues) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...formData,
-        from: "Your Email <ethan@madasacollective.com>",
+        from: formData.email,
         to: "ethan.flores.js@gmail.com",
         subject: "Contact Form Submission",
         html: emailHtml,
