@@ -12,8 +12,8 @@ export const sendFormData = async (formData: FormValues) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...formData,
-        from: formData.email,
-        to: "ethan.flores.js@gmail.com",
+        from: "Your Email <ethan@madasacollective.com>",
+        to: "info@santapaulamaterials.com",
         subject: "Contact Form Submission",
         html: emailHtml,
       }),
