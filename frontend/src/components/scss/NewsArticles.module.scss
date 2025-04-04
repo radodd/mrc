@@ -37,6 +37,11 @@
   }
 }
 
+.article {
+  @include large-break {
+    display: flex;
+  }
+}
 .imageContainer {
   max-width: 100%;
   @include mid-break {
@@ -93,7 +98,7 @@
     margin: 80px 144px 80px 40px;
     padding: 0 24px 32px;
   }
-  h1 {
+  h2 {
     color: var(--Text-Primary, #2c2d31);
 
     font-size: 24px;

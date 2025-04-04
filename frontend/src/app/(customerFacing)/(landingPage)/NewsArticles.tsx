@@ -9,23 +9,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-import styles from "@/scss/NewsArticles.module.scss";
 import { useEffect, useState } from "react";
 import CarouselIndicator from "@/components/ui/CarouselIndicator";
 import { Button } from "@/components/ui/button";
 import { Articles } from "../../../../..";
-// import { Articles } from "@/index";
+
+import styles from "@/scss/NewsArticles.module.scss";
+
 export default function NewsArticles() {
   const [current, setCurrent] = useState(-1);
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [isAbove980px, setIsAbove980px] = useState(
     typeof window !== "undefined" ? window.innerWidth > 980 : true,
   );
-
-  // useEffect(() => {
-  //   if (window.innerWidth < 980) setIsAbove768px(false);
-  // }, [window.innerWidth]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -52,27 +48,29 @@ export default function NewsArticles() {
               key={index}
               className="pl-3 min-[980px]:flex max-h-fit"
             >
-              <div className={styles.imageContainer}>
-                <Image
-                  src={article.image}
-                  alt=""
-                  width={700}
-                  height={700}
-                  style={{ objectFit: "cover", objectPosition: "center" }}
-                  className={styles.image}
-                />
-              </div>
-              <div className={styles.textContainer}>
-                <h1>{article.title}</h1>
-                <p>{article.content}</p>
-                <Button
-                  variant="outline"
-                  size="default"
-                  navigateTo={article.url}
-                >
-                  {article.button}
-                </Button>
-              </div>
+              <article className={styles.article}>
+                <div className={styles.imageContainer}>
+                  <Image
+                    src={article.image}
+                    alt=""
+                    width={700}
+                    height={700}
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                    className={styles.image}
+                  />
+                </div>
+                <div className={styles.textContainer}>
+                  <h2>{article.title}</h2>
+                  <p>{article.content}</p>
+                  <Button
+                    variant="outline"
+                    size="default"
+                    navigateTo={article.url}
+                  >
+                    {article.button}
+                  </Button>
+                </div>
+              </article>
             </CarouselItem>
           ))}
         </CarouselContent>
