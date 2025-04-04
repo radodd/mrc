@@ -18,7 +18,7 @@ export default function ContactUs() {
       </div>
 
       <div className={styles.textContainer}>
-        <h1>Interested in working with us?</h1>
+        <h2>Interested in working with us?</h2>
         <p>Let us know your project needs and we'll be happy to assist you.</p>
         <div className="flex justify-start gap-8">
           <Button variant="outline" navigateTo="/contact">

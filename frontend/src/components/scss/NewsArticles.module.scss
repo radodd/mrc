@@ -16,24 +16,18 @@
   position: relative;
   height: 720px;
   @include mid-break {
-    // max-height: 470px;
-    // margin-bottom: 104px;
     height: 100%;
   }
   @include large-break {
-    // max-height: 470px;
     height: 100%;
-    // margin-bottom: 104px;
   }
 }
 
 .carouselContent {
   max-height: fit-content;
   @include mid-break {
-    // max-height: 470px;
   }
   @include large-break {
-    // max-height: 470px;
   }
 }
 
@@ -55,19 +49,15 @@
 .image {
   width: 100%;
   height: 100%;
-  // object-fit: cover;
   object-position: center;
 
   @include mid-break {
     height: 470px;
   }
   @include custom-break-1180-769 {
-    // transform: translateY(30px);
-    // scale: 0.8;
     object-fit: contain;
   }
   @include large-break {
-    // height: 470px;
     max-height: 600px;
   }
 }
@@ -81,17 +71,13 @@
   padding: 0 34px 36px;
 
   @include custom-break-1180-769 {
-    // margin: 64px 40px;
-    // padding: 0 36px 32px;
     margin: 40px 32px;
     padding: 0 34px 36px;
   }
 
   @include mid-break {
-    // flex: 1;
     margin: 64px 40px;
     padding: 0 30px 32px;
-    // max-width: calc(50%);
   }
   @include large-break {
     gap: 40px;
@@ -184,7 +170,6 @@
 }
 
 .indicatorContainer {
-  // position: absolute;
   width: 100%;
   display: flex;
   flex-direction: row;
