@@ -1,6 +1,24 @@
+import { Metadata } from "next";
 import ContactUs from "../../../../components/sections/ContactUs";
+import { getMaterialById } from "src/lib/getMaterialById";
 
-import styles from "../../../../components/scss/Container.module.scss";
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const material = await getMaterialById(params.id);
+
+  return {
+    title: `${material.name} | MRC Rock & Sand`,
+    description:
+      material.description ||
+      "Explore our range of premium materials for your project",
+    alternates: {
+      canonical: `https://www.stonesuppliers.net/materials/${params.id}`,
+    },
+  };
+}
 
 export default function Layout({
   children,
@@ -10,7 +28,7 @@ export default function Layout({
   return (
     <>
       <div className="">{children}</div>
-      <ContactUs renderButton={false} />
+      <ContactUs />
     </>
   );
 }

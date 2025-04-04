@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Your Cart | MRC Rock & Sand, SPM Santa Paula Materials",
   description:
     "Review your selected materials and prepare to order from MRC Rock & Sand and SPM Santa Paula Materials.",
+  alternates: {
+    canonical: "https://www.stonesuppliers.net/cart",
+  },
 };
 
 export default function Layout({
