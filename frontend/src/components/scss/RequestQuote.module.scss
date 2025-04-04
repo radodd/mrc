@@ -17,6 +17,33 @@
   @include small-break {
     padding: 56px 32px;
   }
+
+  h3 {
+    color: var(--Primary---Dark, #235e74);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.96px;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    @include mid-break {
+      font-size: 40px;
+      line-height: normal;
+      letter-spacing: -1.2px;
+      text-decoration-line: underline;
+    }
+    @include large-break {
+      font-size: 40px;
+      line-height: normal;
+      letter-spacing: -1.2px;
+      text-decoration-line: underline;
+    }
+  }
 }
 
 .cardContainer {

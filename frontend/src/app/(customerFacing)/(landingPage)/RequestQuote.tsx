@@ -7,19 +7,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Link from "next/link";
 
 import styles from "@/scss/RequestQuote.module.scss";
-// import { Button } from "../../../components/ui/button";
-import Link from "next/link";
 
 export default function RequestQuote() {
   return (
     <div className={styles.quoteContainer}>
-      <div className="w-fit underline text-primary-dark">
-        <Link href="/materials">
-          <h1 className="text-primary-dark">Request to Quote</h1>
-        </Link>
-      </div>
+      <Link className="w-fit" href="/materials">
+        <h3>Request to Quote</h3>
+      </Link>
 
       <div className={`${styles.cardContainer} ${styles.mediaQueryDesktop}`}>
         {RequestQuoteCards.map((card, index) => (

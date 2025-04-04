@@ -81,11 +81,22 @@ export default function LandingPageCarousel2() {
                 {index === 0 ? (
                   <div className={styles.uniqueContentContainer}>
                     <div className={styles.uniqueHeader}>
-                      <span className="flex text-whitebase">
+                      {/* SEO + Screen Reader-Only Heading */}
+                      <h1 className="sr-only">
+                        <span>{slide.header}</span>
+                        <span>{slide.subheader}</span>
+                        <span>MRC Rock & Sand</span>
+                        <span>SPM Santa Paula Materials</span>
+                        <span>Stoneyard</span>
+                        <span>{slide.description}</span>
+                      </h1>
+
+                      {/* Visible content, hidden from screen readers */}
+                      <span className="flex text-whitebase" aria-hidden>
                         {slide.header}
                       </span>
                       <div className="flex flex-row min-[857px]:items-center max-[856px]:flex-col">
-                        <span className="text-[#A9C8D3]">
+                        <span className="text-[#A9C8D3]" aria-hidden>
                           {slide.subheader}
                         </span>
                         <div>
