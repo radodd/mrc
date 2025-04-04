@@ -83,12 +83,17 @@ export default function LandingPageCarousel2() {
                     <div className={styles.uniqueHeader}>
                       {/* SEO + Screen Reader-Only Heading */}
                       <h1 className="sr-only">
-                        <span>{slide.header}</span>
-                        <span>{slide.subheader}</span>
+                        <span>{slide.subheader}</span>{" "}
                         <span>MRC Rock & Sand</span>
+                        {", "}
                         <span>SPM Santa Paula Materials</span>
+                        {", "}
                         <span>Stoneyard</span>
-                        <span>{slide.description}</span>
+                        {", "}
+                        <span>
+                          We are a collection of companies here to service your
+                          construction needs.
+                        </span>
                       </h1>
 
                       {/* Visible content, hidden from screen readers */}
