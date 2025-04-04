@@ -22,9 +22,9 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "stonesuppliers.net",
+  title: "MRC Rock & Sand | SPM Santa Paula Materials | Stone Suppliers",
   description:
-    "Discover premium natural stone, aggregates, and recycled materials for construction and landscaping. Stoneyard offers high-quality natural stone, MRC Rock & Sand supplies aggregates and services, and Santa Paula Materials specializes in recycling and crushed materials production",
+    "Premium natural stone, aggregates, and recycled materials from MRC Rock & Sand and SPM Santa Paula Materials. Serving all your construction and landscaping needs.",
 };
 
 export default function RootLayout({

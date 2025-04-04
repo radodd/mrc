@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ABOUT | stonesuppliers.net",
-  description: "This is a test",
+  title: "About Us | MRC Rock & Sand & SPM Santa Paula Materials",
+  description:
+    "Learn about MRC Rock & Sand and SPM Santa Paula Materials—Southern California’s trusted providers of premium stone, aggregates, and recycled materials.",
 };
 
 export default function Layout({

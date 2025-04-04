@@ -1,4 +1,11 @@
+import { Metadata } from "next";
 import styles from "../../../components/scss/Container.module.scss";
+
+export const metadata: Metadata = {
+  title: "Your Cart | MRC Rock & Sand, SPM Santa Paula Materials",
+  description:
+    "Review your selected materials and prepare to order from MRC Rock & Sand and SPM Santa Paula Materials.",
+};
 
 export default function Layout({
   children,
