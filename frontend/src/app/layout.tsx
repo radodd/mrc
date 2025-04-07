@@ -38,15 +38,68 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "MRC Rock & Sand | SPM Santa Paula Materials | Stoneyard",
+    url: "https://www.stonesuppliers.net",
+  };
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "MRC Rock & Sand | SPM Santa Paula Materials | Stoneyard",
+    url: "https://www.stonesuppliers.net",
+    logo: "https://www.stonesuppliers.net/logo_rocks.png",
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "MRC Rock & Sand | SPM Santa Paula Materials | Stoneyard",
+    image: "https://www.stonesuppliers.net/image_carousel_spm.png",
+    "@id": "",
+    url: "https://www.stonesuppliers.net/",
+    telephone: "(805) 525-6858",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "1224 E Santa Clara St",
+      addressLocality: "Santa Paula",
+      addressRegion: "CA",
+      postalCode: "93060",
+      addressCountry: "US",
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "17:00",
+    },
+    logo: "https://stonesuppliers.net/logo_rocks.png",
+  };
+
   return (
     <html lang="en">
       <head>
         {/* LocalBusiness */}
-        <LocalBusinessSchema />
+        <script
+          type="application/json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
         {/* Organization */}
-        <OrganizationSchema />
+        <script
+          type="application/json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
         {/* WebSite */}
-        <WebsiteSchema />
+        <script
+          type="application/json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </head>
 
       <body
