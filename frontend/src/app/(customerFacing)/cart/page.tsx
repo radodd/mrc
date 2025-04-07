@@ -17,6 +17,91 @@ import Image from "next/image";
 
 import style from "../../../components/scss/CartPage.module.scss";
 
+export default function CartPage() {
+  const { cartItems, cartItemCounter } = useCart();
+  const [openAccordion, setOpenAccordion] = useState<string[]>(["item-1"]);
+
+  useEffect(() => {
+    if (cartItemCounter > 0) {
+      setOpenAccordion(["item-2"]);
+    }
+  }, [cartItems]);
+
+  return (
+    <>
+      <h1 className={style.header} aria-hidden>
+        Request to Quote
+      </h1>
+
+      <h1 className="sr-only">
+        Contact MRC Rock & Sand, SPM Santa Paula Materials, and Stoneyard
+      </h1>
+
+      <div className={style.container}>
+        <Accordion
+          type="multiple"
+          // collapsible={false}
+          value={openAccordion}
+          onValueChange={setOpenAccordion}
+          className="max-[1306px]:w-full flex-1"
+        >
+          <AccordionItem value="item-1" className="min-[1306px]:hidden">
+            <AccordionTrigger className={style.AccordionTrigger}>
+              How to use
+            </AccordionTrigger>
+            <AccordionContent>
+              <HowToUseSection />
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger className={style.AccordionTrigger}>
+              Cart
+            </AccordionTrigger>
+            <AccordionContent>
+              <Cart />
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger className={style.AccordionTrigger}>
+              Contact Information
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className={style.padding}>
+                <ContactForm2 cartItems={cartItems} />
+              </div>
+            </AccordionContent>
+          </AccordionItem>{" "}
+          <div className={style.buttonContainer}>
+            <Button
+              variant="default"
+              size="default"
+              onClick={() => setOpenAccordion(["item-3"])}
+              className={`${openAccordion.includes("item-3") ? "hidden" : ""} ${style.button}`}
+            >
+              Submit
+            </Button>
+          </div>
+        </Accordion>
+
+        <div className="flex-1 max-[1306px]:hidden">
+          <h2 className={style.howToText}>How to use</h2>
+          <div className={style.howToContainer}>
+            {HOWTOUSE.map((item, index) => (
+              <div key={index} className="mb-8">
+                <h2 className="font-bold text-xl text-primary">{item.title}</h2>
+                <p className="text-secondary-text">{item.content}</p>
+              </div>
+            ))}
+            <Button navigateTo="/contact" className="w-full mt-4">
+              Contact Us
+            </Button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 const HowToUseSection = () => (
   <div className=" py-[40px]">
     {HOWTOUSE.map((item, index) => (
@@ -157,80 +242,3 @@ const Cart = () => {
     </FormProvider>
   );
 };
-export default function CartPage() {
-  const { cartItems, cartItemCounter } = useCart();
-  const [openAccordion, setOpenAccordion] = useState<string[]>(["item-1"]);
-
-  useEffect(() => {
-    if (cartItemCounter > 0) {
-      setOpenAccordion(["item-2"]);
-    }
-  }, [cartItems]);
-
-  return (
-    <>
-      <h1 className={style.header}>Request to Quote</h1>
-      <div className={style.container}>
-        <Accordion
-          type="multiple"
-          // collapsible={false}
-          value={openAccordion}
-          onValueChange={setOpenAccordion}
-          className="max-[1306px]:w-full flex-1"
-        >
-          <AccordionItem value="item-1" className="min-[1306px]:hidden">
-            <AccordionTrigger className={style.AccordionTrigger}>
-              How to use
-            </AccordionTrigger>
-            <AccordionContent>
-              <HowToUseSection />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-2">
-            <AccordionTrigger className={style.AccordionTrigger}>
-              Cart
-            </AccordionTrigger>
-            <AccordionContent>
-              <Cart />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-3">
-            <AccordionTrigger className={style.AccordionTrigger}>
-              Contact Information
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className={style.padding}>
-                <ContactForm2 cartItems={cartItems} />
-              </div>
-            </AccordionContent>
-          </AccordionItem>{" "}
-          <div className={style.buttonContainer}>
-            <Button
-              variant="default"
-              size="default"
-              onClick={() => setOpenAccordion(["item-3"])}
-              className={`${openAccordion.includes("item-3") ? "hidden" : ""} ${style.button}`}
-            >
-              Submit
-            </Button>
-          </div>
-        </Accordion>
-
-        <div className="flex-1 max-[1306px]:hidden">
-          <h2 className={style.howToText}>How to use</h2>
-          <div className={style.howToContainer}>
-            {HOWTOUSE.map((item, index) => (
-              <div key={index} className="mb-8">
-                <h2 className="font-bold text-xl text-primary">{item.title}</h2>
-                <p className="text-secondary-text">{item.content}</p>
-              </div>
-            ))}
-            <Button navigateTo="/contact" className="w-full mt-4">
-              Contact Us
-            </Button>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}

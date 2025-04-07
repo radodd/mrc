@@ -8,10 +8,36 @@ import { CompanyAddresses, ContactInfo } from "../../../../..";
 
 import style from "./ContactPage.module.scss";
 
+const ContactPage = () => {
+  return (
+    <div className={style.contactPageContainer}>
+      {/* Visible content, hidden from screen readers */}
+      <h1 className={style.header} aria-hidden>
+        Get in Touch
+      </h1>
+
+      {/* SEO + Screen Reader-Only Heading */}
+      <h1 className="sr-only">
+        Contact MRC Rock & Sand, SPM Santa Paula Materials, and Stoneyard
+      </h1>
+
+      <div className={style.contactAndFormContainer}>
+        <ContactInformation />
+        <ContactForm2 />
+      </div>
+      <div className={style.addressContainer}>
+        {CompanyAddresses.map((companyAddress, index) => (
+          <CompanyAddressCard key={index} companyAddress={companyAddress} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const ContactInformation = () => (
   <div className={style.contactInformationContainer}>
     <div className={style.contactHeader}>
-      <h1>Contact Information:</h1>
+      <h2>Contact Information:</h2>
       <p>
         If you have questions or special inquiries, you're welcome to contact us
         or fill out this form.
@@ -28,7 +54,6 @@ const ContactInformation = () => (
           />
         ))}
       </div>
-      {/* <ContactDetail icon="/mail.svg" label="Email" detail="info@mrcrs.com" /> */}
     </div>
   </div>
 );
@@ -87,33 +112,11 @@ const CompanyAddressCard = ({
         className="self-start"
       />
       <div className={style.textContainer}>
-        <h1>{companyAddress.name}</h1>
+        <h2>{companyAddress.name}</h2>
         <p>{companyAddress.address}</p>
       </div>
     </div>
   </Link>
 );
-
-const ContactPage = () => {
-  return (
-    <div className={style.contactPageContainer}>
-      {/* Page Header */}
-      <h1 className={style.header}>Get in Touch</h1>
-
-      {/* Contact Section */}
-      <div className={style.contactAndFormContainer}>
-        <ContactInformation />
-        <ContactForm2 />
-      </div>
-
-      {/* Address Section */}
-      <div className={style.addressContainer}>
-        {CompanyAddresses.map((companyAddress, index) => (
-          <CompanyAddressCard key={index} companyAddress={companyAddress} />
-        ))}
-      </div>
-    </div>
-  );
-};
 
 export default ContactPage;

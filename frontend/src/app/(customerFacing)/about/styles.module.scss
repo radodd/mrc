@@ -32,19 +32,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // width: 430px;
-  // height: 254px;
   width: 100%;
-
-  // @media (min-width: 769px) and (max-width: 1305px) {
-  //   height: 480px;
-  // }
-  // @media (min-width: 1306px) and (max-width: 1600px) {
-  //   height: 658px;
-  // }
-  // @media (min-width: 1601px) {
-  //   height: 800px;
-  // }
 }
 
 .imageContainer::before {
@@ -95,7 +83,7 @@
     @media (min-width: 1601px) {
       padding: 104px 144px;
     }
-    h1 {
+    h2 {
       color: hsl(var(--primary-text));
       font-size: 32px;
       font-weight: 700;
@@ -169,7 +157,7 @@
     @media (min-width: 1601px) {
       padding: 48px 144px;
     }
-    h1 {
+    h2 {
       color: var(--Text-Primary, #2c2d31);
       font-size: 32px;
       font-style: normal;
@@ -237,7 +225,7 @@
     margin: 104px 70px 104px;
   }
 
-  h1 {
+  h2 {
     color: var(--Primary---Dark, #235e74);
     justify-content: start;
     margin-bottom: 40px;
