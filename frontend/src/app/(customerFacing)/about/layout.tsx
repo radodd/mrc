@@ -71,14 +71,14 @@ export default function Layout({
 
   return (
     <>
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      </Head>
+      <script
+        async
+        src=" "
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
-      <div className="">{children}</div>
+      <div>{children}</div>
     </>
   );
 }
