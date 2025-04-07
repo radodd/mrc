@@ -83,21 +83,21 @@ export default function RootLayout({
       <head>
         {/* LocalBusiness */}
         <script
-          type="application/json"
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
           }}
         />
         {/* Organization */}
         <script
-          type="application/json"
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
           }}
         />
         {/* WebSite */}
         <script
-          type="application/json"
+          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
