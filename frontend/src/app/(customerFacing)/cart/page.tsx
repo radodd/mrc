@@ -16,7 +16,7 @@ import { useCart } from "../../../context/CartContext";
 import Image from "next/image";
 
 import style from "../../../components/scss/CartPage.module.scss";
-import QuoteCartSEOContent from "@/components/CartSEOContent";
+import QuoteCartSEOContent from "@/components/SEO/CartSEOContent";
 
 export default function CartPage() {
   const { cartItems, cartItemCounter } = useCart();

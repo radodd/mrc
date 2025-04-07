@@ -8,6 +8,9 @@ import { Toaster } from "../components/ui/toaster";
 import { FilterProvider } from "../context/FilterContext";
 import { CartProvider } from "../context/CartContext";
 import Footer from "../components/Footer";
+import LocalBusinessSchema from "@/components/SEO/LocalBusinessSchema";
+import OrganizationSchema from "@/components/SEO/OrganizationSchema";
+import WebsiteSchema from "@/components/SEO/WebsiteSchema";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-openSans" });
@@ -35,39 +38,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "MRC Rock & Sand | SPM Santa Paula Materials | Stoneyard",
-    image: "https://www.stonesuppliers.net/image_carousel_spm.png",
-    "@id": "",
-    url: "https://www.stonesuppliers.net/",
-    telephone: "(805) 525-6858",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "1224 E Santa Clara St",
-      addressLocality: "Santa Paula",
-      addressRegion: "CA",
-      postalCode: "93060",
-      addressCountry: "US",
-    },
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "17:00",
-    },
-    logo: "https://stonesuppliers.net/logo_rocks.png",
-  };
-
   return (
     <html lang="en">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        {/* LocalBusiness */}
+        <LocalBusinessSchema />
+        {/* Organization */}
+        <OrganizationSchema />
+        {/* WebSite */}
+        <WebsiteSchema />
       </head>
+
       <body
         className={cn(
           "bg-whitebase min-h-screen  antialiased",

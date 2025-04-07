@@ -7,7 +7,7 @@ import ContactForm2 from "../../../components/form/ContactForm2";
 import { CompanyAddresses, ContactInfo } from "../../../../..";
 
 import style from "./ContactPage.module.scss";
-import ContactSEOContent from "@/components/ContactSEOContent";
+import ContactSEOContent from "@/components/SEO/ContactSEOContent";
 
 const ContactPage = () => {
   return (

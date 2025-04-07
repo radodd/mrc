@@ -1,4 +1,4 @@
-import MaterialsSEOContent from "@/components/MaterialSEOContent";
+import MaterialsSEOContent from "@/components/SEO/MaterialSEOContent";
 import ProductGridSection from "../../../components/ProductGridSection";
 
 export default function MaterialsPage() {
