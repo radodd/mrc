@@ -1,4 +1,6 @@
+import FAQSchema from "@/components/SEO/FAQSchema";
 import { Metadata } from "next";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "About Us | MRC Rock & Sand & SPM Santa Paula Materials",
@@ -14,6 +16,10 @@ export default function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
+      <Head>
+        <FAQSchema />
+      </Head>
+
       <div className="">{children}</div>
     </>
   );
