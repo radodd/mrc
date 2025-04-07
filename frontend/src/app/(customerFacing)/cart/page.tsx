@@ -16,6 +16,7 @@ import { useCart } from "../../../context/CartContext";
 import Image from "next/image";
 
 import style from "../../../components/scss/CartPage.module.scss";
+import QuoteCartSEOContent from "@/components/CartSEOContent";
 
 export default function CartPage() {
   const { cartItems, cartItemCounter } = useCart();
@@ -29,6 +30,7 @@ export default function CartPage() {
 
   return (
     <>
+      <QuoteCartSEOContent />
       <h1 className={style.header} aria-hidden>
         Request to Quote
       </h1>

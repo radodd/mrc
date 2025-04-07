@@ -7,6 +7,7 @@ import ContactForm2 from "../../../components/form/ContactForm2";
 import { CompanyAddresses, ContactInfo } from "../../../../..";
 
 import style from "./ContactPage.module.scss";
+import ContactSEOContent from "@/components/ContactSEOContent";
 
 const ContactPage = () => {
   return (
@@ -17,6 +18,7 @@ const ContactPage = () => {
       </h1>
 
       {/* SEO + Screen Reader-Only Heading */}
+      <ContactSEOContent />
       <h1 className="sr-only">
         Contact MRC Rock & Sand, SPM Santa Paula Materials, and Stoneyard
       </h1>
