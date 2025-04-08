@@ -9,7 +9,7 @@ export default function FamilyOwned() {
       <div className={styles.textContainer}>
         <h2>We are family-owned.</h2>
         <p>
-          From the shores of Croatia, Santa Paula Materials is a family run
+          From the shores of Croatia, SPM Santa Paula Materials is a family run
           company committed to recycling and integrating natural materials
           through function and design.
         </p>
@@ -22,7 +22,7 @@ export default function FamilyOwned() {
       <div className={styles.imageContainer}>
         <Image
           src="/family_owned.png"
-          alt=""
+          alt="Small boat floating on the Adriatic Sea along the coast of Croatia, honoring the Croatian heritage of SPM Santa Paula Materials and their use of Croatian limestone."
           width={822}
           height={529}
           className={styles.image}

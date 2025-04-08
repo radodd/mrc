@@ -30,15 +30,15 @@ export default function CartPage() {
 
   return (
     <>
-      <QuoteCartSEOContent />
-      <h1 className={style.header} aria-hidden>
-        Request to Quote
-      </h1>
-
+      {/* SEO + Screen Reader-Only Heading */}
+      <QuoteCartSEOContent />{" "}
       <h1 className="sr-only">
         Contact MRC Rock & Sand, SPM Santa Paula Materials, and Stoneyard
       </h1>
-
+      {/* Visible content, hidden from screen readers */}
+      <h2 className={style.header} aria-hidden>
+        Request to Quote
+      </h2>
       <div className={style.container}>
         <Accordion
           type="multiple"

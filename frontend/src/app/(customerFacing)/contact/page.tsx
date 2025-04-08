@@ -12,17 +12,15 @@ import ContactSEOContent from "@/components/SEO/ContactSEOContent";
 const ContactPage = () => {
   return (
     <div className={style.contactPageContainer}>
-      {/* Visible content, hidden from screen readers */}
-      <h1 className={style.header} aria-hidden>
-        Get in Touch
-      </h1>
-
       {/* SEO + Screen Reader-Only Heading */}
       <ContactSEOContent />
       <h1 className="sr-only">
         Contact MRC Rock & Sand, SPM Santa Paula Materials, and Stoneyard
       </h1>
-
+      {/* Visible content, hidden from screen readers */}
+      <h2 className={style.header} aria-hidden>
+        Get in Touch
+      </h2>
       <div className={style.contactAndFormContainer}>
         <ContactInformation />
         <ContactForm2 />

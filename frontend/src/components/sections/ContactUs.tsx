@@ -10,7 +10,7 @@ export default function ContactUs() {
       <div className={styles.imageContainer}>
         <Image
           src="/work_with_us.png"
-          alt=""
+          alt="Recycled rock materials being moved by heavy equipment at MRC Rock & Sand’s processing yard"
           width={1022}
           height={554}
           className={styles.image}

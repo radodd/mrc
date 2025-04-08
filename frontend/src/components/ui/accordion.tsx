@@ -37,7 +37,7 @@ const AccordionTrigger = React.forwardRef<
       {children}
       <Image
         src="/chevron_down.svg"
-        alt=""
+        alt="Chevron icon indicating accordion state"
         width={16}
         height={8}
         className="shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180"

@@ -23,7 +23,7 @@ const AlphabetizeButtons = ({
       >
         <Image
           src="/sort_arrows.svg"
-          alt=""
+          alt="Sort products alphabetically"
           width={23}
           height={23}
           className="pr-2"

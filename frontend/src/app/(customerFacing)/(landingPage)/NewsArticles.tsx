@@ -52,7 +52,7 @@ export default function NewsArticles() {
                 <div className={styles.imageContainer}>
                   <Image
                     src={article.image}
-                    alt=""
+                    alt={article.alt}
                     width={700}
                     height={700}
                     style={{ objectFit: "cover", objectPosition: "center" }}

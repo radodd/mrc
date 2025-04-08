@@ -57,16 +57,16 @@ const Hero = () => {
           className={styles.imageContainer}
         />
       </div>
+      {/* SEO + Screen Reader-Only Heading */}
+      <h1 className="sr-only">
+        About Us | MRC Rock & Sand, SPM Santa Paula Materials & Stoneyard
+      </h1>
       {/* Visible content, hidden from screen readers */}
       <div>
         <h1 className={`${styles.heroTitle} text-whitebase`} aria-hidden>
           About Us
         </h1>
       </div>
-      {/* SEO + Screen Reader-Only Heading */}
-      <h1 className="sr-only">
-        About Us | MRC Rock & Sand, SPM Santa Paula Materials & Stoneyard
-      </h1>
     </div>
   );
 };

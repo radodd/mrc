@@ -20,6 +20,7 @@ export const LandingPageCarousel = [
   },
   {
     logo: "/logo_stoneyard.svg",
+    logoAlt: "Stoneyard Logo",
     subheader: "Stoneyard",
     description:
       "We specialize in providing natural stone products for construction and landscaping purposes. Our stone may be used in various applications like building facades, countertops, and retaining walls. Our high quality natural stone products can enhance any project design.",
@@ -30,13 +31,14 @@ export const LandingPageCarousel = [
         filter: ["Stoneyard"],
       },
     ],
-    image: "/image_carousel_stoneyard.png", // Replace with your actual image path
+    image: "/image_carousel_stoneyard.png",
+    alt: "Variety of natural stone products at Stoneyard, used for construction and landscaping projects",
   },
   {
     logo: "/logo_mrc.svg",
+    logoAlt: "MRC Rock & Sand logo",
     subheader: "MRC Rock & Sand",
     description: "Supplying aggregates and services for construction",
-    // "Our main business is to supply a range of aggregates for the construction industry. We operate quarries, processing facilities and have a range of portable equipment to provide services for various projects.",
     buttons: [
       {
         text: "View Materials",
@@ -48,13 +50,14 @@ export const LandingPageCarousel = [
         navigateTo: "/services#MRC",
       },
     ],
-    image: "/about_us_timeline.png", // Replace with your actual image path
+    image: "/about_us_timeline.png",
+    alt: "MRC Rock & Sand supplying aggregates and construction services.",
   },
   {
     logo: "/logo_spm.svg",
+    altLogo: "SPM Santa Paula Materials logo",
     subheader: "Santa Paula Materials",
     description: "Recycling and producing crushed materials",
-    // "We specialize in the demolition and recycling of building materials. We can take materials such as concrete, asphalt dirt and rock. We then break the materials down to offer products like crushed miscellaneous base.",
     buttons: [
       {
         text: "View Materials",
@@ -66,7 +69,8 @@ export const LandingPageCarousel = [
         navigateTo: "/services#SPM",
       },
     ],
-    image: "/image_carousel_spm.png", // Replace with your actual image path
+    image: "/image_carousel_spm.png",
+    alt: "Santa Paula Materials (SPM) recycling and producing crushed materials",
   },
 ];
 
@@ -256,6 +260,7 @@ export const RequestQuoteCards = [
 export const Articles = [
   {
     image: "/article1.png",
+    alt: "Croatian father and son duo behind Santa Paula Materials, awarded for their family-owned business and immigrant roots.",
     title: "Spirit of Small Business 2016 honoree, Santa Paula Materials",
     content:
       "As a young boy in the lush seaside municipality of pre blocka Croatia Mile once dreamed of captaining his own ship. Yet due to the restraints of the socialist Federal... ",
@@ -264,6 +269,7 @@ export const Articles = [
   },
   {
     image: "/article2b.jpg",
+    alt: "Santa Paula Materials (SPM) assisting in the Montecito mudslide cleanup by collecting rocks and construction debris.",
     title: "As Montecito cleanup continues, a search for...",
     content:
       "Santa Paula Materials, which sells rocks and recycled construction debris, will collect the rocks that are hauled out, while Standard Industries, a building material...",
@@ -272,6 +278,7 @@ export const Articles = [
   },
   {
     image: "/article3.png",
+    alt: "Ceremonial check presentation to Santa Paula Materials (SPM) for a $1.1M state loan supporting new green recycling initiatives.",
     title: "SP Materials: State $1.1M loan to help create new...",
     content:
       "The ceremonial check for the proposed expansion - considered in the category of “green” business practices - was presented Thursday to Santa Paula Materials’...",

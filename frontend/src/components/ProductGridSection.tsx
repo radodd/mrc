@@ -313,7 +313,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
 
   return (
     <section className={styles.sectionContainer}>
-      <h1>{title}</h1>
+      <h2>{title}</h2>
       <div className={styles.buttonContainer}>
         <div className="flex flex-row gap-6 w-full justify-center items-center">
           <div className="w-full">

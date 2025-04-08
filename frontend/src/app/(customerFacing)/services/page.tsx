@@ -2,7 +2,6 @@ import ContactUs from "../../../components/sections/ContactUs";
 import { Button } from "../../../components/ui/button";
 import Image from "next/image";
 import React from "react";
-import { map } from "zod";
 import { ServicesMRC } from "../../../../..";
 import { ServicesSPM } from "../../../../..";
 
@@ -18,18 +17,28 @@ const page = () => {
           fill
           className="object-cover"
         />
-        <h1 className="absolute text-whitebase font-bold text-[64px] max-smMobie:text-[40px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          Services
+        {/* SEO + Screen Reader-Only Heading */}
+        <h1 className="sr-only">
+          Services Offered by Santa Paula Materials and MRC Rock & Sand –
+          Recycled Building Materials, Rock Reclamation, and Onsite Crushing &
+          Screening
         </h1>
+        {/* Visible content, hidden from screen readers */}
+        <h2
+          className="absolute text-whitebase font-bold text-[64px] max-smMobie:text-[40px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          aria-hidden
+        >
+          Services
+        </h2>
       </div>
 
       <div className="flex flex-col bg-primary xlScreen:mb-20">
-        <h1
+        <h2
           id="SPM"
           className="font-bold text-whitebase text-[40px] my-6 px-[72px] max-smMobie:px-[32px] xlScreen:px-36 max-smMobie:text-[32px]"
         >
           Santa Paula Materials
-        </h1>
+        </h2>
         {ServicesSPM.map((materials) => (
           <div
             key={materials.id}
@@ -72,12 +81,12 @@ const page = () => {
       {/* Mr rock & Sand */}
 
       <div className="flex flex-col bg-primary mb-20 max-mobile:mb-16">
-        <h1
+        <h2
           id="MRC"
           className="font-bold text-whitebase text-[40px] my-6 px-[72px] max-smMobie:px-[32px] xlScreen:px-36 max-smMobie:text-[32px]"
         >
           MRC Rock & Sand
-        </h1>
+        </h2>
 
         {ServicesMRC.map((service) => (
           <div
@@ -98,9 +107,9 @@ const page = () => {
               />
             </div>
             <div className="flex-col flex gap-10 w-1/2 py-12 px-[72px] max-smMobie:px-8 xlScreen:px-36 max-mobile:w-full justify-center">
-              <h1 className="font-bold text-[32px] max-smMobie:text-2xl text-primary-text">
+              <h2 className="font-bold text-[32px] max-smMobie:text-2xl text-primary-text">
                 {service.name}
-              </h1>
+              </h2>
               <p className="text-[20px] w-full text-secondary-text max-smMobie:text-base self-stretch">
                 {service.desc}
               </p>
