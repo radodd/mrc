@@ -42,7 +42,6 @@ router.get("/test", async (req, res) => {
       return res.status(400).json({ error });
     }
 
-    console.log("Test email sent successfully:", data);
     res.status(200).json({ data });
   } catch (error) {
     console.error("Internal Server Error:", error);

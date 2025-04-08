@@ -2,10 +2,8 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "../../lib/utils";
 import Link from "next/link";
-import { useFilter } from "../../context/FilterContext";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-[100px] text-base font-normal ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -72,7 +70,6 @@ export interface ButtonProps
   navigateTo?: string;
   onClick?: () => void;
   filter?: string;
-  // setFilterValueList?: (filter) => void;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -85,14 +82,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       navigateTo,
       onClick,
       filter,
-      // setFilterValueList,
       ...props
     },
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
-    // const { setFilterValueList } = useFilter();
-    // console.log("useFilter context:", setFilterValueList);
     const handleClick = () => {
       if (filter) {
         onClick?.();

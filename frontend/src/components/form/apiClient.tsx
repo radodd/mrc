@@ -18,9 +18,7 @@ export const sendFormData = async (formData: FormValues) => {
         html: emailHtml,
       }),
     });
-    console.log("FORM DATA", formData);
     // Log the raw response
-    console.log("Raw Response:", response);
     // Check for HTTP errors
     if (!response.ok) {
       const errorText = await response.text(); // Read error response for debugging
@@ -31,7 +29,6 @@ export const sendFormData = async (formData: FormValues) => {
     const data = await response.json();
 
     // Log parsed response
-    console.log("Parsed Response:", data);
 
     // Return a standardized response structure
     return {

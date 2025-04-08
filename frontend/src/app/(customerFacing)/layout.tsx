@@ -51,7 +51,6 @@ export default function Layout({
   const pathname = usePathname();
   const router = useRouter();
   const { cartItems, cartItemCounter } = useCart();
-  console.log(cartItemCounter);
   useEffect(() => {}, [
     isMaterialsOpen,
     isSubmenuOpen,
@@ -78,7 +77,6 @@ export default function Layout({
     setFilterValueList([filterValue]);
     if (typeof window !== "undefined") {
       localStorage.setItem("filterValueList", JSON.stringify([filterValue]));
-      console.log("Updated filterValueList:", [filterValue]);
     }
   };
 
@@ -86,7 +84,6 @@ export default function Layout({
     const material = MaterialID.find((item) => item.name === materialName);
 
     if (material) {
-      console.log("Found material with ID:", material.id);
       router.push(`/materials/${material.id}`);
     } else {
       console.error("Material not found:", materialName);
@@ -154,7 +151,6 @@ const MaterialMenuContent = ({
   setIsSubSubmenuOpen,
   handleFilterClick,
   handleMaterialDetail,
-  // onClick,
 }) => (
   <NavigationMenuContent
     onMouseLeave={onMouseLeave}
@@ -163,7 +159,6 @@ const MaterialMenuContent = ({
     <Link
       href="/materials"
       className="font-[700] font-openSans text-[20px] pb-[8px]"
-      // onClick={handleFilterClick()}
     >
       Shop All Materials
     </Link>
@@ -177,10 +172,7 @@ const MaterialMenuContent = ({
         subDescription="We are focused on artisanal stone and tile"
         isSubmenuOpen={isSubmenuOpen === 1}
         onMouseEnter={() => setIsSubmenuOpen(1)}
-        onClick={(event) => {
-          console.log("Click", event);
-          console.log("handleFilterClick triggered with filter: Stoneyard");
-
+        onClick={() => {
           handleFilterClick("Stoneyard");
           setIsSubmenuOpen(null);
         }}
@@ -199,7 +191,6 @@ const MaterialMenuContent = ({
         isSubmenuOpen={isSubmenuOpen === 2}
         onMouseEnter={() => setIsSubmenuOpen(2)}
         onClick={() => {
-          console.log("handleFilterClick triggered with filter: MRC");
           handleFilterClick("MRC Rock & Sand");
           setIsSubmenuOpen(null);
         }}
@@ -218,7 +209,6 @@ const MaterialMenuContent = ({
         onClick={() => {
           setIsSubmenuOpen(null);
           handleFilterClick("Santa Paula Materials");
-          // handleMaterialDetail();
         }}
         submenuItems={SantaPaulaMaterials}
         menuHeight={menuHeight}
@@ -242,7 +232,6 @@ interface MenuItemProps {
   isSubSubmenuOpen?: boolean;
   setIsSubSubmenuOpen?: React.Dispatch<React.SetStateAction<number | null>>;
   menuHeight: string;
-  // handleFilterClick?: () => void;
   handleMaterialDetail?: (item: string) => void;
 }
 
@@ -289,7 +278,6 @@ const MenuItem: React.FC<MenuItemProps> = ({
             key={index}
             className={`${title === "Stoneyard" ? "w-[242px]" : ""} text-xl hover:text-primary cursor-pointer w-[182px]`}
             onClick={() => {
-              console.log("Clicked material:", item, typeof item);
               handleMaterialDetail(item);
             }}
           >
@@ -369,26 +357,3 @@ const SubList: React.FC<SubListProps> = ({
     </ul>
   </>
 );
-
-// const FooterLinks = () => (
-//   <div className="flex flex-col min-[1306px]:flex-row min-[1306px]:justify-between max-[1305px]:items-center w-full">
-//     <div className="flex flex-col max-[1291px]:text-center">
-//       <FooterLink href="/about#SantaPaulaMaterials">
-//         Santa Paula Materials
-//       </FooterLink>
-//       <FooterLink href="/about#MRC">MRC Rock and Sand</FooterLink>
-//       <FooterLink href="/about#Stoneyard">Stoneyard</FooterLink>
-//     </div>
-//     <div className="flex max-[1305px]:justify-between justify-end gap-[104px] w-full">
-//       <div className="flex flex-col">
-//         <FooterLink href="/about">About</FooterLink>
-//         <FooterLink href="/about#faq">FAQ</FooterLink>
-//         <FooterLink href="/contact">Contact</FooterLink>
-//       </div>
-//       <div className="flex flex-col">
-//         <FooterLink href="/materials">Materials</FooterLink>
-//         <FooterLink href="/services">Services</FooterLink>
-//       </div>
-//     </div>
-//   </div>
-// );

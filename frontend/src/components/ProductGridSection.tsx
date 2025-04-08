@@ -52,9 +52,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
   const [filterDropDown, setFilterDropdown] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    console.log("Current filters:", filterValueList);
-  }, [filterValueList]);
+  useEffect(() => {}, [filterValueList]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -67,7 +65,6 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             headers: { "Content-Type": "application/json" },
           },
         );
-        console.log(response);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -92,7 +89,6 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             ),
           ),
         }));
-        console.log("Mapped Products", mappedProducts);
         setProducts(mappedProducts);
       } catch (error) {
         console.error("Error fetching DATA:", error);
@@ -152,16 +148,9 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
       });
     });
 
-    console.log(
-      "Exact Match Filtered Product List:",
-      exactMatchFilteredProductList,
-    );
-
     // Now, use the exact match filtered list as the final result
     finalFilteredProductList = exactMatchFilteredProductList;
   } else {
-    console.log("More than one filter applied, applying AND filtering logic.");
-
     // Step 4: Apply existing AND filter logic (if multiple filters are selected)
     finalFilteredProductList = products.filter((product) => {
       const matchesAllFilters = filterValueList.every((filter) => {
@@ -184,8 +173,6 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
 
   // Step 5: Apply OR logic for categories with multiple filters
   if (categoriesWithMultipleFilters.length > 0) {
-    console.log("Applying OR filtering for categories with multiple filters.");
-
     const selectedCompanyFilters = filterValueList.filter((filter) =>
       filterBelongsToCategory(filter, "company"),
     );
@@ -226,16 +213,11 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
       });
     });
 
-    console.log("OR Filtered Product List:", orFilteredProductList);
-
     // Combine OR filtered results with the final result
     finalFilteredProductList = [
       ...new Set([...finalFilteredProductList, ...orFilteredProductList]),
     ];
   }
-
-  // Final output
-  console.log("Final Filtered Product List:", finalFilteredProductList);
 
   // Helper function to check if a filter belongs to a category
   function filterBelongsToCategory(filter, category) {

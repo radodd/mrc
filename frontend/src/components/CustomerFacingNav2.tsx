@@ -168,7 +168,6 @@ const MaterialSection = ({
                   key={index}
                   className="w-full text-[16px] hover:font-bold px-2 py-4 cursor-pointer"
                   onClick={() => {
-                    console.log("Clicked material:", item, typeof item);
                     handleMaterialDetail(item);
                   }}
                 >
@@ -201,8 +200,6 @@ export function CustomerFacingNav2({ children }: { children: ReactNode }) {
     const material = MaterialID.find((item) => item.name === materialName);
 
     if (material) {
-      console.log("Found material with ID:", material.id);
-      // router.push(`/materials/${material.id}`);
       window.location.href = `/materials/${material.id}`;
     } else {
       console.error("Material not found:", materialName);

@@ -37,11 +37,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const savedCart = localStorage.getItem("cartItems");
     if (savedCart) {
       try {
-        // console.log("Saved cart data:", savedCart); // Log raw data
         const decompressedCart = JSON.parse(
           LZString.decompressFromUTF16(savedCart) || "[]",
         );
-        // console.log("Decompressed cart data:", decompressedCart);
         if (Array.isArray(decompressedCart)) {
           setCartItems(decompressedCart);
         } else {
@@ -61,7 +59,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       isFirstLoad.current = false;
       return;
     }
-    console.log("Saving cart to localStorage:", cartItems);
     const compressedData = LZString.compressToUTF16(JSON.stringify(cartItems));
     localStorage.setItem("cartItems", compressedData);
   }, [cartItems]);

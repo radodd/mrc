@@ -27,7 +27,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "MRC Rock & Sand | SPM Santa Paula Materials | Stone Suppliers",
   description:
-    "Premium natural stone, aggregates, and recycled materials from MRC Rock & Sand and SPM Santa Paula Materials. Serving all your construction and landscaping needs.",
+    "Premium stone, aggregates, and recycled materials from MRC Rock & Sand and SPM Santa Paula Materials. Serving all construction and landscaping needs.",
   alternates: {
     canonical: "https://www.stonesuppliers.net",
   },

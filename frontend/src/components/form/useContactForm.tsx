@@ -40,17 +40,12 @@ export const useContactForm = ({ cartItems = [] }) => {
     const isValid = await trigger();
     if (!isValid) return;
 
-    console.log("Cart items before submission:", cartItems);
-    console.log("Type of cartItems:", typeof cartItems);
-    console.log("Is cartItems an array?", Array.isArray(cartItems));
-
     try {
       const payload = {
         ...formData,
         cartItems: Array.isArray(cartItems) ? cartItems : [],
       };
       const result = await sendFormData(payload);
-      console.log("Form data and cart data:", payload);
 
       if (!result.success) {
         console.error("Error sending email:", result.error);

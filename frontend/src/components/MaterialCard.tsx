@@ -19,13 +19,7 @@ type ProductCardProps = {
   company: string[];
   color: string[];
   uses: string[];
-  // category: string[] | { name: string };
   category: string[];
-  // MaterialCategories?: {
-  //   Categories: {
-  //     name: string;
-  //   };
-  // }[];
 };
 export function ProductCard({
   id,
@@ -36,15 +30,8 @@ export function ProductCard({
   company,
   color,
   uses,
-  // MaterialCategories,
   category,
 }: ProductCardProps) {
-  // const categories = MaterialCategories
-  //   ? MaterialCategories.map(
-  //       (materialCategory) => materialCategory.Categories.name,
-  //     )
-  //   : [];
-  // console.log("Categories", categories);
   return (
     <>
       <Separator

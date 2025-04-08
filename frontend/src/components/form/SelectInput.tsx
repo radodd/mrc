@@ -12,9 +12,7 @@ export const positionOptions = [
 
 const SelectInput = forwardRef<HTMLSelectElement, SelectInputProps>(
   ({ label, options, error, register, ...rest }, ref) => {
-    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      console.log("Selected value:", event.target.value);
-    };
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {};
 
     return (
       <div className={style.inputContainer}>
@@ -22,16 +20,10 @@ const SelectInput = forwardRef<HTMLSelectElement, SelectInputProps>(
           {...rest}
           {...register}
           onChange={(event) => {
-            handleChange(event); // Log the value
-            rest.onChange?.(event); // Ensure the parent onChange handler is called, if provided
+            handleChange(event);
+            rest.onChange?.(event);
           }}
           className={style.inputField}
-          // style={{
-          //   color:
-          //     rest.value === "Contractor" || rest.value === undefined
-          //       ? "red"
-          //       : "hsl(var(--primary))", //
-          // }}
         >
           <option value="" disabled hidden>
             Position

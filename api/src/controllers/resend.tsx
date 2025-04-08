@@ -7,7 +7,6 @@ dotenv.config();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const send = async (req: Request, res: Response) => {
-  console.log("Incoming request body:", req.body);
   // @ts-ignore.
   const { from, to, subject, html } = req.body;
 
@@ -30,7 +29,6 @@ export const send = async (req: Request, res: Response) => {
       return res.status(400).json({ error });
     }
 
-    console.log("Email sent successfully:", data);
     // @ts-ignore
     res.status(200).json({ data });
   } catch (error) {

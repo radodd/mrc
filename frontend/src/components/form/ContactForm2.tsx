@@ -21,7 +21,6 @@ const ContactForm2: React.FC<ContactFormProps> = ({
   buttonText = "Submit",
   cartItems,
 }) => {
-  // console.log("Received cartItems:", cartItems);
   const {
     register,
     handleSubmit,

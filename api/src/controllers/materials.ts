@@ -19,8 +19,6 @@ export const getMaterials = async (
   next: NextFunction
 ) => {
   try {
-    console.log("getMaterials called");
-
     const { data, error } = await supabase.from("Materials").select(`
     id,
     name,
@@ -58,7 +56,6 @@ export const getMaterials = async (
       throw createHttpError(404, "No Materials found");
     }
 
-    console.log("Materials fetched successfully:", data);
     res.status(200).json(data);
   } catch (error) {
     console.error("Error in getMaterials:", error);
@@ -116,79 +113,9 @@ export const getMaterialById = async (
       throw createHttpError(404, `Material with ID ${id} not found`);
     }
 
-    console.log("Material details fetched successfully:", data);
     res.status(200).json(data[0]);
   } catch (error) {
     console.error("Error in getMaterialById:", error);
     next(error);
   }
 };
-
-// export const getMaterialByName = async (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction
-// ) => {
-//   const { name } = req.query;
-//   console.log("Received name parameter:", name);
-
-//   try {
-//     if (!name || typeof name !== "string") {
-//       throw createHttpError(
-//         400,
-//         "Material name is required and must be a string"
-//       );
-//     }
-
-//     console.log(`getMaterialsByName called for Name: ${name}`);
-
-//     // Query to fetch material details by name
-//     const { data, error } = await supabase
-//       .from("Materials")
-//       .select(
-//         `
-//         id,
-//         name,
-//         description,
-//         color,
-//         uses,
-//         texture,
-//         company,
-//         imagePath,
-//         imagePrimary,
-//         MaterialCategories (
-//           id,
-//           category_id,
-//           Categories (
-//             id,
-//             name
-//           ),
-//           MaterialCategorySizes (
-//             id,
-//             size_id,
-//             Sizes (
-//               id,
-//               sizeValue
-//             )
-//           )
-//         )
-//       `
-//       )
-//       .ilike("name", `%${name}%`);
-
-//     if (error) {
-//       console.error("Error fetching material by name:", error);
-//       throw createHttpError(500, "Failed to fetch material details");
-//     }
-
-//     if (!data || data.length === 0) {
-//       throw createHttpError(404, `Material with name ${name} not found`);
-//     }
-
-//     console.log("Material details fetched successfully:", data);
-//     res.status(200).json(data[0]);
-//   } catch (error) {
-//     console.error("Error in getMaterialsByName:", error);
-//     next(error);
-//   }
-// };

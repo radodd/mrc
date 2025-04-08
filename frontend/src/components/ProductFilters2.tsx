@@ -90,9 +90,6 @@ export const ProductFilters2: React.FC<{
   sizeCounts: Record<string, number>;
   allFilters: string[];
 }> = ({
-  // filterValueList,
-  // setFilterValueList,
-  // clearFilter,
   companyCounts,
   categoryCounts,
   textureCounts,
@@ -107,28 +104,16 @@ export const ProductFilters2: React.FC<{
     tempFilterValueList,
     setTempFilterValueList,
   } = useFilter();
-  // const [tempFilterValueList, setTempFilterValueList] =
-  //   useState<string[]>(filterValueList);
 
   const handleCheckboxChange = (category: string, value: string) => {
-    console.log("handleCheckboxChange:", tempFilterValueList);
     setTempFilterValueList((prev) => {
       if (prev.includes(value)) {
-        return prev.filter((v) => v !== value); // Remove the value if already in the list
+        return prev.filter((v) => v !== value);
       } else {
-        return [...prev, value]; // Add the value if not in the list
+        return [...prev, value];
       }
     });
   };
-  // const handleCheckboxChange = (category: string, value: string) => {
-  //   setTempFilterValueList((prev) => {
-  //     if (prev.includes(value)) {
-  //       return prev.filter((v) => v !== value);
-  //     } else {
-  //       return [...prev, value];
-  //     }
-  //   });
-  // };
 
   const applyFilters = () => {
     setFilterValueList(tempFilterValueList);
