@@ -100,7 +100,6 @@ const MaterialsDropdown = () => {
 /** Artisanal Stone and other material sections */
 const MaterialSections = () => {
   const { setFilterValueList, filterValueList } = useFilter();
-  console.log("FilterValue", filterValueList);
   return (
     <>
       <Separator className="bg-[#919EA6]" />
