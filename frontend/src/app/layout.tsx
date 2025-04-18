@@ -25,7 +25,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "MRC Rock & Sand | SPM Santa Paula Materials | Stone Suppliers",
+  title: "MRC Rock & Sand",
   description:
     "Premium stone, aggregates, and recycled materials from MRC Rock & Sand and SPM Santa Paula Materials. Serving all construction and landscaping needs.",
   alternates: {
@@ -42,13 +42,15 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "MRC Rock & Sand | SPM Santa Paula Materials | Stoneyard",
+    alternateName: "SPM Santa Paula Materials",
     url: "https://www.stonesuppliers.net",
   };
 
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "MRC Rock & Sand | SPM Santa Paula Materials | Stoneyard",
+    name: "MRC Rock & Sand",
+    alternateName: "SPM Santa Paula Materials",
     url: "https://www.stonesuppliers.net",
     logo: "https://www.stonesuppliers.net/logo_rocks.png",
   };
@@ -56,7 +58,8 @@ export default function RootLayout({
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "MRC Rock & Sand | SPM Santa Paula Materials | Stoneyard",
+    name: "MRC Rock & Sand",
+    alternateName: "SPM Santa Paula Materials",
     image: "https://www.stonesuppliers.net/image_carousel_spm.png",
     "@id": "",
     url: "https://www.stonesuppliers.net/",
@@ -75,7 +78,7 @@ export default function RootLayout({
       opens: "09:00",
       closes: "17:00",
     },
-    logo: "https://stonesuppliers.net/logo_rocks.png",
+    logo: "https://www.stonesuppliers.net/logo_rocks.png",
   };
 
   return (
@@ -100,6 +103,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <title>MRC Rock & Sand | SPM Santa Paula Materials</title>
       </head>
 
       <body
@@ -121,7 +125,6 @@ export default function RootLayout({
         <Toaster />
         <Footer />
       </body>
-      {/* </div> */}
     </html>
   );
 }
