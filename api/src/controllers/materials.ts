@@ -56,7 +56,7 @@ export const getMaterials = async (
     if (!data || data.length === 0) {
       throw createHttpError(404, "No Materials found");
     }
-
+    console.log("Materials Data:", data);
     res.status(200).json(data);
   } catch (error) {
     console.error("Error in getMaterials:", error);
