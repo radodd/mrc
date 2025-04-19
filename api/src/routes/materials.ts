@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", MaterialsController.getMaterials);
 // router.get("/:id", MaterialsController.getMaterial);
-router.get("/:id", MaterialsController.getMaterialById); // For fetching material by ID
+router.get("/slug/:slug", MaterialsController.getMaterialBySlug); // For fetching material by ID
 // router.get("/material", MaterialsController.getMaterialByName);
 
 module.exports = router;

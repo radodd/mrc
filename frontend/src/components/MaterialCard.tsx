@@ -12,6 +12,7 @@ import Link from "next/link";
 
 type ProductCardProps = {
   id: string;
+  slug: string;
   name: string;
   description: string;
   imagePrimary: string;
@@ -23,6 +24,7 @@ type ProductCardProps = {
 };
 export function ProductCard({
   id,
+  slug,
   name,
   description,
   imagePrimary,
@@ -39,7 +41,7 @@ export function ProductCard({
         decorative={true}
         className={styles.separator}
       />
-      <Link href={`/materials/${id}`} key={id} prefetch={false}>
+      <Link href={`/materials/${slug}`} key={id} prefetch={false}>
         <Card className={styles.card}>
           <div className={styles.imageWrapper}>
             <Image
