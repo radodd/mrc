@@ -24,7 +24,8 @@
     "lz-string": "^1.5.0",
     "react-input-mask": "^2.0.4",
     "react-input-mask-next": "^3.0.0-alpha.12",
-    "resend": "^4.0.0"
+    "resend": "^4.0.0",
+    "slugify": "^1.6.6"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
