@@ -21,6 +21,7 @@ export const getMaterials = async (
   try {
     const { data, error } = await supabase.from("Materials").select(`
     id,
+    slug,
     name,
     description,
     color,
