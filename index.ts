@@ -158,7 +158,7 @@ export const HISTORY = [
     id: "Stoneyard",
     block: "Lastly, we added",
     title: "Stoneyard",
-    body: "At Stoneyard Building Materials, we offer an extensive range of natural stone products for both residential and commercial projects. We provide materials for hardscaping, such as patios, walkways, and walls, as well as interior applications like fireplaces and countertops. Additionally, we offer custom stonework and consultation services to help you achieve the perfect look and functionality for your project. ",
+    body: "At Stoneyard, we offer an extensive range of natural stone products for both residential and commercial projects. We provide materials for hardscaping, such as patios, walkways, and walls, as well as interior applications like fireplaces and countertops. Additionally, we offer custom stonework and consultation services to help you achieve the perfect look and functionality for your project. ",
     image: "/image_carousel_stoneyard.png",
   },
 ];
