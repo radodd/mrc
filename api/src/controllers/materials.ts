@@ -1,6 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 import createHttpError from "http-errors";
 import { Request, Response, NextFunction } from "express";
+import * as dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
 
 const supabaseUrl = process.env.SUPABASE_URL as string;
 const supabaseKey = process.env.SUPABASE_API_KEY as string;
