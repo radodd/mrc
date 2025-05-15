@@ -38,7 +38,7 @@ const fetchMaterialBySlug = async (
 ): Promise<ProductCardProps | null> => {
   try {
     const response = await fetch(
-      `https://mrc-two.vercel.app/api/materials/${slug}`,
+      `https://mrc-two.vercel.app/api/materials/slug/${slug}`,
       {
         method: "GET",
         credentials: "include",
