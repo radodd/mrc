@@ -32,12 +32,12 @@ export type ProductCardProps = {
 
 type Orientation = "horizontal" | "vertical";
 
-const fetchMaterialById = async (
-  id: string,
+const fetchMaterialBySlug = async (
+  slug: string,
 ): Promise<ProductCardProps | null> => {
   try {
     const response = await fetch(
-      `https://mrc-two.vercel.app/api/materials/${id}`,
+      `https://mrc-two.vercel.app/api/materials/${slug}`,
       {
         method: "GET",
         credentials: "include",
@@ -87,14 +87,14 @@ const fetchMaterialById = async (
     } else if (error instanceof SyntaxError) {
       console.error("Failed to parse JSON response:", error);
     } else {
-      console.error("Error fetching product by ID:", error);
+      console.error("Error fetching product by slug:", error);
     }
     return null;
   }
 };
 
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default function ProductPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const [product, setProduct] = useState<ProductCardProps | null>(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [orientation, setOrientation] = useState<Orientation>("horizontal");
@@ -124,9 +124,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   }, [product]);
 
   useEffect(() => {
-    if (id) {
-      const productId = Array.isArray(id) ? id[0] : id;
-      fetchMaterialById(productId as string)
+    if (slug) {
+      const productSlug = Array.isArray(slug) ? slug[0] : slug;
+      fetchMaterialBySlug(productSlug as string)
         .then((mappedProduct) => {
           setProduct(mappedProduct);
         })
@@ -135,7 +135,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           console.error("Failed to fetch product data:", error);
         });
     }
-  }, [id]);
+  }, [slug]);
 
   if (!product) {
     return (

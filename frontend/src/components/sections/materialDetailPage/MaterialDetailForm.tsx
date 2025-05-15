@@ -17,7 +17,7 @@ import {
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ProductCardProps } from "../../../app/(customerFacing)/materials/[id]/page";
+import { ProductCardProps } from "../../../app/(customerFacing)/materials/[slug]/page";
 import ShoppingCartIcon from "../../icons/ShoppingCartIcon";
 import QuantityInput from "../../QuantityInput";
 import { useEffect, useState } from "react";

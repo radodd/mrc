@@ -21,6 +21,7 @@ export const getMaterials = async (
   try {
     const { data, error } = await supabase.from("Materials").select(`
     id,
+    slug,
     name,
     description,
     color,
@@ -55,7 +56,7 @@ export const getMaterials = async (
     if (!data || data.length === 0) {
       throw createHttpError(404, "No Materials found");
     }
-
+    console.log("Materials Data:", data);
     res.status(200).json(data);
   } catch (error) {
     console.error("Error in getMaterials:", error);
@@ -63,12 +64,12 @@ export const getMaterials = async (
   }
 };
 
-export const getMaterialById = async (
+export const getMaterialBySlug = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { id } = req.params;
+  const { slug } = req.params;
 
   try {
     const { data, error } = await supabase
@@ -76,6 +77,7 @@ export const getMaterialById = async (
       .select(
         `
         id,
+        slug,
         name,
         description,
         color,
@@ -102,20 +104,20 @@ export const getMaterialById = async (
         )
       `
       )
-      .eq("id", id);
+      .eq("slug", slug);
 
     if (error) {
-      console.error("Error fetching material by ID:", error);
+      console.error("Error fetching material by slug:", error);
       throw createHttpError(500, "Failed to fetch material details");
     }
 
     if (!data || data.length === 0) {
-      throw createHttpError(404, `Material with ID ${id} not found`);
+      throw createHttpError(404, `Material with slug ${slug} not found`);
     }
 
     res.status(200).json(data[0]);
   } catch (error) {
-    console.error("Error in getMaterialById:", error);
+    console.error("Error in getMaterialBySlug:", error);
     next(error);
   }
 };

@@ -23,6 +23,7 @@ import styles from "./scss/ProductGridSection.module.scss";
 
 interface Product {
   id: string;
+  slug: string;
   name: string;
   description: string;
   imagePrimary: string | null;
@@ -70,8 +71,11 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
         }
 
         const data = await response.json();
+        console.log("Fetched material:", data);
+
         const mappedProducts = data.map((material: any) => ({
           id: material.id,
+          slug: material.slug,
           name: material.name,
           description: material.description,
           imagePrimary: material.imagePrimary,
@@ -89,6 +93,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             ),
           ),
         }));
+
         setProducts(mappedProducts);
       } catch (error) {
         console.error("Error fetching DATA:", error);
@@ -363,7 +368,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
             )}
             <div className={styles.productCardContainer}>
               {finalFilteredProductList.map((product, index) => (
-                <ProductCard {...product} key={index} />
+                <ProductCard {...product} slug={product.slug} key={index} />
               ))}
             </div>
           </>
@@ -501,7 +506,7 @@ export default function ProductGridSection({ title }: ProductGridSectionProps) {
                 )}
                 <div className={styles.materialCardContainer}>
                   {finalFilteredProductList.map((product, index) => (
-                    <ProductCard {...product} key={index} />
+                    <ProductCard {...product} slug={product.slug} key={index} />
                   ))}
                 </div>
               </>
