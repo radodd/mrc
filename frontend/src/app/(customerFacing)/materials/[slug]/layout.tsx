@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 import ContactUs from "../../../../components/sections/ContactUs";
-import { getMaterialById } from "src/lib/getMaterialById";
+import { getMaterialBySlug } from "src/lib/getMaterialBySlug";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string };
 }): Promise<Metadata> {
-  const material = await getMaterialById(params.id);
+  const material = await getMaterialBySlug(params.slug);
 
   return {
     title: `${material.name} | MRC Rock & Sand`,
@@ -15,7 +15,7 @@ export async function generateMetadata({
       material.description ||
       "Explore our range of premium materials for your project",
     alternates: {
-      canonical: `https://www.stonesuppliers.net/materials/${params.id}`,
+      canonical: `https://www.stonesuppliers.net/materials/${params.slug}`,
     },
   };
 }
