@@ -41,7 +41,7 @@ export function ProductCard({
         decorative={true}
         className={styles.separator}
       />
-      <Link href={`/materials/${slug}`} key={id} prefetch={false}>
+      <Link href={`/materials/slug/${slug}`} key={id} prefetch={false}>
         <Card className={styles.card}>
           <div className={styles.imageWrapper}>
             <Image

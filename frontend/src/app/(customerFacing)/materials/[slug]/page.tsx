@@ -16,6 +16,7 @@ import styles from "../../../../components/scss/MaterialDetail.module.scss";
 
 export type ProductCardProps = {
   id: string;
+  slug: string;
   name: string;
   description: string;
   imagePrimary: string;
@@ -37,7 +38,7 @@ const fetchMaterialBySlug = async (
 ): Promise<ProductCardProps | null> => {
   try {
     const response = await fetch(
-      `https://mrc-two.vercel.app/api/materials/${slug}`,
+      `https://mrc-two.vercel.app/api/materials/slug/${slug}`,
       {
         method: "GET",
         credentials: "include",
@@ -58,6 +59,7 @@ const fetchMaterialBySlug = async (
 
     const mappedProduct: ProductCardProps = {
       id: data.id,
+      slug: data.slug,
       name: data.name,
       description: data.description,
       imagePrimary: data.imagePrimary,
