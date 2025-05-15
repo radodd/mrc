@@ -103,7 +103,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <title>MRC Rock & Sand | SPM Santa Paula Materials</title>
+        {/* <title>MRC Rock & Sand | SPM Santa Paula Materials</title> */}
       </head>
 
       <body
