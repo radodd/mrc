@@ -196,11 +196,33 @@ export function CustomerFacingNav2({ children }: { children: ReactNode }) {
   const { cartItems, cartItemCounter } = useCart();
   const router = useRouter();
 
+  // const handleMaterialDetail = async (materialName: string) => {
+  //   const material = MaterialID.find((item) => item.name === materialName);
+
+  //   if (material) {
+  //     window.location.href = `/materials/${material.name}`;
+  //   } else {
+  //     console.error("Material not found:", materialName);
+  //   }
+  // };
+
+  const toSlug = (text: string) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, "") // remove non-alphanumeric
+      .replace(/\s+/g, "-") // replace spaces with -
+      .replace(/-+/g, "-"); // collapse multiple dashes
+
   const handleMaterialDetail = async (materialName: string) => {
-    const material = MaterialID.find((item) => item.name === materialName);
+    const material = MaterialID.find(
+      (item) => item.name.toLowerCase() === materialName.toLowerCase(),
+    );
 
     if (material) {
-      window.location.href = `/materials/${material.id}`;
+      console.log(material);
+      const slug = toSlug(material.name);
+      router.push(`/materials/${slug}`);
     } else {
       console.error("Material not found:", materialName);
     }

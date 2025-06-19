@@ -322,7 +322,7 @@ const ListItem = React.forwardRef<
         )}
         {...props}
       >
-        <div className="flex justify-between w-full text-[20px] font-medium font-openSans">
+        <div className="flex justify-between w-full text-[20px] font-medium  font-openSans">
           {title}
           <ChevronDown className="-rotate-90" />
         </div>
